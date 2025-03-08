@@ -1,0 +1,177 @@
+
+
+.amy-mv-blog {
+	&.layout1 {
+		@media screen and (max-width: 768px) {
+			padding: 20px 0;
+		}
+		.entry-content {
+			text-align: center;
+
+			@media screen and (max-width: 980px) {
+				margin-bottom: 15px;
+			}
+		}
+
+		.entry-title {
+			font-size: 20px;
+			font-weight: bold;
+			margin-top: 10px;
+			margin-bottom: 5px;
+		}
+
+		.entry-btn {
+			background: $theme-color;
+			padding: 5px 10px;
+			color: #fff;
+			border-radius: 15px;
+		}
+
+		.entry-summary {
+			font-size: 15px;
+			line-height: 22px;
+			overflow: hidden;
+			height: 22px;
+			margin-bottom: 20px;
+		}
+
+		.wide {
+			.entry-title {
+				height: 42px;
+				overflow: hidden;
+				margin-bottom: 20px;
+
+				@media screen and (max-width: 768px) {
+					margin-bottom: 12px;
+					height: auto;
+				}
+			}
+
+			.entry-item {
+				margin-bottom: 25px;
+			}
+		}
+	}
+
+	&.layout2 {
+		.entry-thumb {
+			position: relative;
+
+			&:after {
+				background: rgba(0, 0, 0, 0.25) none repeat scroll 0 0;
+				content: "";
+				display: block;
+				height: 100%;
+				position: absolute;
+				top: 0;
+				width: 100%;
+			}
+		}
+
+		.entry-item {
+			article {
+				position: relative;
+			}
+
+			.entry-title {
+				font-weight: bold;
+				font-size: 22px;
+				margin-top: 0;
+				height: 50px;
+				overflow: hidden;
+
+				a {
+					color: #fff;
+
+					&:hover {
+						color: $theme-color;
+					}
+				}
+			}
+
+			.entry-date {
+				background: #000;
+				font-weight: bold;
+				color: #fff;
+				padding: 10px;
+				text-transform: uppercase;
+				margin-bottom: 10px;
+
+				span {
+					display: block;
+					line-height: 25px;
+					padding: 0 7px;
+				}
+
+				.d {
+					font-size: 30px;
+				}
+
+				.m {
+					font-size: 16px;
+				}
+			}
+
+			.entry-cat {
+				background: $theme-color;
+				padding: 2px 0;
+				text-align: center;
+				color: #fff;
+			}
+
+			.entry-excerpt {
+				margin-top: 55px;
+				max-height: 110px;
+				overflow: hidden;
+				font-size: 15px;
+				color: #666;
+			}
+
+			.entry-comment {
+				font-size: 18px;
+				font-weight: bold;
+				margin-top: 10px;
+				text-align: center;
+
+				i {
+					display: block;
+					font-size: 22px;
+				}
+			}
+
+			&.out {
+				.entry-content {
+					margin-top: -80px;
+
+					.left {
+						float: left;
+						padding-right: 15px;
+					}
+
+					.right {
+						float: left;
+					}
+				}
+			}
+
+			&.in {
+				.entry-content {
+					bottom: 0;
+					padding: 20px 35px;
+					position: absolute;
+					text-align: center;
+					display: block;
+
+					.entry-cat {
+						display: inline-block;
+						padding: 2px 10px;
+					}
+
+					.entry-title {
+						margin-top: 15px;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,391 @@
+0000.000 (0) Opened log file at time: Tue, 17 Dec 2024 13:23:12 +0000 on http://localhost/unafilm
+0000.009 (0) UpdraftPlus WordPress backup plugin (https://updraftplus.com): 1.24.11 WP: 6.7.1 PHP: 8.0.30 (apache2handler, Windows NT FARIS 10.0 build 26100 (Windows 10) AMD64) MySQL: 10.4.32-MariaDB (max packet size=1048576) WPLANG: en_US Server: Apache/2.4.58 (Win64) OpenSSL/3.1.3 PHP/8.0.30 safe_mode: 0 max_execution_time: 900 memory_limit: 512M (used: 84.4M | 86M) multisite: N openssl: OpenSSL 1.1.1t  7 Feb 2023 mcrypt: N LANG:  ZipArchive::addFile: Y
+0000.010 (0) Free space on disk containing Updraft's temporary directory: 53608.3 MB
+0000.012 (0) Tasks: Backup files: 1 (schedule: unset) Backup DB: 1 (schedule: unset)
+0000.014 (0) Semaphore (fd, wp_options) being initialised
+0000.017 (0) Requesting semaphore lock (fd) (apparently not via scheduler)
+0000.019 (0) Set semaphore last lock (fd) time to 2024-12-17 13:23:12
+0000.020 (0) Semaphore lock (fd) complete
+0000.024 (0) Backup run: resumption=0, nonce=ff4832607391, file_nonce=ff4832607391 begun at=1734441792 (0s ago), job type=backup
+0000.026 (0) Scheduling a resumption (1) after 300 seconds (1734442092) in case this run gets aborted
+0000.035 (0) Checking if we have a zip executable available
+0000.038 (0) Creation of backups of directories: beginning
+0000.043 (0) Beginning creation of dump of plugins (split every: 400 MB)
+0002.620 (0) Total entities for the zip file: 1783 directories, 9029 files (0 skipped as non-modified), 160.6 MB
+0002.627 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 2.0 seconds have passed since the last write (0 MB, 1 (1) files added so far); re-opening (prior size: 0 KB)
+0002.709 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 100 files added (on-disk size: 322 KB)
+0002.736 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 200 files added (on-disk size: 322 KB)
+0002.766 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 300 files added (on-disk size: 322 KB)
+0002.794 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 400 files added (on-disk size: 322 KB)
+0002.821 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 500 files added (on-disk size: 322 KB)
+0002.847 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 600 files added (on-disk size: 322 KB)
+0002.874 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 700 files added (on-disk size: 322 KB)
+0002.901 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 800 files added (on-disk size: 322 KB)
+0002.927 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 900 files added (on-disk size: 322 KB)
+0002.954 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1000 files added (on-disk size: 322 KB)
+0002.956 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (11 MB, 9029 files batched, 1001 (1002) added so far); re-opening (prior size: 322 KB)
+0014.922 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1100 files added (on-disk size: 4006.8 KB)
+0014.950 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1200 files added (on-disk size: 4006.8 KB)
+0014.982 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1300 files added (on-disk size: 4006.8 KB)
+0015.011 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1400 files added (on-disk size: 4006.8 KB)
+0015.041 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1500 files added (on-disk size: 4006.8 KB)
+0015.069 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1600 files added (on-disk size: 4006.8 KB)
+0015.102 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1700 files added (on-disk size: 4006.8 KB)
+0015.134 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1800 files added (on-disk size: 4006.8 KB)
+0015.165 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 1900 files added (on-disk size: 4006.8 KB)
+0015.196 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2000 files added (on-disk size: 4006.8 KB)
+0015.200 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (21.6 MB, 9029 files batched, 1001 (2003) added so far); re-opening (prior size: 4006.8 KB)
+0029.309 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2100 files added (on-disk size: 10715.2 KB)
+0029.336 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2200 files added (on-disk size: 10715.2 KB)
+0029.362 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2300 files added (on-disk size: 10715.2 KB)
+0029.383 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25.1 MB, 9029 files batched, 370 (2373) added so far); re-opening (prior size: 10715.2 KB)
+0041.935 (0) A useful amount of data was added after this amount of zip processing: 13.5 s (normalised: 13.4 s, rate: 1911 KB/s)
+0041.965 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2400 files added (on-disk size: 15915.3 KB)
+0042.007 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2500 files added (on-disk size: 15915.3 KB)
+0042.044 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2600 files added (on-disk size: 15915.3 KB)
+0042.072 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2700 files added (on-disk size: 15915.3 KB)
+0042.101 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2800 files added (on-disk size: 15915.3 KB)
+0042.131 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 2900 files added (on-disk size: 15915.3 KB)
+0042.160 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3000 files added (on-disk size: 15915.3 KB)
+0042.189 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3100 files added (on-disk size: 15915.3 KB)
+0042.217 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3200 files added (on-disk size: 15915.3 KB)
+0042.248 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3300 files added (on-disk size: 15915.3 KB)
+0042.270 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (19.6 MB, 9029 files batched, 1001 (3374) added so far); re-opening (prior size: 15915.3 KB)
+0053.609 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3400 files added (on-disk size: 22293.3 KB)
+0053.637 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3500 files added (on-disk size: 22293.3 KB)
+0053.665 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3600 files added (on-disk size: 22293.3 KB)
+0053.692 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3700 files added (on-disk size: 22293.3 KB)
+0053.722 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3800 files added (on-disk size: 22293.3 KB)
+0053.749 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 3900 files added (on-disk size: 22293.3 KB)
+0053.775 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4000 files added (on-disk size: 22293.3 KB)
+0053.805 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4100 files added (on-disk size: 22293.3 KB)
+0053.832 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4200 files added (on-disk size: 22293.3 KB)
+0053.860 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4300 files added (on-disk size: 22293.3 KB)
+0053.881 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (20.2 MB, 9029 files batched, 1001 (4375) added so far); re-opening (prior size: 22293.3 KB)
+0066.757 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4400 files added (on-disk size: 32198.9 KB)
+0066.795 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4500 files added (on-disk size: 32198.9 KB)
+0066.825 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4600 files added (on-disk size: 32198.9 KB)
+0066.854 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4700 files added (on-disk size: 32198.9 KB)
+0066.882 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4800 files added (on-disk size: 32198.9 KB)
+0066.911 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 4900 files added (on-disk size: 32198.9 KB)
+0066.939 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5000 files added (on-disk size: 32198.9 KB)
+0066.966 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5100 files added (on-disk size: 32198.9 KB)
+0066.993 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5200 files added (on-disk size: 32198.9 KB)
+0067.023 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5300 files added (on-disk size: 32198.9 KB)
+0067.045 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (4.7 MB, 9029 files batched, 1001 (5376) added so far); re-opening (prior size: 32198.9 KB)
+0083.218 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5400 files added (on-disk size: 33557.1 KB)
+0083.246 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5500 files added (on-disk size: 33557.1 KB)
+0083.273 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5600 files added (on-disk size: 33557.1 KB)
+0083.302 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5700 files added (on-disk size: 33557.1 KB)
+0083.328 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5800 files added (on-disk size: 33557.1 KB)
+0083.355 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 5900 files added (on-disk size: 33557.1 KB)
+0083.383 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6000 files added (on-disk size: 33557.1 KB)
+0083.410 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6100 files added (on-disk size: 33557.1 KB)
+0083.437 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6200 files added (on-disk size: 33557.1 KB)
+0083.464 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6300 files added (on-disk size: 33557.1 KB)
+0083.486 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (22.3 MB, 9029 files batched, 1001 (6377) added so far); re-opening (prior size: 33557.1 KB)
+0089.436 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6400 files added (on-disk size: 40222.5 KB)
+0089.462 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6500 files added (on-disk size: 40222.5 KB)
+0089.490 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6600 files added (on-disk size: 40222.5 KB)
+0089.520 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6700 files added (on-disk size: 40222.5 KB)
+0089.549 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6800 files added (on-disk size: 40222.5 KB)
+0089.577 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 6900 files added (on-disk size: 40222.5 KB)
+0089.605 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7000 files added (on-disk size: 40222.5 KB)
+0089.633 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7100 files added (on-disk size: 40222.5 KB)
+0089.660 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7200 files added (on-disk size: 40222.5 KB)
+0089.688 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7300 files added (on-disk size: 40222.5 KB)
+0089.709 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (18 MB, 9029 files batched, 1001 (7378) added so far); re-opening (prior size: 40222.5 KB)
+0091.614 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7400 files added (on-disk size: 44491.3 KB)
+0091.640 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7500 files added (on-disk size: 44491.3 KB)
+0091.667 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7600 files added (on-disk size: 44491.3 KB)
+0091.695 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7700 files added (on-disk size: 44491.3 KB)
+0091.722 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7800 files added (on-disk size: 44491.3 KB)
+0091.750 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 7900 files added (on-disk size: 44491.3 KB)
+0091.777 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8000 files added (on-disk size: 44491.3 KB)
+0091.805 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8100 files added (on-disk size: 44491.3 KB)
+0091.833 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8200 files added (on-disk size: 44491.3 KB)
+0091.860 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8300 files added (on-disk size: 44491.3 KB)
+0091.882 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 1000 files added on this batch (14 MB, 9029 files batched, 1001 (8379) added so far); re-opening (prior size: 44491.3 KB)
+0104.397 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8400 files added (on-disk size: 52101 KB)
+0104.432 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8500 files added (on-disk size: 52101 KB)
+0104.467 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8600 files added (on-disk size: 52101 KB)
+0104.498 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8700 files added (on-disk size: 52101 KB)
+0104.528 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8800 files added (on-disk size: 52101 KB)
+0104.562 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 8900 files added (on-disk size: 52101 KB)
+0104.591 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.tmp: 9000 files added (on-disk size: 52101 KB)
+0118.647 (0) Creating zip file manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.list-temp.tmp)
+0118.677 (0) Successfully created zip file manifest (size: 799556)
+0119.110 (0) Created plugins zip (0) - 53478.6 KB in 119.1 s (449.2 KB/s) (sha1: a62d6e13f22af7530be840944d9a0359e31dd0c3, sha256: e7213fe2f216f60a24ca85f99ec4e51217e470f9b6b960a3a1901f4b012a10dd)
+0119.119 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0119.120 (0) No remote despatch: user chose no remote backup service
+0119.121 (0) Recording as successfully uploaded: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip
+0119.123 (0) Deleting zip manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip.list.tmp)
+0119.126 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0119.127 (0) Number of backup sets in history: 0; groups (db): 1
+0119.129 (0) Number of backup sets in history: 0; groups (files): 1
+0119.130 (0) Retain: saving new backup history (sets now: 0) and finishing retain operation
+0119.136 (0) Beginning creation of dump of themes (split every: 400 MB)
+0119.314 (0) Total entities for the zip file: 90 directories, 738 files (0 skipped as non-modified), 24.6 MB
+0119.345 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.tmp: 100 files added (on-disk size: 0 KB)
+0119.375 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.tmp: 200 files added (on-disk size: 0 KB)
+0119.405 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.tmp: 300 files added (on-disk size: 0 KB)
+0119.436 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.tmp: 400 files added (on-disk size: 0 KB)
+0119.464 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.tmp: 500 files added (on-disk size: 0 KB)
+0119.494 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.tmp: 600 files added (on-disk size: 0 KB)
+0119.525 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.tmp: 700 files added (on-disk size: 0 KB)
+0129.391 (0) Creating zip file manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.list-temp.tmp)
+0129.395 (0) Successfully created zip file manifest (size: 49151)
+0129.552 (0) Created themes zip (0) - 19843.3 KB in 10.4 s (1905.8 KB/s) (sha1: 9f687202a406ec31fdb2fbfc5ec91d3b1be21121, sha256: d7fb631c0e449307a82db57e60a08ed4458072b8e4ad8f9ed25d70405a95941e)
+0129.555 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0129.556 (0) No remote despatch: user chose no remote backup service
+0129.557 (0) Recording as successfully uploaded: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip
+0129.559 (0) Deleting zip manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip.list.tmp)
+0129.561 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0129.562 (0) Number of backup sets in history: 0; groups (db): 1
+0129.563 (0) Number of backup sets in history: 0; groups (files): 1
+0129.564 (0) Retain: saving new backup history (sets now: 0) and finishing retain operation
+0129.569 (0) Exclusion option setting (uploads): backup*,*backups,backwpup*,wp-clone,snapshots
+0129.570 (0) Looking for candidates to backup in: C:\xampp\htdocs\UnaFilm/wp-content/uploads
+0129.571 (0) finding files: 2022: adding to list (1)
+0129.572 (0) finding files: 2024: adding to list (2)
+0129.573 (0) finding files: elementor: adding to list (3)
+0129.574 (0) finding files: wp-migrate-db: adding to list (4)
+0129.575 (0) finding files: wpforms: adding to list (5)
+0129.576 (0) Beginning creation of dump of uploads (split every: 400 MB)
+0129.730 (0) Total entities for the zip file: 10 directories, 699 files (0 skipped as non-modified), 30.7 MB
+0129.764 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.tmp: 100 files added (on-disk size: 0 KB)
+0129.794 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.tmp: 200 files added (on-disk size: 0 KB)
+0129.826 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.tmp: 300 files added (on-disk size: 0 KB)
+0129.856 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.tmp: 400 files added (on-disk size: 0 KB)
+0129.889 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.tmp: 500 files added (on-disk size: 0 KB)
+0129.923 (0) Zip: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.tmp: 600 files added (on-disk size: 0 KB)
+0129.944 (0) Adding batch to zip file (UpdraftPlus_ZipArchive): over 25 MB added on this batch (25 MB, 699 files batched, 646 (646) added so far); re-opening (prior size: 0 KB)
+0132.348 (0) A useful amount of data was added after this amount of zip processing: 2.9 s (normalised: 2.9 s, rate: 8948.8 KB/s)
+0132.351 (0) Performance is good - will increase the amount of data we attempt to batch (time=2.8655340671539, normalised_time=2.860709653356, max_time=132.34934592247, data points known=1, old_max_bytes=26214400, new_max_bytes=209715200)
+0133.032 (0) Creating zip file manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.list-temp.tmp)
+0133.036 (0) Successfully created zip file manifest (size: 34051)
+0133.260 (0) Created uploads zip (0) - 28566 KB in 3.7 s (7762.4 KB/s) (sha1: 6cd55b339a26bc9e94b4e1c67ce9411b3ce055a6, sha256: d295f653a9915a9fb545acdc075566081f267abb4a52d794a1334a01922e6f54)
+0133.264 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0133.265 (0) No remote despatch: user chose no remote backup service
+0133.266 (0) Recording as successfully uploaded: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip
+0133.268 (0) Deleting zip manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip.list.tmp)
+0133.270 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0133.271 (0) Number of backup sets in history: 0; groups (db): 1
+0133.272 (0) Number of backup sets in history: 0; groups (files): 1
+0133.272 (0) Retain: saving new backup history (sets now: 0) and finishing retain operation
+0133.276 (0) No backup of mu-plugins: excluded by user's options
+0133.278 (0) Beginning backup of other directories found in the content directory (index: 0)
+0133.279 (0) Exclusion option setting (others): upgrade,cache,updraft,backup*,*backups,mysql.sql,debug.log
+0133.280 (0) Looking for candidates to backup in: C:\xampp\htdocs\UnaFilm/wp-content
+0133.281 (0) finding files: index.php: adding to list (1)
+0133.282 (0) finding files: plugins: skipping: this is the plugins directory
+0133.283 (0) finding files: themes: skipping: this is the themes directory
+0133.284 (0) finding files: updraft: skipping: this is the updraft directory
+0133.285 (0) finding files: upgrade: skipping: excluded by options
+0133.287 (0) finding files: upgrade-temp-backup: adding to list (2)
+0133.288 (0) finding files: uploads: skipping: this is the uploads directory
+0133.292 (0) Total entities for the zip file: 1 directories, 1 files (0 skipped as non-modified), 0 MB
+0133.308 (0) Creating zip file manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-others.zip.list-temp.tmp)
+0133.311 (0) Successfully created zip file manifest (size: 43)
+0133.316 (0) Created others zip (0) - 0.3 KB in 0 s (10.1 KB/s) (sha1: 6c191e92e3d6c77fe1c67672d401506490661514, sha256: f72b9ad4e28cafb579e459536ff173a9ea6b54516da2c5b3e36e28896df7675c)
+0133.321 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0133.322 (0) No remote despatch: user chose no remote backup service
+0133.323 (0) Recording as successfully uploaded: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-others.zip
+0133.325 (0) Deleting zip manifest (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-others.zip.list.tmp)
+0133.327 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0133.328 (0) Number of backup sets in history: 0; groups (db): 1
+0133.329 (0) Number of backup sets in history: 0; groups (files): 1
+0133.330 (0) Retain: saving new backup history (sets now: 0) and finishing retain operation
+0133.337 (0) Saving backup status to database (elements: 8)
+0133.340 (0) Beginning creation of database dump (WordPress DB)
+0133.341 (0) SQL compatibility mode is: NO_ZERO_IN_DATE,NO_ENGINE_SUBSTITUTION
+0133.344 (0) Testing potential mysqldump binary: C:\Program Files\MySQL\MySQL Workbench 8.0 CE\mysqldump.exe
+0133.487 (0) Output: /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;\n/*!40103 SET TIME_ZONE='+00:00' */;\n/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;\n/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;\n/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;\n/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;\nDROP TABLE IF EXISTS `wp_options`;\n/*!40101 SET @saved_cs_client     = @@character_set_client */;\n/*!50503 SET character_set_client = utf8mb4 */;\n (truncated - 1450 bytes total)
+0133.492 (0) Working binary mysqldump found: "C:\Program Files\MySQL\MySQL Workbench 8.0 CE\mysqldump.exe"
+0133.518 (0) Table wp_options: Total expected rows (via COUNT): 295
+0133.519 (0) Table is relatively small; fetch_rows will thus be: 500 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.564 (0) Table wp_options: Rows added in this batch (next record: 6921): 291 (uncompressed bytes in this segment=1488149) in 0.06 seconds
+0133.572 (0) Table wp_options: finishing file(s) (2, 259.3 KB)
+0133.585 (0) Table wp_users: Total expected rows (via COUNT): 1
+0133.587 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.590 (0) Table wp_users: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=1169) in 0.01 seconds
+0133.595 (0) Table wp_users: finishing file(s) (2, 0.6 KB)
+0133.612 (0) Table wp_usermeta: Total expected rows (via COUNT): 27
+0133.613 (0) Table is relatively small; fetch_rows will thus be: 50 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.616 (0) Table wp_usermeta: Rows added in this batch (next record: 27): 27 (uncompressed bytes in this segment=8488) in 0.02 seconds
+0133.623 (0) Table wp_usermeta: finishing file(s) (2, 2.9 KB)
+0133.638 (0) Table wp_actionscheduler_actions: Total expected rows (via COUNT): 30
+0133.639 (0) Table is relatively small; fetch_rows will thus be: 50 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.642 (0) Table wp_actionscheduler_actions: Rows added in this batch (next record: 100): 30 (uncompressed bytes in this segment=14205) in 0.01 seconds
+0133.660 (0) Table wp_actionscheduler_actions: finishing file(s) (2, 1.8 KB)
+0133.673 (0) Table wp_actionscheduler_claims: Total expected rows (via COUNT): 0
+0133.676 (0) Table wp_actionscheduler_claims: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=625) in 0.01 seconds
+0133.683 (0) Table wp_actionscheduler_claims: finishing file(s) (2, 0.4 KB)
+0133.702 (0) Table wp_actionscheduler_groups: Total expected rows (via COUNT): 4
+0133.704 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.710 (0) Table wp_actionscheduler_groups: Rows added in this batch (next record: 4): 4 (uncompressed bytes in this segment=729) in 0.02 seconds
+0133.718 (0) Table wp_actionscheduler_groups: finishing file(s) (2, 0.4 KB)
+0133.736 (0) Table wp_actionscheduler_logs: Total expected rows (via COUNT): 70
+0133.737 (0) Table is relatively small; fetch_rows will thus be: 100 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.742 (0) Table wp_actionscheduler_logs: Rows added in this batch (next record: 261): 70 (uncompressed bytes in this segment=6612) in 0.02 seconds
+0133.749 (0) Table wp_actionscheduler_logs: finishing file(s) (2, 1.1 KB)
+0133.772 (0) Table wp_commentmeta: Total expected rows (via COUNT): 0
+0133.773 (0) Table wp_commentmeta: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=634) in 0.02 seconds
+0133.780 (0) Table wp_commentmeta: finishing file(s) (2, 0.4 KB)
+0133.794 (0) Table wp_comments: Total expected rows (via COUNT): 1
+0133.795 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.798 (0) Table wp_comments: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=1882) in 0.01 seconds
+0133.804 (0) Table wp_comments: finishing file(s) (2, 0.7 KB)
+0133.820 (0) Table wp_links: Total expected rows (via COUNT): 0
+0133.823 (0) Table wp_links: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1027) in 0.01 seconds
+0133.828 (0) Table wp_links: finishing file(s) (2, 0.5 KB)
+0133.849 (0) Table wp_postmeta: Total expected rows (approximate): 1023
+0133.860 (0) Table wp_postmeta: Rows added in this batch (next record: 1363): 1025 (uncompressed bytes in this segment=236139) in 0.03 seconds
+0133.866 (0) Table wp_postmeta: finishing file(s) (2, 20.3 KB)
+0133.897 (0) Table wp_posts: Total expected rows (via COUNT): 214
+0133.898 (0) Table is relatively small; fetch_rows will thus be: 250 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.915 (0) Table wp_posts: Rows added in this batch (next record: 469): 214 (uncompressed bytes in this segment=694491) in 0.05 seconds
+0133.923 (0) Table wp_posts: finishing file(s) (2, 48.5 KB)
+0133.935 (0) Table wp_term_relationships: Total expected rows (approximate): 126
+0133.939 (0) Table wp_term_relationships: Rows added in this batch (next record: 100000): 116 (uncompressed bytes in this segment=2265) in 0.01 seconds
+0133.946 (0) Table wp_term_relationships: finishing file(s) (2, 0.7 KB)
+0133.962 (0) Table wp_term_taxonomy: Total expected rows (via COUNT): 18
+0133.963 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.965 (0) Table wp_term_taxonomy: Rows added in this batch (next record: 18): 18 (uncompressed bytes in this segment=13358) in 0.02 seconds
+0133.972 (0) Table wp_term_taxonomy: finishing file(s) (2, 1.3 KB)
+0133.988 (0) Table wp_termmeta: Total expected rows (via COUNT): 13
+0133.989 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0133.991 (0) Table wp_termmeta: Rows added in this batch (next record: 13): 13 (uncompressed bytes in this segment=14210) in 0.01 seconds
+0133.997 (0) Table wp_termmeta: finishing file(s) (2, 1.4 KB)
+0134.011 (0) Table wp_terms: Total expected rows (via COUNT): 18
+0134.013 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0134.014 (0) Table wp_terms: Rows added in this batch (next record: 18): 18 (uncompressed bytes in this segment=1308) in 0.01 seconds
+0134.019 (0) Table wp_terms: finishing file(s) (2, 0.7 KB)
+0134.037 (0) Table wp_aioseo_cache: Total expected rows (via COUNT): 11
+0134.038 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0134.041 (0) Table wp_aioseo_cache: Rows added in this batch (next record: 252): 11 (uncompressed bytes in this segment=96792) in 0.02 seconds
+0134.048 (0) Table wp_aioseo_cache: finishing file(s) (2, 18.9 KB)
+0134.062 (0) Table wp_aioseo_crawl_cleanup_blocked_args: Total expected rows (via COUNT): 0
+0134.064 (0) Table wp_aioseo_crawl_cleanup_blocked_args: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=947) in 0.01 seconds
+0134.080 (0) Table wp_aioseo_crawl_cleanup_blocked_args: finishing file(s) (2, 0.4 KB)
+0134.095 (0) Table wp_aioseo_crawl_cleanup_logs: Total expected rows (via COUNT): 0
+0134.096 (0) Table wp_aioseo_crawl_cleanup_logs: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=770) in 0.01 seconds
+0134.101 (0) Table wp_aioseo_crawl_cleanup_logs: finishing file(s) (2, 0.4 KB)
+0134.119 (0) Table wp_aioseo_notifications: Total expected rows (via COUNT): 2
+0134.120 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0134.122 (0) Table wp_aioseo_notifications: Rows added in this batch (next record: 2): 2 (uncompressed bytes in this segment=3382) in 0.02 seconds
+0134.129 (0) Table wp_aioseo_notifications: finishing file(s) (2, 1.4 KB)
+0134.146 (0) Table wp_aioseo_posts: Total expected rows (via COUNT): 121
+0134.147 (0) Table is relatively small; fetch_rows will thus be: 200 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0134.154 (0) Table wp_aioseo_posts: Rows added in this batch (next record: 122): 121 (uncompressed bytes in this segment=127503) in 0.02 seconds
+0134.160 (0) Table wp_aioseo_posts: finishing file(s) (2, 4.6 KB)
+0134.177 (0) Table wp_aioseo_writing_assistant_keywords: Total expected rows (via COUNT): 0
+0134.179 (0) Table wp_aioseo_writing_assistant_keywords: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1082) in 0.01 seconds
+0134.184 (0) Table wp_aioseo_writing_assistant_keywords: finishing file(s) (2, 0.5 KB)
+0134.199 (0) Table wp_aioseo_writing_assistant_posts: Total expected rows (via COUNT): 0
+0134.201 (0) Table wp_aioseo_writing_assistant_posts: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=982) in 0.01 seconds
+0134.207 (0) Table wp_aioseo_writing_assistant_posts: finishing file(s) (2, 0.4 KB)
+0134.223 (0) Table wp_e_events: Total expected rows (via COUNT): 0
+0134.225 (0) Table wp_e_events: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=511) in 0.01 seconds
+0134.230 (0) Table wp_e_events: finishing file(s) (2, 0.3 KB)
+0134.246 (0) Table wp_wpforms_logs: Total expected rows (via COUNT): 1
+0134.247 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0134.250 (0) Table wp_wpforms_logs: Rows added in this batch (next record: 1): 1 (uncompressed bytes in this segment=826) in 0.01 seconds
+0134.255 (0) Table wp_wpforms_logs: finishing file(s) (2, 0.5 KB)
+0134.270 (0) Table wp_wpforms_payment_meta: Total expected rows (via COUNT): 0
+0134.272 (0) Table wp_wpforms_payment_meta: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=690) in 0.01 seconds
+0134.278 (0) Table wp_wpforms_payment_meta: finishing file(s) (2, 0.4 KB)
+0134.294 (0) Table wp_wpforms_payments: Total expected rows (via COUNT): 0
+0134.296 (0) Table wp_wpforms_payments: Rows added in this batch (next record: -1): 0 (uncompressed bytes in this segment=1650) in 0.01 seconds
+0134.304 (0) Table wp_wpforms_payments: finishing file(s) (2, 0.6 KB)
+0134.326 (0) Table wp_wpforms_tasks_meta: Total expected rows (via COUNT): 5
+0134.327 (0) Table is relatively small; fetch_rows will thus be: 20 (allow_further_reductions=1, is_first_fetch=1, known_bigger_than_table=1)
+0134.329 (0) Table wp_wpforms_tasks_meta: Rows added in this batch (next record: 7): 5 (uncompressed bytes in this segment=978) in 0.02 seconds
+0134.335 (0) Table wp_wpforms_tasks_meta: finishing file(s) (2, 0.5 KB)
+0134.336 (0) PHP event: code E_WARNING: filemtime(): stat failed for C:\xampp\htdocs\UnaFilm/wp-content/updraft/backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db.gz (line 1925, C:\xampp\htdocs\UnaFilm\wp-content\plugins\updraftplus\backup.php)
+0134.338 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_options.table.tmpr6922.gz (1/28/fopen): adding to final database dump
+0134.344 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_options.table.gz (2/28/fopen): adding to final database dump
+0134.346 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_users.table.tmpr2.gz (3/28/fopen): adding to final database dump
+0134.347 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_users.table.gz (4/28/fopen): adding to final database dump
+0134.348 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_usermeta.table.tmpr28.gz (5/28/fopen): adding to final database dump
+0134.349 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_usermeta.table.gz (6/28/fopen): adding to final database dump
+0134.350 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_actions.table.tmpr101.gz (7/28/fopen): adding to final database dump
+0134.350 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_actions.table.gz (8/28/fopen): adding to final database dump
+0134.351 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_claims.table.tmpr0.gz (9/28/fopen): adding to final database dump
+0134.353 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_claims.table.gz (10/28/fopen): adding to final database dump
+0134.354 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_groups.table.tmpr5.gz (11/28/fopen): adding to final database dump
+0134.355 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_groups.table.gz (12/28/fopen): adding to final database dump
+0134.357 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_logs.table.tmpr262.gz (13/28/fopen): adding to final database dump
+0134.359 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_actionscheduler_logs.table.gz (14/28/fopen): adding to final database dump
+0134.360 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_commentmeta.table.tmpr0.gz (15/28/fopen): adding to final database dump
+0134.361 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_commentmeta.table.gz (16/28/fopen): adding to final database dump
+0134.363 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_comments.table.tmpr2.gz (17/28/fopen): adding to final database dump
+0134.364 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_comments.table.gz (18/28/fopen): adding to final database dump
+0134.365 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_links.table.tmpr0.gz (19/28/fopen): adding to final database dump
+0134.366 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_links.table.gz (20/28/fopen): adding to final database dump
+0134.367 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_postmeta.table.tmpr1364.gz (21/28/fopen): adding to final database dump
+0134.369 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_postmeta.table.gz (22/28/fopen): adding to final database dump
+0134.371 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_posts.table.tmpr470.gz (23/28/fopen): adding to final database dump
+0134.373 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_posts.table.gz (24/28/fopen): adding to final database dump
+0134.374 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_term_relationships.table.tmpr100001.gz (25/28/fopen): adding to final database dump
+0134.375 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_term_relationships.table.gz (26/28/fopen): adding to final database dump
+0134.377 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_term_taxonomy.table.tmpr19.gz (27/28/fopen): adding to final database dump
+0134.378 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_term_taxonomy.table.gz (28/28/fopen): adding to final database dump
+0134.379 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_termmeta.table.tmpr14.gz (29/28/fopen): adding to final database dump
+0134.380 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_termmeta.table.gz (30/28/fopen): adding to final database dump
+0134.381 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_terms.table.tmpr19.gz (31/28/fopen): adding to final database dump
+0134.382 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_terms.table.gz (32/28/fopen): adding to final database dump
+0134.383 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_cache.table.tmpr253.gz (33/28/fopen): adding to final database dump
+0134.385 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_cache.table.gz (34/28/fopen): adding to final database dump
+0134.386 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_crawl_cleanup_blocked_args.table.tmpr0.gz (35/28/fopen): adding to final database dump
+0134.388 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_crawl_cleanup_blocked_args.table.gz (36/28/fopen): adding to final database dump
+0134.389 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_crawl_cleanup_logs.table.tmpr0.gz (37/28/fopen): adding to final database dump
+0134.390 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_crawl_cleanup_logs.table.gz (38/28/fopen): adding to final database dump
+0134.391 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_notifications.table.tmpr3.gz (39/28/fopen): adding to final database dump
+0134.392 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_notifications.table.gz (40/28/fopen): adding to final database dump
+0134.393 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_posts.table.tmpr123.gz (41/28/fopen): adding to final database dump
+0134.394 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_posts.table.gz (42/28/fopen): adding to final database dump
+0134.395 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_writing_assistant_keywords.table.tmpr0.gz (43/28/fopen): adding to final database dump
+0134.397 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_writing_assistant_keywords.table.gz (44/28/fopen): adding to final database dump
+0134.397 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_writing_assistant_posts.table.tmpr0.gz (45/28/fopen): adding to final database dump
+0134.398 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_aioseo_writing_assistant_posts.table.gz (46/28/fopen): adding to final database dump
+0134.399 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_e_events.table.tmpr0.gz (47/28/fopen): adding to final database dump
+0134.400 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_e_events.table.gz (48/28/fopen): adding to final database dump
+0134.401 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_logs.table.tmpr2.gz (49/28/fopen): adding to final database dump
+0134.403 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_logs.table.gz (50/28/fopen): adding to final database dump
+0134.404 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_payment_meta.table.tmpr0.gz (51/28/fopen): adding to final database dump
+0134.407 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_payment_meta.table.gz (52/28/fopen): adding to final database dump
+0134.409 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_payments.table.tmpr0.gz (53/28/fopen): adding to final database dump
+0134.410 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_payments.table.gz (54/28/fopen): adding to final database dump
+0134.412 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_tasks_meta.table.tmpr8.gz (55/28/fopen): adding to final database dump
+0134.413 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db-table-wp_wpforms_tasks_meta.table.gz (56/28/fopen): adding to final database dump
+0134.448 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db.gz: finished writing out complete database file (369.8 KB)
+0134.465 (0) Total database tables backed up: 28 (backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db.gz, size: 378843, sha1: 192d280b8f9d6c7c5900f449fb46f7ba8725be4b, sha256: 8d51b96dc404830fa818d47a5ab0cd33ff3248150117b0884f396a05c52b6a99)
+0134.470 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-plugins.zip: plugins: This file has already been successfully processed
+0134.471 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-themes.zip: themes: This file has already been successfully processed
+0134.471 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-uploads.zip: uploads: This file has already been successfully processed
+0134.472 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-others.zip: others: This file has already been successfully processed
+0134.473 (0) backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db.gz: db: This file has not yet been successfully uploaded: will queue
+0134.474 (0) Saving backup history. Total backup size: 99.9 MB
+0134.476 (0) Requesting upload of the files that have not yet been successfully uploaded (1)
+0134.478 (0) Cloud backup selection (1/1): none with instance (1/1) (last)
+0134.478 (0) No remote despatch: user chose no remote backup service
+0134.479 (0) Recording as successfully uploaded: backup_2024-12-17-1323_Una_Film_Distribucija_ff4832607391-db.gz
+0134.482 (0) Retain: beginning examination of existing backup sets; user setting: retain_files=2, retain_db=2
+0134.483 (0) Number of backup sets in history: 1; groups (db): 1
+0134.483 (0) Examining (for databases) backup set with group_id=0, nonce=ff4832607391, datestamp=1734441792 (Dec 17 2024 13:23:12)
+0134.484 (0) This backup set is the backup set just made, so will not be deleted.
+0134.484 (0) Number of backup sets in history: 1; groups (files): 1
+0134.485 (0) Examining (for files) backup set with nonce=ff4832607391, datestamp=1734441792 (Dec 17 2024 13:23:12)
+0134.485 (0) This backup set is the backup set just made, so will not be deleted.
+0134.486 (0) This backup set is the backup set just made, so will not be deleted.
+0134.486 (0) This backup set is the backup set just made, so will not be deleted.
+0134.486 (0) This backup set is the backup set just made, so will not be deleted.
+0134.486 (0) This backup set remains non-empty (f=1/d=1); will retain in history
+0134.486 (0) Retain: saving new backup history (sets now: 1) and finishing retain operation
+0134.488 (0) Resume backup (ff4832607391, 0): finish run
+0134.490 (0) Decremented the semaphore (fd) by 1
+0134.491 (0) Semaphore (fd) unlocked
+0134.492 (0) There were no errors in the uploads, so the 'resume' event (1) is being unscheduled
+0134.494 (0) No email will/can be sent - the user has not configured an email address.
+0134.495 (0) The backup succeeded and is now complete

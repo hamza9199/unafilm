@@ -1,0 +1,539 @@
+
+#amy-menu-toggle {
+	body.hasresponsive & {
+		display: block;
+	}
+
+	margin-top: 30px;
+	display: none;
+	@include transition(all 0.4s ease-in-out 0s);
+
+	.amy-menu-toggle-open & {
+		/*position: fixed;
+		left: 260px;
+		top: 0;
+		margin: 0;
+		z-index: 8020;*/
+	}
+
+	.amy-menu-toggle-open.admin-bar & {
+		top: 35px;
+	}
+
+	a {
+		display: inline-block;
+		width: 20px;
+		position: relative;
+		cursor: pointer;
+
+		span {
+			&,
+			&:before,
+			&:after {
+				transition: all 0.1s ease 0s;
+				display: block;
+				width: 100%;
+				height: 3px;
+				margin: 2px auto;
+				background-color: #555;
+			}
+
+			&:before,
+			&:after {
+				position: absolute;
+				content: "";
+			}
+
+			&:before {
+				margin-top: -5px;
+			}
+
+			&:after {
+				margin-top: 5px;
+			}
+		}
+	}
+
+	.amy-is-transparent & a span {
+		&,
+		&:after,
+		&:before {
+			background: #fff;
+		}
+	}
+
+	.amy-menu-toggle-open & a span {
+		background: rgba(0, 0, 0, 0);
+
+		&:before {
+			@include transform(rotate(45deg) translate(3px, 3px));
+			background: #555;
+		}
+
+		&:after {
+			@include transform(rotate(-45deg) translate(4px, -4px));
+			background: #555;
+		}
+	}
+}
+
+#amy-menu-overlay {
+	body.amy-menu-toggle-open & {
+		/*display: block;*/
+	}
+
+	background: rgba(0, 0, 0, 0.3);
+	left: 0;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	z-index: 8010;
+	bottom: 0;
+	right: 0;
+	display: none;
+	height: auto;
+	width: auto;
+}
+
+#amy-navigation-mobile {
+	body.amy-menu-toggle-open & {
+		opacity: 1;
+		left: 0;
+	}
+
+	opacity: 0;
+	background-color: #f1f1f1;
+	height: 100%;
+	left: -250px;
+	margin: 0;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	position: fixed;
+	top: 0;
+	@include transition(all 0.6s ease 0s);
+	width: 250px;
+	z-index: 8020;
+
+
+	ul.menu {
+		margin: 0;
+		padding: 0;
+
+		li {
+			list-style: none;
+			position: relative;
+
+			a {
+				border-bottom: 1px solid #e4e4e4;
+				color: #525252;
+				display: block;
+				font-size: 16px;
+				font-weight: normal;
+				padding: 15px;
+				line-height: 17px;
+
+				&:hover {
+					background: #525252;
+					color: #fff;
+				}
+			}
+
+			&.menu-item-has-children {
+				&:after {
+					color: #aaa;
+					content: "\f067";
+					position: absolute;
+					font-family: FontAwesome;
+					right: 10px;
+					top: 15px;
+				}
+
+				&:hover {
+					> ul.sub-menu {
+						display: block;
+					}
+
+					&:after {
+						content: "\f068"
+					}
+				}
+			}
+
+			ul.sub-menu {
+				display: none;
+				margin: 0;
+				padding: 0;
+
+				li {
+					background: #e2e2e2 none repeat scroll 0 0;
+
+					a {
+						padding-left: 30px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.amy-primary-navigation {
+	body.hasresponsive & {
+		display: none!important;
+	}
+
+	font-family: $menu-font-family;
+
+	// general
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	li {
+		position: relative;
+	}
+
+	a {
+		display: block;
+		text-transform: none;
+		white-space: nowrap;
+		font-size: $menu-font-size;
+		@include transition(all 0.2s ease 0s);
+	}
+
+	ul.nav-menu {
+		> li {
+			display: inline-block;
+			float: left;
+
+			&:last-child {
+				> a {
+					padding-right: 0;
+				}
+
+				&:hover > a,
+				&.current-menu-item > a {
+
+					&:after {
+						margin-left: -33%;
+						width: 87%;
+					}
+				}
+
+				> ul {
+					right: 0;
+					left: inherit;
+
+					&:after, &:before {
+						right: 20%;
+						left: inherit;
+					}
+				}
+
+			}
+
+			> a {
+				display: inline-block;
+				padding: 0 20px;
+
+				color: $menu-level-1-color;
+				line-height: 55px;
+
+
+				@if ($menu-level-1-bg-color) {
+					background-color: $menu-level-1-bg-color;
+				}
+
+				@if ($menu-level-1-border-radius) {
+					border-radius: $menu-level-1-border-radius;
+				}
+
+				text-transform: uppercase;
+				font-weight: bold;
+				position: relative;
+
+				&:after {
+					content: "";
+					left: 50%;
+					top: 50%;
+					margin-top: -1.5px;
+					position: absolute;
+					width: 0;
+
+					background: $theme-color;
+					bottom: 22px;
+					height: 3px;
+
+					@include transition(all 0.2s ease 0s);
+				}
+			}
+
+			&:hover > a,
+			&.current-menu-item > a {
+
+				&:after {
+					margin-left: -37%;
+					width: 73%;
+				}
+			}
+		}
+
+
+		// 2nd level and above
+		li {
+			&:first-child {
+				> ul {
+					left: 0;
+				}
+			}
+
+			ul {
+				text-align: left;
+
+				li {
+					width: auto;
+					min-width: $menu-level-n-wrapper-width;
+					padding: 0;
+					height: auto;
+					border-collapse: collapse;
+					margin: 0 20px;
+
+					&:first-child {
+						padding-top: 2px;
+					}
+
+					a {
+						padding: 10px 16px 10px 12px;
+						color: $menu-level-n-color;
+						position: relative;
+
+						@if ($menu-level-n-bg-color) {
+							background-color: $menu-level-n-bg-color;
+						}
+
+						@if ($menu-level-n-seperator-color) {
+							border-top: 1px solid $menu-level-n-seperator-color;
+						}
+
+						&:before {
+							content: '';
+							position: absolute;
+							left: 0;
+							top: 20px;
+							width: 5px;
+							height: 5px;
+							border-radius: 50%;
+							background: #666;
+						}
+					}
+
+					@if ($menu-level-n-seperator-color) {
+						&:first-child > a {
+							border-top: none;
+						}
+					}
+
+					> a:hover,
+					&:hover > a,
+					&.active > a {
+						color: $menu-level-n-hover-color;
+
+						@if ($menu-level-n-hover-bg-color) {
+							background-color: $menu-level-n-hover-bg-color;
+						}
+					}
+
+					&.menu-item-has-children > a:after {
+						content: '\f105';
+						font-family: 'FontAwesome';
+						font-style: normal;
+						font-weight: normal;
+						line-height: 1;
+						position: absolute;
+						right: 0;
+					}
+				}
+			}
+
+			> ul {
+				@if ($menu-level-n-wrapper-color) {
+					background-color: $menu-level-n-wrapper-color;
+				}
+
+				position: absolute;;
+				visibility: hidden;
+				opacity: 0;
+				margin: 20px 0 0 0;
+				z-index: 9999;
+				border-bottom: 3px solid $theme-color;
+				top: 64px;
+				left: 0px;
+				min-width: 220px;
+
+				li ul {
+					&:after, &:before {
+						left: 0;
+					}
+				}
+
+				&:after, &:before {
+					bottom: 100%;
+					left: 20%;
+					border: solid transparent;
+					content: " ";
+					height: 0;
+					width: 0;
+					position: absolute;
+					pointer-events: none;
+				}
+
+				&:after {
+					border-color: rgba(0, 0, 0, 0);
+					border-bottom-color: #000;
+					border-width: 8px;
+					margin-left: -10px;
+				}
+
+				&:before {
+					border-color: rgba(0, 0, 0, 0);
+					border-bottom-color: #000;
+					border-width: 8px;
+					margin-left: -10px;
+				}
+
+				@if ($menu-level-n-wrapper-box-shadow) {
+					@include box-shadow($menu-level-n-wrapper-box-shadow);
+				}
+
+				@if ($menu-level-n-wrapper-transition) {
+					@include transition($menu-level-n-wrapper-transition);
+				}
+
+				li {
+					ul {
+						left: $menu-level-n-wrapper-width;
+						top: 50px;
+						margin: 0 0 0 20px;
+
+						&.amy-submenu-left,
+						.amy-submenu-right .amy-submenu-left,
+						.amy-submenu-left ul {
+							left: -$menu-level-n-wrapper-width;
+						}
+
+						.amy-submenu-left .amy-submenu-right,
+						.amy-submenu-right ul {
+							left: $menu-level-n-wrapper-width;
+						}
+
+						&:after,
+						&:before {
+							content: none;
+						}
+					}
+				}
+			}
+
+			&:hover > ul {
+				opacity: 1 !important;
+				visibility: visible !important;
+				margin: 0 !important;
+			}
+		}
+	}
+
+	.amy-header-default & {
+		ul.nav-menu {
+			ul.sub-menu {
+				li {
+					&.menu-item-has-children {
+						a {
+							&:after {
+								top: 15px;
+							}
+						}
+					}
+
+					a {
+						padding: 0 16px 0 12px;
+						line-height: 45px;
+					}
+				}
+			}
+		}
+	}
+
+	.header-left & {
+		ul.nav-menu {
+			text-align: left;
+
+			> li {
+				&:first-child {
+					> a {
+						padding-left: 0;
+					}
+
+					&.current-menu-item,
+					&:hover {
+						a:after {
+							left: 0;
+							margin-left: -8%;
+						}
+					}
+				}
+			}
+
+			li {
+				ul {
+					top: 46px;
+					a {
+						&:before {
+							top: 16px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.header-center & {
+		ul.nav-menu {
+			li {
+				ul {
+					a {
+						&:before {
+							top: 16px;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.header-center {
+	text-align: center;
+	.amy-primary-navigation ul.nav-menu > li {
+		float: none;
+	}
+	#amy-site-logo {
+		margin-top: 15px;
+	}
+	.amy-primary-navigation ul.nav-menu li > ul {
+		top: 55px;
+
+		li ul {
+			top: 0;
+		}
+	}
+
+	.amy-primary-navigation ul.nav-menu li > ul li ul::after,
+	.amy-primary-navigation ul.nav-menu li > ul li ul::before {
+		content: none;
+	}
+
+}
+
+.header-default {
+}

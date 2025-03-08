@@ -1,0 +1,252 @@
+$border-intro-back-footer: #dbdbdb
+
+.amy-movie-grid-1
+	.amy-movie-list
+		position: relative
+
+		.amy-movie-items
+			margin: 0 -10px
+
+		.amy-movie-item
+			display: inline-block
+			padding: 0 10px
+			margin-bottom: 20px
+
+			.amy-movie-item-front
+				position: relative
+				display: inline-block
+
+				.amy-movie-field-title
+					max-height: 22px
+					overflow: hidden
+
+				.amy-movie-item-poster
+					position: relative
+					margin-bottom: 10px
+
+					@media (max-width: 480px)
+						max-height: 300px
+						overflow: hidden
+
+						img
+							height: 100%
+
+					.amy-movie-field-mpaa
+						position: absolute
+						top: 10px
+						left: 10px
+
+					.amy-movie-field-imdb
+						position: absolute
+						bottom: 10px
+						right: 10px
+
+			.amy-movie-item-back
+				display: none
+
+				.amy-movie-item-content
+					margin-left: 18px
+					position: relative
+
+.amy-movie-grid-2,
+.amy-movie-layout-list
+	.amy-movie-list
+		.amy-movie-items
+			@include clearfix
+
+			.amy-movie-item
+				&.col-md-4
+					@media (max-width: 1200px)
+						width: 50%
+
+					@media (max-width: 992px)
+						width: 100%
+
+					.amy-movie-item-front
+						width: 174px
+
+						img
+							width: 100%
+							height: auto
+
+					.amy-movie-custom-field-group
+						display: none
+
+					.amy-movie-item-back-inner .amy-btn-icon-text
+						margin-right: 15px
+					.amy-movie-item-back .amy-movie-item-back-inner .amy-movie-item-content .amy-movie-field-title
+						line-height: 1
+
+					.amy-movie-item-back-inner
+						min-height: 261px
+
+				&.col-md-3
+					@media (max-width: 1200px)
+						width: 33.33333%
+
+					@media (max-width: 992px)
+						width: 50%
+
+					@media (max-width: 540px)
+						width: 100%
+
+					.amy-movie-item-front
+						width: 132px
+
+						img
+							width: 100%
+							height: auto
+
+					.amy-movie-item-back
+						.amy-movie-item-back-inner
+							min-height: 198px
+
+							.amy-movie-item-content
+								padding-left: 15px
+
+								.amy-movie-field-title
+									font-size: 20px
+
+							.amy-movie-item-button
+								margin-left: 15px
+
+								.link-trailer
+									margin-bottom: 5px
+
+					.amy-movie-field-duration
+						display: block
+						margin-top: 5px
+
+					.amy-movie-field-desc,
+					.amy-movie-custom-field-label,
+					.amy-movie-custom-field-group,
+					.amy-movie-field-rating
+						display: none
+
+					.amy-movie-item-back-inner .amy-btn-icon-text
+						margin-right: 15px
+					.amy-movie-item-back .amy-movie-item-back-inner .amy-movie-item-content .amy-movie-field-title
+						line-height: 1
+
+				&.col-md-6
+					@media (max-width: 992px)
+						width: 100%
+
+					.amy-movie-item-back-inner
+						min-height: 294px
+
+
+				.amy-movie-item-front
+					display: inline-block
+					width: 196px
+					float: left
+					position: relative
+					margin-bottom: 40px
+
+					@media (max-width: 480px)
+						width: 150px
+						max-height: 225px
+						overflow: hidden
+
+					.amy-movie-field-imdb
+						position: absolute
+						left: 8px
+						bottom: 8px
+
+				.amy-movie-item-back
+					.amy-movie-item-back-inner
+						@media (max-width: 480px)
+							min-height: 225px
+
+						.amy-movie-item-content
+							padding: 0px 0 5px 0px
+
+							.amy-movie-field-desc
+								@media (max-width: 480px)
+									display: none
+
+							.amy-movie-field-title
+								color: $headings-color
+								font-size: 22px
+								padding-right: 0
+
+								@media (max-width: 480px)
+									font-size: 18px
+
+								a
+									color: $headings-color
+
+						.amy-movie-custom-field-group
+							@media (max-width: 480px)
+								display: none
+
+							.amy-movie-custom-field-content
+								color: $headings-color
+
+							.amy-movie-custom-field-label
+								color: $meta-text-color
+
+							a
+								color: $headings-color
+								@include hover
+									color: $theme-color
+
+						.amy-movie-item-button
+							padding: 10px 0 10px 0
+							margin-left: 20px
+							border-top: 1px dotted $border-intro-back-footer
+
+							.amy-btn-icon-text .fa
+								background-color: $meta-text-color
+								color: $white-color
+
+//Custom
+.amy-movie-grid-2.amy-movie-extra
+	.amy-movie-list .amy-movie-items .amy-movie-item.col-md-4
+		.amy-movie-item-front
+			width: 132px
+			height: 220px
+
+			img
+				width: 100%
+				height: auto
+
+		.amy-movie-item-back
+			.amy-movie-item-back-inner
+				min-height: 220px
+				.amy-movie-item-content
+					.amy-movie-field-title
+						line-height: 1
+						font-size: 16px
+
+			.amy-movie-field-duration
+				display: block
+
+			.amy-movie-field-desc,
+			.amy-movie-custom-field-label,
+			.amy-movie-custom-field-group,
+			.amy-movie-field-rating
+				display: none
+
+			.amy-movie-item-back-inner .amy-btn-icon-text
+				margin-right: 15px
+
+@media (max-width: 480px)
+	.amy-movie-grid.amy-movie-grid-2
+		.amy-movie-list
+			.amy-movie-items
+				.amy-movie-item
+					.amy-movie-item-front
+						width: 130px
+
+						img
+							width: 100%
+							height: auto
+
+					.amy-movie-item-back
+						.amy-movie-item-back-inner
+							min-height: 197px
+
+							.amy-movie-item-content
+								.amy-movie-field-title
+									font-size: 18px

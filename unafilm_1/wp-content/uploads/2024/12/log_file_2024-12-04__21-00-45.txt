@@ -1,0 +1,53 @@
+
+---Downloaded files---
+The import files for: Single Cinema Elementor were successfully downloaded!
+Initial max execution time = 120
+Files info:
+Site URL = http://localhost/unafilm
+Data file = C:\xampp\htdocs\UnaFilm/wp-content/uploads/2024/12/demo-content-import-file_2024-12-04__21-00-45.xml
+Widget file = C:\xampp\htdocs\UnaFilm/wp-content/uploads/2024/12/demo-widgets-import-file_2024-12-04__21-00-45.json
+Customizer file = not defined!
+Redux files:
+not defined!
+
+------
+New AJAX call!
+
+
+------
+New AJAX call!
+
+
+---Importing widgets---
+Right Bar : 
+
+Block - No Title - Imported
+Block - No Title - Imported
+
+Movie Bar : 
+
+Block - No Title - Imported
++ Amy Movie List - Top Movie - Imported
++ Amy Movie List - Recent Posts - Imported
+Block - No Title - Imported
+
+Footer Widgets 1 : 
+
++ Amy Movie Module - No Title - Imported
+
+Footer Widgets 2 : 
+
+Navigation Menu - Customer Services - Imported
+
+Footer Widgets 3 : 
+
++ Amy Movie List - Recent Posts - Imported
+
+Footer Widgets 4 : 
+
++ Amy Movie Module - Contact Us - Imported
+
+
+
+---ocdi/after_import---
+

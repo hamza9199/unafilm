@@ -1,0 +1,45 @@
+
+
+.amy-mv-search {
+	position: relative;
+
+	input[type="text"] {
+		background: #fff none repeat scroll 0 0;
+		border: 2px solid #ddd;
+		border-radius: 25px;
+		display: inline-block;
+		min-width: 250px;
+		width: auto;
+	}
+
+	input[type="submit"] {
+		background: $theme-color;
+		border-radius: 50%;
+		height: 40px;
+		margin-left: 7px;
+		padding: 0;
+		width: 40px;
+	}
+
+	.search-ajax-content {
+		position: absolute;
+		background: #fff;
+		z-index: 999;
+		width: 80%;
+		padding: 10px;
+		display: none;
+
+		&.open {
+			display: block;
+		}
+
+		.item-movie {
+			display: flex;
+			margin-bottom: 10px;
+
+			.item-name {
+				margin-left: 10px;
+			}
+		}
+	}
+}

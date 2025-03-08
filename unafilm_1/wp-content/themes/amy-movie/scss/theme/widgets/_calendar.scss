@@ -1,0 +1,53 @@
+
+.widget_calendar {
+	#wp-calendar {
+		background: #ebf5fb none repeat scroll 0 0;
+		width: 100%;
+
+		caption {
+			background: #ebf5fb none repeat scroll 0 0;
+			color: #333;
+			font-size: 12px;
+			font-weight: bold;
+			padding: 10px 10px 15px 0;
+			text-align: center;
+		}
+
+		thead {
+			font-size: 10px;
+			th {
+				padding-bottom: 10px;
+				padding-top: 10px;
+				text-align: center;
+			}
+
+		}
+
+		tbody {
+			color: #aaa;
+			.pad {
+				background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+			}
+			td {
+				background: #f5f5f5 none repeat scroll 0 0;
+				border: 1px solid #fff;
+				padding: 8px;
+				text-align: center;
+			}
+		}
+
+		tfoot {
+			#prev {
+				font-size: 10px;
+				padding-top: 0;
+				text-transform: uppercase;
+			}
+
+			#next {
+				font-size: 10px;
+				text-align: right;
+				text-transform: uppercase;
+			}
+		}
+	}
+}

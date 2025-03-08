@@ -1,0 +1,63 @@
+
+
+.amy-mv-ratelist {
+	table {
+		border: none;
+		font-family: $font-family-base;
+
+		tr {
+			background: #f8f8f8;
+
+			&.highlight {
+				background: #fde1c7;
+			}
+		}
+
+		td {
+			border: none;
+			line-height: 65px;
+			padding: 0 25px;
+			width: 15%;
+			text-align: center;
+			border-bottom: 2px solid #fff;
+
+			&.title {
+				border-right: 2px solid #fff;
+				width: 55%;
+				text-align: left;
+
+				a {
+					color: #000;
+					font-weight: bold;
+					font-size: 15px;
+					text-transform: uppercase;
+
+					&:hover {
+						color: $theme-color;
+					}
+				}
+			}
+
+			&.turn {
+				color: #666;
+			}
+
+			&.point {
+				background: $theme-color;
+				color: #fff;
+				font-size: 22px;
+				font-weight: bold;
+				width: 10%;
+			}
+
+			&.star {
+				padding: 0;
+
+				ul {
+					margin: 0 auto;
+					float: none;
+				}
+			}
+		}
+	}
+}

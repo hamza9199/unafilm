@@ -1,0 +1,911 @@
+$bg-color-dark: #000008
+$thumbnail-overlay-color: #000
+$border-btn-all-color: #eeeeee
+$border-footer-tooltip-light: #d4d4d4
+$color-rating: #f0a800
+$meta-text-color:			#999999
+
+.amy-movie-item-poster
+	> a
+		position: relative
+		display: block
+
+		&:after
+			content: ""
+			position: absolute
+			left: 0
+			bottom: 0
+			right: 0
+			top: 0
+			opacity: 0
+			z-index: 0
+			background-color: $theme-color
+			transform: scale(0.15)
+			-webkit-transform: scale(0.15)
+			@include transition-all()
+
+		&:before
+			@include font-awesome
+			content: "\f04b"
+			color: $theme-color
+			background-color: $white-color
+			font-size: 20px
+			text-indent: 5px
+			height: 50px
+			left: 50%
+			line-height: 50px
+			position: absolute
+			text-align: center
+			top: 50%
+			width: 50px
+			z-index: 2
+			opacity: 0
+			transform: translate(-50%, -50%)
+			-webkit-transform: translate(-50%, -50%)
+			border-radius: 50%
+			-webkit-border-radius: 50%
+			@include transition-all()
+
+		@include hover
+			&:after
+				opacity: 0.3
+				transform: scale(1)
+				-webkit-transform: scale(1)
+
+			&:before
+				opacity: 0.45
+
+.amy-movie-carousel-1
+	.btn-link-all
+		right: 15px
+
+.btn-link-all
+	color: $text-color
+	position: absolute
+	right: 0
+	top: -35px
+
+	.fa
+		margin-left: 5px
+
+.slick-slide
+	&:focus
+		outline: none
+
+
+.amy-movie-item-back-inner
+
+	.amy-movie-field-title
+		font-size: 20px
+		text-transform: capitalize
+		font-weight: 700
+		margin: 0 0 5px
+
+		a
+			color: $headings-color
+
+			@include hover
+				color: $theme-color
+
+.amy-movie-item-front
+
+	.amy-movie-field-title
+		font-size: 20px
+		text-transform: capitalize
+		font-weight: 700
+		margin: 0 0 6px
+
+		a
+			color: $headings-color
+
+			@include hover
+				color: $theme-color !important
+
+	.amy-movie-field-release-date
+		font-size: 12px
+		color: $meta-text-color
+
+.amy-btn-icon-text
+	display: inline-block
+	color: $text-color
+	margin-right: 30px
+	line-height: 1
+
+	.fa
+		width: 20px
+		height: 20px
+		display: inline-block
+		float: left
+		margin-top: -4px
+		margin-right: 5px
+		text-align: center
+		line-height: 20px
+		border-radius: 50%
+		background: $theme-color
+		color: $headings-color
+		font-size: 9px
+		opacity: 0.8
+		@include transition-all()
+
+		&.fa-play::before
+			margin-left: 3px
+
+	@include hover
+		color: $theme-color
+
+		.fa
+			opacity: 1
+
+	@media (max-width: 400px)
+		margin-right: 5px
+		margin-bottom: 5px
+
+
+
+//Style tooltip movie
+.amy-movie-item-back
+	.amy-movie-item-back-inner
+		display: -webkit-flex
+		display: flex
+		-webkit-flex-wrap: wrap
+		flex-wrap: wrap
+		-webkit-justify-content: space-between
+		justify-content: space-between
+		flex-direction: column
+		-webkit-flex-direction: column
+		position: relative
+
+		.amy-movie-item-content
+			margin-left: 30px
+			position: relative
+
+			.amy-movie-field-imdb
+				position: absolute
+				width: 46px
+				height: 46px
+				line-height: 46px
+				top: 30px
+				right: 15px
+
+			.amy-movie-field-title
+				font-size: 20px
+				padding: 0 60px 0 0
+				color: $white-color
+
+				a
+					color: $white-color
+
+		.amy-movie-item-button
+			padding: 18px 16px
+			border-top: 1px dotted rgba(255, 255, 255, .12)
+
+
+
+	.amy-movie-field-desc
+		font-size: 13px
+		line-height: 22px
+		margin-bottom: 10px
+
+		p
+			margin-bottom: 10px
+
+.amy-movie-custom-field-group
+	margin-bottom: 3px
+
+	a
+		color: $white-color
+		font-size: 13px
+
+		@include hover
+			color: $theme-color
+
+	.amy-movie-custom-field-label
+		color: $text-color
+		display: inline-block
+		margin-right: 3px
+		margin-bottom: 0
+
+	.amy-movie-custom-field-content
+		color: $white-color
+		font-size: 13px
+		display: inline
+
+.amy-movie-field-mpaa
+	display: inline-block
+	padding: 8px 10px 6px 10px
+	background: $theme-color
+	font-family: $headings-font-family
+	font-size: 14px
+	color: #fff
+	line-height: 11px
+	text-transform: uppercase
+
+.amy-movie-field-imdb
+	display: inline-block
+	width: 40px
+	height: 40px
+	border-radius: 50%
+	text-align: center
+	background: $theme-color
+	font-family: $headings-font-family
+	font-weight: bold
+	font-size: 15px
+	color: #fff
+	line-height: 40px
+	text-transform: uppercase
+
+.amy-movie-item-meta
+	margin-bottom: 15px
+	font-family: $headings-font-family
+	font-size: 14px
+
+	.amy-movie-field-mpaa
+		margin-right: 10px
+
+	.amy-movie-field-duration
+		font-size: 14px
+		color: $theme-color
+
+		.fa
+			margin-right: 3px
+
+.amy-movie-field-rating
+	margin-bottom: 12px
+
+	.amy-movie-field-rating-inner
+		line-height: 20px
+
+	.user-rating
+		a
+			font-size: 12px
+			color: $text-color
+
+			@include hover
+				color: $theme-color
+
+	.rating-stars
+		width: 80px
+		overflow: hidden
+		position: relative
+		margin-right: 5px
+
+		&:before
+			content: "\f005\00a0\f005\00a0\f005\00a0\f005\00a0\f005"
+			@include font-awesome
+			display: inline-block
+			color: $text-color
+
+		.current-rating
+			overflow: hidden
+			position: absolute
+			top: -2px
+			left: 0
+
+			&:before
+				content: "\f005\00a0\f005\00a0\f005\00a0\f005\00a0\f005"
+				@include font-awesome
+				display: inline-block
+				color: $color-rating
+
+
+
+//tooltipster tooltip
+.tooltipster-sidetip
+	&.tooltipster-shadow
+		.tooltipster-box
+			border: none
+			border-radius: 3px
+			background: $white-color
+			box-shadow: 0 0 10px 6px rgba(0, 0, 0, .1)
+
+		&.tooltipster-bottom
+			margin-top: 6px
+
+			.tooltipster-arrow-border
+				border-bottom-color: $white-color
+
+			.tooltipster-arrow-uncropped
+				top: -6px
+
+			.tooltipster-box
+				margin-top: 14px
+
+			.tooltipster-arrow
+				height: 30px
+				margin-left: -6px
+				width: 30px
+				margin-top: -10px
+
+		&.tooltipster-left
+			margin-right: 6px
+
+			.tooltipster-box
+				margin-right: 14px
+
+			.tooltipster-arrow
+				height: 30px
+				margin-left: 0
+				margin-top: -6px
+				width: 15px
+
+			.tooltipster-arrow-border
+				border-left-color: $white-color
+
+		&.tooltipster-right
+			margin-left: 6px
+
+			.tooltipster-arrow
+				height: 30px
+				margin-left: -15px
+				margin-top: -6px
+				width: 23px
+
+			.tooltipster-arrow-border
+				border-right-color: $white-color
+
+			.tooltipster-arrow-uncropped
+				left: -6px
+
+		&.tooltipster-top
+			margin-bottom: 6px
+
+			.tooltipster-box
+				margin-bottom: 14px
+
+
+			.tooltipster-arrow-border
+				border-top-color: $white-color
+
+		&.light
+			.tooltipster-content
+				color: $text-color
+
+				.amy-movie-item-back
+					.amy-movie-item-back-inner
+						.amy-movie-item-content
+							.amy-movie-field-title a
+								color: $headings-color
+
+							.amy-movie-custom-field-group
+								.amy-movie-custom-field-label
+									color: $headings-color
+
+								.amy-movie-custom-field-content
+									color: $text-color
+
+									a
+										color: $text-color
+
+										@include hover
+											color: $theme-color
+
+						.amy-movie-item-button
+							border-top: 1px dotted $border-footer-tooltip-light
+
+		&.dark
+			.tooltipster-box
+				background: $bg-color-dark
+
+			.tooltipster-content
+				color: $text-color
+
+			&.tooltipster-top
+				.tooltipster-arrow-border
+					border-top-color: $bg-color-dark
+
+			&.tooltipster-right
+				.tooltipster-arrow-border
+					border-right-color: $bg-color-dark
+
+			&.tooltipster-left
+				.tooltipster-arrow-border
+					border-left-color: $bg-color-dark
+
+			&.tooltipster-bottom
+				.tooltipster-arrow-border
+					border-bottom-color: $bg-color-dark
+
+
+		.tooltipster-arrow
+			height: 15px
+			margin-left: -6px
+			width: 30px
+
+		.tooltipster-arrow-background
+			display: none
+
+		.tooltipster-arrow-border
+			border: 15px solid transparent
+
+
+.col-md-15
+	float: left
+	width: 20%
+	position: relative
+	min-height: 1px
+	padding-left: 15px
+	padding-right: 15px
+
+
+.amy-text-block
+	margin-top: 75px
+	.title
+		font-family: $headings-font-family
+		font-weight: bold
+		font-size: 50px
+		color: $white-color
+		text-transform: uppercase
+		text-align: left
+		margin-bottom: 5px
+		margin-left: 5px
+		line-height: 1
+
+		.hight-light
+			color: $theme-color
+
+
+
+	.subtitle
+		font-family: $headings-font-family
+		font-weight: bold
+		color: $white-color
+		font-size: 22px
+		font-style: italic
+		text-align: right
+		margin-right: 50px
+		margin-bottom: 10px
+		text-transform: uppercase
+		line-height: 1
+
+
+	.text
+		text-align: right
+		margin-bottom: 20px
+		font-size: 16px
+		color: #c2c2c2
+		margin-right: 60px
+
+	.wr-button
+		text-align: center
+	
+	.button
+		display: inline-block
+		text-align: center
+		white-space: nowrap
+		vertical-align: middle
+		-webkit-user-select: none
+		-moz-user-select: none
+		-ms-user-select: none
+		user-select: none
+		line-height: 1.5
+		font-family: "Roboto Condensed", sans-serif
+		font-weight: bold
+		font-size: 14px
+		color: #fff
+		padding: 10px 30px 9px
+		margin: 0 5px 5px 0
+		width: auto
+		text-transform: uppercase
+		border-radius: 50px
+		border: none
+		background: -webkit-gradient(linear, left top, right top, from(#bb511e), to(#f1bc00))
+		background: linear-gradient(to right, #bb511e, #f1bc00)
+		-webkit-transition: all 0.3s ease-in-out
+		transition: all 0.3s ease-in-out
+
+	
+	
+	@media (max-width: 1200px)
+		margin-top: 0
+
+		.title
+			text-align: center
+			margin-left: 0
+
+		.subtitle
+			text-align: center
+			margin-right: 0
+
+		.text
+			text-align: center
+			margin-right: 0
+
+	@media (max-width: 768px)
+		.title
+			font-size: 40px
+
+
+.amy-movieak-box
+
+	.title
+		font-size: 28px
+		font-weight: bold
+		text-transform: uppercase
+		margin: 0 0 15px
+		display: inline
+		color: $theme-color
+		background: -webkit-gradient(linear,left top,right top,color-stop(32%,$gradient-color-first),color-stop(100%,$gradient-color-last))
+		background: -webkit-linear-gradient(left,$gradient-color-first 32%,$gradient-color-last 100%)
+		-webkit-background-clip: text
+		-webkit-text-fill-color: transparent
+
+	.meta-user
+		margin-bottom: 20px
+		margin-top: 20px
+		@include clearfix
+
+		.icon-user
+			display: inline-block
+			float: left
+			margin-right: 10px
+			width: 44px
+			height: 44px
+			background: url("../images/icons/icon-user2.png") no-repeat center
+
+		.content
+
+			a
+				color: $white-color
+
+				@include hover
+					color: $theme-color
+
+	.entry-list
+		list-style: none
+		margin: 0
+		padding: 0
+
+		li
+			font-size: 13px
+			padding: 20px 0
+			border-top: 1px solid rgba(255, 255, 255, .1)
+			color: $meta-text-color
+			font-family: $font-family-base
+			@include clearfix
+
+			&:last-child
+				padding-bottom: 0
+
+			.fa
+				width: 40px
+				height: 40px
+				line-height: 36px
+				text-align: center
+				border-radius: 50%
+				border: 2px solid $text-color
+				color: $text-color
+				float: left
+				margin-right: 15px
+				font-size: 24px
+
+
+.streaming.single-movie
+	margin: 0
+	padding: 0
+
+#background_lamp
+	position: fixed
+	background-color: #000
+	top: 0
+	left: 0
+	right: 0
+	bottom: 0
+
+.movie-steaming
+	.amy-movie-item-play
+		background: #000
+		padding: 40px 0
+		position: relative
+		z-index: 99
+
+		.div-control
+			text-align: right
+			font-size: 13px
+			color: $meta-text-color
+			padding: 15px 0
+
+			> span
+				display: inline-block
+				margin-left: 15px
+				padding-left: 15px
+				line-height: 1
+				cursor: pointer
+				border-left: 1px solid #1a1a1a
+				@include transition-all()
+
+				.turn-on
+					display: none
+
+				&.off
+					.turn-on
+						display: inline-block
+					.turn-off
+						display: none
+
+
+				@include hover
+					color: $white-color
+
+				&:first-child
+					border-left: none
+					margin-left: 0
+					padding-left: 0
+
+				.fa
+					margin-right: 5px
+
+	.amy-movie-item-content-header
+		background: #eeee
+		border-bottom: 1px dotted #d4d4d4
+		padding-bottom: 30px
+
+	.amy-movie-item-header
+		display: flex
+		justify-content: space-between
+		align-items: center
+
+		.amy-movie-field-title
+			font-size: 25px
+			font-weight: bold
+			text-transform: uppercase
+			margin: 30px 0 5px 0
+
+	.amy-movie-list-server
+		.amy-movie-serve-item
+			display: flex
+			align-items: center
+			border-bottom: 1px dotted #d4d4d4
+
+			.amy-movie-serve-name
+				font-family: $headings-font-family
+				color: $headings-color
+				min-width: 135px
+
+				.fa
+					margin-right: 5px
+					color: $theme-color
+
+			.amy-movie-serve-options
+				flex-grow: 1
+				padding: 15px 20px
+				border-left: 1px dotted #d4d4d4
+
+		.optinal-link
+			display: inline-block
+			font-size: 13px
+			background: #e1e1e1
+			color: $text-color
+			padding: 8px
+			float: left
+			margin-right: 3px
+			margin-bottom: 3px
+			line-height: 1
+			min-width: 32px
+			text-align: center
+			cursor: pointer
+
+			&.active
+				background: $theme-color
+				color: #fff
+
+			@include hover
+				background: $theme-color
+				color: #fff
+
+	.amy-movie-item-tags
+		padding: 20px 0
+		color: $text-color
+
+		.tag-label
+			font-size: 15px
+			font-family: $headings-font-family
+			color: $headings-color
+			text-transform: uppercase
+			margin-right: 5px
+			float: left
+
+		.tag-link
+			color: $text-color
+			font-size: 13px
+
+			@include hover
+				color: $theme-color
+
+	.amy-movie-item-related-movie
+		margin-bottom: 20px
+
+		.amy-movie-item
+
+			.amy-movie-item-back
+				.amy-movie-item-back-inner
+					.amy-movie-item-content
+						.amy-movie-custom-field-group
+							display: none !important
+
+
+
+
+		.slick-dots
+			bottom: 103%
+			text-align: right
+
+			li
+				width: 8px
+				height: 8px
+
+				button
+					width: 8px
+					height: 8px
+
+					&:before
+						width: 8px
+						height: 8px
+						line-height: 8px
+						font-size: 8px !important
+
+				&.slick-active button:before
+					color: $theme-color
+
+	.amy-movie-item-related-title
+		font-size: 25px
+		text-transform: capitalize
+		font-weight: bold
+		margin-bottom: 15px
+		margin-top: 50px
+
+.product-buy-ticket
+	.product
+		.woocommerce-topinfo-inner
+			.entry-summary
+				max-width: 100%!important
+				margin-left: 20px
+
+		.product_title
+			border-bottom: 1px dotted #ddd
+			padding-bottom: 15px
+
+		.price
+			display: none
+
+		.smartcms_content_seats_item_label
+			font-size: 14px
+			color: #666666
+
+		.smartcms_content_seats_item_color
+			width: 130px
+			height: 30px
+			margin-top: 5px
+
+		.smartcms_content_schedules_item
+			background: #ebebeb
+			font-size: 15px
+			border-radius: 30px
+
+			&:hover
+				color: #fff
+
+				.smartcms_content_schedules_item_date,
+				.smartcms_content_schedules_item_time
+					background: #fe7900
+					color: #fff
+
+
+			.smartcms_content_schedules_item_date
+				color: #666666
+				padding: 10px 15px
+				background: #ebebeb
+				position: relative
+				padding-right: 10px
+				border-radius: 20px 0 0 20px
+
+				&:after
+					position: absolute
+					content: ""
+					border-left: 1px solid #fff
+					width: 1px
+					height: 20px
+					right: 0
+
+			.smartcms_content_schedules_item_time
+				color: #000000
+				padding: 10px 15px
+				background: #ebebeb
+				padding-left: 10px
+				border-radius: 0 20px 20px 0
+
+		.smartcms_content_mapping
+			.smartcms_content_mapping_item
+				.smartcms_content_mapping_item_con
+					background: #f7d1af
+					font-size: 15px
+					color: #fff
+					padding: 0px
+					border: 1px solid #fff
+
+					.srwseat_item_con_color
+						width: 100%
+						height: 100%
+						padding: 12px
+
+					&.active
+						background: #fe7900
+
+						.srwseat_item_con_color
+							border: none
+							background: #fe7900!important
+
+		.quantity
+			display: none!important
+
+.product-buy-ticket-cart
+	.product-quantity
+		display: none!important
+
+.wc-forward
+	padding: 9px 20px
+
+#review_form_wrapper
+	margin-top: 30px
+
+
+.amy-movie-list-info
+	margin-top: 40px
+
+	ul.info-list
+		margin: 0
+		padding: 0
+
+		li
+			list-style: none
+			font-size: 14px
+
+			label
+				color: #202020
+
+
+.entry-season-list
+	margin-top: 30px
+
+	.season-list
+		ul
+			margin: 0
+			padding: 0
+
+			li
+				list-style: none
+				line-height: 60px
+				background: #f8f8f8
+				border-bottom: 2px solid #fff
+				font-size: 15px
+
+				span
+					width: 15%
+					display: inline-block
+					border-right: 2px solid #fff
+					text-align: center
+
+				a
+					padding-left: 20px
+
+.single-movie
+	.post-navigation
+		display: flex
+		margin: 40px 0
+
+		.nav-next
+			margin-left: auto
+
+
+		a 
+			margin: 0
+			font-size: 13px
+			color: #fff
+			padding: 10px 7px 9px 7px
+			display: inline-block
+			-webkit-transition: none
+			transition: none
+			text-transform: capitalize
+			background: #fe7900
+
+			&:hover
+				color: #000

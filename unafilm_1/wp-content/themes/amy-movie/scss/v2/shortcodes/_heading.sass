@@ -1,0 +1,116 @@
+$font-size-heading-title: 35px
+
+.amy-heading
+	margin-bottom: 25px
+
+	&.margin-bottom-15
+		margin-bottom: 10px
+
+	&.mb15
+		margin-bottom: 15px
+
+	.seperator
+		display: none
+	.entry-header
+		.title-heading
+			font-size: $font-size-heading-title
+			font-weight: 700
+			color: $headings-color
+			margin: 0
+			position: relative
+			display: inline-block
+
+			.title-highlight
+				color: $theme-color
+
+
+	&.has-seperator
+
+		.entry-header
+			display: -webkit-box
+			display: -moz-box
+			display: -ms-flexbox
+			display: -webkit-flex
+			display: flex
+			flex-flow: row wrap
+			-webkit-flex-flow: row wrap
+
+			.seperator
+				display: inline-block
+				flex: 1 0
+				background: url("../images/bg/seperator-bg.png") repeat-x center
+				position: relative
+
+			.title-heading
+				flex: 0 auto
+				padding: 0 20px
+
+		&.seperator-2
+			&.text-left
+				&.seperator-left-full
+					.entry-header
+						&:before
+							background: url("../images/bg/seperator-bg-2.png") repeat-x center !important
+
+			.entry-header
+				.seperator
+					background: url("../images/bg/seperator-bg-2.png") repeat-x center
+
+					&:before
+						background: url("../images/bg/seperator-bg-2.png") repeat-x center !important
+
+		&.seperator-left-full
+			.entry-header
+				.seperator-left
+					&:before
+						content: ''
+						width: 150%
+						height: 9px
+						position: absolute
+						top: 0
+						bottom: 0
+						right: 98%
+						margin: auto
+						background: url("../images/bg/seperator-bg.png") repeat-x center
+
+		&.seperator-right-full
+			.entry-header
+				.seperator-right
+					&:before
+						content: ''
+						width: 150%
+						height: 9px
+						position: absolute
+						top: 0
+						bottom: 0
+						left: 100%
+						margin: auto
+						background: url("../images/bg/seperator-bg.png") repeat-x center
+
+		&.text-left
+
+			.entry-header
+				.title-heading
+					padding: 0 20px 0 0
+
+				.seperator-left
+					display: none
+
+			&.seperator-left-full
+				.entry-header
+					position: relative
+
+					&:before
+						content: ''
+						width: 150%
+						height: 9px
+						position: absolute
+						top: 0
+						bottom: 0
+						right: 101%
+						margin: auto
+						background: url("../images/bg/seperator-bg.png") repeat-x center
+
+
+
+

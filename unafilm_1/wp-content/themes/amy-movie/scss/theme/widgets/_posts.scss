@@ -1,0 +1,43 @@
+
+.widget_archive {
+	select:focus {
+		outline: thin dotted #333;
+		outline-offset: -2px;
+		background-color: #ffffff;
+		border: 1px solid #cccccc;
+	}
+}
+
+.widget_categories {
+	select:focus {
+		outline: thin dotted #333;
+		outline-offset: -2px;
+		background-color: #ffffff;
+		border: 1px solid #cccccc;
+	}
+}
+
+.widget_text {
+	.amy-widget-content {
+		border: none;
+		padding: 0;
+	}
+	select {
+		background-color: #ffffff;
+		border: 1px solid #cccccc;
+		width: 220px;
+		&:focus {
+			outline: thin dotted #333;
+			outline-offset: -2px;
+			background-color: #ffffff;
+			border: 1px solid #cccccc;
+		}
+	}
+
+}
+
+.widget_rss {
+	ul li {
+		color: #666;
+	}
+}

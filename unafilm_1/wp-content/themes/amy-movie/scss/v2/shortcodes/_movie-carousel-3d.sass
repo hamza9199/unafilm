@@ -1,0 +1,107 @@
+.amy-movie-carousel-3d
+	.amy-movie-items
+		position: relative
+		width: 100%
+		max-width: 720px
+		height: 400px
+		clear: both
+		overflow: hidden
+		margin: 0 auto
+
+		.amy-movie-item
+			display: none
+			cursor: pointer
+
+			.amy-movie-item-poster
+				display: block
+				cursor: pointer
+				position: relative
+				width: 214px
+
+				.reflect
+					position: relative
+
+					&:after
+						content: ""
+						position: absolute
+						left: 0
+						bottom: 0
+						right: 0
+						top: 0
+						z-index: 0
+						background-color: rgba(0, 0, 0 , 0)
+						-webkit-transition: all 0.2s linear
+						transition: all 0.2s linear
+
+			&:hover
+				.reflect
+
+					&:after
+						background-color: rgba(0, 0, 0 , 0.2)
+
+
+			.amy-movie-item-button
+				position: absolute
+				left: 0
+				right: 0
+				top: 35%
+				margin: 0 auto
+				text-align: center
+				opacity: 0
+				z-index: -1
+				@include transition-all()
+
+				a
+					display: inline-block
+					width: 40px
+					height: 40px
+					margin: 0 5px
+					text-align: center
+					line-height: 40px
+					border-radius: 50%
+					background-color: $theme-color
+					color: $headings-color
+					box-shadow:  0 0 10px  rgba(0,0,0,0.6)
+					-moz-box-shadow: 0 0 10px  rgba(0,0,0,0.6)
+					-webkit-box-shadow: 0 0 10px  rgba(0,0,0,0.6)
+					-o-box-shadow: 0 0 10px  rgba(0,0,0,0.6)
+
+					@include hover
+						background-color: $white-color
+						color: $headings-color
+
+					.fa-play
+						margin-left: 4px
+
+					&:focus
+						outline: none
+
+			&.carousel-center
+				.amy-movie-item-poster
+					&:hover
+						.amy-movie-item-button
+							opacity: 1
+							z-index: 1
+
+
+
+@media (max-width: 480px)
+	.amy-movie-carousel-3d
+		.amy-movie-items
+			.amy-movie-item
+				display: block
+
+				.amy-movie-item-poster
+					margin: 0 auto
+
+					canvas
+						display: none!important
+
+				.amy-movie-item-button
+					opacity: 1
+					z-index: 1
+
+			.amy-arrow
+				color: #333
+
+

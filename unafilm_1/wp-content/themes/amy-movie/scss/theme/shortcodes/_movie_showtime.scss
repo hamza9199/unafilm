@@ -1,0 +1,184 @@
+
+
+.amy-mv-showtime {
+	.left,
+	.right {
+		float: left;
+		width: 360px;
+	}
+
+	.movie-list {
+		background: #F8F8F8;
+		margin-right: 30px;
+		position: relative;
+
+		&:after,
+		&:before {
+			left: 100%;
+			top: 100px;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+
+		&:after {
+			border-color: rgba(248, 248, 248, 0);
+			border-left-color: #f8f8f8;
+			border-width: 17px;
+			margin-top: -17px;
+		}
+
+		&:before {
+			border-color: rgba(248, 248, 248, 0);
+			border-left-color: #f8f8f8;
+			border-width: 17px;
+			margin-top: -17px;
+		}
+
+		.mv-content {
+			> div {
+				margin-bottom: 5px;
+			}
+		}
+	}
+
+	.cinema-list {
+		background: #F8F8F8;
+		margin-bottom: 30px;
+		position: relative;
+
+		.mv-content {
+			> div {
+				margin-bottom: 5px;
+			}
+		}
+
+		&:after,
+		&:before {
+			left: 50%;
+			top: 100%;
+			border: solid transparent;
+			content: " ";
+			height: 0;
+			width: 0;
+			position: absolute;
+			pointer-events: none;
+		}
+
+		&:after {
+			border-color: rgba(248, 248, 248, 0);
+			border-top-color: #f8f8f8;
+			border-width: 17px;
+			margin-left: -17px;
+		}
+
+		&:before {
+			border-color: rgba(248, 248, 248, 0);
+			border-top-color: #f8f8f8;
+			border-width: 17px;
+			margin-left: -17px;
+		}
+	}
+
+	.list-time {
+		background: #F8F8F8;
+		position: relative;
+
+		.mv-content {
+			ul {
+				margin: 0 0 18px;
+				padding: 0;
+
+				li {
+					border-right: 1px dotted $theme-color;
+					color: #666;
+					display: inline-block;
+					font-size: 15px;
+					line-height: 15px;
+					list-style: outside none none;
+					padding: 0 10px;
+
+					&:last-child {
+						border: none;
+					}
+
+					&:first-child {
+						padding-left: 0;
+					}
+				}
+			}
+		}
+	}
+
+	h3 {
+		color: $theme-color;
+		border-bottom: 1px solid #ddd;
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 15px;
+		margin-right: 0;
+		margin-top: 0;
+		padding-bottom: 15px;
+		padding-left: 30px;
+		padding-top: 15px;
+		text-transform: uppercase;
+
+		span {
+			background: $theme-color;
+			color: #fff;
+			border-radius: 50%;
+			display: inline-block;
+			width: 42px;
+			height: 42px;
+			margin-right: 8px;
+			text-align: center;
+			line-height: 42px;
+		}
+	}
+
+	.mv-content {
+		padding: 30px;
+		padding-top: 0;
+
+		label {
+			font-size: 15px;
+			color: #000;
+			font-weight: bold;
+			text-transform: uppercase;
+		}
+	}
+
+	input[type=radio] {
+		border: 0 none;
+		clip: rect(0px, 0px, 0px, 0px);
+		height: 1px;
+		margin: -1px;
+		overflow: hidden;
+		padding: 0;
+		position: absolute;
+		width: 1px;
+	}
+
+	input[type=radio] + label.cbl {
+		background-position: 0 0;
+		background-repeat: no-repeat;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 15px;
+		height: 15px;
+		line-height: 15px;
+		padding-left: 20px;
+		vertical-align: middle;
+	}
+
+	label.cbl {
+		background: url("../images/frontend/cb_bg.png") no-repeat;
+	}
+
+	input[type=radio]:checked + label.cbl {
+		background-position: 0 -15px;
+	}
+}

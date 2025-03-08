@@ -1,0 +1,196 @@
+.video-js
+	@include hover
+		.vjs-big-play-button
+			background-color: rgba(255, 255, 255, 0.8)
+
+	.vjs-big-play-button
+		width: 70px
+		height: 70px
+		border-radius: 50%
+		text-align: center
+		line-height: 70px
+		font-size: 40px
+		cursor: pointer
+		left: 0
+		right: 0
+		bottom: 0
+		top: calc(50% - 35px)
+		margin: 0 auto
+		border: none
+		background-color: rgba(255, 255, 255, 0.45)
+		color: $theme-color
+
+		@include hover
+			background-color: rgba(255, 255, 255, 0.8)
+
+
+
+.vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar
+	visibility: visible
+	opacity: 1
+
+
+.trailer-list-wrapper
+	@include clearfix
+	background-repeat: no-repeat
+	background-position: center top
+	background-size: cover
+
+
+	.dark-edges-bg
+
+		background: radial-gradient(60% 100% at top, transparent, black)
+		background: -webkit-radial-gradient(center, 50% 70%, transparent, black)
+
+	.trailer-list-wrapper-inner
+		@include clearfix
+		margin: 0 auto
+		max-width: 1170px
+
+		@media (max-width: 992px)
+			display: flex
+			flex-direction: column-reverse
+
+			.playlist-trailer
+				padding: 0 0 50px 0
+
+
+
+.trailer-col-right
+	.video-wrapper
+		padding: 50px 0
+
+		min-height: 422px
+
+		@media (max-width: 992px)
+			min-height: 200px
+			padding: 50px 0 0px 0
+
+.video-holder-wrapper
+	min-height: 410px
+	position: relative
+
+	@media (max-width: 980px)
+		min-height: inherit
+
+	.video-holder
+		display: none
+		overflow: hidden
+
+	.video-play
+		position: absolute
+		top: calc(50% - 65px)
+		left: 100px
+
+		@media (max-width: 980px)
+			left: calc(50% - 200px)
+
+		@media (max-width: 460px)
+			left: calc(50% - 40px)
+
+	.play-text
+		float: left
+		display: inline-block
+		padding: 15px 30px 40px
+		border-right: 2px solid $theme-color
+		margin-right: 30px
+
+		@media (max-width: 460px)
+			display: none
+
+		h3
+			font-size: 30px
+			font-weight: bold
+			color: $white-color
+			margin: 0
+			text-transform: uppercase
+
+
+		h6
+			font-size: 15px
+			font-family: $headings-font-family
+			font-weight: bold
+			margin: 0
+			text-transform: uppercase
+			color: $white-color
+			text-align: right
+
+
+	.play-button
+		display: inline-block
+		width: 80px
+		height: 80px
+		border-radius: 50%
+		background: $white-color
+		text-align: center
+		line-height: 82px
+		font-size: 36px
+		color: $headings-color
+		cursor: pointer
+		@include transition-all()
+
+		.fa
+			margin-left: 6px
+
+		@include hover
+			background: $theme-color
+
+
+.playlist-trailer
+	background: rgba(0, 0, 0, .45)
+	height: 522px
+	padding: 50px 0
+	overflow: hidden
+
+	.list-item
+		border-top: 1px dotted rgba(194, 194, 194, .15)
+		cursor: pointer
+		display: flex
+		align-content: space-between
+		align-items: center
+		position: relative
+
+		&.selected
+			background: rgba(255, 255, 255, .1)
+
+		.item-thumb
+			width: 66px
+			height: 83px
+			overflow: hidden
+
+			img
+				width: 100%
+				height: 100%
+
+		.item-num
+			padding: 10px 15px
+			font-size: 16px
+			font-family: $headings-font-family
+			text-align: center
+			color: $white-color
+
+		.item-name
+			.movie-title
+				font-size: 16px
+				font-weight: 700
+				color: $meta-text-color
+				margin: 0 0 2px 0
+				text-transform: capitalize
+
+			.movie-actor
+				font-size: 13px
+
+		.item-score
+			width: 36px
+			height: 36px
+			border-radius: 50%
+			background: $theme-color
+			color: $headings-color
+			font-family: $headings-font-family
+			font-size: 15px
+			text-align: center
+			line-height: 36px
+			font-weight: bold
+			position: absolute
+			right: 15px
+			top: calc(50% - 18px)

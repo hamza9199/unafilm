@@ -1,0 +1,433 @@
+
+body {
+	overflow-x: hidden;
+}
+h1, h2, h3, h4, h5, h6 {
+	a {
+		color: #000;
+	}
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+
+a {
+	color: #666;
+	cursor: pointer;
+	outline: medium none;
+	text-decoration: none;
+	@include transition(all 0.3s ease 0s);
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+		outline: none;
+		color: $theme-color;
+	}
+}
+
+.mobilehidden {
+	@media (max-width: $screen-xs) {
+		display: none!important;
+	}
+}
+
+.tablethidden {
+	@media (min-width: $screen-xs) and (max-width: $screen-sm) {
+		display: none!important;
+	}
+}
+
+.amy-image {
+	display: block;
+	overflow: hidden;
+}
+
+.no-float {
+	float: none!important;
+}
+
+.alignleft {
+	float: left;
+	margin-right: 20px;
+}
+
+.alignright {
+	float: right;
+	margin-left: 20px;
+}
+
+.aligncenter {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+
+.alignleft {
+	margin: 7px 14px 7px 0;
+}
+
+.wp-caption {
+	max-width: 100%;
+}
+
+.wp-caption-text {
+	color: #767676;
+	font-size: 12px;
+	margin-bottom: 0!important;
+	margin-top: 6px;
+}
+
+hr {
+	color: #ddd;
+}
+
+#infscr-loading {
+	img {
+		max-width: 100%;
+		width: auto;
+	}
+}
+
+blockquote {
+	border-color: #428bca;
+	border-left: 3px solid $theme-color;
+	font-size: 15px;
+	font-style: italic;
+	margin: 20px;
+	padding: 10px 20px;
+}
+
+.sticky-post {
+	background: #000 !important;
+	color: #fff !important;
+}
+
+.post.sticky {
+	background: #f7f7f7;
+	padding: 20px;
+	margin-bottom: 15px;
+
+	.postitem {
+		border: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	&:after {
+		clear: both;
+		display: table;
+		content: '';
+	}
+}
+
+.screen-reader-text {
+	clip: rect(1px, 1px, 1px, 1px);
+	position: absolute !important;
+	height: 1px;
+	width: 1px;
+	overflow: hidden;
+}
+
+.screen-reader-text:focus {
+	background-color: #f1f1f1;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
+	clip: auto !important;
+	color: #21759b;
+	display: block;
+	font-size: 14px;
+	font-size: 0.875rem;
+	font-weight: bold;
+	height: auto;
+	left: 5px;
+	line-height: normal;
+	padding: 15px 23px 14px;
+	text-decoration: none;
+	top: 5px;
+	width: auto;
+	z-index: 100000; /* Above WP toolbar. */
+}
+
+.gallery-caption {
+	color: #686868;
+	display: block;
+	font-size: 13px;
+	font-size: 0.8125rem;
+	font-style: italic;
+	line-height: 1.6153846154;
+	padding-top: 0.5384615385em;
+}
+
+.gallery-columns-6 .gallery-caption,
+.gallery-columns-7 .gallery-caption,
+.gallery-columns-8 .gallery-caption,
+.gallery-columns-9 .gallery-caption {
+	display: none;
+}
+
+.bypostauthor > article .fn:after {
+	content: "\f304";
+	left: 3px;
+	position: relative;
+	top: 5px;
+}
+
+pre {
+	border: 1px solid #d1d1d1;
+	font-size: 1rem;
+	line-height: 1.3125;
+	margin: 0 0 1.75em;
+	max-width: 100%;
+	overflow: auto;
+	padding: 1.75em;
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
+
+.amy-widget {
+	margin-bottom: 30px;
+}
+
+.amy-shortcode {
+	margin-bottom: 20px;
+}
+
+.amy-title {
+	color: $theme-color;
+	display: inline-block;
+	font-size: 35px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	margin-top: 0;
+	position: relative;
+	padding-bottom: 5px;
+
+	&.amy-widget-title {
+		font-size: 28px;
+	}
+}
+
+#amy-page-header {
+	&.has-page-title {
+		margin-bottom: 30px;
+	}
+
+	.amy-page-title {
+		min-height: 210px;
+		position: relative;
+
+		&.amy-right {
+			.amy-breadcrumb {
+				float: left;
+			}
+
+		}
+
+		.page-title {
+			color: #fff;
+			font-weight: 600;
+			margin: 0;
+			padding: 80px 0;
+			display: inline-block;
+		}
+	}
+
+	&.type-image {
+		.page-title {
+			color: #fff;
+			text-transform: uppercase;
+		}
+	}
+
+}
+
+table,
+th,
+td {
+	border: 1px solid #d1d1d1;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 0;
+	border-width: 1px 0 0 1px;
+	margin: 0 0 1.75em;
+	table-layout: fixed;
+	width: 100%;
+}
+
+th,
+td {
+	padding: 0.4375em;
+	text-align: left;
+}
+
+th {
+	border-width: 0 1px 1px 0;
+	font-weight: 700;
+}
+
+td {
+	border-width: 0 1px 1px 0;
+}
+
+.nav-links {
+	margin-bottom: 20px;
+
+	.nav-previous {
+		display: inline-block;
+		width: 50%;
+	}
+
+	.nav-next {
+		display: inline-block;
+		width: 50%;
+		text-align: right;
+	}
+}
+
+.entry-title {
+	-ms-word-wrap: break-word;
+	word-wrap: break-word;
+}
+
+.amy-center {
+	text-align: center;
+}
+
+.amy-left {
+	text-align: left;
+}
+
+.amy-right {
+	text-align: right;
+}
+
+#amy-loading {
+	background-color: rgba(255,255,255,.75);
+	height: 100%;
+	left: 0;
+	display: none;
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	transition: opacity 0.3s ease-in-out 0s, background 0.3s ease-in-out 0s, z-index 0.3s ease-in-out 0s;
+	width: 100%;
+	z-index: 0;
+}
+
+#amy-loading.open {
+	display: block;
+	z-index: 1101;
+}
+
+#amy-loading span {
+	background: url('../images/frontend/ajax_loading.gif') no-repeat;
+	display: block;
+	width: 70px;
+	height: 70px;
+	margin: 25% auto 0;
+}
+
+.col-xs-15, .col-sm-15, .col-md-15, .col-lg-15 {
+	min-height: 1px;
+	padding: 0 15px;
+	position: relative;
+}
+
+.col-md-15 {
+	float: left;
+	width: 20%;
+	margin-bottom: 30px;
+}
+
+@keyframes amyFadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes amyFadeOut {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+.amy-fade-in {
+	animation: amyFadeIn ease-in 0.3s;
+}
+
+.amy-fade-out {
+	opacity: 0;
+	animation: amyFadeOut ease-out 0.5s;
+}
+
+.amy-buy-ticket {
+	background: #fe7900 none repeat scroll 0 0;
+	border: 0 none;
+	border-radius: 3px;
+	color: #fff;
+	font-size: 13px;
+	font-weight: bold;
+	margin-top: 25px;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	transition: all 0.5s ease 0s;
+	width: auto;
+	float: right;
+
+	&:hover {
+		background: #000;
+		color: #fff;
+	}
+}
+
+.amy-movie-recent {
+	ul {
+		margin: 0;
+		padding: 0;
+
+		li {
+			display: inline-block;
+			margin-bottom: 10px;
+			padding: 0 10px;
+			vertical-align: top;
+			width: 20%;
+
+			&:first-child {
+				padding-left: 0;
+			}
+
+			&:last-child {
+				padding-right: 0;
+			}
+
+			p {
+				font-size: 18px;
+				line-height: 23px;
+				margin-top: 5px;
+				text-align: center;
+			}
+		}
+
+	}
+}
+
+@media (max-width: 480px) {
+	.amy-movie-recent {
+		ul {
+			li {
+				width: 50%;
+			}
+		}
+	}
+}

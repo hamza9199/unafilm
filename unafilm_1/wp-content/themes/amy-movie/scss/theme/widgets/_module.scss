@@ -1,0 +1,56 @@
+
+
+.amy-widget-module {
+	&.about {
+		.footer-logo {
+			margin-bottom: 15px;
+		}
+	}
+
+	&.social {
+		ul {
+			margin: 0;
+			padding: 0;
+
+			li {
+				display: inline-block;
+				list-style: none;
+
+				a {
+					background: #484d51 none repeat scroll 0 0;
+					border-radius: 50%;
+					color: #ddd;
+					font-size: 15px;
+					height: 42px;
+					line-height: 42px;
+					margin-right: 6px;
+					text-align: center;
+					width: 42px;
+
+					&:hover {
+						background: $theme-color;
+						color: #fff;
+					}
+				}
+			}
+		}
+	}
+
+	&.contact {
+		> div {
+			margin-bottom: 7px;
+
+			i {
+				padding-right: 7px;
+			}
+		}
+
+		.phone {
+			color: $theme-color;
+
+			i {
+				color: #bdbdbd;
+			}
+		}
+	}
+}
