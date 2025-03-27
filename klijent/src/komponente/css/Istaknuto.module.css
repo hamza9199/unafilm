@@ -1,0 +1,107 @@
+.istaknutoSection {
+    background-color: #f8f8f8;
+    margin-top: 80px;
+    
+  }
+  
+  .sliderContainer {
+    width: 96vw; 
+    margin-left: 33px;
+}
+
+.slideItem {
+    width: 100vw;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slideThumb img {
+    width: 100vw;
+    height: 600px;
+    object-fit: cover;
+    filter: brightness(0.8);
+    transition: filter 0.3s ease;
+}
+
+.slideContent {
+    position: absolute;
+    bottom: 20px;
+    left: 35px;
+    color: white;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+  }
+
+  
+  .slideTitle a {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-decoration: none;
+  }
+  
+  .slideDesc {
+    margin: 10px 0;
+  }
+  
+  .slideButton a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 10px 15px;
+    color: white;
+    background-color: #007bff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .slideButton a:hover {
+    background-color: #0056b3;
+  }
+  
+  .trailerLink i,
+  .detailsLink i {
+    margin-right: 5px;
+  }
+  
+  .slick-dots {
+    bottom: 10px !important;
+  }
+
+
+  .slick-prev, .slick-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5); /* Poluprozirna pozadina */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slick-prev {
+    left: 15px; /* Strelica bliže slici */
+}
+
+.slick-next {
+    right: 15px; /* Strelica bliže slici */
+}
+
+.slick-prev:before, .slick-next:before {
+    font-size: 20px;
+    color: white;
+}
+
+
+.slickSlider {
+    width: 100%;
+    overflow: hidden;
+}
+
+  
