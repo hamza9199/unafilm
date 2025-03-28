@@ -33,17 +33,17 @@ const Footer = () => {
                             <div className={styles.amyWidgetContent}>
                                 <ul id="menu-customer-services" className={styles.menu}>
                                     <li className={styles.menuItem}>
-                                        <a href="https://unafilm.ba/" aria-current="page">
+                                        <a href="/" aria-current="page">
                                             Početna
                                         </a>
                                     </li>
                                     <li className={styles.menuItem}>
-                                        <a href="https://unafilm.ba/uskoro-u-kinima/">
+                                        <a href="/uskoro-u-kinima/">
                                             Uskoro u kinima
                                         </a>
                                     </li>
                                     <li className={styles.menuItem}>
-                                        <a href="https://unafilm.ba/trenutno-u-kinima/">
+                                        <a href="/trenutno-u-kinima/">
                                             Trenutno u kinima
                                         </a>
                                     </li>

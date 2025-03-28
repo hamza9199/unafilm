@@ -1,0 +1,59 @@
+/* Breadcrumb stilovi */
+
+.breadcrumbContainer {
+    background-color: #010101;
+    padding: 20px 0;
+    border-bottom: 2px solid #ddd;
+    width: 100vw;
+    height: 200px;
+}
+
+.innerContainer {
+    padding: 0 20px;
+    margin-top: 120px;
+}
+
+.pageTitle {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #fdfdfd;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.breadcrumb {
+    font-size: 16px;
+    color: #666;
+    text-align: right;
+    margin-right: 100px;
+}
+
+.homeLink {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.homeLink:hover {
+    text-decoration: underline;
+}
+
+.breadcrumbItem {
+    margin: 0 5px;
+    color: #666;
+}
+
+.breadcrumbLink {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.breadcrumbLink:hover {
+    text-decoration: underline;
+}
+
+.currentPage {
+    font-weight: bold;
+    color: #f1efef;
+}

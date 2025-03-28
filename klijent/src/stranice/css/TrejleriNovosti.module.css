@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    gap: 100px; /* Razmak između banera i članka */
+    justify-content: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.lijeviBaner {
+    flex: 1; /* Baner zauzima manji prostor */
+}
+
+.articleItemsWrapper {
+    flex: 4; /* Sekcija za članke zauzima veći prostor */
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatski popunjava raspoloživi prostor sa minimalnim širinama */
+    gap: 20px; /* Razmak između članaka */
+}
+
+.articleItem {
+    display: flex;
+    flex-direction: row; /* Svaki članak se raspoređuje horizontalno */
+    gap: 20px; /* Razmak između slike i sadržaja */
+}
+
+.entryThumb {
+    flex: 1;
+}
+
+.entryContent {
+    flex: 2;
+}
+
+.entryTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.entryInfo {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.entrySummary {
+    font-size: 14px;
+    color: #555;
+}
+
+.entryCategory a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.entryCategory a:hover {
+    text-decoration: underline;
+}

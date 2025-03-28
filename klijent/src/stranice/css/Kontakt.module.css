@@ -1,0 +1,73 @@
+/* Kontakt.module.css */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.header{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.mapContainer{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.card {
+    background-color: #f3f4f6;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    width: 100%;
+}
+
+.cardTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.cardText {
+    font-size: 1rem;
+}
+
+.formSection {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 2rem;
+}
+
+.formLabel {
+    color: #4A4A4A;
+    font-size: 1rem;
+}
+
+.formInput, .formTextarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    background-color: white;
+    color: #4A4A4A;
+}
+
+.submitButton {
+    background-color: #2563eb;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 1rem;
+    cursor: pointer;
+}
+
+.submitButton:hover {
+    background-color: #1d4ed8;
+}

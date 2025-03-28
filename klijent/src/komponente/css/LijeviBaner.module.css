@@ -1,0 +1,90 @@
+/* General Styles */
+.sidebar {
+    width: 300px;
+    padding: 20px;
+    background-color: #f4f4f4;
+    }
+
+.widgetBlock {
+    margin-bottom: 20px;
+}
+
+.wpBlockImage {
+    text-align: center;
+}
+
+.wpImage {
+    max-width: 290px;
+    height: auto;
+}
+
+.widgetList {
+    margin-top: 20px;
+}
+
+.widgetTitle {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.entryItem {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.entryThumb {
+    width: 120px;
+    height: 180px;
+    overflow: hidden;
+}
+
+.image2 {
+    width: 100px;
+    height: 90px;
+    object-fit: cover;
+    object-position: center;
+
+}
+
+.entryThumb2 {
+    width: 250px;
+    height: 90px;
+    overflow: hidden;
+}
+.image {
+    width: auto;
+    height: 180px;
+}
+
+
+.entryContent {
+    margin-left: 10px;
+}
+
+.entryTitle {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.entryTitle a {
+    color: #333;
+    text-decoration: none;
+}
+
+.entryTitle a:hover {
+    text-decoration: underline;
+}
+
+.duration {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.entryMeta {
+    font-size: 0.9rem;
+    color: #999;
+}
+
+.entryDate, .entryComment {
+    margin-right: 5px;
+}

@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-top: 30px;
+    overflow: visible;
+  }
+
+  .kon{
+    margin-top: -130px;
+  }
+  
+  .headingContainer {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .hiddenMobile {
+    display: none;
+  }
+  
+  .hiddenDesktop {
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .hiddenMobile {
+      display: block;
+    }
+  
+    .hiddenDesktop {
+      display: none;
+    }
+  }
+  
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+    
+  }
+  
+  .movieList {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .movieList li {
+    display: flex;
+    align-items: center;
+    margin: 9px 0;
+    font-size: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd; /* Linija ispod svakog filma */
+  }
+  
+  .number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #0b0b0b;
+    color: rgb(246, 242, 242);
+    font-weight: bold;
+    margin-right: 15px; /* Odmaknuto od teksta */
+    font-size: 16px;
+  }
+  
+  .link {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+  }
+  
+  .link:hover {
+    color: #007bff;
+  }
+  

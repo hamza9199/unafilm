@@ -1,12 +1,12 @@
 .istaknutoSection {
     background-color: #f8f8f8;
     margin-top: 80px;
-    
+  overflow: hidden;
   }
   
   .sliderContainer {
-    width: 96vw; 
-    margin-left: 33px;
+    width: 100vw; 
+    overflow: hidden;
 }
 
 .slideItem {

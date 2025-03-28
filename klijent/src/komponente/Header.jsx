@@ -18,30 +18,30 @@ const Header = () => {
         <header id="masthead" className={styles.header}>
             <div className={styles.container}>
                 <div className={styles.logo}>
-                    <a href="https://unafilm.ba/">
+                    <a href="/">
                         <img src="https://unafilm.ba/wp-content/uploads/2024/12/unaFilm141-2.png" alt="Una Film Distribucija" />
                     </a>
                 </div>
                 <nav id="amy-site-nav" className={`${styles.nav} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>
                     <ul className={styles.menu}>
-                        <li className={styles.menuItem}><a href="https://unafilm.ba/">Početna</a></li>
+                        <li className={styles.menuItem}><a href="/">Početna</a></li>
                         <li className={`${styles.menuItem} ${styles.hasSubmenu}`}>
                             <a href="#">Filmovi</a>
                             <ul className={styles.submenu}>
-                                <li><a href="https://unafilm.ba/trenutno-u-kinima/">Trenutno u kinima</a></li>
-                                <li><a href="https://unafilm.ba/uskoro-u-kinima/">Uskoro u kinima</a></li>
-                                <li><a href="https://unafilm.ba/arhiva/">Arhiva</a></li>
+                                <li><a href="/trenutno-u-kinima">Trenutno u kinima</a></li>
+                                <li><a href="/uskoro-u-kinima">Uskoro u kinima</a></li>
+                                <li><a href="/arhiva">Arhiva</a></li>
                             </ul>
                         </li>
                         <li className={styles.menuItem}><a href="/o-nama">O nama</a></li>
                         <li className={`${styles.menuItem} ${styles.hasSubmenu}`}>
-                            <a href="http://unafilm.ba/category/novosti">Novosti</a>
+                            <a href="/novosti">Novosti</a>
                             <ul className={styles.submenu}>
-                                <li><a href="https://unafilm.ba/category/novosti/iz-svijeta-filma/">Iz svijeta filma</a></li>
-                                <li><a href="https://unafilm.ba/category/novosti/traileri/">Traileri</a></li>
+                                <li><a href="/novosti/iz-svijeta-filma/">Iz svijeta filma</a></li>
+                                <li><a href="/novosti/trejleri/">Traileri</a></li>
                             </ul>
                         </li>
-                        <li className={styles.menuItem}><a href="https://unafilm.ba/kontakt/">Kontakt</a></li>
+                        <li className={styles.menuItem}><a href="/kontakt">Kontakt</a></li>
                         <li className={styles.searchIcon}>
                             <a href="#" role="button" aria-label="Search" onClick={toggleSearch}>
                                 <svg width="20" height="20" viewBox="0 0 24 24">

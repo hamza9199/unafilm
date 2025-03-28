@@ -31,6 +31,7 @@ const filmovi = [
 const Istaknuto = () => {
   const settings = {
     slidesToShow: 1,
+    arrows: false,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,

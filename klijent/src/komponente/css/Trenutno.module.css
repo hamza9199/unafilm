@@ -1,0 +1,151 @@
+.container {
+    padding: 20px;
+    justify-content: center;
+    margin-right: 100px;
+    overflow: visible;
+    max-width: 800px;
+    max-height: 500px;
+
+  }
+  
+  .slick-slider {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+
+  }
+  
+  .slick-slide {
+    display: block;
+    padding: 0 10px;
+    height: 100%;
+    overflow: visible;
+  }
+  
+  .movieItem {
+    width: 100%;
+    overflow: visible;
+
+    max-width: 250px;
+    margin: 0 auto;
+    height: 100%;
+    transition: transform 0.3s ease;
+    position: relative; /* Omogućava pozicioniranje modala u odnosu na film */
+  }
+  
+  .movieFront {
+    position: relative;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
+    overflow: visible;
+
+  }
+  
+  .movieImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+  }
+  
+  .movieContent {
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    position: absolute;
+    top: -500px;
+    left: 200px;
+    color: white;
+    overflow: visible;
+
+    width: 90%;
+  }
+  
+  .movieImage:hover {
+    transform: scale(1.1);
+  }
+  
+  .movieTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .movieTitle a {
+    text-decoration: none;
+    color: #fff;
+    transition: color 0.3s ease;
+  }
+  
+  .movieTitle a:hover {
+    color: #007bff;
+  }
+  
+  .releaseDate {
+    font-size: 14px;
+    color: #7d7b7b;
+    margin-bottom: 10px;
+  }
+  
+  .slick-prev, .slick-next {
+    z-index: 1;
+  }
+  
+  .slick-prev, .slick-next {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .slick-prev {
+    left: 15px;
+  }
+  
+  .slick-next {
+    right: 15px;
+  }
+  
+  .slick-prev:before, .slick-next:before {
+    font-size: 20px;
+    color: rgb(1, 1, 1);
+  }
+  
+  /* Prikazivanje modala kada korisnik pređe mišem preko filma */
+  .movieContent {
+    position: relative;
+    right: -800px; /* Pomeranje modala više desno */
+    transform: translateY(-50%);
+    background-color: #060606;
+    padding: 15px;
+    border-radius: 8px;
+    visibility: hidden;
+    z-index: 100000;
+    
+    top: -100px;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    width: 400px; /* Širina modala */
+  }
+  
+  .movieItem:hover .movieContent {
+    visibility: visible;
+    opacity: 1;
+    right: 0;
+    top: -100px;
+    /* Pomera modal na poziciju desno */
+  }
+  
+  
+  
