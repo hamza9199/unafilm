@@ -1,7 +1,7 @@
 import React from 'react';  
-import styles from './css/Film.module.css';
+import styles from './css/FilmInfo.module.css';
 
-const Film = () => {
+const FilmInfo = () => {
     const title = "Inception";
     const posterUrl = "https://example.com/inception.jpg"; 
     const description = "A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a CEO.";
@@ -18,4 +18,4 @@ const Film = () => {
 };
 
 
-export default Film;
+export default FilmInfo;

@@ -88,9 +88,10 @@ const Trenutno = () => {
 
                 
             </div>
-
-            <a href={film.link}>{film.title}</a>
+            <div className={styles.dole}>
+            <a className={styles.title2} href={film.link}>{film.title}</a>
             <p className={styles.releaseDate}>{film.releaseDate}</p>
+            </div>
 
             <div className={styles.movieContent}>
                 <h3 className={styles.movieTitle}>

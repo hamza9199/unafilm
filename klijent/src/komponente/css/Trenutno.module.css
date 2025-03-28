@@ -40,7 +40,7 @@
     overflow: hidden;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 100%;
-    overflow: visible;
+    overflow: hidden;
 
   }
   
@@ -60,7 +60,7 @@
     top: -500px;
     left: 200px;
     color: white;
-    overflow: visible;
+    overflow: hidden;
 
     width: 90%;
   }
@@ -148,4 +148,15 @@
   }
   
   
-  
+  .title2{
+    font-size: 18px;
+    color: #020202;
+    margin-bottom: 10px;
+    font-weight: bold;
+    
+  }
+
+
+  .dole{
+    margin-top: 10px;
+  }

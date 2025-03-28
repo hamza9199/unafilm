@@ -55,3 +55,65 @@
 .entryCategory a:hover {
     text-decoration: underline;
 }
+
+.articleItem {
+    margin-bottom: 20px;
+}
+
+.post {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+    display: flex;
+    gap: 20px;
+}
+
+.entryThumb {
+    flex: 1;
+}
+
+.entryContent {
+    flex: 2;
+}
+
+.entryTitle {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.entryInfo {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.entryDate, .entryCategory {
+    color: #555;
+}
+
+.entryCategory a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.entryCategory a:hover {
+    text-decoration: underline;
+}
+
+.entrySummary {
+    font-size: 14px;
+    color: #555;
+}
+
+.entryAuthor {
+    font-weight: bold;
+}
+
+.entryComment {
+    font-size: 14px;
+    color: #777;
+}

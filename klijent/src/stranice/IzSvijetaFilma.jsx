@@ -5,11 +5,12 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 
+
 const ArticleItem = ({ src, alt, link, title, author, date, categories, summary }) => {
     return (
         <div className={styles.articleItem}>
-            <article className="post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article">
-                <div className="row">
+            <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
+                <div className={styles.row}>
                     <div className={`${styles.entryThumb} col-md-5 col-xs-5 has-thumb`}>
                         <img
                             width="300"
@@ -21,24 +22,24 @@ const ArticleItem = ({ src, alt, link, title, author, date, categories, summary 
                         />
                     </div>
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
-                        <h1 className={`entry-title p-name ${styles.entryTitle}`} itemprop="name headline">
+                        <h1 className={`${styles.entryTitle} entry-title p-name`} itemprop="name headline">
                             <a href={link} rel="bookmark" className="u-url url" itemprop="url">
                                 {title}
                             </a>
                         </h1>
-                        <div className="entry-info">
-                            <span className="entry-author p-author vcard hcard h-card" itemtype="http://schema.org/Person" itemprop="author editor publisher">
-                                By
+                        <div className={styles.entryInfo}>
+                            <span className={`${styles.entryAuthor} entry-author p-author vcard hcard h-card`} itemtype="http://schema.org/Person" itemprop="author editor publisher">
+                                
                                 <a className="url uid u-url u-uid fn p-name" rel="author" itemprop="url" href={author.link}>
-                                    {author.name}
+                                    By {author.name}
                                 </a>
                             </span>
                             <span>/</span>
                             <a className="url u-url" href={link}>
-                                <span className="entry-date">{date}</span>
+                                <span className={styles.entryDate}>{date}</span>
                             </a>
                             <span>/</span>
-                            <span className="entry-category">
+                            <span className={styles.entryCategory}>
                                 {categories.map((category, index) => (
                                     <span key={index}>
                                         <a href={category.link} rel="category tag">
@@ -49,9 +50,9 @@ const ArticleItem = ({ src, alt, link, title, author, date, categories, summary 
                                 ))}
                             </span>
                             <span>/</span>
-                            <span className="entry-comment">0 Comment</span>
+                            <span className={styles.entryComment}>0 Comment</span>
                         </div>
-                        <div className="entry-summary p-summary" itemprop="description">
+                        <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                             <p>{summary}</p>
                         </div>
                     </div>

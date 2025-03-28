@@ -38,7 +38,7 @@ const Header = () => {
                             <a href="/novosti">Novosti</a>
                             <ul className={styles.submenu}>
                                 <li><a href="/novosti/iz-svijeta-filma/">Iz svijeta filma</a></li>
-                                <li><a href="/novosti/trejleri/">Traileri</a></li>
+                                <li><a href="/novosti/traileri/">Traileri</a></li>
                             </ul>
                         </li>
                         <li className={styles.menuItem}><a href="/kontakt">Kontakt</a></li>
