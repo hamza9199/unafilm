@@ -22,7 +22,7 @@
 .articleItem {
     display: flex;
     flex-direction: row; /* Svaki članak se raspoređuje horizontalno */
-    gap: 20px; /* Razmak između slike i sadržaja */
+    gap: 4px; /* Razmak između slike i sadržaja */
 }
 
 

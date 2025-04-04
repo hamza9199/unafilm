@@ -15,7 +15,7 @@
     flex: 4; /* Sekcija za članke zauzima veći prostor */
     display: flex;
     flex-direction: column; /* Svi članci u jednoj koloni */
-    gap: 20px; /* Razmak između članaka */
+    gap: 4px; /* Razmak između članaka */
     justify-content: center;
 }
 

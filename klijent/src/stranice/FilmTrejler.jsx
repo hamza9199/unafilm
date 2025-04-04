@@ -73,7 +73,7 @@ const FilmTrejler = () => {
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: 'Film', link: '/film/:id' },
+                    { name: movie.title, link: '/novosti/traileri/film/:id' },
                 ]}
             />
 

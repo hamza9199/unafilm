@@ -67,8 +67,8 @@ const IzSvijetaFilma = () => {
         src: "https://unafilm.ba/wp-content/uploads/2025/03/Cover-Te-sitnice-u-kinima-1500x667-1-1024x455-1-300x133.jpg",
         alt: "Te sitnice",
         link: `/novosti/iz-svijeta-filma/film/:id`,
-        title: `Te sitnice – Povijesna drama ${index + 1}`,
-        author: { name: "unafilm", link: "/novosti/iz-svijeta-filma/film/:id" },
+        title: `Te sitnice - Povijesna drama ${index + 1}`,
+        author: "unafilm",
         date: "March 24, 2025",
         categories: [{ name: "Novosti", link: "/novosti/iz-svijeta-filma/film/:id" }],
         summary: "Opis filma....."
@@ -92,7 +92,7 @@ const IzSvijetaFilma = () => {
     return (
         <>
             <Header />
-            <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: 'Novosti', link: '/novosti' }]} />
+            <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: 'Novosti', link: '/novosti' }, {name: 'Iz Svijeta Filma', link: '/novosti/iz-svijeta-filma'}]} />
             <div className={styles.container}>
                 <LijeviBaner />
                 <div className={styles.articleItemsWrapper}>

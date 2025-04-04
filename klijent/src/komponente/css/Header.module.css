@@ -1,5 +1,5 @@
 .header {
-    background: linear-gradient(3deg, #f7f8f8, #2e2e2e);
+    background: whitesmoke;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-bottom: 4px solid #2b2b36;
     position: absolute;
@@ -11,8 +11,6 @@
     z-index: 1000;
     width: 100vw; 
     overflow: visible;
-
-
 }
 
 .container {
@@ -23,7 +21,6 @@
     align-items: center;
     overflow: visible;
 }
-
 
 /* Logo */
 .logo img {
@@ -51,7 +48,7 @@
 
 .menu a {
     text-decoration: none;
-    color: white;
+    color: rgb(3, 3, 3);
     font-weight: bold;
     font-size: 16px;
     text-transform: uppercase;
@@ -87,7 +84,7 @@
 .submenu {
     display: none;
     position: absolute;
-    background: #2b2b36;
+    background: #080808;
     list-style: none;
     padding: 10px;
     top: 100%;
@@ -113,7 +110,7 @@
 }
 
 .submenu a:hover {
-    background-color: #0066cc;
+    background-color: #20374e;
 }
 
 /* Ikona pretrage */
@@ -137,6 +134,40 @@
     transition: 0.3s;
 }
 
+.searchIcon {
+    position: relative;
+}
+
+.searchBox {
+    display: none; /* Prema zadnjem stanju je skriveno */
+    position: absolute;
+    top: 33px; /* Podesi razmak prema dolje */
+    left: -400px;
+    background-color: #272626;
+    padding: 10px;
+    width: 430px;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(-20px); /* Pomiče se prema gore pri otvaranju */
+}
+
+.searchBox.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* Vraća se na normalnu poziciju pri otvaranju */
+}
+
+.searchBox input {
+    width: 410px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: #302f2f;
+    color: white;
+    font-size: 16px;
+}
+
+/* Mobile Style for Search Box */
 @media (max-width: 768px) {
     .nav {
         display: none;

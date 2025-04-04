@@ -73,7 +73,7 @@ const FilmInfo = () => {
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: 'Film', link: '/film/:id' },
+                    { name:  movie.title, link: 'novosti/iz-svijeta-filma/film/:id' },
                 ]}
             />
 

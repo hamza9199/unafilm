@@ -67,7 +67,7 @@ const Novosti = () => {
         alt: "Te sitnice",
         link: "/novosti/film/:id",
         title: `Te sitnice – Povijesna drama ${index + 1}`,
-        author: { name: "unafilm", link: "/novosti/film/:id" },
+        author: "unafilm",
         categories: [{ name: "Novosti", link: "/novosti/film/:id" }],
         summary: "Opis filma....."
     }));

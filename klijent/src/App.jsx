@@ -15,6 +15,7 @@ import TrejleriNovosti from './stranice/TrejleriNovosti';
 import Novosti from './stranice/Novosti';
 import FilmTrejler from './stranice/FilmTrejler';
 import FilmOpis from './stranice/FilmOpis';
+import Search from './stranice/Search';
 
 
 
@@ -38,7 +39,7 @@ function App() {
         <Route path="/novosti" element={<Novosti />} />
         <Route path="/novosti/iz-svijeta-filma" element={<IzSvijetaFilma />} />
         <Route path="/novosti/traileri" element={<TrejleriNovosti />} />
-
+        <Route path="/search" element={<Search />} />
         <Route path="*" element={<Home />} />
         
       </Routes>

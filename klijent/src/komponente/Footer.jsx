@@ -1,6 +1,24 @@
 import React from "react";
 import styles from './css/Footer.module.css';
 
+// Define the array of movies
+const movies = [
+    {
+        title: "'Te sitnice': Povijesna drama o tihim herojima",
+        imageUrl: "https://unafilm.ba/wp-content/uploads/2025/03/Cover-Te-sitnice-u-kinima-1500x667-1-1024x455-1-115x85_c.jpg",
+        link: "https://unafilm.ba/2025/03/24/te-sitnice-povijesna-drama-o-tihim-herojima/",
+        releaseDate: "March 24, 2025",
+        comments: "0 Comments"
+    },
+    {
+        title: "Michael Fassbender: Od konobara do holivudske zvijezde",
+        imageUrl: "https://unafilm.ba/wp-content/uploads/2025/03/Michael-Fassbender_BlackBag__Universal-Pictures-115x85_c.jpg",
+        link: "https://unafilm.ba/2025/03/24/michael-fassbender-od-konobara-do-holivudske-zvijezde/",
+        releaseDate: "March 24, 2025",
+        comments: "0 Comments"
+    }
+];
+
 const Footer = () => {
     return (
         <footer id="amy-colophon" className={styles.amySiteFooter}>
@@ -59,49 +77,30 @@ const Footer = () => {
                             <div className={`${styles.amyWidget} ${styles.listPost}`}>
                                 <h4 className={styles.amyTitle}>Zadnje novosti</h4>
 
-                                <div className={styles.entryItem}>
-                                    <div className={styles.entryThumb}>
-                                        <img
-                                            src="https://unafilm.ba/wp-content/uploads/2025/03/Cover-Te-sitnice-u-kinima-1500x667-1-1024x455-1-115x85_c.jpg"
-                                            alt="Te sitnice"
-                                        />
-                                    </div>
-                                    <div className={styles.entryContent}>
-                                        <h2 className={styles.entryTitle}>
-                                            <a href="https://unafilm.ba/2025/03/24/te-sitnice-povijesna-drama-o-tihim-herojima/">
-                                                'Te sitnice': Povijesna drama o tihim herojima
-                                            </a>
-                                        </h2>
-                                        <div className={styles.entryMeta}>
-                                            <span className={styles.entryDate}>March 24, 2025</span>
-                                            <span> / </span>
-                                            <span className={styles.entryComment}>0 Comments</span>
+                                {/* Loop through movies and render them */}
+                                {movies.map((movie, index) => (
+                                    <div key={index} className={styles.entryItem}>
+                                        <div className={styles.entryThumb}>
+                                            <img
+                                                src={movie.imageUrl}
+                                                alt={movie.title}
+                                            />
                                         </div>
-                                    </div>
-                                    <div className={styles.clearfix}></div>
-                                </div>
-
-                                <div className={styles.entryItem}>
-                                    <div className={styles.entryThumb}>
-                                        <img
-                                            src="https://unafilm.ba/wp-content/uploads/2025/03/Michael-Fassbender_BlackBag__Universal-Pictures-115x85_c.jpg"
-                                            alt="Michael Fassbender"
-                                        />
-                                    </div>
-                                    <div className={styles.entryContent}>
-                                        <h2 className={styles.entryTitle}>
-                                            <a href="https://unafilm.ba/2025/03/24/michael-fassbender-od-konobara-do-holivudske-zvijezde/">
-                                                Michael Fassbender: Od konobara do holivudske zvijezde
-                                            </a>
-                                        </h2>
-                                        <div className={styles.entryMeta}>
-                                            <span className={styles.entryDate}>March 24, 2025</span>
-                                            <span> / </span>
-                                            <span className={styles.entryComment}>0 Comments</span>
+                                        <div className={styles.entryContent}>
+                                            <h2 className={styles.entryTitle}>
+                                                <a href={movie.link}>
+                                                    {movie.title}
+                                                </a>
+                                            </h2>
+                                            <div className={styles.entryMeta}>
+                                                <span className={styles.entryDate}>{movie.releaseDate}</span>
+                                                <span> / </span>
+                                                <span className={styles.entryComment}>{movie.comments}</span>
+                                            </div>
                                         </div>
+                                        <div className={styles.clearfix}></div>
                                     </div>
-                                    <div className={styles.clearfix}></div>
-                                </div>
+                                ))}
                             </div>
                             <div className={styles.clear}></div>
                         </div>

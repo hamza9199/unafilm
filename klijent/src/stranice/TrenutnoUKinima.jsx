@@ -62,10 +62,10 @@ const TrenutnoUKinima = () => {
                                     <img src={movie.imageUrl} alt={movie.title} className={styles.movieImage} href="/trenutno-u-kinima/film/:id"/>
                                 </div>
                                 <div className={styles.movieText}>
-                                    <h2 href="/trenutno-u-kinima/film/:id" className={styles.movieTitle}>{movie.title}</h2>
-                                    <p className={styles.movieDescription}>{movie.description}</p>
+                                    <a href="/trenutno-u-kinima/film/:id" className={styles.movieTitle}>{movie.title}</a>
+                                    <p className={styles.movieDescription} href="/trenutno-u-kinima/film/:id">{movie.description} </p>
                                     <div className={styles.buttonContainer}>
-                                        <a href="/trenutno-u-kinima/film/:id" className={styles.infoButton} target="_blank" rel="noopener noreferrer">Info</a>
+                                        <a href={movie.detailsUrl} className={styles.infoButton} target="_blank" rel="noopener noreferrer">Info</a>
                                         <a href={movie.trailerUrl} className={styles.trailerButton} target="_blank" rel="noopener noreferrer">Trailer</a>
                                     </div>
                                 </div>

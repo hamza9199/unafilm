@@ -61,7 +61,7 @@ const UskoroUKinima = () => {
                                     <img src={movie.imageUrl} alt={movie.title} className={styles.movieImage}/>
                                 </div>
                                 <div className={styles.movieText}>
-                                    <h2 className={styles.movieTitle}>{movie.title}</h2>
+                                    <a href="/uskoro-u-kinima/film/:id" className={styles.movieTitle}>{movie.title}</a>
                                     <p className={styles.movieDescription}>{movie.description}</p>
                                     <div className={styles.buttonContainer}>
                                         <a href="/uskoro-u-kinima/film/:id" className={styles.infoButton} target="_blank" rel="noopener noreferrer">Info</a>
