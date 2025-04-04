@@ -39,7 +39,7 @@ const TrenutnoUKinima = () => {
             title: 'PINGVINOVE LEKCIJE',
             description: 'Ova potresna drama reditelja Petera Cattanea...',
             trailerUrl: 'https://www.youtube.com/embed/WWSnYxBBT70',
-            detailsUrl: 'https://unafilm.ba/movie/pingvinove-lekcije/',
+            detailsUrl: '/trenutno-u-kinima/film/:id',
             imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/September-5-1080x1920-IG-Story-196x336_c.jpg',
           },
       ];
@@ -57,12 +57,12 @@ const TrenutnoUKinima = () => {
                 <div className={styles.movieList}>
                     {movies.length > 0 ? (
                         movies.map((movie, index) => (
-                            <div key={index} className={styles.movieItem}>
+                            <div key={index} className={styles.movieItem} href="/trenutno-u-kinima/film/:id">
                                 <div className={styles.movieImageWrapper}>
-                                    <img src={movie.imageUrl} alt={movie.title} className={styles.movieImage}/>
+                                    <img src={movie.imageUrl} alt={movie.title} className={styles.movieImage} href="/trenutno-u-kinima/film/:id"/>
                                 </div>
                                 <div className={styles.movieText}>
-                                    <h2 className={styles.movieTitle}>{movie.title}</h2>
+                                    <h2 href="/trenutno-u-kinima/film/:id" className={styles.movieTitle}>{movie.title}</h2>
                                     <p className={styles.movieDescription}>{movie.description}</p>
                                     <div className={styles.buttonContainer}>
                                         <a href="/trenutno-u-kinima/film/:id" className={styles.infoButton} target="_blank" rel="noopener noreferrer">Info</a>

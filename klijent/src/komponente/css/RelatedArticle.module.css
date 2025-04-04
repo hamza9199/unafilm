@@ -1,0 +1,60 @@
+.entryRelated {
+    padding: 30px;
+    margin-top: 100px;
+}
+
+.relatedTitle {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.amyRelated {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.colMd4 {
+    flex: 1 1 calc(33.333% - 20px);
+}
+
+.article {
+    padding: 5px;
+    border-radius: 8px;
+}
+
+.entryThumb {
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.articleImage {
+    width: 280px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.entryTitle {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.articleLink {
+    color: #333;
+    text-decoration: none;
+}
+
+.entryInfo {
+    font-size: 0.875rem;
+    color: #888;
+}
+
+.entryDate,
+.entryComment {
+    margin-right: 5px;
+}

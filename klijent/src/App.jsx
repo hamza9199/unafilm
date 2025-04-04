@@ -13,6 +13,8 @@ import Arhiva from './stranice/Arhiva';
 import IzSvijetaFilma from './stranice/IzSvijetaFilma';
 import TrejleriNovosti from './stranice/TrejleriNovosti';
 import Novosti from './stranice/Novosti';
+import FilmTrejler from './stranice/FilmTrejler';
+import FilmOpis from './stranice/FilmOpis';
 
 
 
@@ -25,10 +27,10 @@ function App() {
         <Route path="/o-nama" element={<Onama />} />
         <Route path="/novosti/film/:id" element={<FilmInfo />} />
         <Route path="/novosti/iz-svijeta-filma/film/:id" element={<FilmInfo />} />
-        <Route path="/novosti/traileri/film/:id" element={<FilmInfo />} />
-        <Route path="/trenutno-u-kinima/film/:id" element={<FilmInfo/>} />
-        <Route path="/uskoro-u-kinima/film/:id" element={<FilmInfo/>} />
-        <Route path="/arhiva/film/:id" element={<FilmInfo />} />
+        <Route path="/novosti/traileri/film/:id" element={<FilmTrejler />} />
+        <Route path="/trenutno-u-kinima/film/:id" element={<FilmOpis/>} />
+        <Route path="/uskoro-u-kinima/film/:id" element={<FilmOpis/>} />
+        <Route path="/arhiva/film/:id" element={<FilmOpis />} />
         <Route path="/kontakt" element={<Kontakt/>} />
         <Route path="/trenutno-u-kinima" element={<TrenutnoUKinima/>} />
         <Route path="/uskoro-u-kinima" element={<UskoroUKinima />} />

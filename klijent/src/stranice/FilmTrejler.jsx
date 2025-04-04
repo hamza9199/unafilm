@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';  
-import styles from './css/FilmInfo.module.css';
+import styles from './css/FilmTrejler.module.css';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 
-const FilmInfo = () => {
+const FilmTrejler = () => {
     const [movie, setMovie] = useState(null);
 
     const articles = [
@@ -112,22 +112,11 @@ const FilmInfo = () => {
                                     >
                                         {movie.title}
                                     </a>
-                                    <p><em>Preuzeto sa: {movie.preuzeto}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
                                     {movie.content.map((item, index) => {
                                         switch (item.type) {
-                                            case 'text':
-                                                return <p key={index}>{item.text}</p>;
-                                            case 'image':
-                                                return (
-                                                    <figure key={index} className={styles.figure}>
-                                                        <img src={item.src} alt={item.alt} className={styles.smallImg} />
-                                                        <figcaption className={styles.figcaption}>
-                                                            <em>{item.caption}</em>
-                                                        </figcaption>
-                                                    </figure>
-                                                );
+                                            
                                             case 'trailer':
                                                 return (
                                                     <div key={index} className={styles.videoWrapper}>
@@ -141,6 +130,8 @@ const FilmInfo = () => {
                                                         ></iframe>
                                                     </div>
                                                 );
+                                           
+                                                
                                             default:
                                                 return null;
                                         }
@@ -158,4 +149,4 @@ const FilmInfo = () => {
     );
 };
 
-export default FilmInfo;
+export default FilmTrejler;

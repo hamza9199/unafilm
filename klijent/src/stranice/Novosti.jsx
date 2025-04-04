@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './css/Novosti.module.css';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
@@ -62,58 +62,53 @@ const ArticleItem = ({ src, alt, link, title, author, date, categories, summary 
 };
 
 const Novosti = () => {
-    const articleData = {
+    const articles = Array.from({ length: 30 }, (_, index) => ({
         src: "https://unafilm.ba/wp-content/uploads/2025/03/Cover-Te-sitnice-u-kinima-1500x667-1-1024x455-1-300x133.jpg",
         alt: "Te sitnice",
-        link: "https://unafilm.ba/2025/03/24/te-sitnice-povijesna-drama-o-tihim-herojima/",
-        title: "‘Te sitnice’: Povijesna drama o tihim herojima",
-        author: { name: "unafilm", link: "https://unafilm.ba/author/unafilm/" },
-        date: "March 24, 2025",
-        categories: [
-            { name: "Iz svijeta filma", link: "https://unafilm.ba/category/novosti/iz-svijeta-filma/" },
-            { name: "Novosti", link: "https://unafilm.ba/category/novosti/" }
-        ],
-        summary: "Preuzeto sa: www.kinofilm.hr Oskarovac Cillian Murphy glumi u filmu zasnovanom na istinitim događanjima..."
+        link: "/novosti/film/:id",
+        title: `Te sitnice – Povijesna drama ${index + 1}`,
+        author: { name: "unafilm", link: "/novosti/film/:id" },
+        categories: [{ name: "Novosti", link: "/novosti/film/:id" }],
+        summary: "Opis filma....."
+    }));
+
+    const [currentPage, setCurrentPage] = useState(1);
+    const articlesPerPage = 15;
+    const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+    const handlePageChange = (page) => {
+        if (page > 0 && page <= totalPages) {
+            setCurrentPage(page);
+        }
     };
+
+    const currentArticles = articles.slice(
+        (currentPage - 1) * articlesPerPage,
+        currentPage * articlesPerPage
+    );
 
     return (
         <>
             <Header />
-            <Breadcrumb
-                items={[
-                    { name: 'Una Film Distribucija', link: '/' },
-                    { name: 'Iz svijeta filma', link: '/novosti/iz-svijeta-filma' },
-                ]}
-            />
+            <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: 'Novosti', link: '/novosti' }]} />
             <div className={styles.container}>
-                <LijeviBaner/>
-                <div>
-                     <ArticleItem
-                        src={articleData.src}
-                        alt={articleData.alt}
-                        link={articleData.link}
-                        title={articleData.title}
-                        author={articleData.author}
-                        date={articleData.date}
-                        categories={articleData.categories}
-                        summary={articleData.summary}
-                    />
-                    {/* Ponovite ArticleItem za sve članke */}
-                    {[...Array(10)].map((_, index) => (
-                        <ArticleItem
-                            key={index}
-                            src={articleData.src}
-                            alt={articleData.alt}
-                            link={articleData.link}
-                            title={articleData.title}
-                            author={articleData.author}
-                            date={articleData.date}
-                            categories={articleData.categories}
-                            summary={articleData.summary}
-                        />
+                <LijeviBaner />
+                <div className={styles.articleItemsWrapper}>
+                    {currentArticles.map((article, index) => (
+                        <ArticleItem key={index} {...article} />
                     ))}
                 </div>
             </div>
+            <nav className={styles.pagination}>
+                {Array.from({ length: totalPages }, (_, i) => (
+                    <span key={i} className={currentPage === i + 1 ? styles.currentPage : styles.pageNumbers} onClick={() => handlePageChange(i + 1)}>
+                        {i + 1}
+                    </span>
+                ))}
+                {currentPage < totalPages && (
+                    <span className={styles.nextPage} onClick={() => handlePageChange(currentPage + 1)}>Next »</span>
+                )}
+            </nav>
             <Footer />
         </>
     );

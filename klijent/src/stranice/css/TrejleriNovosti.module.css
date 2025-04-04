@@ -4,6 +4,7 @@
     justify-content: center;
     margin-top: 50px;
     margin-bottom: 50px;
+    margin-left: 230px;
 }
 
 .lijeviBaner {
@@ -12,9 +13,10 @@
 
 .articleItemsWrapper {
     flex: 4; /* Sekcija za članke zauzima veći prostor */
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Automatski popunjava raspoloživi prostor sa minimalnim širinama */
+    display: flex;
+    flex-direction: column; /* Svi članci u jednoj koloni */
     gap: 20px; /* Razmak između članaka */
+    justify-content: center;
 }
 
 .articleItem {
@@ -22,6 +24,7 @@
     flex-direction: row; /* Svaki članak se raspoređuje horizontalno */
     gap: 20px; /* Razmak između slike i sadržaja */
 }
+
 
 .entryThumb {
     flex: 1;
@@ -56,6 +59,7 @@
     text-decoration: underline;
 }
 
+
 .articleItem {
     margin-bottom: 20px;
 }
@@ -65,6 +69,7 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 1000px;
 }
 
 .row {
@@ -117,3 +122,58 @@
     font-size: 14px;
     color: #777;
 }
+
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    gap: 10px;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination .page-number {
+    background-color: #0e78e2;
+    color: #333;
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination .page-number:hover {
+    background-color: #0b7def;
+    cursor: pointer;
+
+}
+
+.pagination .page-number.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
