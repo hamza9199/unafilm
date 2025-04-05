@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';  
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
@@ -52,28 +52,42 @@ const ArticleItem = ({ link, title, author, date, categories, summary }) => {
 };
 
 const Search = () => {
-    const location = useLocation();  // Koristi useLocation za pristup trenutnom URL-u
-    const searchParams = new URLSearchParams(location.search);  // Dobij URL query parametre
-    const searchTerm = searchParams.get('query') || '';  // Dohvati searchTerm
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const searchTerm = searchParams.get('query') || '';
 
-    const articles = Array.from({ length: 30 }, (_, index) => ({
-        src: "https://unafilm.ba/wp-content/uploads/2025/03/Cover-Te-sitnice-u-kinima-1500x667-1-1024x455-1-300x133.jpg",
-        alt: "Te sitnice",
-        link: "/novosti/film/:id",
-        title: `Te sitnice - Povijesna drama ${index + 1}`,
-        author: { name: "unafilm", link: "/novosti/film/:id" },
-        categories: [{ name: "Novosti", link: "/novosti/film/:id" }],
-        summary: "Opis filma....."
-    }));
-
-    const filteredArticles = articles.filter(article =>
-        article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        article.summary.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
+    const [articles, setArticles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
     const articlesPerPage = 15;
-    const totalPages = Math.ceil(filteredArticles.length / articlesPerPage);
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
+            setLoading(true);
+            setError(null);
+            try {
+                const response = await fetch(`http://localhost:3000/server/filmovi/search/${searchTerm}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    setArticles(data);
+                } else {
+                    setError(data.message || 'No films found.');
+                }
+            } catch {
+                setError('Error fetching articles. Please try again later.');
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchArticles();
+    }, [searchTerm]);
+
+    const totalPages = Math.ceil(articles.length / articlesPerPage);
 
     const handlePageChange = (page) => {
         if (page > 0 && page <= totalPages) {
@@ -81,7 +95,7 @@ const Search = () => {
         }
     };
 
-    const currentArticles = filteredArticles.slice(
+    const currentArticles = articles.slice(
         (currentPage - 1) * articlesPerPage,
         currentPage * articlesPerPage
     );
@@ -89,20 +103,21 @@ const Search = () => {
     return (
         <>
             <Header />
-            <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: 'Search: ' + searchTerm , link: '/search' }]} />
+            <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: `Search: ${searchTerm}`, link: '/search' }]} />
             <div className={styles.container}>
                 <LijeviBaner />
                 <div className={styles.articleItemsWrapper}>
-                    {filteredArticles.length === 0 ? (
+                    {loading && <p>Loading...</p>}
+                    {error && <p className={styles.error}>{error}</p>}
+                    {articles.length === 0 && !loading && !error && (
                         <p className={styles.noResults}>Nema rezultata za vašu pretragu.</p>
-                    ) : (
-                        currentArticles.map((article, index) => (
-                            <ArticleItem key={index} {...article} />
-                        ))
                     )}
+                    {currentArticles.map((article, index) => (
+                        <ArticleItem key={index} {...article} />
+                    ))}
                 </div>
             </div>
-            {filteredArticles.length > 0 && (
+            {articles.length > 0 && !loading && !error && (
                 <nav className={styles.pagination}>
                     {Array.from({ length: totalPages }, (_, i) => (
                         <span key={i} className={currentPage === i + 1 ? styles.currentPage : styles.pageNumbers} onClick={() => handlePageChange(i + 1)}>

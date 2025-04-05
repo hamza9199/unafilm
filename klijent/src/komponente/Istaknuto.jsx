@@ -1,34 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './css/Istaknuto.module.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';  // Ensure slick carousel styles are loaded
 import 'slick-carousel/slick/slick-theme.css'; // Ensure theme styles are loaded
 
-const filmovi = [
-  {
-    title: 'IGRA STRAHA',
-    description: 'Prvi sastanci sami po sebi izazivaju nervozu...',
-    trailerUrl: 'https://www.youtube.com/embed/lqzGlT8DsDg',
-    detailsUrl: 'https://unafilm.ba/movie/igra-straha/',
-    imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/Drop-FB-cover-BiH.jpg',
-  },
-  {
-    title: 'MOČVARA',
-    description: 'Za diplomiranu studentkinju sa Hjustona...',
-    trailerUrl: 'https://www.youtube.com/embed/D9wXGwOzuEA',
-    detailsUrl: 'https://unafilm.ba/movie/mocvara/',
-    imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/BAYOU-THE-FB-Cover-851x315px.jpg',
-  },
-  {
-    title: 'PINGVINOVE LEKCIJE',
-    description: 'Ova potresna drama reditelja Petera Cattanea...',
-    trailerUrl: 'https://www.youtube.com/embed/WWSnYxBBT70',
-    detailsUrl: 'https://unafilm.ba/movie/pingvinove-lekcije/',
-    imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/PENGUIN-LESSONS-THE-FB-Cover-851x315px.jpg',
-  },
-];
-
 const Istaknuto = () => {
+  const [filmovi, setFilmovi] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch movies from API
+  useEffect(() => {
+    const fetchFilmovi = async () => {
+      try {
+        const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for films
+        setFilmovi(response.data.slice(0, 2)); // Limiting to 2 films
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+
+    fetchFilmovi();
+  }, []);
+
   const settings = {
     slidesToShow: 1,
     arrows: false,
@@ -57,8 +54,15 @@ const Istaknuto = () => {
         },
       },
     ],
-    
   };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>;
+  }
 
   return (
     <section className={styles.istaknutoSection}>

@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './css/Novosti.module.css';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 
-const ArticleItem = ({ src, alt, link, title, author, date, categories, summary }) => {
+const ArticleItem = ({ imageUrl, alt, title, author, date, categories, summary, id }) => {
     return (
         <div className={styles.articleItem}>
             <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
@@ -14,7 +15,7 @@ const ArticleItem = ({ src, alt, link, title, author, date, categories, summary 
                         <img
                             width="300"
                             height="133"
-                            src={src}
+                            src={imageUrl}
                             className="attachment-medium size-medium wp-post-image"
                             alt={alt}
                             decoding="async"
@@ -22,19 +23,18 @@ const ArticleItem = ({ src, alt, link, title, author, date, categories, summary 
                     </div>
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
                         <h1 className={`${styles.entryTitle} entry-title p-name`} itemprop="name headline">
-                            <a href={link} rel="bookmark" className="u-url url" itemprop="url">
+                            <a href={`/novosti/film/${id}`} rel="bookmark" className="u-url url" itemprop="url">
                                 {title}
                             </a>
                         </h1>
                         <div className={styles.entryInfo}>
                             <span className={`${styles.entryAuthor} entry-author p-author vcard hcard h-card`} itemtype="http://schema.org/Person" itemprop="author editor publisher">
-                                
                                 <a className="url uid u-url u-uid fn p-name" rel="author" itemprop="url" href={author.link}>
                                     By {author.name}
                                 </a>
                             </span>
                             <span>/</span>
-                            <a className="url u-url" href={link}>
+                            <a className="url u-url" href={`/novosti/film/${id}`}>
                                 <span className={styles.entryDate}>{date}</span>
                             </a>
                             <span>/</span>
@@ -62,19 +62,29 @@ const ArticleItem = ({ src, alt, link, title, author, date, categories, summary 
 };
 
 const Novosti = () => {
-    const articles = Array.from({ length: 30 }, (_, index) => ({
-        src: "https://unafilm.ba/wp-content/uploads/2025/03/Cover-Te-sitnice-u-kinima-1500x667-1-1024x455-1-300x133.jpg",
-        alt: "Te sitnice",
-        link: "/novosti/film/:id",
-        title: `Te sitnice – Povijesna drama ${index + 1}`,
-        author: "unafilm",
-        categories: [{ name: "Novosti", link: "/novosti/film/:id" }],
-        summary: "Opis filma....."
-    }));
+    const [articles, setArticles] = useState([]); // State to store articles
+    const [currentPage, setCurrentPage] = useState(1); // Current page for pagination
+    const [loading, setLoading] = useState(true); // Loading state
+    const [error, setError] = useState(null); // Error state
 
-    const [currentPage, setCurrentPage] = useState(1);
     const articlesPerPage = 15;
-    const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+    useEffect(() => {
+        const fetchArticles = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/server/filmovi/'); // Replace with your API endpoint
+                setArticles(response.data); // Set articles from API
+                setLoading(false);
+            } catch  {
+                setError('Failed to fetch articles'); // Handle API error
+                setLoading(false);
+            }
+        };
+
+        fetchArticles(); // Fetch articles when the component mounts
+    }, []);
+
+    const totalPages = Math.ceil(articles.length / articlesPerPage); // Calculate total pages
 
     const handlePageChange = (page) => {
         if (page > 0 && page <= totalPages) {
@@ -86,6 +96,14 @@ const Novosti = () => {
         (currentPage - 1) * articlesPerPage,
         currentPage * articlesPerPage
     );
+
+    if (loading) {
+        return <p>Loading...</p>; // Show loading text if articles are being fetched
+    }
+
+    if (error) {
+        return <p>{error}</p>; // Show error if there was an issue fetching data
+    }
 
     return (
         <>

@@ -86,6 +86,11 @@ const Film = sequelize.define('Film', {
         type:DataTypes.STRING,
         allowNull:true,
     },
+    tipMjesta: {
+        type: DataTypes.ENUM('uskoro', 'trenutno', 'arhiva'),
+        allowNull: false,  
+    },
+    
     createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,

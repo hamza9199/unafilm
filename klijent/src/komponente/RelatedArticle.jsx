@@ -1,7 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './css/RelatedArticle.module.css';
 
-const RelatedArticle = ({ articles }) => {
+const RelatedArticle = () => {
+    const [articles, setArticles] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Fetch related articles from API
+        const fetchArticles = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for related articles
+                setArticles(response.data.slice(0, 3)); // Limiting to 3 articles
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchArticles();
+    }, []);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
+
     return (
         <div className={styles.entryRelated}>
             <h3 className={styles.relatedTitle}>Related Article</h3>
@@ -13,7 +42,7 @@ const RelatedArticle = ({ articles }) => {
                                 <img
                                     width="360"
                                     height="203"
-                                    src={article.imageSrc}
+                                    src={article.imageUrl}
                                     alt={article.imageAlt}
                                     className={styles.articleImage}
                                 />

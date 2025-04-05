@@ -16,6 +16,9 @@ import Novosti from './stranice/Novosti';
 import FilmTrejler from './stranice/FilmTrejler';
 import FilmOpis from './stranice/FilmOpis';
 import Search from './stranice/Search';
+import AdminDashboard from './stranice/Admin';
+import AdminLogin from './stranice/AdminLogin';
+
 
 
 
@@ -40,6 +43,10 @@ function App() {
         <Route path="/novosti/iz-svijeta-filma" element={<IzSvijetaFilma />} />
         <Route path="/novosti/traileri" element={<TrejleriNovosti />} />
         <Route path="/search" element={<Search />} />
+        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin-login" element={<AdminLogin />} />
+
+
         <Route path="*" element={<Home />} />
         
       </Routes>

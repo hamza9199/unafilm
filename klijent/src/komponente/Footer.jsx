@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import styles from './css/Footer.module.css';
 
-// Define the array of movies
-const movies = [
-    {
-        title: "'Te sitnice': Povijesna drama o tihim herojima",
-        imageUrl: "https://unafilm.ba/wp-content/uploads/2025/03/Cover-Te-sitnice-u-kinima-1500x667-1-1024x455-1-115x85_c.jpg",
-        link: "https://unafilm.ba/2025/03/24/te-sitnice-povijesna-drama-o-tihim-herojima/",
-        releaseDate: "March 24, 2025",
-        comments: "0 Comments"
-    },
-    {
-        title: "Michael Fassbender: Od konobara do holivudske zvijezde",
-        imageUrl: "https://unafilm.ba/wp-content/uploads/2025/03/Michael-Fassbender_BlackBag__Universal-Pictures-115x85_c.jpg",
-        link: "https://unafilm.ba/2025/03/24/michael-fassbender-od-konobara-do-holivudske-zvijezde/",
-        releaseDate: "March 24, 2025",
-        comments: "0 Comments"
-    }
-];
-
 const Footer = () => {
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Fetch movies from API
+        const fetchMovies = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for movies
+                setMovies(response.data.slice(0, 2)); // Limiting to 2 movies
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchMovies();
+    }, []);
+
+    if (loading) {
+        return <p>Loading...</p>;
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>;
+    }
+
     return (
         <footer id="amy-colophon" className={styles.amySiteFooter}>
             <div className={styles.container}>

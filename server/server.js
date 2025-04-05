@@ -3,7 +3,13 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const sequelize = require('./sequelizeInstance')
 const Film = require('./modeli/Film')
+const Novost = require('./modeli/Novost')
+const Admin = require('./modeli/Admin')
+const AdminRouter = require('./kontroleri/AdminRouter')
 const FilmRouter = require('./kontroleri/FilmRouter');
+const NovostRouter = require('./kontroleri/NovostRouter');
+
+
 
 
 
@@ -35,13 +41,15 @@ const corsOptions = {
     optionsSuccessStatus: 204,
 };
 
-app.use(cors());
 app.use(cors(corsOptions));
 app.use(express.json());
 
 
 //Rute
-app.use('/filmovi', FilmRouter);
+app.use('/server/filmovi', FilmRouter);
+app.use('/server/novosti', NovostRouter);
+app.use('/server/admin', AdminRouter)
+
 
 
 // Pokretanje servera

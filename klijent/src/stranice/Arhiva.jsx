@@ -1,47 +1,39 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import styles from './css/Arhiva.module.css'; 
 
 const Arhiva = () => {
-    const movies = [
-        {
-          title: 'IGRA STRAHA',
-          description: 'Prvi sastanci sami po sebi izazivaju nervozu...',
-          trailerUrl: 'https://www.youtube.com/embed/lqzGlT8DsDg',
-          detailsUrl: 'https://unafilm.ba/movie/igra-straha/',
-          imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/September-5-1080x1920-IG-Story-196x336_c.jpg',
-        },
-        {
-          title: 'MOČVARA',
-          description: 'Za diplomiranu studentkinju sa Hjustona...',
-          trailerUrl: 'https://www.youtube.com/embed/D9wXGwOzuEA',
-          detailsUrl: 'https://unafilm.ba/movie/mocvara/',
-          imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/September-5-1080x1920-IG-Story-196x336_c.jpg',
-        },
-        {
-          title: 'PINGVINOVE LEKCIJE',
-          description: 'Ova potresna drama reditelja Petera Cattanea...',
-          trailerUrl: 'https://www.youtube.com/embed/WWSnYxBBT70',
-          detailsUrl: 'https://unafilm.ba/movie/pingvinove-lekcije/',
-          imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/September-5-1080x1920-IG-Story-196x336_c.jpg',
-        },
-        {
-            title: 'MOČVARA',
-            description: 'Za diplomiranu studentkinju sa Hjustona...',
-            trailerUrl: 'https://www.youtube.com/embed/D9wXGwOzuEA',
-            detailsUrl: 'https://unafilm.ba/movie/mocvara/',
-            imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/September-5-1080x1920-IG-Story-196x336_c.jpg',
-          },
-          {
-            title: 'PINGVINOVE LEKCIJE',
-            description: 'Ova potresna drama reditelja Petera Cattanea...',
-            trailerUrl: 'https://www.youtube.com/embed/WWSnYxBBT70',
-            detailsUrl: 'https://unafilm.ba/movie/pingvinove-lekcije/',
-            imageUrl: 'https://unafilm.ba/wp-content/uploads/2025/03/September-5-1080x1920-IG-Story-196x336_c.jpg',
-          },
-      ];
+    const [movies, setMovies] = useState([]);
+    const [loading, setLoading] = useState(true); // Indikator učitavanja
+    const [error, setError] = useState(null); // Za prikazivanje greške ako nešto pođe po zlu
+
+    useEffect(() => {
+        // Funkcija za dobijanje filmova sa API-ja
+        const fetchMovies = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/server/filmovi/arhiva');
+                setMovies(response.data); // Postavljanje dobijenih filmova u stanje
+                setLoading(false); // Završeno učitavanje
+                console.log(response.data)
+            } catch (err) {
+                setError(err.message); // Postavljanje greške ako dođe do problema
+                setLoading(false);
+            }
+        };
+
+        fetchMovies(); // Pozivanje funkcije za učitavanje filmova
+    }, []); // Prazan niz znači da se ovo poziva samo jednom, kada se komponenta učita
+
+    if (loading) {
+        return <p>Loading movies...</p>; // Prikazivanje poruke dok se filmovi učitavaju
+    }
+
+    if (error) {
+        return <p>Error: {error}</p>; // Prikazivanje greške ako je nešto pošlo po zlu
+    }
 
     return (
         <>
@@ -61,17 +53,17 @@ const Arhiva = () => {
                                     <img src={movie.imageUrl} alt={movie.title} className={styles.movieImage}/>
                                 </div>
                                 <div className={styles.movieText}>
-                                    <a href='/arhiva/film/:id' className={styles.movieTitle}>{movie.title}</a>
+                                    <a href={`/arhiva/film/${movie.id}`} className={styles.movieTitle}>{movie.title}</a>
                                     <p className={styles.movieDescription}>{movie.description}</p>
                                     <div className={styles.buttonContainer}>
-                                        <a href="/arhiva/film/:id" className={styles.infoButton} target="_blank" rel="noopener noreferrer">Info</a>
+                                        <a href={`/arhiva/film/${movie.id}`} className={styles.infoButton} target="_blank" rel="noopener noreferrer">Info</a>
                                         <a href={movie.trailerUrl} className={styles.trailerButton} target="_blank" rel="noopener noreferrer">Trailer</a>
                                     </div>
                                 </div>
                             </div>
                         ))
                     ) : (
-                        <p>Loading movies...</p>
+                        <p>No movies found.</p>
                     )}
                 </div>
             </div>

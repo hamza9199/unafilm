@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';  
+import { useParams } from 'react-router-dom'; // Uvozimo useParams za dobijanje id-a iz URL-a
 import styles from './css/FilmInfo.module.css';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
@@ -7,64 +8,30 @@ import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 
 const FilmInfo = () => {
+    const { id } = useParams(); // Preuzimanje id-a iz URL-a
     const [movie, setMovie] = useState(null);
 
-    const articles = [
-        {
-            title: "Five Nights at Freddy’s 2 (teaser trailer)",
-            link: "https://unafilm.ba/2025/04/04/five-nights-at-freddys-2-teaser-trailer/",
-            imageSrc: "https://unafilm.ba/wp-content/uploads/2025/04/Untitled-1.png",
-            imageAlt: "Five Nights at Freddy's 2 teaser trailer",
-            date: "April 4, 2025",
-            comment: "0 Comment"
-        },
-        {
-            title: "PREDSTAVLJAMO TRAILER: GOLI PIŠTOLJ",
-            link: "https://unafilm.ba/2025/04/04/predstavljamo-trailer-goli-pistolj/",
-            imageSrc: "https://unafilm.ba/wp-content/uploads/2025/04/hq720.jpg",
-            imageAlt: "Goli Pistolj trailer",
-            date: "April 4, 2025",
-            comment: "0 Comment"
-        },
-        {
-            title: "TRAILER: M3GUN 2.0",
-            link: "https://unafilm.ba/2025/04/03/trailer-m3gun-2-0/",
-            imageSrc: "https://unafilm.ba/wp-content/uploads/2025/04/maxresdefault.jpg",
-            imageAlt: "M3Gun 2.0 trailer",
-            date: "April 3, 2025",
-            comment: "0 Comment"
-        }
-    ];
-
     useEffect(() => {
-        // Simulating an API call to get movie data
-        const fetchMovieData = () => {
-            // Simulating database structure with structured data (instead of HTML content)
-            setMovie({
-                title: "Christopher Landon: “Horor i komedija imaju dosta toga sličnog”",
-                link: "https://unafilm.ba/2025/04/04/christopher-landon-horor-i-komedija-imaju-dosta-toga-slicnog/",
-                imageSrc: "https://unafilm.ba/wp-content/uploads/2025/04/Christopher-Landon-_article.jpg",
-                imageAlt: "Christopher Landon Article Image",
-                date: "April 4, 2025",
-                comment: "0 Comment",
-                content: [
-                    { type: "text", text: "Blumhouse voli riskirati i podržava projekte koje bi mnogi odbili..." },
-                    { type: "image", src: "https://kinofilm.hr/wp-content/uploads/2025/03/Cover-Igra-straha-u-kinima-1500x667-2-1024x455.jpg", alt: "Igra straha - u kinima", caption: "Scena iz filma “Igra straha” (Foto: Universal Pictures)" },
-                    { type: "text", text: "U Igri straha udovica..." },
-                    { type: "image", src: "https://kinofilm.hr/wp-content/uploads/2025/03/Cover-Igra-straha-u-kinima-1500x667-2-1024x455.jpg", alt: "Igra straha - u kinima", caption: "Scena iz filma “Igra straha” (Foto: Universal Pictures)" },
-                    { type: "text", text: "U Igri straha udovica..." },
-                    { type: "trailer", src: "https://www.youtube.com/embed/xyz123", title: "Igra straha Trailer" },
-                    { type: "text", text: "Film je snimljen prema scenariju..." }
-                ],
-                preuzeto: "www.kinofilm.hr",
-            });
+        // API poziv za pretragu filma prema id-u   
+        const fetchMovieData = async () => {
+            try {
+                const response = await fetch(`http://localhost:3000/server/filmovi/${id}`); // Endpoint za pretragu po id
+                if (!response.ok) {
+                    throw new Error('Film not found');
+                }
+                const data = await response.json();
+                setMovie(data); // Postavljanje filma u stanje
+            } catch (error) {
+                console.error(error);
+                setMovie(null); // Ako dođe do greške, postavljamo movie na null
+            }
         };
 
-        fetchMovieData(); 
-    }, []);
+        fetchMovieData(); // Pozivanje funkcije za pretragu filma
+    }, [id]); // Poziva se svaki put kada se id promeni
 
     if (!movie) {
-        return <div>Loading...</div>; 
+        return <div>Loading...</div>; // Prikazujemo loading dok ne učitamo podatke
     }
 
     return (
@@ -73,7 +40,7 @@ const FilmInfo = () => {
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name:  movie.title, link: 'novosti/iz-svijeta-filma/film/:id' },
+                    { name: movie.title, link: `novosti/iz-svijeta-filma/film/${id}` }, // Dinamički link sa id
                 ]}
             />
 
@@ -86,7 +53,7 @@ const FilmInfo = () => {
                                 <img 
                                     width="990" 
                                     height="440" 
-                                    src={movie.imageSrc} 
+                                    src={movie.imageUrl} 
                                     className={styles.img}
                                     alt={movie.imageAlt}
                                     decoding="async" 
@@ -115,40 +82,44 @@ const FilmInfo = () => {
                                     <p><em>Preuzeto sa: {movie.preuzeto}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                    {movie.content.map((item, index) => {
-                                        switch (item.type) {
-                                            case 'text':
-                                                return <p key={index}>{item.text}</p>;
-                                            case 'image':
-                                                return (
-                                                    <figure key={index} className={styles.figure}>
-                                                        <img src={item.src} alt={item.alt} className={styles.smallImg} />
-                                                        <figcaption className={styles.figcaption}>
-                                                            <em>{item.caption}</em>
-                                                        </figcaption>
-                                                    </figure>
-                                                );
-                                            case 'trailer':
-                                                return (
-                                                    <div key={index} className={styles.videoWrapper}>
-                                                        <iframe 
-                                                            width="560" 
-                                                            height="315" 
-                                                            src={item.src} 
-                                                            title={item.title} 
-                                                            frameBorder="0" 
-                                                            allowFullScreen
-                                                        ></iframe>
-                                                    </div>
-                                                );
-                                            default:
-                                                return null;
-                                        }
-                                    })}
+                                    {Array.isArray(movie.content) ? (
+                                        movie.content.map((item, index) => {
+                                            switch (item.type) {
+                                                case 'text':
+                                                    return <p key={index}>{item.text}</p>;
+                                                case 'image':
+                                                    return (
+                                                        <figure key={index} className={styles.figure}>
+                                                            <img src={item.src} alt={item.alt} className={styles.smallImg} />
+                                                            <figcaption className={styles.figcaption}>
+                                                                <em>{item.caption}</em>
+                                                            </figcaption>
+                                                        </figure>
+                                                    );
+                                                case 'trailer':
+                                                    return (
+                                                        <div key={index} className={styles.videoWrapper}>
+                                                            <iframe 
+                                                                width="560" 
+                                                                height="315" 
+                                                                src={item.src} 
+                                                                title={item.title} 
+                                                                frameBorder="0" 
+                                                                allowFullScreen
+                                                            ></iframe>
+                                                        </div>
+                                                    );
+                                                default:
+                                                    return null;
+                                            }
+                                        })
+                                    ) : (
+                                        <p>No content available.</p>
+                                    )}
                                 </div>
                             </div>
                         </div>
-                        <RelatedArticle articles={articles} />
+                        <RelatedArticle />
                     </article>
                 </div>
             </div>
