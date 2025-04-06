@@ -101,4 +101,5 @@ const Film = sequelize.define('Film', {
     timestamps: false,
 });
 
+
 module.exports = Film;

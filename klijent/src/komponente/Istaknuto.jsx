@@ -71,13 +71,13 @@ const Istaknuto = () => {
           {filmovi.map((film, index) => (
             <div key={index} className={styles.slideItem}>
               <div className={styles.slideThumb}>
-                <a href={film.detailsUrl} target="_blank" rel="noopener noreferrer">
+                <a href={`/arhiva/film/${film.id}`}  rel="noopener noreferrer">
                   <img src={film.imageUrl} alt={film.title} className={styles.slideImage} />
                 </a>
               </div>
               <div className={styles.slideContent}>
                 <h2 className={styles.slideTitle}>
-                  <a href={film.detailsUrl} target="_blank" rel="noopener noreferrer">
+                  <a href={`/arhiva/film/${film.id}`} rel="noopener noreferrer">
                     {film.title}
                   </a>
                 </h2>
@@ -88,7 +88,7 @@ const Istaknuto = () => {
                   <a href={film.trailerUrl} className={styles.trailerLink} target="_blank" rel="noopener noreferrer">
                     <i className="fa fa-play"></i> Trailer
                   </a>
-                  <a href={film.detailsUrl} className={styles.detailsLink} target="_blank" rel="noopener noreferrer">
+                  <a href={`/arhiva/film/${film.id}`} className={styles.detailsLink}  rel="noopener noreferrer">
                     <i className="fa fa-exclamation"></i> Detalji
                   </a>
                 </div>

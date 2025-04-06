@@ -51,7 +51,7 @@ const Trenutno = () => {
             <div className={styles.movieItem} key={index}>
               <div className={styles.movieFront}></div>
               <div className={styles.movieFront}>
-                <a href={film.link} className={styles.moviePoster}>
+                <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.moviePoster}>
                   <img 
                     src={film.imageUrl}
                     alt={film.title}
@@ -60,20 +60,20 @@ const Trenutno = () => {
                 </a>
               </div>
               <div className={styles.dole}>
-                <a className={styles.title2} href={film.link}>{film.title}</a>
-                <p className={styles.releaseDate}>{film.releaseDate}</p>
+                <a className={styles.title2}href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
+                <p className={styles.releaseDate}>{new Date(film.releaseDate).toLocaleDateString()}</p>
               </div>
 
               <div className={styles.movieContent}>
                 <h3 className={styles.movieTitle}>
-                  <a href={film.link}>{film.title}</a>
+                  <a href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
                 </h3>
 
                 <p className={styles.duration}>{film.duration}</p>
                 <p className={styles.description}>{film.description}</p>
-                <p className={styles.releaseDate}>Datum izlaska: {film.releaseDate}</p>
-                <a href={film.link} className={styles.watchButton}>Gledaj</a>
-                <a href={film.link} className={styles.infoButton}>Info</a>
+                <p className={styles.releaseDate}>Datum izlaska: {new Date(film.releaseDate).toLocaleDateString()}</p>
+                <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.watchButton}>Gledaj</a>
+                <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.infoButton}>Info</a>
               </div>
             </div>
           ))}

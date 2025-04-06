@@ -6,40 +6,30 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import styles from './css/Search.module.css';
 
-const ArticleItem = ({ link, title, author, date, categories, summary }) => {
+const ArticleItem = ({ link, title, date, tipMjesta, summary, comment, id }) => {
     return (
         <div className={styles.articleItem}>
             <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
                 <div className={styles.row}>
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
                         <h1 className={styles.entryTitle} itemprop="name headline">
-                            <a href={link} rel="bookmark" className={styles.entryTitle} itemprop="url">
+                            <a href={`/arhiva/film/${id}`} rel="bookmark" className={styles.entryTitle} itemprop="url">
                                 {title}
                             </a>
                         </h1>
                         <div className={styles.entryInfo}>
-                            <span className={`${styles.entryAuthor} entry-author p-author vcard hcard h-card`} itemtype="http://schema.org/Person" itemprop="author editor publisher">
-                                <a className="url uid u-url u-uid fn p-name" rel="author" itemprop="url" href={author.link}>
-                                    By {author.name}
-                                </a>
-                            </span>
-                            <span>/</span>
+                            
                             <a className="url u-url" href={link}>
-                                <span className={styles.entryDate}>{date}</span>
+                                <span className={styles.entryDate}>{new Date(date).toLocaleDateString()}</span>
                             </a>
                             <span>/</span>
                             <span className={styles.entryCategory}>
-                                {categories.map((category, index) => (
-                                    <span key={index}>
-                                        <a href={category.link} rel="category tag">
-                                            {category.name}
-                                        </a>
-                                        {index < categories.length - 1 && ', '}
-                                    </span>
-                                ))}
+                                            {tipMjesta}
+                                    
+                            
                             </span>
                             <span>/</span>
-                            <span className={styles.entryComment}>0 Comment</span>
+                            <span className={styles.entryComment}>{comment} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                             <p>{summary}</p>

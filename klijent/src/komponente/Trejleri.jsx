@@ -38,7 +38,7 @@ const Trejleri = () => {
         <div className={styles.trailerGrid}>
           {trailers.map((trailer) => (
             <div key={trailer.id} className={styles.trailerItem}>
-              <a href={trailer.videoUrl} target="_blank" rel="noopener noreferrer">
+              <a href={trailer.trailerUrl} target="_blank" rel="noopener noreferrer">
                 <div className={styles.thumbnailContainer}>
                   <img
                     src={trailer.imageUrl}

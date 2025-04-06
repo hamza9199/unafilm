@@ -9,43 +9,45 @@ import RelatedArticle from '../komponente/RelatedArticle';
 
 const FilmInfo = () => {
     const { id } = useParams(); // Preuzimanje id-a iz URL-a
-    const [movie, setMovie] = useState(null);
+    const [novost, setNovost] = useState(null);
 
     useEffect(() => {
-        // API poziv za pretragu filma prema id-u   
-        const fetchMovieData = async () => {
+        // API poziv za pretragu novosti prema id-u   
+        const fetchNovostData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/server/filmovi/${id}`); // Endpoint za pretragu po id
+                const response = await fetch(`http://localhost:3000/server/novosti/${id}`); // Endpoint za pretragu po id
                 if (!response.ok) {
-                    throw new Error('Film not found');
+                    throw new Error('Novost not found');
                 }
                 const data = await response.json();
-                setMovie(data); // Postavljanje filma u stanje
+                setNovost(data); // Postavljanje novosti u stanje
             } catch (error) {
                 console.error(error);
-                setMovie(null); // Ako dođe do greške, postavljamo movie na null
+                setNovost(null); // Ako dođe do greške, postavljamo novost na null
             }
         };
 
-        fetchMovieData(); // Pozivanje funkcije za pretragu filma
+        fetchNovostData(); // Pozivanje funkcije za pretragu novosti
     }, [id]); // Poziva se svaki put kada se id promeni
 
-    if (!movie) {
+    if (!novost) {
         return <div>Loading...</div>; // Prikazujemo loading dok ne učitamo podatke
     }
 
+    const { film } = novost; // Preuzimanje filma iz odgovora
+
     return (
         <>
-            <Header/>
+            <Header />
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: movie.title, link: `novosti/iz-svijeta-filma/film/${id}` }, // Dinamički link sa id
+                    { name: film.title, link: `novosti/iz-svijeta-filma/film/${id}` }, // Dinamički link sa id
                 ]}
             />
 
             <div className={styles.container}>
-                <LijeviBaner/>
+                <LijeviBaner />
                 <div className={styles.pageContent}>
                     <article id="post-1045" className={styles.article}>
                         <div className={styles.entryTop}>
@@ -53,9 +55,9 @@ const FilmInfo = () => {
                                 <img 
                                     width="990" 
                                     height="440" 
-                                    src={movie.imageUrl} 
+                                    src={film.imageUrl} 
                                     className={styles.img}
-                                    alt={movie.imageAlt}
+                                    alt={film.imageAlt}
                                     decoding="async" 
                                 />
                             </div>
@@ -63,59 +65,49 @@ const FilmInfo = () => {
                         <div className={styles.entryBottom}>
                             <div className={styles.entryMeta}>
                                 <div className={styles.entryDate}>
-                                    <span className={styles.day}>{movie.date.split(' ')[0]}</span>
-                                    <span className={styles.month}>{movie.date.split(' ')[1]}</span>
+                                <span className={styles.day}>{new Date(novost.datumKreiranja).toLocaleDateString()}</span>
+
                                 </div>
                                 <div className={styles.entryComment}>
-                                    <i className="fa fa-comments" aria-hidden="true"></i> {movie.comment}
+                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film.comment} komentara
                                 </div>
                             </div>
                             <div className={styles.entryLeft}>
                                 <h1 className={styles.entryTitle}>
                                     <a 
-                                        href={movie.link} 
+                                        href={`/arhiva/film/${novost.film.id}`}
                                         className={styles.entryLink}
                                         itemProp="url"
                                     >
-                                        {movie.title}
+                                        {novost.title}
                                     </a>
-                                    <p><em>Preuzeto sa: {movie.preuzeto}</em></p>
+                                    <p><em>Preuzeto sa: {novost.kreator}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                    {Array.isArray(movie.content) ? (
-                                        movie.content.map((item, index) => {
-                                            switch (item.type) {
-                                                case 'text':
-                                                    return <p key={index}>{item.text}</p>;
-                                                case 'image':
-                                                    return (
-                                                        <figure key={index} className={styles.figure}>
-                                                            <img src={item.src} alt={item.alt} className={styles.smallImg} />
-                                                            <figcaption className={styles.figcaption}>
-                                                                <em>{item.caption}</em>
-                                                            </figcaption>
-                                                        </figure>
-                                                    );
-                                                case 'trailer':
-                                                    return (
-                                                        <div key={index} className={styles.videoWrapper}>
-                                                            <iframe 
-                                                                width="560" 
-                                                                height="315" 
-                                                                src={item.src} 
-                                                                title={item.title} 
-                                                                frameBorder="0" 
-                                                                allowFullScreen
-                                                            ></iframe>
-                                                        </div>
-                                                    );
-                                                default:
-                                                    return null;
-                                            }
-                                        })
-                                    ) : (
-                                        <p>No content available.</p>
+                                    {novost.film.imageUrl && <img className={styles.smallImg} src={novost.film.imageUrl} alt="Slika 1" />}
+                                    {novost.tekst && <p>{novost.tekst}</p>}
+
+                                    {novost.film.imageUrl && <img className={styles.smallImg}  src={novost.film.imageUrl} alt="Slika 2" />}
+                                    {novost.tekst2 && <p>{novost.tekst2}</p>}
+
+                                    {novost.film.imageUrl && <img className={styles.smallImg}  src={novost.film.imageUrl} alt="Slika 3" />}
+                                    {novost.tekst3 && <p>{novost.tekst3}</p>}
+
+
+                                    {novost.film.trailerUrl && (
+                                        <div className={styles.videoWrapper}>
+                                            <iframe 
+                                                width="560" 
+                                                height="315" 
+                                                src={novost.film.trailerUrl} 
+                                                title="Trailer"
+                                                frameBorder="0" 
+                                                allowFullScreen
+                                            ></iframe>
+                                        </div>
                                     )}
+                                    {novost.tekst4 && <p>{novost.tekst4}</p>}
+
                                 </div>
                             </div>
                         </div>
@@ -124,7 +116,7 @@ const FilmInfo = () => {
                 </div>
             </div>
 
-            <Footer/>
+            <Footer />
         </>
     );
 };

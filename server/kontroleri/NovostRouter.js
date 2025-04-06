@@ -1,12 +1,18 @@
 const express = require('express');
 const Novost = require('../modeli/Novost');
+const Film = require('../modeli/Film')
 
 const router = express.Router();
 
 // Get all novosti
 router.get('/', async (req, res) => {
     try {
-        const novosti = await Novost.findAll();
+        const novosti = await Novost.findAll({
+            include: [{
+                model: Film,
+                as: 'film'  // Use the correct alias here
+            }]
+        });
         res.status(200).json(novosti);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching novosti', error });
@@ -14,10 +20,18 @@ router.get('/', async (req, res) => {
 });
 
 
+
+
 // Get all novosti with tipNovosti "svijetfilma"
 router.get('/svijetfilma', async (req, res) => {
     try {
-        const novosti = await Novost.find({ tipNovosti: 'svijetfilma' });
+        const novosti = await Novost.findAll({
+            where: { tipNovosti: 'svijetfilma' },
+            include: [{
+                model: Film,
+                as: 'film'  // Povezivanje sa filmom
+            }]
+        });
         res.status(200).json(novosti);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching novosti', error });
@@ -27,7 +41,13 @@ router.get('/svijetfilma', async (req, res) => {
 // Get all novosti with tipNovosti "novost"
 router.get('/novost', async (req, res) => {
     try {
-        const novosti = await Novost.find({ tipNovosti: 'novost' });
+        const novosti = await Novost.findAll({
+            where: { tipNovosti: 'novost' },
+            include: [{
+                model: Film,
+                as: 'film'  // Povezivanje sa filmom
+            }]
+        });
         res.status(200).json(novosti);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching novosti', error });
@@ -37,17 +57,29 @@ router.get('/novost', async (req, res) => {
 // Get all novosti with tipNovosti "trailer"
 router.get('/trailer', async (req, res) => {
     try {
-        const novosti = await Novost.find({ tipNovosti: 'trailer' });
+        const novosti = await Novost.findAll({
+            where: { tipNovosti: 'trailer' },
+            include: [{
+                model: Film,
+                as: 'film'  // Povezivanje sa filmom
+            }]
+        });
         res.status(200).json(novosti);
     } catch (error) {
         res.status(500).json({ message: 'Error fetching novosti', error });
     }
 });
 
-// Get a single novost by ID
+// Get a single novost by ID with the associated film
 router.get('/:id', async (req, res) => {
     try {
-        const novost = await Novost.findById(req.params.id);
+        const novost = await Novost.findByPk(req.params.id, {
+            include: [{
+                model: Film,
+                as: 'film'  // Povezivanje sa filmom
+            }]
+        });
+
         if (!novost) {
             return res.status(404).json({ message: 'Novost not found' });
         }
@@ -56,6 +88,7 @@ router.get('/:id', async (req, res) => {
         res.status(500).json({ message: 'Error fetching novost', error });
     }
 });
+
 
 // Create a new novost
 router.post('/', async (req, res) => {

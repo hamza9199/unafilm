@@ -1,14 +1,18 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelizeInstance');
-const Film = require('./Film');  // Importovanje modela Film
+const Film = require('../modeli/Film');  
 
 const Novost = sequelize.define('Novost', {
-    film: {
-        type: DataTypes.INTEGER,  // ID filma kao poveznica
+    filmId: {
+        type: DataTypes.INTEGER,  
         references: {
-            model: Film,  // Veza sa Film modelom
+            model: Film,  
             key: 'id',
         },
+        allowNull: false,
+    },
+    title: {
+        type: DataTypes.STRING,
         allowNull: false,
     },
     kreator: {
@@ -43,10 +47,6 @@ const Novost = sequelize.define('Novost', {
         type: DataTypes.STRING,
         allowNull: true,
     },
-    trailer: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
     tipNovosti: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -63,7 +63,6 @@ const Novost = sequelize.define('Novost', {
     timestamps: false,
 });
 
-// Definisanje odnosa između Novost i Film modela
-Novost.belongsTo(Film, { foreignKey: 'film' });
+Novost.belongsTo(Film, { foreignKey: 'filmId', as: 'film' });
 
 module.exports = Novost;

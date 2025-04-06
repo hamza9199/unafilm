@@ -3,7 +3,7 @@ import axios from 'axios';
 import styles from './css/LijeviBaner.module.css';
 
 // Component for rendering each film item
-const FilmItem = ({ src, alt, title, duration, link }) => {
+const FilmItem = ({ src, alt, title, duration, id }) => {
     return (
         <div className={styles.entryItem}>
             <div className={styles.entryThumb}>
@@ -11,7 +11,7 @@ const FilmItem = ({ src, alt, title, duration, link }) => {
             </div>
             <div className={styles.entryContent}>
                 <h2 className={styles.entryTitle}>
-                    <a href={link}>{title}</a>
+                    <a href={`/arhiva/film/${id}`}>{title}</a>
                 </h2>
                 <div>
                     <span className={styles.duration}>
@@ -49,7 +49,7 @@ const LijeviBaner = () => {
         // Fetch news items from API
         const fetchNews = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for news
+                const response = await axios.get('http://localhost:3000/server/novosti'); // API endpoint for news
                 const randomNews = response.data.sort(() => Math.random() - 0.5).slice(0, 2); // Get 2 random news
                 setNewsItems(randomNews);
                 setLoadingNews(false);
@@ -95,7 +95,8 @@ const LijeviBaner = () => {
                         alt={film.title}
                         title={film.title}
                         duration={film.duration}
-                        link={film.link}
+                        id={film.id}
+
                     />
                 ))}
             </div>
@@ -105,17 +106,18 @@ const LijeviBaner = () => {
                     <div key={index} className={styles.entryItem}>
                         <div className={styles.entryThumb2}>
                             <img
-                                src={item.imageUrl}
-                                alt={item.title}
+                                src={item.film.imageUrl}
+                                alt={item.film.title}
                                 className={styles.image2}
                             />
                         </div>
-                        <div className={styles.entryContent}>
+                        <div className={styles.entryContent2}>
                             <h2 className={styles.entryTitle}>
-                                <a href={item.link}>{item.title}</a>
+                                <a href={`/novosti/film/${item.id}`}
+                                >{item.title}</a>
                             </h2>
                             <div className={styles.entryMeta}>
-                                <span className={styles.entryDate}>{item.date}</span>
+                                <span className={styles.entryDate}>{new Date(item.datumKreiranja).toLocaleDateString()}</span>
                                 <span> / </span>
                                 <span className={styles.entryComment}>0 Comments</span>
                             </div>

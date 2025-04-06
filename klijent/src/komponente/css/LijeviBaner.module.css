@@ -57,7 +57,10 @@
 
 
 .entryContent {
-    margin-left: 10px;
+    margin-left: 20px;
+}
+.entryContent2 {
+    margin-left: -130px;
 }
 
 .entryTitle {

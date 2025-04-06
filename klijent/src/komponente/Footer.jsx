@@ -11,7 +11,7 @@ const Footer = () => {
         // Fetch movies from API
         const fetchMovies = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for movies
+                const response = await axios.get('http://localhost:3000/server/novosti'); // API endpoint for movies
                 setMovies(response.data.slice(0, 2)); // Limiting to 2 movies
                 setLoading(false);
             } catch (err) {
@@ -93,8 +93,8 @@ const Footer = () => {
                                     <div key={index} className={styles.entryItem}>
                                         <div className={styles.entryThumb}>
                                             <img
-                                                src={movie.imageUrl}
-                                                alt={movie.title}
+                                                src={movie.film.imageUrl}
+                                                alt={movie.film.title}
                                             />
                                         </div>
                                         <div className={styles.entryContent}>
@@ -104,9 +104,9 @@ const Footer = () => {
                                                 </a>
                                             </h2>
                                             <div className={styles.entryMeta}>
-                                                <span className={styles.entryDate}>{movie.releaseDate}</span>
+                                                <span className={styles.entryDate}>{new Date(movie.datumKreiranja).toLocaleDateString()}</span>
                                                 <span> / </span>
-                                                <span className={styles.entryComment}>{movie.comments}</span>
+                                                <span className={styles.entryComment}>{movie.film.comment}</span>
                                             </div>
                                         </div>
                                         <div className={styles.clearfix}></div>

@@ -61,11 +61,6 @@
     color: #333;
 }
 
-.month {
-    font-size: 16px;
-    color: #777;
-}
-
 .entryComment {
     font-size: 18px;
     color: #777;
@@ -98,8 +93,7 @@
     color: #555;
     display: flex;
     flex-direction: column;
-    align-items: left;
-    justify-content: center;
+    align-items: flex-start; /* Align text to the left */
 }
 
 .heading {
@@ -110,7 +104,7 @@
 
 .figure {
     margin: 30px 0;
-    text-align: center;
+    text-align: center; /* Center images */
 }
 
 .figcaption {
@@ -118,20 +112,24 @@
     color: #888;
 }
 
-
 .smallImg {
     width: 65%; /* Adjust the width to make the images smaller */
     height: auto;
     border-radius: 8px;
+    display: block;
+    margin: 0 auto; /* Center images */
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .videoWrapper {
     border-radius: 20px;
     justify-content: center;
-    display: flex;
-    margin: 20px 0;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 30px;
+    margin-top: 30px;
 }
-
 
 @media (max-width: 768px) {
     .pageContent {

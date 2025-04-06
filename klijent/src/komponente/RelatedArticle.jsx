@@ -11,7 +11,7 @@ const RelatedArticle = () => {
         // Fetch related articles from API
         const fetchArticles = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for related articles
+                const response = await axios.get('http://localhost:3000/server/novosti'); // API endpoint for related articles
                 setArticles(response.data.slice(0, 3)); // Limiting to 3 articles
                 setLoading(false);
             } catch (err) {
@@ -42,8 +42,8 @@ const RelatedArticle = () => {
                                 <img
                                     width="360"
                                     height="203"
-                                    src={article.imageUrl}
-                                    alt={article.imageAlt}
+                                    src={article.film.imageUrl}
+                                    alt={article.film.imageAlt}
                                     className={styles.articleImage}
                                 />
                             </div>
@@ -53,9 +53,9 @@ const RelatedArticle = () => {
                                 </a>
                             </h3>
                             <div className={styles.entryInfo}>
-                                <span className={styles.entryDate}>{article.date}</span>
+                                <span className={styles.entryDate}>{new Date(article.datumKreiranja).toLocaleDateString()}</span>
                                 <span>/</span>
-                                <span className={styles.entryComment}>{article.comment}</span>
+                                <span className={styles.entryComment}>{article.film.comment}</span>
                             </div>
                         </article>
                     ))}

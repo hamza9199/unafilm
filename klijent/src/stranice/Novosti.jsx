@@ -6,53 +6,34 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 
-const ArticleItem = ({ imageUrl, alt, title, author, date, categories, summary, id }) => {
+const ArticleItem = ({ film, novost }) => {
     return (
         <div className={styles.articleItem}>
-            <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
+            <article className={styles.post}>
                 <div className={styles.row}>
                     <div className={`${styles.entryThumb} col-md-5 col-xs-5 has-thumb`}>
                         <img
                             width="300"
                             height="133"
-                            src={imageUrl}
+                            src={film.imageUrl}
                             className="attachment-medium size-medium wp-post-image"
-                            alt={alt}
+                            alt={film.imageAlt || 'Film image'}
                             decoding="async"
                         />
                     </div>
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
-                        <h1 className={`${styles.entryTitle} entry-title p-name`} itemprop="name headline">
-                            <a href={`/novosti/film/${id}`} rel="bookmark" className="u-url url" itemprop="url">
-                                {title}
+                        <h1 className={styles.entryTitle}>
+                            <a href={`/novosti/film/${novost.id}`} rel="bookmark">
+                                {novost.title}
                             </a>
                         </h1>
                         <div className={styles.entryInfo}>
-                            <span className={`${styles.entryAuthor} entry-author p-author vcard hcard h-card`} itemtype="http://schema.org/Person" itemprop="author editor publisher">
-                                <a className="url uid u-url u-uid fn p-name" rel="author" itemprop="url" href={author.link}>
-                                    By {author.name}
-                                </a>
-                            </span>
+                            <span className={styles.entryAuthor}>By {novost.kreator}</span>
                             <span>/</span>
-                            <a className="url u-url" href={`/novosti/film/${id}`}>
-                                <span className={styles.entryDate}>{date}</span>
-                            </a>
-                            <span>/</span>
-                            <span className={styles.entryCategory}>
-                                {categories.map((category, index) => (
-                                    <span key={index}>
-                                        <a href={category.link} rel="category tag">
-                                            {category.name}
-                                        </a>
-                                        {index < categories.length - 1 && ', '}
-                                    </span>
-                                ))}
-                            </span>
-                            <span>/</span>
-                            <span className={styles.entryComment}>0 Comment</span>
+                            <span className={styles.entryDate}>{new Date(novost.datumKreiranja).toLocaleDateString()}</span>
                         </div>
-                        <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                            <p>{summary}</p>
+                        <div className={styles.entrySummary}>
+                            <p>{novost.tekst}</p>
                         </div>
                     </div>
                 </div>
@@ -62,29 +43,28 @@ const ArticleItem = ({ imageUrl, alt, title, author, date, categories, summary, 
 };
 
 const Novosti = () => {
-    const [articles, setArticles] = useState([]); // State to store articles
-    const [currentPage, setCurrentPage] = useState(1); // Current page for pagination
-    const [loading, setLoading] = useState(true); // Loading state
-    const [error, setError] = useState(null); // Error state
-
-    const articlesPerPage = 15;
+    const [novosti, setNovosti] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [currentPage, setCurrentPage] = useState(1);
+    const novostiPerPage = 15;
 
     useEffect(() => {
-        const fetchArticles = async () => {
+        const fetchNovosti = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/server/filmovi/'); // Replace with your API endpoint
-                setArticles(response.data); // Set articles from API
+                const response = await axios.get('http://localhost:3000/server/novosti/');
+                setNovosti(response.data);
                 setLoading(false);
-            } catch  {
-                setError('Failed to fetch articles'); // Handle API error
+            } catch {
+                setError('Failed to fetch articles');
                 setLoading(false);
             }
         };
 
-        fetchArticles(); // Fetch articles when the component mounts
+        fetchNovosti();
     }, []);
 
-    const totalPages = Math.ceil(articles.length / articlesPerPage); // Calculate total pages
+    const totalPages = Math.ceil(novosti.length / novostiPerPage);
 
     const handlePageChange = (page) => {
         if (page > 0 && page <= totalPages) {
@@ -92,18 +72,13 @@ const Novosti = () => {
         }
     };
 
-    const currentArticles = articles.slice(
-        (currentPage - 1) * articlesPerPage,
-        currentPage * articlesPerPage
+    const currentNovosti = novosti.slice(
+        (currentPage - 1) * novostiPerPage,
+        currentPage * novostiPerPage
     );
 
-    if (loading) {
-        return <p>Loading...</p>; // Show loading text if articles are being fetched
-    }
-
-    if (error) {
-        return <p>{error}</p>; // Show error if there was an issue fetching data
-    }
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>{error}</p>;
 
     return (
         <>
@@ -112,21 +87,28 @@ const Novosti = () => {
             <div className={styles.container}>
                 <LijeviBaner />
                 <div className={styles.articleItemsWrapper}>
-                    {currentArticles.map((article, index) => (
-                        <ArticleItem key={index} {...article} />
+                    {currentNovosti.map((novost, index) => (
+                        novost.film && <ArticleItem key={index} film={novost.film} novost={novost} />
                     ))}
                 </div>
+              
             </div>
             <nav className={styles.pagination}>
-                {Array.from({ length: totalPages }, (_, i) => (
-                    <span key={i} className={currentPage === i + 1 ? styles.currentPage : styles.pageNumbers} onClick={() => handlePageChange(i + 1)}>
-                        {i + 1}
-                    </span>
-                ))}
-                {currentPage < totalPages && (
-                    <span className={styles.nextPage} onClick={() => handlePageChange(currentPage + 1)}>Next »</span>
-                )}
-            </nav>
+                    {Array.from({ length: totalPages }, (_, i) => (
+                        <span
+                            key={i}
+                            className={currentPage === i + 1 ? styles.currentPage : styles.pageNumbers}
+                            onClick={() => handlePageChange(i + 1)}
+                        >
+                            {i + 1}
+                        </span>
+                    ))}
+                    {currentPage < totalPages && (
+                        <span className={styles.nextPage} onClick={() => handlePageChange(currentPage + 1)}>
+                            Next »
+                        </span>
+                    )}
+                </nav>
             <Footer />
         </>
     );

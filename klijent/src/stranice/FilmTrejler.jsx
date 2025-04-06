@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';  
-import { useParams } from 'react-router-dom'; // Uvozimo useParams za dobijanje id-a iz URL-a
+import { useParams } from 'react-router-dom';
 import styles from './css/FilmTrejler.module.css';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
@@ -8,44 +8,42 @@ import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 
 const FilmTrejler = () => {
-    const { id } = useParams(); // Preuzimanje id-a iz URL-a
-    const [movie, setMovie] = useState(null);
+    const { id } = useParams(); 
+    const [novost, setNovost] = useState(null);
 
     useEffect(() => {
-        // API poziv za pretragu filma prema id-u   
-        const fetchMovieData = async () => {
+        const fetchNovostData = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/server/filmovi/${id}`); // Endpoint za pretragu po id
+                const response = await fetch(`http://localhost:3000/server/novosti/${id}`);
                 if (!response.ok) {
-                    throw new Error('Film not found');
+                    throw new Error('Novost not found');
                 }
                 const data = await response.json();
-                setMovie(data); // Postavljanje filma u stanje
+                setNovost(data);
             } catch (error) {
                 console.error(error);
-                setMovie(null); // Ako dođe do greške, postavljamo movie na null
+                setNovost(null);
             }
         };
 
-        fetchMovieData(); // Pozivanje funkcije za pretragu filma
-    }, [id]); // Poziva se svaki put kada se id promeni
+        fetchNovostData();
+    }, [id]);
 
-    if (!movie) {
-        return <div>Loading...</div>; // Prikazujemo loading dok ne učitamo podatke
+    if (!novost) {
+        return <div>Loading...</div>;
     }
 
     return (
         <>
-            <Header/>
+            <Header />
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: movie.title, link: `/novosti/traileri/film/${id}` }, // Dinamički link sa id
+                    { name: novost.film.title, link: `/novosti/traileri/film/${id}` },
                 ]}
             />
-
             <div className={styles.container}>
-                <LijeviBaner/>
+                <LijeviBaner />
                 <div className={styles.pageContent}>
                     <article id="post-1045" className={styles.article}>
                         <div className={styles.entryTop}>
@@ -53,67 +51,61 @@ const FilmTrejler = () => {
                                 <img 
                                     width="990" 
                                     height="440" 
-                                    src={movie.imageUrl}    
+                                    src={novost.film.imageUrl} 
                                     className={styles.img}
-                                    alt={movie.imageAlt}
-                                    decoding="async" 
+                                    alt={novost.film.title}
+                                    decoding="async"
                                 />
                             </div>
                         </div>
                         <div className={styles.entryBottom}>
                             <div className={styles.entryMeta}>
                                 <div className={styles.entryDate}>
-                                    <span className={styles.day}>{movie.date.split(' ')[0]}</span>
-                                    <span className={styles.month}>{movie.date.split(' ')[1]}</span>
+                                    <span className={styles.day}>{new Date(novost.datumKreiranja).toLocaleDateString()}</span>
                                 </div>
                                 <div className={styles.entryComment}>
-                                    <i className="fa fa-comments" aria-hidden="true"></i> {movie.comment}
+                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.comment}
                                 </div>
                             </div>
                             <div className={styles.entryLeft}>
                                 <h1 className={styles.entryTitle}>
                                     <a 
-                                        href={movie.link} 
+                                        href={`/arhiva/film/${novost.film.id}`}
                                         className={styles.entryLink}
                                         itemProp="url"
                                     >
-                                        {movie.title}
+                                        {novost.film.title}
                                     </a>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                    {Array.isArray(movie.content) ? (
-                                        movie.content.map((item, index) => {
-                                            switch (item.type) {
-                                                case 'trailerUrl':
-                                                    return (
-                                                        <div key={index} className={styles.videoWrapper}>
-                                                            <iframe 
-                                                                width="560" 
-                                                                height="315" 
-                                                                src={item.trailerUrl} 
-                                                                title={item.title} 
-                                                                frameBorder="0" 
-                                                                allowFullScreen
-                                                            ></iframe>
-                                                        </div>
-                                                    );
-                                                default:
-                                                    return null;
-                                            }
-                                        })
+                                    {novost.film.trailerUrl ? (
+                                        <div className={styles.videoWrapper}>
+                                            <iframe
+                                                width="560"
+                                                height="315"
+                                                src={novost.film.trailerUrl}
+                                                title={novost.film.title}
+                                                frameBorder="0"
+                                                allowFullScreen
+                                            ></iframe>
+                                        </div>
                                     ) : (
-                                        <p>No content available.</p> // Poruka ako `content` nije niz ili je prazan
+                                        <p>No trailer available.</p>
                                     )}
-                                </div>
 
+                                    {novost.tekst4 ? (
+                                            <p className={styles.pu}>
+                                                {novost.tekst4}
+                                            </p>
+                                    ) : null}
+                                </div>
                             </div>
                         </div>
                         <RelatedArticle />
                     </article>
                 </div>
             </div>
-
-            <Footer/>
+            <Footer />
         </>
     );
 };

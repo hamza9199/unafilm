@@ -11,7 +11,7 @@ const Novosti = () => {
   useEffect(() => {
     const fetchFilms = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/server/filmovi/'); // Replace with your API endpoint
+        const response = await axios.get('http://localhost:3000/server/novosti/'); // Replace with your API endpoint
         setFilms(response.data.slice(0, 3)); // Assuming the API returns an array of films, limit to 6
         setLoading(false); // Set loading to false after fetching data
       } catch {
@@ -49,19 +49,19 @@ const Novosti = () => {
                   <div className={styles.entryItem}>
                     <div className={styles.entryThumb}>
                       <img
-                        src={film.imageUrl}
-                        alt={film.imageAlt}
+                        src={film.film.imageUrl}
+                        alt={film.film.imageAlt}
                         className={styles.imga}
                       />
-                      <div className={styles.entryCat}>{film.type}</div>
+                      <div className={styles.entryCat}>{film.tipNovosti}</div>
                     </div>
                     <div className={styles.entryContent}>
                       <h2 className={styles.entryTitle}>
-                        <a href={film.detailsUrl}>
+                        <a href={`/novosti/film/${film.id}`}>
                           {film.title}
                         </a>
                       </h2>
-                      <a className={styles.entryBtn} href={film.detailsUrl}>
+                      <a className={styles.entryBtn} href={`/novosti/film/${film.id}`}>
                         Pročitaj više
                       </a>
                     </div>

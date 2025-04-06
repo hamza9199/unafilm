@@ -40,7 +40,7 @@ const Uskoro = () => {
           {films.slice(0, 7).map((film, index) => ( // Display only 7 films
             <li key={index}>
               <span className={styles.number}>{index + 1}</span>
-              <a href={film.link} className={styles.link}>{film.title}</a> {/* Assuming `film.link` is provided by the API */}
+              <a href={`/uskoro-u-kinima/film/${film.id}`} className={styles.link}>{film.title}</a> {/* Assuming `film.link` is provided by the API */}
             </li>
           ))}
         </ul>
