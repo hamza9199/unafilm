@@ -13,6 +13,18 @@ router.get('/', async (req, res) => {
   }
 });
 
+
+// Create a new film
+router.post('/', async (req, res) => {
+  try {
+    console.log("Received data:", req.body);  // Dodaj ovu liniju
+    const newFilm = await Film.create(req.body);
+    res.status(201).json(newFilm);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
+});
+
 // Get all films with tipMjesta "uskoro"
 router.get('/uskoro', async (req, res) => {
   try {
@@ -80,15 +92,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Create a new film
-router.post('/', async (req, res) => {
-  try {
-    const newFilm = await Film.create(req.body);
-    res.status(201).json(newFilm);
-  } catch (err) {
-    res.status(400).json({ error: err.message });
-  }
-});
+
 
 // Update an existing film by ID
 router.put('/:id', async (req, res) => {

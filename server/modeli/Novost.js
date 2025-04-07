@@ -9,30 +9,30 @@ const Novost = sequelize.define('Novost', {
             model: Film,  
             key: 'id',
         },
-        allowNull: false,
+        allowNull: true,
     },
     title: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     kreator: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     tekst: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     tekst2: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     tekst3: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     tekst4: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     slika1: {
@@ -49,7 +49,7 @@ const Novost = sequelize.define('Novost', {
     },
     tipNovosti: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
         validate: {
             isIn: [['novost', 'svijetfilma', 'trailer']],
         },

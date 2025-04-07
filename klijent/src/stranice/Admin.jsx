@@ -8,10 +8,10 @@ const AdminDashboard = () => {
     const [films, setFilms] = useState([]);
     const [novosti, setNovosti] = useState([]);
     const [newFilm, setNewFilm] = useState({
-        title: '', description: '', trailerUrl: '', detailsUrl: '', imageUrl: '',
-        imageSrc: '', imageAlt: '', videoSrc: '', thumbnail: '', releaseDate: '',
-        duration: '', categories: '', author: '', comment: '', content: '',
-        preuzeto: '', summary: '', date: '', link: '', alt: '', type: '', tipMjesta: 'uskoro'
+        title: '', description: '', trailerUrl: '', detailsUrl: '', imageUrl: '', imageUrl2: '',
+        imageSrc: '', imageAlt: '', videoSrc: '', thumbnail: '', 
+        duration: '', categories: '', author: '', comment: 0, content: '',
+        preuzeto: '', summary: '',  link: '', alt: '', type: 'movie', tipMjesta: 'uskoro'
     });
     const [newNovost, setNewNovost] = useState({
         filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
@@ -45,6 +45,7 @@ const AdminDashboard = () => {
     };
 
     const handleCreateFilm = async () => {
+        console.log("Sending new film:", newFilm);
         try {
             await axios.post('http://localhost:3000/server/filmovi', newFilm);
             fetchFilms();
@@ -202,6 +203,10 @@ const AdminDashboard = () => {
                                 <input className={styles.input} type="text" placeholder="Image URL" value={newFilm.imageUrl} onChange={(e) => setNewFilm({ ...newFilm, imageUrl: e.target.value })} />
                             </div>
                             <div className={styles.div}>
+                                <label className={styles.label}>Image URL</label>
+                                <input className={styles.input} type="text" placeholder="Image URL" value={newFilm.imageUrl2} onChange={(e) => setNewFilm({ ...newFilm, imageUrl2: e.target.value })} />
+                            </div>
+                            <div className={styles.div}>
                                 <label className={styles.label}>Image Src</label>
                                 <input className={styles.input} type="text" placeholder="Image Src" value={newFilm.imageSrc} onChange={(e) => setNewFilm({ ...newFilm, imageSrc: e.target.value })} />
                             </div>
@@ -277,8 +282,10 @@ const AdminDashboard = () => {
                                     value={newFilm.tipMjesta}
                                     onChange={(e) => setNewFilm({ ...newFilm, tipMjesta: e.target.value })}
                                 >
-                                    <option value="uskoro">Coming Soon</option>
-                                    <option value="kino">Cinema</option>
+                                    <option value="uskoro">Uskoro u kinima</option>
+                                    <option value="trenutno">Trenutno u kinima</option>
+                                    <option value="arhiva">Arhiva</option>
+
                                 </select>
                             </div>
                             <button className={styles.button} onClick={handleCreateFilm}>Create Film</button>
@@ -338,6 +345,15 @@ const AdminDashboard = () => {
                 type="text"
                 value={newFilm.imageUrl}
                 onChange={(e) => setNewFilm({ ...newFilm, imageUrl: e.target.value })}
+            />
+        </div>
+        <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Image URL2</label>
+            <input
+                className={styles.formInput}
+                type="text"
+                value={newFilm.imageUrl2}
+                onChange={(e) => setNewFilm({ ...newFilm, imageUrl2: e.target.value })}
             />
         </div>
 
@@ -508,8 +524,9 @@ const AdminDashboard = () => {
                 value={newFilm.tipMjesta}
                 onChange={(e) => setNewFilm({ ...newFilm, tipMjesta: e.target.value })}
             >
-                <option value="uskoro">Coming Soon</option>
-                <option value="kino">Cinema</option>
+               <option value="uskoro">Uskoro u kinima</option>
+                                    <option value="trenutno">Trenutno u kinima</option>
+                                    <option value="arhiva">Arhiva</option>
             </select>
         </div>
 
@@ -641,8 +658,9 @@ const AdminDashboard = () => {
                 value={newNovost.tipNovosti}
                 onChange={(e) => setNewNovost({ ...newNovost, tipNovosti: e.target.value })}
             >
-                <option value="novost">Novost</option>
-                <option value="update">Update</option>
+                <option value="novost">Obicna Novost</option>
+                <option value="svijetfilma">Novost iz svijeta filma</option>
+                <option value="trailer">Trailer Novost</option>
             </select>
         </div>
 
@@ -763,8 +781,10 @@ const AdminDashboard = () => {
                 value={newNovost.tipNovosti}
                 onChange={(e) => setNewNovost({ ...newNovost, tipNovosti: e.target.value })}
             >
-                <option value="novost">Novost</option>
-                <option value="update">Update</option>
+                <option value="novost">Obicna Novost</option>
+                <option value="svijetfilma">Novost iz svijeta filma</option>
+                <option value="trailer">Trailer Novost</option>
+
             </select>
         </div>
         <button className={styles.createButton} onClick={handleCreateNovost}>Create Novost</button>

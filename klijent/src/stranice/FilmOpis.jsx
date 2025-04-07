@@ -45,7 +45,7 @@ const FilmOpis = () => {
                 <section className={styles.pageContent}>
                     <div className={styles.entryImage}>
                         <img 
-                            src={movie.imageUrl} 
+                            src={movie.imageUrl2} 
                             alt={movie.title}
                             className={styles.entryImage}
                         />
@@ -67,7 +67,7 @@ const FilmOpis = () => {
                     <iframe
                         width="560"
                         height="315"
-                        src={movie.videoSrc}
+                        src={movie.trailerUrl}
                         title="Movie Video"
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

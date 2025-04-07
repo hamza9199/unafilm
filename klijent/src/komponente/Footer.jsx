@@ -12,7 +12,7 @@ const Footer = () => {
         const fetchMovies = async () => {
             try {
                 const response = await axios.get('http://localhost:3000/server/novosti'); // API endpoint for movies
-                setMovies(response.data.slice(0, 2)); // Limiting to 2 movies
+                setMovies(response.data.sort(() => Math.random() - 0.5).slice(0, 2)); // Limiting to 2 movies
                 setLoading(false);
             } catch (err) {
                 setError(err.message);

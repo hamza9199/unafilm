@@ -4,7 +4,8 @@ const sequelize = require('../sequelizeInstance');
 const Film = sequelize.define('Film', {
     title: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
+        defaultValue: "moj film",
     },
     description: {
         type: DataTypes.TEXT,
@@ -19,6 +20,10 @@ const Film = sequelize.define('Film', {
         allowNull: true,
     },
     imageUrl: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
+    imageUrl2: {
         type: DataTypes.STRING,
         allowNull: true,
     },
@@ -41,6 +46,8 @@ const Film = sequelize.define('Film', {
     releaseDate: {
         type: DataTypes.DATE,
         allowNull: true,
+        defaultValue: DataTypes.NOW,
+
     },
     duration: {
         type: DataTypes.STRING,
@@ -67,12 +74,14 @@ const Film = sequelize.define('Film', {
         allowNull: true,
     },
     summary:{
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: true,
     },
     date:{
         type: DataTypes.DATE,
-        allowNull:false,
+        allowNull:true,
+        defaultValue: DataTypes.NOW,
+
     },
     link:{
         type:DataTypes.STRING,
@@ -88,7 +97,7 @@ const Film = sequelize.define('Film', {
     },
     tipMjesta: {
         type: DataTypes.ENUM('uskoro', 'trenutno', 'arhiva'),
-        allowNull: false,  
+        allowNull: true,  
     },
     
     createdAt: {

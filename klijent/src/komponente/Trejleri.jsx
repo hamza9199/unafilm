@@ -12,7 +12,7 @@ const Trejleri = () => {
     const fetchTrailers = async () => {
       try {
         const response = await axios.get('http://localhost:3000/server/filmovi/'); // Replace with your API endpoint
-        setTrailers(response.data.slice(0, 6)); // Ensure we only use the first 6 trailers
+        setTrailers(response.data.sort(() => Math.random() - 0.5).slice(0, 6)); // Ensure we only use the first 6 trailers
         setLoading(false); // Set loading to false after fetching data
       } catch {
         setError('Failed to fetch trailers'); // Handle errors

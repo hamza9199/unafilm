@@ -15,7 +15,7 @@ const Istaknuto = () => {
     const fetchFilmovi = async () => {
       try {
         const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for films
-        setFilmovi(response.data.slice(0, 2)); // Limiting to 2 films
+        setFilmovi(response.data.sort(() => Math.random() - 0.5).slice(0,6)); // Limiting to 2 films
         setLoading(false);
       } catch (err) {
         setError(err.message);

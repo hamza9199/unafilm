@@ -12,7 +12,7 @@ const Novosti = () => {
     const fetchFilms = async () => {
       try {
         const response = await axios.get('http://localhost:3000/server/novosti/'); // Replace with your API endpoint
-        setFilms(response.data.slice(0, 3)); // Assuming the API returns an array of films, limit to 6
+        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 3)); // Assuming the API returns an array of films, limit to 6
         setLoading(false); // Set loading to false after fetching data
       } catch {
         setError('Failed to fetch films'); // Handle errors
@@ -53,7 +53,20 @@ const Novosti = () => {
                         alt={film.film.imageAlt}
                         className={styles.imga}
                       />
-                      <div className={styles.entryCat}>{film.tipNovosti}</div>
+                    <div className={styles.entryCat}>
+                      {(() => {
+                        switch (film.tipNovosti) {
+                          case "svijetfilma":
+                            return "SVIJET FILMA";
+                          case "uskoro":
+                            return "USKORO";
+                          case "novost":
+                            return "NOVOST";
+                          default:
+                            return "NOVOST";
+                        }
+                      })()}
+                    </div>
                     </div>
                     <div className={styles.entryContent}>
                       <h2 className={styles.entryTitle}>

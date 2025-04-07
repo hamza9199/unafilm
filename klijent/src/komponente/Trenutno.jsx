@@ -3,22 +3,24 @@ import styles from './css/Trenutno.module.css';
 import Slider from 'react-slick'; 
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'; 
-import axios from 'axios'; // Import axios for making API requests
+import axios from 'axios';
 
 const Trenutno = () => {
   const [films, setFilms] = useState([]); // State to hold the films data
-  const [loading, setLoading] = useState(true); // Loading state to show loading spinner or message
-  const [error, setError] = useState(null); // Error state to handle any issues with API calls
+  const [loading, setLoading] = useState(true); // Loading state
+  const [error, setError] = useState(null); // Error state
+  const [selectedFilm, setSelectedFilm] = useState(null); // State to hold selected film data
+  const [hoveredIndex, setHoveredIndex] = useState(null); // Track hovered film index
 
   useEffect(() => {
     // Fetch films data from API
     axios.get('http://localhost:3000/server/filmovi/trenutno') // Replace with your API endpoint
       .then(response => {
-        setFilms(response.data); // Set the films data into the state
+        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 8)); // Set the films data into the state
         setLoading(false); // Stop loading
       })
       .catch(() => {
-        setError('Failed to fetch films data.'); // Set error message if API call fails
+        setError('Failed to fetch films data.'); // Set error message
         setLoading(false); // Stop loading
       });
   }, []);
@@ -48,7 +50,19 @@ const Trenutno = () => {
       <div className={styles.container}>
         <Slider {...settings}>
           {films.map((film, index) => (
-            <div className={styles.movieItem} key={index}>
+            <div 
+              className={styles.movieItem} 
+              key={index} 
+              onMouseEnter={() => {
+                setHoveredIndex(index); // Set the hovered index
+                setSelectedFilm(film); // Set the selected film on hover
+              }} 
+              onMouseLeave={() => {
+                if (hoveredIndex !== null) {
+                  setHoveredIndex(null); // Only reset hovered index, but not selectedFilm
+                }
+              }}
+            >
               <div className={styles.movieFront}></div>
               <div className={styles.movieFront}>
                 <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.moviePoster}>
@@ -60,24 +74,40 @@ const Trenutno = () => {
                 </a>
               </div>
               <div className={styles.dole}>
-                <a className={styles.title2}href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
+                <a className={styles.title2} href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
                 <p className={styles.releaseDate}>{new Date(film.releaseDate).toLocaleDateString()}</p>
-              </div>
-
-              <div className={styles.movieContent}>
-                <h3 className={styles.movieTitle}>
-                  <a href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
-                </h3>
-
-                <p className={styles.duration}>{film.duration}</p>
-                <p className={styles.description}>{film.description}</p>
-                <p className={styles.releaseDate}>Datum izlaska: {new Date(film.releaseDate).toLocaleDateString()}</p>
-                <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.watchButton}>Gledaj</a>
-                <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.infoButton}>Info</a>
               </div>
             </div>
           ))}
         </Slider>
+        
+        {selectedFilm && (
+          <div 
+            className={styles.selectedFilm}
+            onMouseLeave={() => {
+              setHoveredIndex(null); // Reset hovered index when mouse leaves the selected film
+              setSelectedFilm(null); // Reset selected film
+            }}
+
+            style={{
+              left: `${150 * (hoveredIndex + 5)}px`, // Dynamically adjust position based on hovered film index
+            }}          
+          >
+            <img 
+              src={selectedFilm.imageUrl}
+              alt={selectedFilm.title}
+              className={styles.movieImage}
+            />
+            <h3 className={styles.movieTitle}>
+              <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`}>{selectedFilm.title}</a>
+            </h3>
+            <p className={styles.duration}>{selectedFilm.duration}</p>
+            <p className={styles.description}>{selectedFilm.description}</p>
+            <p className={styles.releaseDate}>Datum izlaska: {new Date(selectedFilm.releaseDate).toLocaleDateString()}</p>
+            <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`} className={styles.watchButton}>Gledaj</a>
+            <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`} className={styles.infoButton}>Info</a>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const Uskoro = () => {
     const fetchFilms = async () => {
       try {
         const response = await axios.get('http://localhost:3000/server/filmovi/uskoro'); // Replace with your actual API endpoint
-        setFilms(response.data); // Assuming the API returns an array of films
+        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 6)); // Assuming the API returns an array of films
         setLoading(false); // Set loading to false after fetching data
       } catch {
         setError('Failed to fetch films'); // Handle errors

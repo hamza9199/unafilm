@@ -3,6 +3,9 @@
     display: flex;
     min-height: 100vh;
     background-color: #f8f9fa;
+    width: 95vw;
+    margin: 0 auto;
+    padding-top:50px;
   }
   
   /* Sidebar styles */
