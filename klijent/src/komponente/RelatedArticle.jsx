@@ -48,7 +48,7 @@ const RelatedArticle = () => {
                                 />
                             </div>
                             <h3 className={styles.entryTitle}>
-                                <a href={article.link} className={styles.articleLink}>
+                                <a href={`/novosti/film/${article.id}`}className={styles.articleLink}>
                                     {article.title}
                                 </a>
                             </h3>

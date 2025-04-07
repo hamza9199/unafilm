@@ -1,0 +1,148 @@
+/* Main container */
+.container {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+    position: relative;
+    left: 0;
+    top: 80px;
+  }
+  
+  .nav {
+    position: sticky;
+    top: 20px;
+  }
+  
+  .ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .li {
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .li:hover {
+    background-color: #495057;
+  }
+  
+  /* Main content area */
+  .content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  /* Section styling */
+  .section, .updateSection, .createSection {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .h2, .h3, .sectionTitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #343a40;
+  }
+  
+  /* Table styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .thead {
+    background-color: #f8f9fa;
+  }
+  
+  .th, .td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6;
+  }
+  
+  .tr:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .tbody .tr:last-child .td {
+    border-bottom: none;
+  }
+  
+  /* Form styling */
+  .div, .formGroup {
+    margin-bottom: 15px;
+  }
+  
+  .label, .formLabel {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .input, .textarea, .select, .formInput, .formTextarea, .formSelect {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .textarea, .formTextarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  .select, .formSelect {
+    height: 40px;
+  }
+  
+  /* Button styling */
+  .button, .updateButton, .createButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: background-color 0.3s;
+  }
+  
+  .button:hover, .updateButton:hover, .createButton:hover {
+    background-color: #0069d9;
+  }
+  
+  .updateButton, .createButton {
+    margin-top: 15px;
+    padding: 10px 20px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .container {
+      flex-direction: column;
+    }
+    
+    .sidebar {
+      width: 100%;
+      position: static;
+    }
+    
+    .content {
+      padding: 15px;
+    }
+  }

@@ -56,7 +56,7 @@ const Arhiva = () => {
                                     <a href={`/arhiva/film/${movie.id}`} className={styles.movieTitle}>{movie.title}</a>
                                     <p className={styles.movieDescription}>{movie.description}</p>
                                     <div className={styles.buttonContainer}>
-                                        <a href={`/arhiva/film/${movie.id}`} className={styles.infoButton} target="_blank" rel="noopener noreferrer">Info</a>
+                                        <a href={`/arhiva/film/${movie.id}`} className={styles.infoButton} rel="noopener noreferrer">Info</a>
                                         <a href={movie.trailerUrl} className={styles.trailerButton} target="_blank" rel="noopener noreferrer">Trailer</a>
                                     </div>
                                 </div>

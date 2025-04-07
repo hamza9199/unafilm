@@ -51,7 +51,7 @@ const ArticleItem = ({ film, novost }) => {
                                 )}
                             </span>
                             <span>/</span>
-                            <span className={styles.entryComment}>0 Comment</span>
+                            <span className={styles.entryComment}>{film.comment}</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                             <p>{novost.tekst}</p>

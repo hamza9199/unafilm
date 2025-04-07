@@ -119,7 +119,7 @@ const LijeviBaner = () => {
                             <div className={styles.entryMeta}>
                                 <span className={styles.entryDate}>{new Date(item.datumKreiranja).toLocaleDateString()}</span>
                                 <span> / </span>
-                                <span className={styles.entryComment}>0 Comments</span>
+                                <span className={styles.entryComment}>{item.film.comment}</span>
                             </div>
                         </div>
                     </div>
