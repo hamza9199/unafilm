@@ -33,9 +33,11 @@ const Uskoro = () => {
 
   return (
     <div className={styles.kon}>
-      <h1 className={styles.title}>Uskoro u kinima</h1>
+              <h1 className={styles.title}>Uskoro u kinima</h1>
+
       <div className={styles.container}>
         {/* Movie list */}
+
         <ul className={styles.movieList}>
           {films.slice(0, 7).map((film, index) => ( // Display only 7 films
             <li key={index}>

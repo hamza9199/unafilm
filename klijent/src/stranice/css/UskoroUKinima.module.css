@@ -90,3 +90,36 @@
 .trailerButton:hover {
     background-color: #e34d2e;
 }
+
+
+.closeButton{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #f50909;
+    border: none;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 1000000;
+  }
+  
+  
+  .iframeContainer {
+    position: fixed;
+    overflow: hidden;
+    border-radius: 8px;
+    z-index: 1000000;
+    top: 250px;
+    left: 653px;
+  }
+  
+  .selectedTrailer {
+    position: fixed;
+    top: 200px;
+    left: 600px;
+    width: 800px;
+    height: 500px;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000000;
+  }

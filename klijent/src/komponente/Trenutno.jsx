@@ -6,22 +6,24 @@ import 'slick-carousel/slick/slick-theme.css';
 import axios from 'axios';
 
 const Trenutno = () => {
-  const [films, setFilms] = useState([]); // State to hold the films data
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [selectedFilm, setSelectedFilm] = useState(null); // State to hold selected film data
-  const [hoveredIndex, setHoveredIndex] = useState(null); // Track hovered film index
+  const [films, setFilms] = useState([]); 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
+  const [selectedFilm, setSelectedFilm] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [currentSlide, setCurrentSlide] = useState(0); // Prati početni indeks slajdera
+    const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+  
 
   useEffect(() => {
-    // Fetch films data from API
-    axios.get('http://localhost:3000/server/filmovi/trenutno') // Replace with your API endpoint
+    axios.get('http://localhost:3000/server/filmovi/trenutno')
       .then(response => {
-        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 8)); // Set the films data into the state
-        setLoading(false); // Stop loading
+        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 6)); 
+        setLoading(false);
       })
       .catch(() => {
-        setError('Failed to fetch films data.'); // Set error message
-        setLoading(false); // Stop loading
+        setError('Failed to fetch films data.');
+        setLoading(false);
       });
   }, []);
 
@@ -32,14 +34,13 @@ const Trenutno = () => {
     autoplaySpeed: 5000,
     infinite: true,
     arrows: false,
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Prati početni indeks slajdera
   };
 
-  // If data is loading, show a loading message
   if (loading) {
     return <div>Loading films...</div>;
   }
 
-  // If there is an error, show an error message
   if (error) {
     return <div>{error}</div>;
   }
@@ -49,65 +50,101 @@ const Trenutno = () => {
       <h2 className={styles.title}>Trenutno u kinima</h2>
       <div className={styles.container}>
         <Slider {...settings}>
-          {films.map((film, index) => (
-            <div 
-              className={styles.movieItem} 
-              key={index} 
-              onMouseEnter={() => {
-                setHoveredIndex(index); // Set the hovered index
-                setSelectedFilm(film); // Set the selected film on hover
-              }} 
-              onMouseLeave={() => {
-                if (hoveredIndex !== null) {
-                  setHoveredIndex(null); // Only reset hovered index, but not selectedFilm
-                }
-              }}
-            >
-              <div className={styles.movieFront}></div>
-              <div className={styles.movieFront}>
-                <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.moviePoster}>
-                  <img 
-                    src={film.imageUrl}
-                    alt={film.title}
-                    className={styles.movieImage}
-                  />
-                </a>
+          {films.map((film, index) => {
+            const relativeIndex = ((index - currentSlide + films.length) % films.length) % 3; // Računa relativni indeks unutar 3 vidljiva slajda
+
+            return (
+              <div 
+                className={styles.movieItem} 
+                key={index} 
+                onMouseEnter={() => {
+                  setHoveredIndex(relativeIndex + 1.5); // Postavlja hoveredIndex na 1, 2 ili 3
+                  setSelectedFilm(film);
+                }} 
+                onMouseLeave={() => {
+                  if (hoveredIndex !== null) {
+                    setHoveredIndex(null);
+                    setSelectedFilm(null);
+
+                  }
+                }}
+              >
+                <div className={styles.movieFront}></div>
+                <div className={styles.movieFront}>
+                  <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.moviePoster}>
+                    <img 
+                      src={film.imageUrl2}
+                      alt={film.title}
+                      className={styles.movieImage}
+                    />
+                  </a>
+                </div>
+                <div className={styles.dole}>
+                  <a className={styles.title2} href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
+                  <p className={styles.releaseDate}>{new Date(film.releaseDate).toLocaleDateString()}</p>
+                </div>
               </div>
-              <div className={styles.dole}>
-                <a className={styles.title2} href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
-                <p className={styles.releaseDate}>{new Date(film.releaseDate).toLocaleDateString()}</p>
-              </div>
-            </div>
-          ))}
+            );
+          })}
         </Slider>
-        
+
         {selectedFilm && (
           <div 
             className={styles.selectedFilm}
-            onMouseLeave={() => {
-              setHoveredIndex(null); // Reset hovered index when mouse leaves the selected film
-              setSelectedFilm(null); // Reset selected film
+            onMouseEnter={() => {
+              setHoveredIndex(hoveredIndex);
+              setSelectedFilm(selectedFilm);
             }}
-
+            onMouseLeave={() => {
+              setHoveredIndex(null);
+              setSelectedFilm(null);
+            }}
             style={{
-              left: `${150 * (hoveredIndex + 5)}px`, // Dynamically adjust position based on hovered film index
+              left: (340 * hoveredIndex) + 'px',
             }}          
           >
-            <img 
-              src={selectedFilm.imageUrl}
-              alt={selectedFilm.title}
-              className={styles.movieImage}
-            />
-            <h3 className={styles.movieTitle}>
-              <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`}>{selectedFilm.title}</a>
-            </h3>
-            <p className={styles.duration}>{selectedFilm.duration}</p>
-            <p className={styles.description}>{selectedFilm.description}</p>
-            <p className={styles.releaseDate}>Datum izlaska: {new Date(selectedFilm.releaseDate).toLocaleDateString()}</p>
-            <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`} className={styles.watchButton}>Gledaj</a>
-            <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`} className={styles.infoButton}>Info</a>
+            <div className={styles.left}>
+              <img 
+                src={selectedFilm.imageUrl2}
+                alt={selectedFilm.title}
+                className={styles.movieImage}
+              />
+            </div>
+            <div className={styles.right}>
+              <h3 className={styles.movieTitle}>
+                <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`}>{selectedFilm.title}</a>
+              </h3>
+              <p className={styles.duration}>Trajanje: {selectedFilm.duration}</p>
+              <p className={styles.releaseDate}>Datum izlaska: {new Date(selectedFilm.releaseDate).toLocaleDateString()}</p>
+              <p className={styles.description}>{selectedFilm.description}</p>
+              <div className={styles.buttons}>
+                <a onClick={() => setSelectedTrailer(selectedFilm.trailerUrl)} className={styles.watchButton}>Gledaj</a>
+                <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`} className={styles.infoButton}>Info</a>
+              </div>
+            </div>
           </div>
         )}
+
+
+
+         {/* Prikaz odabranog trailera */}
+                     {selectedTrailer && (
+                      <div className={styles.selectedTrailer}>
+                        <div className={styles.iframeContainer}>
+                          <iframe 
+                            width="700" 
+                            height="400" 
+                            src={selectedTrailer} 
+                            title="Trailer Video" 
+                            frameBorder="0" 
+                            allowFullScreen
+                            autoplay
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          ></iframe>
+                        </div>
+                        <button className={styles.closeButton} onClick={() => setSelectedTrailer(null)}>X</button>
+                      </div>
+                      )}
       </div>
     </div>
   );

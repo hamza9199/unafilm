@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from '../komponente/Header';
+import Footer from '../komponente/Footer';
+import styles from './css/AdminLogin.module.css';
 
 const AdminLogin = () => {
     const [username, setUsername] = useState('');
@@ -19,7 +22,7 @@ const AdminLogin = () => {
             });
 
             if (response.data.message === 'Login successful') {
-                // Redirect to admin dashboard or another page
+                localStorage.setItem('adminToken', "992299"); // Save token to local storage
                 navigate('/admin');
             }
         } catch (err) {
@@ -28,37 +31,39 @@ const AdminLogin = () => {
     };
 
     return (
-        <div style={{ maxWidth: '400px', margin: '50px auto', textAlign: 'center' }}>
-            <h2>Admin Login</h2>
-            <form onSubmit={handleLogin}>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        id="username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px', marginTop: '5px' }}
-                    />
-                </div>
-                <div style={{ marginBottom: '15px' }}>
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        style={{ width: '100%', padding: '8px', marginTop: '5px' }}
-                    />
-                </div>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <button type="submit" style={{ padding: '10px 20px', cursor: 'pointer' }}>
-                    Login
-                </button>
-            </form>
-        </div>
+        <>
+            <Header />
+            <div className={styles.container}>
+                <h2 className={styles.title}>Admin Login</h2>
+                <form onSubmit={handleLogin} className={styles.form}>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="username">Korisničko Ime</label>
+                        <input
+                            type="text"
+                            id="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            required
+                            className={styles.input}
+                        />
+                    </div>
+                    <div className={styles.inputGroup}>
+                        <label htmlFor="password">Lozinka</label>
+                        <input
+                            type="password"
+                            id="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required
+                            className={styles.input}
+                        />
+                    </div>
+                    {error && <p className={styles.error}>{error}</p>}
+                    <button type="submit" className={styles.button}>Login</button>
+                </form>
+            </div>
+            <Footer />
+        </>
     );
 };
 

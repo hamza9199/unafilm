@@ -84,13 +84,13 @@ const FilmInfo = () => {
                                     <p><em>Preuzeto sa: {novost.kreator}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                    {novost.slika1 && <img className={styles.smallImg} src={novost.slika1} alt="Slika 1" />}
+                                    {novost.slika1 && <img className={styles.smallImg} src={novost.slika1} alt=""  />}
                                     {novost.tekst && <p>{novost.tekst}</p>}
 
-                                    {novost.slika2 && <img className={styles.smallImg}  src={novost.slika2} alt="Slika 2" />}
+                                    {novost.slika2 && <img className={styles.smallImg}  src={novost.slika2} alt=""  />}
                                     {novost.tekst2 && <p>{novost.tekst2}</p>}
 
-                                    {novost.slika3 && <img className={styles.smallImg}  src={novost.slika3} alt="Slika 3" />}
+                                    {novost.slika3 && <img className={styles.smallImg}  src={novost.slika3} alt="" />}
                                     {novost.tekst3 && <p>{novost.tekst3}</p>}
 
 

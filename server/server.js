@@ -8,6 +8,8 @@ const Admin = require('./modeli/Admin')
 const AdminRouter = require('./kontroleri/AdminRouter')
 const FilmRouter = require('./kontroleri/FilmRouter');
 const NovostRouter = require('./kontroleri/NovostRouter');
+const swaggerUi = require('swagger-ui-express');
+const swaggerJsDoc = require('swagger-jsdoc');
 
 
 
@@ -41,8 +43,14 @@ const corsOptions = {
     optionsSuccessStatus: 204,
 };
 
+// Middleware
 app.use(cors(corsOptions));
 app.use(express.json());
+
+
+// Swagger setup
+const swaggerSetup = require('./kontroleri/swagger.js');
+swaggerSetup(app);
 
 
 //Rute

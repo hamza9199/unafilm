@@ -35,6 +35,11 @@
     cursor: pointer;
     transition: background-color 0.3s;
   }
+
+  .li2 {
+    padding: 10px 20px;
+    
+  }
   
   .li:hover {
     background-color: #495057;
@@ -47,7 +52,7 @@
   }
   
   /* Section styling */
-  .section, .updateSection, .createSection {
+  .section{
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -63,8 +68,8 @@
   
   /* Table styling */
   .table {
-    width: 100%;
     border-collapse: collapse;
+    width: 100%;
   }
   
   .thead {
@@ -84,7 +89,8 @@
   .tbody .tr:last-child .td {
     border-bottom: none;
   }
-  
+
+
   /* Form styling */
   .div, .formGroup {
     margin-bottom: 15px;
@@ -133,6 +139,226 @@
     margin-top: 15px;
     padding: 10px 20px;
   }
+
+
+  .searchBox {
+   
+    background-color: #fff;
+    padding: 10px;
+    width: 830px;
+    transform: translateY(-20px); /* Pomiče se prema gore pri otvaranju */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+   margin-top: 50px;
+    border-color: #343a40;
+    border-width: 3px;
+}
+
+
+
+.searchBox input {
+    width: 810px;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: #fff;
+    color: rgb(6, 6, 6);
+    font-size: 16px;
+}
+
+.h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.label {
+  margin-bottom: 5px;
+  color: #555;
+  font-size: 18px;
+
+}
+
+.input, .textarea, .select {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s ease;
+}
+
+.input:focus, .textarea:focus, .select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.updateSection {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formLabel {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.formInput[type="file"] {
+  padding: 5px;
+}
+
+.formTextarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.formSelect {
+  cursor: pointer;
+}
+
+.updateButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.updateButton:hover {
+  background-color: #0056b3;
+}
+
+
+.button:hover {
+  background: #0056b3;
+}
+
+/* Common Section Styling */
+.updateSection, .createSection {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f4f4f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formLabel {
+  display: block;
+  font-size: 18px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.formInput,
+.formSelect,
+.formTextarea {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+.formInput[type="file"] {
+  padding: 5px;
+}
+
+.formTextarea {
+  height: 150px;
+  resize: vertical;
+}
+
+.formSelect {
+  cursor: pointer;
+}
+
+/* Specific Button Styling */
+.updateButton, .createButton {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.updateButton:hover, .createButton:hover {
+  background-color: #0056b3;
+}
+
+/* Placeholder Text (For input/textarea) */
+input::placeholder, textarea::placeholder {
+  color: #aaa;
+}
+
+/* Styling for Select Inputs */
+.select {
+  padding: 12px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
   
   /* Responsive adjustments */
   @media (max-width: 768px) {

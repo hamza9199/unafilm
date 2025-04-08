@@ -27,22 +27,84 @@
 }
 
 .selectedFilm {
-  margin: 0 auto;
+  display: flex;
+  flex-direction: row; /* Postavlja sliku lijevo, tekst desno */
+  align-items: center; /* Centriranje vertikalno */
+  justify-content: start; /* Poravnanje na lijevu stranu */
   position: absolute;
-  top: 790px; /* Adjust the top position */
-  background-color: rgba(0, 0, 0); /* Darkened background */
+  top: 900px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
   color: white;
   font-size: 16px;
   font-weight: bold;
-  z-index: 10000; /* Ensure it appears above other elements */
-  padding: 10px;
+  z-index: 10000;
+  padding: 20px;
   border-radius: 8px;
-  width: 300px;
+  width: 500px;
   height: auto;
-  transition: left 0.3s ease-in-out; /* Smooth transition for position change */
-  left: 50%; /* Center the selected film horizontally */
-  transform: translateX(-50%); /* Center the selected film horizontally */
 }
+
+.selectedFilm .left {
+  flex: 1; /* Ostavlja prostor za sliku */
+  max-width: 180px;
+}
+
+.selectedFilm .left img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.selectedFilm .right {
+  flex: 2; /* Više prostora za tekst */
+  padding-left: 15px;
+}
+
+.movieTitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.duration,
+.releaseDate {
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 5px;
+}
+
+.description {
+  font-size: 14px;
+  color: #bbb;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.watchButton,
+.infoButton {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.watchButton {
+  background-color: #ff0000;
+  color: white;
+}
+
+.infoButton {
+  background-color: #007bff;
+  color: white;
+}
+
 
 
 /* Additional CSS properties for the rest of your layout */
@@ -151,4 +213,38 @@
 
 .dole {
   margin-top: 10px;
+}
+
+
+
+.closeButton{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #f50909;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  cursor: pointer;
+  z-index: 1000000;
+}
+
+
+.iframeContainer {
+  position: fixed;
+  overflow: hidden;
+  border-radius: 8px;
+  z-index: 1000000;
+  top: 250px;
+  left: 653px;
+}
+
+.selectedTrailer {
+  position: fixed;
+  top: 200px;
+  left: 600px;
+  width: 800px;
+  height: 500px;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000000;
 }

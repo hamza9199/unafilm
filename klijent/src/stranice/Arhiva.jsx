@@ -9,6 +9,7 @@ const Arhiva = () => {
     const [movies, setMovies] = useState([]);
     const [loading, setLoading] = useState(true); // Indikator učitavanja
     const [error, setError] = useState(null); // Za prikazivanje greške ako nešto pođe po zlu
+    const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
 
     useEffect(() => {
         // Funkcija za dobijanje filmova sa API-ja
@@ -57,7 +58,7 @@ const Arhiva = () => {
                                     <p className={styles.movieDescription}>{movie.description}</p>
                                     <div className={styles.buttonContainer}>
                                         <a href={`/arhiva/film/${movie.id}`} className={styles.infoButton} rel="noopener noreferrer">Info</a>
-                                        <a href={movie.trailerUrl} className={styles.trailerButton} target="_blank" rel="noopener noreferrer">Trailer</a>
+                                        <a onClick={() => setSelectedTrailer(movie.trailerUrl)}  className={styles.trailerButton} target="_blank" rel="noopener noreferrer">Trailer</a>
                                     </div>
                                 </div>
                             </div>
@@ -67,6 +68,26 @@ const Arhiva = () => {
                     )}
                 </div>
             </div>
+
+
+             {/* Prikaz odabranog trailera */}
+                                     {selectedTrailer && (
+                                      <div className={styles.selectedTrailer}>
+                                        <div className={styles.iframeContainer}>
+                                          <iframe 
+                                            width="700" 
+                                            height="400" 
+                                            src={selectedTrailer} 
+                                            title="Trailer Video" 
+                                            frameBorder="0" 
+                                            allowFullScreen
+                                            autoplay
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                          ></iframe>
+                                        </div>
+                                        <button className={styles.closeButton} onClick={() => setSelectedTrailer(null)}>X</button>
+                                      </div>
+                                      )}
             <Footer/>
         </>
     );

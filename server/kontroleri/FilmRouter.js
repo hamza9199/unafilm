@@ -3,6 +3,282 @@ const router = express.Router();
 const  Film  = require('../modeli/Film');
 const { Sequelize, Op } = require('sequelize'); 
 
+/**
+ * @swagger
+ * tags:
+ *   name: Filmovi
+ *   description: API for managing films
+ */
+
+/**
+ * @swagger
+ * /server/filmovi:
+ *   get:
+ *     summary: Retrieve all films
+ *     tags: [Filmovi]
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the list of films
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Film'
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /server/filmovi:
+ *   post:
+ *     summary: Create a new film
+ *     tags: [Filmovi]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Film'
+ *     responses:
+ *       201:
+ *         description: Successfully created a new film
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /server/filmovi/uskoro:
+ *   get:
+ *     summary: Retrieve films with "uskoro" type
+ *     tags: [Filmovi]
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the list of films
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Film'
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /server/filmovi/trenutno:
+ *   get:
+ *     summary: Retrieve films with "trenutno" type
+ *     tags: [Filmovi]
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the list of films
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Film'
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /server/filmovi/arhiva:
+ *   get:
+ *     summary: Retrieve films with "arhiva" type
+ *     tags: [Filmovi]
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the list of films
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Film'
+ *       404:
+ *         description: No films found with "arhiva" type
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /server/filmovi/{id}:
+ *   get:
+ *     summary: Retrieve a film by ID
+ *     tags: [Filmovi]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the film
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the film
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Film'
+ *       404:
+ *         description: Film not found
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /server/filmovi/{id}:
+ *   put:
+ *     summary: Update a film by ID
+ *     tags: [Filmovi]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the film
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Film'
+ *     responses:
+ *       200:
+ *         description: Successfully updated the film
+ *       404:
+ *         description: Film not found
+ *       400:
+ *         description: Bad request
+ */
+
+/**
+ * @swagger
+ * /server/filmovi/{id}:
+ *   delete:
+ *     summary: Delete a film by ID
+ *     tags: [Filmovi]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: The ID of the film
+ *     responses:
+ *       200:
+ *         description: Successfully deleted the film
+ *       404:
+ *         description: Film not found
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * /server/filmovi/search/{query}:
+ *   get:
+ *     summary: Search films by title or description
+ *     tags: [Filmovi]
+ *     parameters:
+ *       - in: path
+ *         name: query
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The search query
+ *     responses:
+ *       200:
+ *         description: Successfully retrieved the list of films
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Film'
+ *       400:
+ *         description: Query parameter is required
+ *       404:
+ *         description: No films found matching the search criteria
+ *       500:
+ *         description: Server error
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Film:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *         title:
+ *           type: string
+ *         description:
+ *           type: string
+ *         trailerUrl:
+ *           type: string
+ *         detailsUrl:
+ *           type: string
+ *         imageUrl:
+ *           type: string
+ *         imageUrl2:
+ *           type: string
+ *         imageSrc:
+ *           type: string
+ *         imageAlt:
+ *           type: string
+ *         videoSrc:
+ *           type: string
+ *         thumbnail:
+ *           type: string
+ *         releaseDate:
+ *           type: string
+ *           format: date
+ *         duration:
+ *           type: string
+ *         categories:
+ *           type: array
+ *           items:
+ *             type: string
+ *         author:
+ *           type: string
+ *         comment:
+ *           type: integer
+ *         content:
+ *           type: object
+ *         preuzeto:
+ *           type: string
+ *         summary:
+ *           type: string
+ *         date:
+ *           type: string
+ *           format: date
+ *         link:
+ *           type: string
+ *         alt:
+ *           type: string
+ *         type:
+ *           type: string
+ *         tipMjesta:
+ *           type: string
+ *           enum: [uskoro, trenutno, arhiva]
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ */
+
+
 // Get all films
 router.get('/', async (req, res) => {
   try {

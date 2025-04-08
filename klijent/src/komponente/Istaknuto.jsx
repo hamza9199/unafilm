@@ -9,6 +9,8 @@ const Istaknuto = () => {
   const [filmovi, setFilmovi] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+  
 
   // Fetch movies from API
   useEffect(() => {
@@ -85,8 +87,9 @@ const Istaknuto = () => {
                   <p>{film.description}</p>
                 </div>
                 <div className={styles.slideButton}>
-                  <a href={film.trailerUrl} className={styles.trailerLink} target="_blank" rel="noopener noreferrer">
-                    <i className="fa fa-play"></i> Trailer
+                  <a  onClick={() => setSelectedTrailer(film.trailerUrl)} className={styles.trailerLink} target="_blank" rel="noopener noreferrer">
+                    <i className="fa fa-play" onClick={() => setSelectedTrailer(film.trailerUrl)} // Postavlja trailer kad klikneš
+                    ></i> Trailer
                   </a>
                   <a href={`/arhiva/film/${film.id}`} className={styles.detailsLink}  rel="noopener noreferrer">
                     <i className="fa fa-exclamation"></i> Detalji
@@ -97,6 +100,25 @@ const Istaknuto = () => {
           ))}
         </Slider>
       </div>
+
+       {/* Prikaz odabranog trailera */}
+             {selectedTrailer && (
+              <div className={styles.selectedTrailer}>
+                <div className={styles.iframeContainer}>
+                  <iframe 
+                    width="700" 
+                    height="400" 
+                    src={selectedTrailer} 
+                    title="Trailer Video" 
+                    frameBorder="0" 
+                    allowFullScreen
+                    autoplay
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  ></iframe>
+                </div>
+                <button className={styles.closeButton} onClick={() => setSelectedTrailer(null)}>X</button>
+              </div>
+              )}
     </section>
   );
 };

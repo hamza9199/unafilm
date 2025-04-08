@@ -22,3 +22,17 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Firebase
+firebase-debug.log
+firebase.json
+.firebaserc
+firebase/
+# Local env files
+.env
+
+# Firebase storage api
+/src/context/firebase.js
+./context/firebase.js
+
+

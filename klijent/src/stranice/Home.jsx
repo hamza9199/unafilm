@@ -9,13 +9,6 @@ import Trenutno from '../komponente/Trenutno';
 import styles from './css/Home.module.css';
 
 function Home() {
-  //const [movies, setMovies] = useState([]);
-
-  /*useEffect(() => {
-    axios.get('http://localhost:5000/movies')
-      .then(response => setMovies(response.data))
-      .catch(error => console.error(error));
-  }, []);*/
 
 
 

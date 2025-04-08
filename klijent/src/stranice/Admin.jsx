@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/AdminDashboard.module.css';
+import storage from "../context/firebase"
 
 const AdminDashboard = () => {
     const [films, setFilms] = useState([]);
@@ -20,11 +21,208 @@ const AdminDashboard = () => {
     const [selectedFilm, setSelectedFilm] = useState(null);
     const [selectedNovost, setSelectedNovost] = useState(null);
     const [selectedOption, setSelectedOption] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [searchTerm2, setSearchTerm2] = useState('');
 
+;
     useEffect(() => {
         fetchFilms();
         fetchNovosti();
     }, []);
+
+    const handleSearchInputChange = (e) => {
+        setSearchTerm(e.target.value);
+    };
+    const handleSearchInputChange2 = (e) => {
+        setSearchTerm2(e.target.value);
+    };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        // Navigate to the search results page with the query
+        
+    };
+
+    useEffect(() => {
+            const fetchArticles = async () => {
+                if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
+                try {
+                    const response = await fetch(`http://localhost:3000/server/filmovi/search/${searchTerm}`);
+                    const data = await response.json();
+    
+                    if (response.ok) {
+                        setFilms(data);
+                    } 
+                } catch {
+                    console.error('Error fetching articles. Please try again later.');
+                } 
+            };
+
+           
+    
+            fetchArticles();
+    }, [searchTerm]);
+
+    useEffect(() => {
+        const fetchArticles2 = async () => {
+            if (!searchTerm2.trim()) return; // Prevent API call if the search term is empty
+            try {
+                const response = await fetch(`http://localhost:3000/server/novosti/search/${searchTerm2}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    setNovosti(data);
+                } 
+            } catch {
+                console.error('Error fetching articles. Please try again later.');
+            } 
+        };
+
+       
+
+        fetchArticles2();
+    }, [searchTerm2]);
+
+       
+
+    const upload = (items, callback) => {
+        let uploadedCount = 0;
+        const uploadedUrls = {};
+    
+        items.forEach((item) => {
+            const fileName = new Date().getTime() + item.label + item.file.name;
+            const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
+    
+            uploadTask.on(
+                "state_changed",
+                (snapshot) => {
+                    const progress =
+                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log("Upload is " + progress + "% complete");
+                },
+                (error) => {
+                    console.error("Error uploading file:", error);
+                },
+                () => {
+                    uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+                        uploadedUrls[item.label] = url;
+                        uploadedCount++;
+    
+                        if (uploadedCount === items.length) {
+                            callback(uploadedUrls);
+                        }
+                    });
+                }
+            );
+        });
+    };
+    
+    const handleCreateFilm = async () => {
+        const itemsToUpload = [
+            { file: newFilm.imageUrl, label: "imageUrl" },
+            { file: newFilm.imageUrl2, label: "imageUrl2" },
+        ];
+    
+        upload(itemsToUpload, async (uploadedUrls) => {
+            const updatedFilm = { ...newFilm, ...uploadedUrls };
+    
+            try {
+                await axios.post('http://localhost:3000/server/filmovi', updatedFilm);
+                fetchFilms();
+            } catch (error) {
+                console.error('Error creating film:', error);
+            }
+        });
+    };
+    
+    const handleUpdateFilm = async () => {
+        const itemsToUpload = [];
+        if (newFilm.imageUrl instanceof File) {
+            itemsToUpload.push({ file: newFilm.imageUrl, label: "imageUrl" });
+        }
+        if (newFilm.imageUrl2 instanceof File) {
+            itemsToUpload.push({ file: newFilm.imageUrl2, label: "imageUrl2" });
+        }
+
+        if (itemsToUpload.length > 0) {
+            upload(itemsToUpload, async (uploadedUrls) => {
+                const updatedFilm = { ...newFilm, ...uploadedUrls };
+
+                try {
+                    await axios.put(`http://localhost:3000/server/filmovi/${selectedFilm.id}`, updatedFilm);
+                    fetchFilms();
+                    setSelectedFilm(null);
+                } catch (error) {
+                    console.error('Error updating film:', error);
+                }
+            });
+        } else {
+            try {
+                await axios.put(`http://localhost:3000/server/filmovi/${selectedFilm.id}`, newFilm);
+                fetchFilms();
+                setSelectedFilm(null);
+            } catch (error) {
+                console.error('Error updating film:', error);
+            }
+        }
+    };
+    
+    const handleCreateNovost = async () => {
+        const itemsToUpload = [
+            { file: newNovost.slika1, label: "slika1" },
+            { file: newNovost.slika2, label: "slika2" },
+            { file: newNovost.slika3, label: "slika3" },
+        ];
+    
+        upload(itemsToUpload, async (uploadedUrls) => {
+            const updatedNovost = { ...newNovost, ...uploadedUrls };
+    
+            try {
+                await axios.post('http://localhost:3000/server/novosti', updatedNovost);
+                fetchNovosti();
+            } catch (error) {
+                console.error('Error creating novost:', error);
+            }
+        });
+    };
+    
+    const handleUpdateNovost = async () => {
+        const itemsToUpload = [];
+        if (newNovost.slika1 instanceof File) {
+            itemsToUpload.push({ file: newNovost.slika1, label: "slika1" });
+        }
+        if (newNovost.slika2 instanceof File) {
+            itemsToUpload.push({ file: newNovost.slika2, label: "slika2" });
+        }
+        if (newNovost.slika3 instanceof File) {
+            itemsToUpload.push({ file: newNovost.slika3, label: "slika3" });
+        }
+
+        if (itemsToUpload.length > 0) {
+            upload(itemsToUpload, async (uploadedUrls) => {
+                const updatedNovost = { ...newNovost, ...uploadedUrls };
+
+                try {
+                    await axios.put(`http://localhost:3000/server/novosti/${selectedNovost.id}`, updatedNovost);
+                    fetchNovosti();
+                    setSelectedNovost(null);
+                } catch (error) {
+                    console.error('Error updating novost:', error);
+                }
+            });
+        } else {
+            try {
+                await axios.put(`http://localhost:3000/server/novosti/${selectedNovost.id}`, newNovost);
+                fetchNovosti();
+                setSelectedNovost(null);
+            } catch (error) {
+                console.error('Error updating novost:', error);
+            }
+        }
+    };
+    
+
+
 
     const fetchFilms = async () => {
         try {
@@ -44,44 +242,6 @@ const AdminDashboard = () => {
         }
     };
 
-    const handleCreateFilm = async () => {
-        console.log("Sending new film:", newFilm);
-        try {
-            await axios.post('http://localhost:3000/server/filmovi', newFilm);
-            fetchFilms();
-        } catch (error) {
-            console.error('Error creating film:', error);
-        }
-    };
-
-    const handleUpdateFilm = async () => {
-        try {
-            await axios.put(`http://localhost:3000/server/filmovi/${selectedFilm.id}`, newFilm);
-            fetchFilms();
-            setSelectedFilm(null); // Reset selected film after update
-        } catch (error) {
-            console.error('Error updating film:', error);
-        }
-    };
-
-    const handleCreateNovost = async () => {
-        try {
-            await axios.post('http://localhost:3000/server/novosti', newNovost);
-            fetchNovosti();
-        } catch (error) {
-            console.error('Error creating novost:', error);
-        }
-    };
-
-    const handleUpdateNovost = async () => {
-        try {
-            await axios.put(`http://localhost:3000/server/novosti/${selectedNovost.id}`, newNovost);
-            fetchNovosti();
-            setSelectedNovost(null); // Reset selected novost after update
-        } catch (error) {
-            console.error('Error updating novost:', error);
-        }
-    };
 
     const handleDeleteFilm = async (id) => {
         try {
@@ -101,6 +261,11 @@ const AdminDashboard = () => {
         }
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem('adminToken'); // Remove user data from local storage
+        window.location.href = '/'; // Redirect to the login page
+    };
+
     return (
         <>
             <Header />
@@ -108,23 +273,114 @@ const AdminDashboard = () => {
                 <aside className={styles.sidebar}>
                     <nav className={styles.nav}>
                         <ul className={styles.ul}>
-                            <li className={styles.li}>Početna</li>
+                            <li className={styles.li2}>
+                                <img src='https://unafilm.ba/wp-content/uploads/2024/12/unaFilm141-2.png'></img>
+                            </li>
+                            <li className={styles.li2}></li>
+                            <li className={styles.li2}></li>
+                            <li className={styles.li} onClick={() => handleLogout()}>Logout</li>
                             <li className={styles.li} onClick={() => setSelectedOption('films')}>Svi Filmovi</li>
                             <li className={styles.li} onClick={() => setSelectedOption('novosti')}>Sve Novosti</li>
                             <li className={styles.li} onClick={() => setSelectedOption('createFilm')}>Kreiraj Film</li>
                             <li className={styles.li} onClick={() => setSelectedOption('createNovost')}>Kreiraj Novost</li>
+                            <li className={styles.li} onClick={() => setSelectedOption('pretragaFilmova')}>Pretraga Filmova</li>
+                            <li className={styles.li} onClick={() => setSelectedOption('pretragaNovosti')}>Pretraga Novosti</li>
+                            <li className={styles.li2}></li>
+                            <li className={styles.li2}></li>
+                            <li className={styles.li2}></li>
+
+
                         </ul>
                     </nav>
                 </aside>
                 <main className={styles.content}>
-                    {selectedOption === 'films' && (
+
+                    {selectedOption === 'pretragaFilmova' && 
                         <section className={styles.section}>
-                            <h2 className={styles.h2}>Films</h2>
+                        <h2 className={styles.h2}>Filmovi</h2>
+                         <div className={`${styles.searchBox} `}>
+                                                        <form onSubmit={handleSearchSubmit}>
+                                                            <input
+                                                                type="text"
+                                                                placeholder="Pretraži..."
+                                                                value={searchTerm}
+                                                                onChange={handleSearchInputChange}
+                                                            />
+                                                        </form>
+                                                    </div>
+                        <table className={styles.table}>
+                            <thead className={styles.thead}>
+                                <tr className={styles.tr}>
+                                    <th className={styles.th}>Title</th>
+                                    <th className={styles.th}>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody className={styles.tbody}>
+                                {films.map((film) => (
+                                    <tr key={film.id} className={styles.tr}>
+                                        <td className={styles.td}>{film.title}</td>
+                                        <td className={styles.td}>
+                                            <button className={styles.button} onClick={() => {
+                                                setSelectedFilm(film); 
+                                                setNewFilm(film); // Pre-populate form with selected film's data
+                                                setSelectedOption('updateFilm');
+                                            }}>Ažuriraj</button>
+                                            <button className={styles.button} onClick={() => handleDeleteFilm(film.id)}>Obriši</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </section>
+                    }
+
+
+                    {selectedOption === 'pretragaNovosti' && (
+                        <section className={styles.section}>
+                            <h2 className={styles.h2}>Novosti</h2>
+                            <div className={`${styles.searchBox} `}>
+                                                        <form onSubmit={handleSearchSubmit}>
+                                                            <input
+                                                                type="text"
+                                                                placeholder="Pretraži..."
+                                                                value={searchTerm2}
+                                                                onChange={handleSearchInputChange2}
+                                                            />
+                                                        </form>
+                                                    </div>
                             <table className={styles.table}>
                                 <thead className={styles.thead}>
                                     <tr className={styles.tr}>
                                         <th className={styles.th}>Title</th>
-                                        <th className={styles.th}>Description</th>
+                                        <th className={styles.th}>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className={styles.tbody}>
+                                    {novosti.map((novost) => (
+                                        <tr key={novost.id} className={styles.tr}>
+                                            <td className={styles.td}>{novost.title}</td>
+                                            <td className={styles.td}>
+                                                <button className={styles.button} onClick={() => {
+                                                    setSelectedNovost(novost);
+                                                    setNewNovost(novost); // Pre-populate form with selected novost's data
+                                                    setSelectedOption('updateNovost');
+                                                }}>Ažuriraj</button>
+                                                <button className={styles.button} onClick={() => handleDeleteNovost(novost.id)}>Obriši</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </section>
+                    )}
+
+                    {selectedOption === 'films' && (
+                        <section className={styles.section}>
+                            <h2 className={styles.h2}>Filmovi</h2>
+                            <table className={styles.table}>
+                                <thead className={styles.thead}>
+                                    <tr className={styles.tr}>
+                                        <th className={styles.th}>Title</th>
                                         <th className={styles.th}>Actions</th>
                                     </tr>
                                 </thead>
@@ -132,14 +388,13 @@ const AdminDashboard = () => {
                                     {films.map((film) => (
                                         <tr key={film.id} className={styles.tr}>
                                             <td className={styles.td}>{film.title}</td>
-                                            <td className={styles.td}>{film.description}</td>
                                             <td className={styles.td}>
                                                 <button className={styles.button} onClick={() => {
                                                     setSelectedFilm(film); 
                                                     setNewFilm(film); // Pre-populate form with selected film's data
                                                     setSelectedOption('updateFilm');
-                                                }}>Update</button>
-                                                <button className={styles.button} onClick={() => handleDeleteFilm(film.id)}>Delete</button>
+                                                }}>Ažuriraj</button>
+                                                <button className={styles.button} onClick={() => handleDeleteFilm(film.id)}>Obriši</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -155,7 +410,6 @@ const AdminDashboard = () => {
                                 <thead className={styles.thead}>
                                     <tr className={styles.tr}>
                                         <th className={styles.th}>Title</th>
-                                        <th className={styles.th}>Text</th>
                                         <th className={styles.th}>Actions</th>
                                     </tr>
                                 </thead>
@@ -163,14 +417,13 @@ const AdminDashboard = () => {
                                     {novosti.map((novost) => (
                                         <tr key={novost.id} className={styles.tr}>
                                             <td className={styles.td}>{novost.title}</td>
-                                            <td className={styles.td}>{novost.tekst}</td>
                                             <td className={styles.td}>
                                                 <button className={styles.button} onClick={() => {
                                                     setSelectedNovost(novost);
                                                     setNewNovost(novost); // Pre-populate form with selected novost's data
                                                     setSelectedOption('updateNovost');
-                                                }}>Update</button>
-                                                <button className={styles.button} onClick={() => handleDeleteNovost(novost.id)}>Delete</button>
+                                                }}>Ažuriraj</button>
+                                                <button className={styles.button} onClick={() => handleDeleteNovost(novost.id)}>Obriši</button>
                                             </td>
                                         </tr>
                                     ))}
@@ -180,8 +433,8 @@ const AdminDashboard = () => {
                     )}
 
                     {selectedOption === 'createFilm' && (
-                        <section className={styles.section}>
-                            <h3 className={styles.h3}>Create Film</h3>
+                        <section className={styles.updateSection}>
+                            <h3 className={styles.h3}>Kreiraj Film</h3>
                             <div className={styles.div}>
                                 <label className={styles.label}>Title</label>
                                 <input className={styles.input} type="text" placeholder="Title" value={newFilm.title} onChange={(e) => setNewFilm({ ...newFilm, title: e.target.value })} />
@@ -199,12 +452,20 @@ const AdminDashboard = () => {
                                 <input className={styles.input} type="text" placeholder="Details URL" value={newFilm.detailsUrl} onChange={(e) => setNewFilm({ ...newFilm, detailsUrl: e.target.value })} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Image URL</label>
-                                <input className={styles.input} type="text" placeholder="Image URL" value={newFilm.imageUrl} onChange={(e) => setNewFilm({ ...newFilm, imageUrl: e.target.value })} />
+                                <label className={styles.label}>Image</label>
+                                <input
+                                    className={styles.input}
+                                    type="file"
+                                    onChange={(e) => setNewFilm({ ...newFilm, imageUrl: e.target.files[0] })}
+                                />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Image URL</label>
-                                <input className={styles.input} type="text" placeholder="Image URL" value={newFilm.imageUrl2} onChange={(e) => setNewFilm({ ...newFilm, imageUrl2: e.target.value })} />
+                                <label className={styles.label}>Image 2</label>
+                                <input
+                                    className={styles.input}
+                                    type="file"
+                                    onChange={(e) => setNewFilm({ ...newFilm, imageUrl2: e.target.files[0] })}
+                                />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Image Src</label>
@@ -296,7 +557,7 @@ const AdminDashboard = () => {
 
                     {selectedOption === 'updateFilm' && (
     <section className={styles.updateSection}>
-        <h3 className={styles.sectionTitle}>Update Film</h3>
+        <h3 className={styles.sectionTitle}>Ažuriraj Film</h3>
 
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Title</label>
@@ -342,18 +603,16 @@ const AdminDashboard = () => {
             <label className={styles.formLabel}>Image URL</label>
             <input
                 className={styles.formInput}
-                type="text"
-                value={newFilm.imageUrl}
-                onChange={(e) => setNewFilm({ ...newFilm, imageUrl: e.target.value })}
+                type="file"
+                onChange={(e) => setNewFilm({ ...newFilm, imageUrl: e.target.files[0]  })}
             />
         </div>
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Image URL2</label>
             <input
                 className={styles.formInput}
-                type="text"
-                value={newFilm.imageUrl2}
-                onChange={(e) => setNewFilm({ ...newFilm, imageUrl2: e.target.value })}
+                type="file"
+                onChange={(e) => setNewFilm({ ...newFilm, imageUrl2: e.target.files[0] })}
             />
         </div>
 
@@ -537,7 +796,7 @@ const AdminDashboard = () => {
 
 {selectedOption === 'updateNovost' && (
     <section className={styles.updateSection}>
-        <h3 className={styles.sectionTitle}>Update Novost</h3>
+        <h3 className={styles.sectionTitle}>Ažuriraj Novost</h3>
         {/* Film Selection */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Film</label>
@@ -617,14 +876,14 @@ const AdminDashboard = () => {
             />
         </div>
 
+
         {/* Image 1 URL */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 1 URL</label>
             <input
                 className={styles.formInput}
-                type="text"
-                value={newNovost.slika1}
-                onChange={(e) => setNewNovost({ ...newNovost, slika1: e.target.value })}
+                type="file"
+                onChange={(e) => setNewNovost({ ...newNovost, slika1: e.target.files[0] })}
             />
         </div>
 
@@ -633,9 +892,8 @@ const AdminDashboard = () => {
             <label className={styles.formLabel}>Slika 2 URL</label>
             <input
                 className={styles.formInput}
-                type="text"
-                value={newNovost.slika2}
-                onChange={(e) => setNewNovost({ ...newNovost, slika2: e.target.value })}
+                type="file"
+                onChange={(e) => setNewNovost({ ...newNovost, slika2: e.target.files[0] })}
             />
         </div>
 
@@ -644,9 +902,8 @@ const AdminDashboard = () => {
             <label className={styles.formLabel}>Slika 3 URL</label>
             <input
                 className={styles.formInput}
-                type="text"
-                value={newNovost.slika3}
-                onChange={(e) => setNewNovost({ ...newNovost, slika3: e.target.value })}
+                type="file"
+                onChange={(e) => setNewNovost({ ...newNovost, slika3: e.target.files[0] })}
             />
         </div>
 
@@ -672,7 +929,7 @@ const AdminDashboard = () => {
 
 {selectedOption === 'createNovost' && (
     <section className={styles.createSection}>
-        <h3 className={styles.sectionTitle}>Create Novost</h3>
+        <h3 className={styles.sectionTitle}>Kreiraj Novost</h3>
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Film</label>
             <select
@@ -748,30 +1005,24 @@ const AdminDashboard = () => {
             <label className={styles.formLabel}>Slika 1 URL</label>
             <input
                 className={styles.formInput}
-                type="text"
-                placeholder="Slika 1 URL"
-                value={newNovost.slika1}
-                onChange={(e) => setNewNovost({ ...newNovost, slika1: e.target.value })}
+                type="file"
+                onChange={(e) => setNewNovost({ ...newNovost, slika1: e.target.files[0] })}
             />
         </div>
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 2 URL</label>
             <input
                 className={styles.formInput}
-                type="text"
-                placeholder="Slika 2 URL"
-                value={newNovost.slika2}
-                onChange={(e) => setNewNovost({ ...newNovost, slika2: e.target.value })}
+                type="file"
+                onChange={(e) => setNewNovost({ ...newNovost, slika2:  e.target.files[0] })}
             />
         </div>
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 3 URL</label>
             <input
                 className={styles.formInput}
-                type="text"
-                placeholder="Slika 3 URL"
-                value={newNovost.slika3}
-                onChange={(e) => setNewNovost({ ...newNovost, slika3: e.target.value })}
+                type="file"
+                onChange={(e) => setNewNovost({ ...newNovost, slika3:  e.target.files[0] })}
             />
         </div>
         <div className={styles.formGroup}>
