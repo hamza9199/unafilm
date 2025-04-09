@@ -8,11 +8,10 @@ import storage from "../context/firebase"
 const AdminDashboard = () => {
     const [films, setFilms] = useState([]);
     const [novosti, setNovosti] = useState([]);
+    const [poruke, setPoruke] = useState([]);
     const [newFilm, setNewFilm] = useState({
-        title: '', description: '', trailerUrl: '', detailsUrl: '', imageUrl: '', imageUrl2: '',
-        imageSrc: '', imageAlt: '', videoSrc: '', thumbnail: '', 
-        duration: '', categories: '', author: '', comment: 0, content: '',
-        preuzeto: '', summary: '',  link: '', alt: '', type: 'movie', tipMjesta: 'uskoro'
+        title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+        duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro'
     });
     const [newNovost, setNewNovost] = useState({
         filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
@@ -28,6 +27,7 @@ const AdminDashboard = () => {
     useEffect(() => {
         fetchFilms();
         fetchNovosti();
+        fetchPoruke();
     }, []);
 
     const handleSearchInputChange = (e) => {
@@ -242,6 +242,15 @@ const AdminDashboard = () => {
         }
     };
 
+    const fetchPoruke = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/server/poruke');
+            setPoruke(response.data);
+        } catch (error) {
+            console.error('Error fetching novosti:', error);
+        }
+    };
+
 
     const handleDeleteFilm = async (id) => {
         try {
@@ -258,6 +267,15 @@ const AdminDashboard = () => {
             fetchNovosti();
         } catch (error) {
             console.error('Error deleting novost:', error);
+        }
+    };
+
+    const handleDeletePoruke = async (id) => {
+        try {
+            await axios.delete(`http://localhost:3000/server/poruke/${id}`);
+            fetchPoruke();
+        } catch (error) {
+            console.error('Error deleting poruka:', error);
         }
     };
 
@@ -281,6 +299,7 @@ const AdminDashboard = () => {
                             <li className={styles.li} onClick={() => handleLogout()}>Logout</li>
                             <li className={styles.li} onClick={() => setSelectedOption('films')}>Svi Filmovi</li>
                             <li className={styles.li} onClick={() => setSelectedOption('novosti')}>Sve Novosti</li>
+                            <li className={styles.li} onClick={() => setSelectedOption('poruke')}>Sve Poruke</li>
                             <li className={styles.li} onClick={() => setSelectedOption('createFilm')}>Kreiraj Film</li>
                             <li className={styles.li} onClick={() => setSelectedOption('createNovost')}>Kreiraj Novost</li>
                             <li className={styles.li} onClick={() => setSelectedOption('pretragaFilmova')}>Pretraga Filmova</li>
@@ -374,6 +393,35 @@ const AdminDashboard = () => {
                         </section>
                     )}
 
+                    {selectedOption === 'poruke' && (
+                        <section className={styles.section}>
+                            <h2 className={styles.h2}>Poruke</h2>
+                            <table className={styles.table}>
+                                <thead className={styles.thead}>
+                                    <tr className={styles.tr}>
+                                        <th className={styles.th}>Ime</th>
+                                        <th className={styles.th}>Email</th>
+                                        <th className={styles.th}>Poruka</th>
+                                        <th className={styles.th}>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody className={styles.tbody}>
+                                    {poruke.map((poruka) => (
+                                        <tr key={poruka.id} className={styles.tr}>
+                                            <td className={styles.td}>{poruka.ime}</td>
+                                            <td className={styles.td}>{poruka.email}</td>
+                                            <td className={styles.td}>{poruka.poruka}</td>
+                                            <td className={styles.td}>
+                                
+                                                <button className={styles.button} onClick={() => handleDeletePoruke(poruka.id)}>Obriši</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </section>
+                    )}
+
                     {selectedOption === 'films' && (
                         <section className={styles.section}>
                             <h2 className={styles.h2}>Filmovi</h2>
@@ -446,11 +494,7 @@ const AdminDashboard = () => {
                             <div className={styles.div}>
                                 <label className={styles.label}>Trailer URL</label>
                                 <input className={styles.input} type="text" placeholder="Trailer URL" value={newFilm.trailerUrl} onChange={(e) => setNewFilm({ ...newFilm, trailerUrl: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Details URL</label>
-                                <input className={styles.input} type="text" placeholder="Details URL" value={newFilm.detailsUrl} onChange={(e) => setNewFilm({ ...newFilm, detailsUrl: e.target.value })} />
-                            </div>
+                            </div>                    
                             <div className={styles.div}>
                                 <label className={styles.label}>Image</label>
                                 <input
@@ -468,64 +512,20 @@ const AdminDashboard = () => {
                                 />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Image Src</label>
-                                <input className={styles.input} type="text" placeholder="Image Src" value={newFilm.imageSrc} onChange={(e) => setNewFilm({ ...newFilm, imageSrc: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Image Alt</label>
-                                <input className={styles.input} type="text" placeholder="Image Alt" value={newFilm.imageAlt} onChange={(e) => setNewFilm({ ...newFilm, imageAlt: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Video Src</label>
-                                <input className={styles.input} type="text" placeholder="Video Src" value={newFilm.videoSrc} onChange={(e) => setNewFilm({ ...newFilm, videoSrc: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Thumbnail</label>
-                                <input className={styles.input} type="text" placeholder="Thumbnail" value={newFilm.thumbnail} onChange={(e) => setNewFilm({ ...newFilm, thumbnail: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
                                 <label className={styles.label}>Release Date</label>
                                 <input className={styles.input} type="text" placeholder="Release Date" value={newFilm.releaseDate} onChange={(e) => setNewFilm({ ...newFilm, releaseDate: e.target.value })} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Duration</label>
-                                <input className={styles.input} type="text" placeholder="Duration" value={newFilm.duration} onChange={(e) => setNewFilm({ ...newFilm, duration: e.target.value })} />
+                                <label className={styles.label}>Trajanje</label>
+                                <input className={styles.input} type="number" placeholder="Trajanje" value={newFilm.duration} onChange={(e) => setNewFilm({ ...newFilm, duration: e.target.value })} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Categories</label>
-                                <input className={styles.input} type="text" placeholder="Categories" value={newFilm.categories} onChange={(e) => setNewFilm({ ...newFilm, categories: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Author</label>
-                                <input className={styles.input} type="text" placeholder="Author" value={newFilm.author} onChange={(e) => setNewFilm({ ...newFilm, author: e.target.value })} />
+                                <label className={styles.label}>Reditelj</label>
+                                <input className={styles.input} type="text" placeholder="Author" value={newFilm.reditelj} onChange={(e) => setNewFilm({ ...newFilm, author: e.target.value })} />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Comment</label>
                                 <input className={styles.input} type="text" placeholder="Comment" value={newFilm.comment} onChange={(e) => setNewFilm({ ...newFilm, comment: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Content</label>
-                                <textarea className={styles.textarea} placeholder="Content" value={newFilm.content} onChange={(e) => setNewFilm({ ...newFilm, content: e.target.value })}></textarea>
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Preuzeto</label>
-                                <input className={styles.input} type="text" placeholder="Preuzeto" value={newFilm.preuzeto} onChange={(e) => setNewFilm({ ...newFilm, preuzeto: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Summary</label>
-                                <textarea className={styles.textarea} placeholder="Summary" value={newFilm.summary} onChange={(e) => setNewFilm({ ...newFilm, summary: e.target.value })}></textarea>
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Date</label>
-                                <input className={styles.input} type="text" placeholder="Date" value={newFilm.date} onChange={(e) => setNewFilm({ ...newFilm, date: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Link</label>
-                                <input className={styles.input} type="text" placeholder="Link" value={newFilm.link} onChange={(e) => setNewFilm({ ...newFilm, link: e.target.value })} />
-                            </div>
-                            <div className={styles.div}>
-                                <label className={styles.label}>Alt</label>
-                                <input className={styles.input} type="text" placeholder="Alt" value={newFilm.alt} onChange={(e) => setNewFilm({ ...newFilm, alt: e.target.value })} />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Type</label>
@@ -533,8 +533,8 @@ const AdminDashboard = () => {
                                     value={newFilm.type}
                                     onChange={(e) => setNewFilm({ ...newFilm, type: e.target.value })}
                                 >
-                                    <option value="movie">Movie</option>
-                                    <option value="show">Show</option>
+                                    <option value="film">Film</option>
+                                    <option value="serija">Serija</option>
                                 </select>
                             </div>
                             <div className={styles.div}>
@@ -589,15 +589,7 @@ const AdminDashboard = () => {
             />
         </div>
 
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Details URL</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.detailsUrl}
-                onChange={(e) => setNewFilm({ ...newFilm, detailsUrl: e.target.value })}
-            />
-        </div>
+       
 
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Image URL</label>
@@ -616,45 +608,7 @@ const AdminDashboard = () => {
             />
         </div>
 
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Image Src</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.imageSrc}
-                onChange={(e) => setNewFilm({ ...newFilm, imageSrc: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Image Alt</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.imageAlt}
-                onChange={(e) => setNewFilm({ ...newFilm, imageAlt: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Video Src</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.videoSrc}
-                onChange={(e) => setNewFilm({ ...newFilm, videoSrc: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Thumbnail</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.thumbnail}
-                onChange={(e) => setNewFilm({ ...newFilm, thumbnail: e.target.value })}
-            />
-        </div>
+      
 
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Release Date</label>
@@ -670,29 +624,21 @@ const AdminDashboard = () => {
             <label className={styles.formLabel}>Duration</label>
             <input
                 className={styles.formInput}
-                type="text"
+                type="number"
                 value={newFilm.duration}
                 onChange={(e) => setNewFilm({ ...newFilm, duration: e.target.value })}
             />
         </div>
 
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Categories</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.categories}
-                onChange={(e) => setNewFilm({ ...newFilm, categories: e.target.value })}
-            />
-        </div>
+       
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Author</label>
+            <label className={styles.formLabel}>Reditelj</label>
             <input
                 className={styles.formInput}
                 type="text"
-                value={newFilm.author}
-                onChange={(e) => setNewFilm({ ...newFilm, author: e.target.value })}
+                value={newFilm.reditelj}
+                onChange={(e) => setNewFilm({ ...newFilm, reditelj: e.target.value })}
             />
         </div>
 
@@ -706,73 +652,17 @@ const AdminDashboard = () => {
             />
         </div>
 
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Content</label>
-            <textarea
-                className={styles.formTextarea}
-                value={newFilm.content}
-                onChange={(e) => setNewFilm({ ...newFilm, content: e.target.value })}
-            />
-        </div>
+       
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Preuzeto</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.preuzeto}
-                onChange={(e) => setNewFilm({ ...newFilm, preuzeto: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Summary</label>
-            <textarea
-                className={styles.formTextarea}
-                value={newFilm.summary}
-                onChange={(e) => setNewFilm({ ...newFilm, summary: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Date</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.date}
-                onChange={(e) => setNewFilm({ ...newFilm, date: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Link</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.link}
-                onChange={(e) => setNewFilm({ ...newFilm, link: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Alt</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.alt}
-                onChange={(e) => setNewFilm({ ...newFilm, alt: e.target.value })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Type</label>
+            <label className={styles.formLabel}>Tip</label>
             <select
                 className={styles.formSelect}
                 value={newFilm.type}
                 onChange={(e) => setNewFilm({ ...newFilm, type: e.target.value })}
             >
-                <option value="movie">Movie</option>
-                <option value="show">Show</option>
+                <option value="film">Film</option>
+                <option value="serija">Serija</option>
             </select>
         </div>
 

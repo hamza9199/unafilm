@@ -2,97 +2,46 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelizeInstance');
 
 const Film = sequelize.define('Film', {
-    title: {
+    title: {//
         type: DataTypes.STRING,
         allowNull: true,
         defaultValue: "moj film",
     },
-    description: {
+    description: {//
         type: DataTypes.TEXT,
         allowNull: true,
     },
-    trailerUrl: {
+    trailerUrl: {//
         type: DataTypes.STRING,
         allowNull: true,
     },
-    detailsUrl: {
+    imageUrl: {//
         type: DataTypes.STRING,
         allowNull: true,
     },
-    imageUrl: {
+    imageUrl2: {//
         type: DataTypes.STRING,
         allowNull: true,
     },
-    imageUrl2: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    imageSrc:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    imageAlt:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    videoSrc:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    thumbnail:{
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    releaseDate: {
+    releaseDate: {//
         type: DataTypes.DATE,
         allowNull: true,
         defaultValue: DataTypes.NOW,
-
     },
-    duration: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    categories: {
-        type: DataTypes.JSON,
-        allowNull: true,
-    },
-    author: {
-        type: DataTypes.STRING,
-        allowNull: true,
-    },
-    comment: {
+    duration: {//
         type: DataTypes.INTEGER,
         allowNull: true,
     },
-    content: {
-        type: DataTypes.JSON,
-        allowNull: true,
-    },
-    preuzeto: {
+    reditelj: {//
         type: DataTypes.STRING,
         allowNull: true,
     },
-    summary:{
-        type: DataTypes.TEXT,
+    comment: {//
+        type: DataTypes.INTEGER,
         allowNull: true,
     },
-    date:{
-        type: DataTypes.DATE,
-        allowNull:true,
-        defaultValue: DataTypes.NOW,
-
-    },
-    link:{
-        type:DataTypes.STRING,
-        allowNull:true,
-    },
-    alt:{
-        type:DataTypes.STRING,
-        allowNull:true,
-    },
     type:{
-        type:DataTypes.STRING,
+        type:DataTypes.ENUM('serija', 'film'),
         allowNull:true,
     },
     tipMjesta: {

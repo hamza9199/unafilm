@@ -5,9 +5,11 @@ const sequelize = require('./sequelizeInstance')
 const Film = require('./modeli/Film')
 const Novost = require('./modeli/Novost')
 const Admin = require('./modeli/Admin')
+const Poruka = require('./modeli/Poruka')
 const AdminRouter = require('./kontroleri/AdminRouter')
 const FilmRouter = require('./kontroleri/FilmRouter');
 const NovostRouter = require('./kontroleri/NovostRouter');
+const PorukaRouter = require('./kontroleri/PorukaRouter')
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 
@@ -57,6 +59,7 @@ swaggerSetup(app);
 app.use('/server/filmovi', FilmRouter);
 app.use('/server/novosti', NovostRouter);
 app.use('/server/admin', AdminRouter)
+app.use('/server/poruke', PorukaRouter);
 
 
 

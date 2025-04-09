@@ -145,8 +145,9 @@
     left: -400px;
     padding: 10px;
     width: 440px;
-    transition: all 0.3s ease-in-out;
-    opacity: 0;
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out, visibility 0.3s;
+        opacity: 0;
+        transform-origin: top;
     transform: translateY(-20px); /* Pomiče se prema gore pri otvaranju */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     z-index: 1000000000000000;
@@ -155,7 +156,12 @@
 .searchBox.open {
     display: block;
     opacity: 1;
-    transform: translateY(0); /* Vraća se na normalnu poziciju pri otvaranju */
+    transform: translateY(0) scaleY(1);
+}
+
+.searchBox input:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .searchBox input {

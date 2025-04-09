@@ -57,7 +57,7 @@ const FilmInfo = () => {
                                     height="440" 
                                     src={film.imageUrl} 
                                     className={styles.img}
-                                    alt={film.imageAlt}
+                                    alt={film.title}
                                     decoding="async" 
                                 />
                             </div>

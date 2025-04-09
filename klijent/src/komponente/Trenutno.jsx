@@ -114,7 +114,7 @@ const Trenutno = () => {
               <h3 className={styles.movieTitle}>
                 <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`}>{selectedFilm.title}</a>
               </h3>
-              <p className={styles.duration}>Trajanje: {selectedFilm.duration}</p>
+              <p className={styles.duration}>Trajanje: {selectedFilm.duration} min</p>
               <p className={styles.releaseDate}>Datum izlaska: {new Date(selectedFilm.releaseDate).toLocaleDateString()}</p>
               <p className={styles.description}>{selectedFilm.description}</p>
               <div className={styles.buttons}>

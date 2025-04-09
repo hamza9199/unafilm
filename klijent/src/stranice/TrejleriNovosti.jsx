@@ -17,7 +17,7 @@ const ArticleItem = ({ film, novost }) => {
                             height="133"
                             src={film.imageUrl} // Ensure this is correct, otherwise use film.imageUrl properly
                             className="attachment-medium size-medium wp-post-image"
-                            alt={film.imageAlt || 'Film image'}
+                            alt={film.title || 'Film image'}
                             decoding="async"
                         />
                     </div>
@@ -29,7 +29,7 @@ const ArticleItem = ({ film, novost }) => {
                         </h1>
                         <div className={styles.entryInfo}>
                             <span className={`${styles.entryAuthor} entry-author p-author vcard hcard h-card`} itemtype="http://schema.org/Person" itemprop="author editor publisher">
-                                <a className="url uid u-url u-uid fn p-name" rel="author" itemprop="url" href={novost.author}>
+                                <a className="url uid u-url u-uid fn p-name" rel="author" itemprop="url" >
                                     By {novost.kreator}
                                 </a>
                             </span>
@@ -51,7 +51,7 @@ const ArticleItem = ({ film, novost }) => {
                                 )}
                             </span>
                             <span>/</span>
-                            <span className={styles.entryComment}>{film.comment}</span>
+                            <span className={styles.entryComment}>{film.comment} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                             <p>{novost.tekst4}</p>

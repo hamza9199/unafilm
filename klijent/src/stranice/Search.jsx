@@ -6,7 +6,7 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import styles from './css/Search.module.css';
 
-const ArticleItem = ({ link, title, date, tipMjesta, summary, comment, id }) => {
+const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id }) => {
     return (
         <div className={styles.articleItem}>
             <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
@@ -19,8 +19,8 @@ const ArticleItem = ({ link, title, date, tipMjesta, summary, comment, id }) => 
                         </h1>
                         <div className={styles.entryInfo}>
                             
-                            <a className="url u-url" href={link}>
-                                <span className={styles.entryDate}>{new Date(date).toLocaleDateString()}</span>
+                            <a className="url u-url" href={`/arhiva/film/${id}`}>
+                                <span className={styles.entryDate}>{new Date(releaseDate).toLocaleDateString()}</span>
                             </a>
                             <span>/</span>
                             <span className={styles.entryCategory}>
@@ -32,7 +32,7 @@ const ArticleItem = ({ link, title, date, tipMjesta, summary, comment, id }) => 
                             <span className={styles.entryComment}>{comment} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                            <p>{summary}</p>
+                            <p>{description}</p>
                         </div>
                     </div>
                 </div>

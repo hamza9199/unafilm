@@ -106,7 +106,7 @@ const Footer = () => {
                                             <div className={styles.entryMeta}>
                                                 <span className={styles.entryDate}>{new Date(movie.datumKreiranja).toLocaleDateString()}</span>
                                                 <span> / </span>
-                                                <span className={styles.entryComment}>{movie.film.comment}</span>
+                                                <span className={styles.entryComment}>{movie.film.comment} komentara</span>
                                             </div>
                                         </div>
                                         <div className={styles.clearfix}></div>

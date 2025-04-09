@@ -228,45 +228,16 @@ const { Sequelize, Op } = require('sequelize');
  *           type: string
  *         trailerUrl:
  *           type: string
- *         detailsUrl:
- *           type: string
  *         imageUrl:
  *           type: string
  *         imageUrl2:
- *           type: string
- *         imageSrc:
- *           type: string
- *         imageAlt:
- *           type: string
- *         videoSrc:
- *           type: string
- *         thumbnail:
  *           type: string
  *         releaseDate:
  *           type: string
  *           format: date
  *         duration:
- *           type: string
- *         categories:
- *           type: array
- *           items:
- *             type: string
- *         author:
- *           type: string
- *         comment:
  *           type: integer
- *         content:
- *           type: object
- *         preuzeto:
- *           type: string
- *         summary:
- *           type: string
- *         date:
- *           type: string
- *           format: date
- *         link:
- *           type: string
- *         alt:
+ *         reditelj:
  *           type: string
  *         type:
  *           type: string

@@ -15,7 +15,7 @@ const FilmItem = ({ src, alt, title, duration, id }) => {
                 </h2>
                 <div>
                     <span className={styles.duration}>
-                        <i className="fa fa-clock-o"></i> {duration}
+                        <i className="fa fa-clock-o"></i> {duration} min
                     </span>
                 </div>
             </div>
@@ -119,7 +119,7 @@ const LijeviBaner = () => {
                             <div className={styles.entryMeta}>
                                 <span className={styles.entryDate}>{new Date(item.datumKreiranja).toLocaleDateString()}</span>
                                 <span> / </span>
-                                <span className={styles.entryComment}>{item.film.comment}</span>
+                                <span className={styles.entryComment}>{item.film.comment} komentara</span>
                             </div>
                         </div>
                     </div>

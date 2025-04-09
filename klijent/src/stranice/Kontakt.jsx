@@ -1,10 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/Kontakt.module.css';
 import Breadcrumb from '../komponente/Breadcrumb';
 
 const Kontakt = () => {
+    const [formData, setFormData] = useState({
+        ime: '',
+        email: '',
+        poruka: '',
+    });
+
+    const [statusMessage, setStatusMessage] = useState('');
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.post('http://localhost:3000/server/poruke', formData);
+            if (response.status === 201) {
+                setStatusMessage('Poruka je uspješno poslana!');
+                setFormData({ ime: '', email: '', poruka: '' }); // Reset form
+            }
+        } catch  {
+            setStatusMessage('Došlo je do greške prilikom slanja poruke.');
+        }
+    };
+
     return (
         <>
             <Header />
@@ -31,21 +58,45 @@ const Kontakt = () => {
                 
                 <div className={styles.formSection}>
                     <h2 className="text-xl font-semibold mb-4">Kontaktirajte nas</h2>
-                    <form>
+                    <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label className={styles.formLabel}>Ime</label>
-                            <input type="text" className={styles.formInput} placeholder="Unesite ime" required />
+                            <input
+                                type="text"
+                                name="ime"
+                                value={formData.ime}
+                                onChange={handleChange}
+                                className={styles.formInput}
+                                placeholder="Unesite ime"
+                                required
+                            />
                         </div>
                         <div className="mb-4">
                             <label className={styles.formLabel}>Email</label>
-                            <input type="email" className={styles.formInput} placeholder="Unesite email" required />
+                            <input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                onChange={handleChange}
+                                className={styles.formInput}
+                                placeholder="Unesite email"
+                                required
+                            />
                         </div>
                         <div className="mb-4">
                             <label className={styles.formLabel}>Poruka</label>
-                            <textarea className={styles.formTextarea} placeholder="Unesite poruku" required></textarea>
+                            <textarea
+                                name="poruka"
+                                value={formData.poruka}
+                                onChange={handleChange}
+                                className={styles.formTextarea}
+                                placeholder="Unesite poruku"
+                                required
+                            ></textarea>
                         </div>
                         <button type="submit" className={styles.submitButton}>Pošalji</button>
                     </form>
+                    {statusMessage && <p className="mt-4">{statusMessage}</p>}
                 </div>
                 
                 {/* Google Map Embed */}

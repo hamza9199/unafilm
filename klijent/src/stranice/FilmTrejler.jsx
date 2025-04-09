@@ -64,7 +64,7 @@ const FilmTrejler = () => {
                                     <span className={styles.day}>{new Date(novost.datumKreiranja).toLocaleDateString()}</span>
                                 </div>
                                 <div className={styles.entryComment}>
-                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.comment}
+                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film.comment} komentara
                                 </div>
                             </div>
                             <div className={styles.entryLeft}>

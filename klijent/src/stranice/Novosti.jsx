@@ -17,7 +17,7 @@ const ArticleItem = ({ film, novost }) => {
                             height="133"
                             src={film.imageUrl}
                             className="attachment-medium size-medium wp-post-image"
-                            alt={film.imageAlt || 'Film image'}
+                            alt={film.title || 'Film image'}
                             decoding="async"
                         />
                     </div>
