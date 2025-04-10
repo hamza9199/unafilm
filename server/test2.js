@@ -37,7 +37,7 @@ async function insertNovost() {
                 slika1: 'https://unafilm.ba/wp-content/uploads/2025/03/Drop-FB-cover-BiH.jpg',
                 slika2: 'https://unafilm.ba/wp-content/uploads/2025/03/BAYOU-THE-1080x1920px-WEB-INSTAGRAM-174x300_c.jpg',
                 slika3: 'https://unafilm.ba/wp-content/uploads/2025/03/BAYOU-THE-1080x1920px-WEB-INSTAGRAM-174x300_c.jpg',
-                tipNovosti: 'novost',
+                tipNovosti: i % 3 === 0 ? 'novost' : i % 3 === 1 ? 'trailer' : 'svijetfilma',
                 datumKreiranja: '2025-04-07 23:36:58',
             });
         }
