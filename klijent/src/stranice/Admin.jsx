@@ -120,6 +120,10 @@ const AdminDashboard = () => {
             // Ako je uspešno, ažuriraj filmsku listu
             fetchFilms();
             setSelectedFilm(null);
+            setNewFilm({
+                title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+                duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro'
+            });
             setSelectedOption('films')
             console.log('Film created successfully:', response.data);
         } catch (error) {
@@ -166,6 +170,10 @@ const AdminDashboard = () => {
             // Ako je uspešno, ažuriraj filmsku listu
             fetchFilms();
             setSelectedFilm(null);
+            setNewFilm({
+                title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+                duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro'
+            });
             setSelectedOption('films')
             console.log('Film updated successfully:', response.data);
         } catch (error) {
@@ -218,6 +226,10 @@ const AdminDashboard = () => {
             // Ako je uspešno, ažuriraj listu novosti
             fetchNovosti();
             setSelectedNovost(null);
+            setNewNovost({
+                filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
+                slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
+            });
             setSelectedOption('novosti')
             console.log('Novost created successfully:', response.data);
         } catch (error) {
@@ -269,6 +281,10 @@ const AdminDashboard = () => {
             // Ako je uspešno, ažuriraj listu novosti
             fetchNovosti();
             setSelectedNovost(null);
+            setNewNovost({
+                filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
+                slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
+            });
             setSelectedOption('novosti')
             console.log('Novost updated successfully:', response.data);
         } catch (error) {
