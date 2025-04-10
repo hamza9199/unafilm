@@ -40,7 +40,7 @@ build/Release
 
 # Dependency directories
 node_modules/
-!node_modules/sqlite3/
+!server/node_modules/sqlite3/
 jspm_packages/
 unafilm_2/
 unafilm_2
