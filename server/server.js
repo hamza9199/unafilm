@@ -48,7 +48,7 @@ const PORT = 3000;
 
 // CORS opcije
 const corsOptions = {
-    origin: ['http://localhost:5173'],
+    origin: ['https://una-film-klijent.vercel.app/', 'http://localhost:5173'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
