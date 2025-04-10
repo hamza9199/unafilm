@@ -11,6 +11,8 @@
         "src": "/(.*)",
         "dest": "server.js"
       }
-    ]
+    ],
+    "includeFiles": ["database.sqlite", "uploads/**"]
+
     
   }
