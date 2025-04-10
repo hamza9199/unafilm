@@ -59,6 +59,11 @@ app.use('/server/novosti', NovostRouter);
 app.use('/server/admin', AdminRouter);
 app.use('/server/poruke', PorukaRouter);
 
+app.use("/" , (req, res) => {
+    res.status(200).json({ message: "Server radi!" });
+}
+);
+
 // Pokretanje servera
 app.listen(PORT, () => {
     console.log(`Server pokrenut na http://localhost:${PORT}`);
