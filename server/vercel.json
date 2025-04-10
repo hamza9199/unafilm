@@ -11,11 +11,7 @@
         "src": "/(.*)",
         "dest": "server.js"
       }
-    ],
-    "functions": {
-      "api/*": {
-        "includeFiles": ["node_modules/sqlite3/**/*"]
-      }
-    }
+    ]
+    
     
   }
