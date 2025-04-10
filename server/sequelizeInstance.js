@@ -13,19 +13,11 @@ const mysql = require('serverless-mysql');
 });*/
 
 
-// Optimize Sequelize for Vercel (serverless)
 const sequelize = new Sequelize('defaultdb', 'avnadmin', 'AVNS_bYKnnvCQgPQoFwz-s3Q', {
     host: 'decibel-redbullshop.h.aivencloud.com',
     dialect: 'mysql',
     logging: false,
-    port: 16855,
-    pool: { 
-        max: 1,  // Prevent too many persistent connections
-        min: 0,  
-        idle: 5000, 
-        acquire: 30000 
-    },
-    define: { freezeTableName: true }, // Prevent Sequelize from pluralizing table names
+    port: '16855',
 });
 
 
