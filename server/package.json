@@ -6,7 +6,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
-    "postinstall": "npm rebuild sqlite3"
+    "postinstall": "npm install sqlite3"
   },
   "keywords": [],
   "author": "",
