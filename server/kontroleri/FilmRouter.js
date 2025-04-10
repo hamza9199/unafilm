@@ -284,12 +284,12 @@ router.post('/', upload.fields([
     };
 
     if (req.files.image1) {
-      const imagePath1 = `http://localhost:3000/uploads/${req.files.image1[0].filename}`;
+      const imagePath1 = `https://unafilm-production.up.railway.app/uploads/${req.files.image1[0].filename}`;
       newFilmData.imageUrl = imagePath1; // Set the imageUrl field
     }
 
     if (req.files.image2) {
-      const imagePath2 = `http://localhost:3000/uploads/${req.files.image2[0].filename}`;
+      const imagePath2 = `https://unafilm-production.up.railway.app/uploads/${req.files.image2[0].filename}`;
       newFilmData.imageUrl2 = imagePath2; // Set the imageUrl2 field
     }
 
@@ -387,12 +387,12 @@ router.put('/:id', upload.fields([
     const updatedFilmData = { ...req.body };
 
     if (req.files.image1) {
-      const imagePath1 = `http://localhost:3000/uploads/${req.files.image1[0].filename}`;
+      const imagePath1 = `https://unafilm-production.up.railway.app/uploads/${req.files.image1[0].filename}`;
       updatedFilmData.imageUrl = imagePath1; // Update the imageUrl field
     }
 
     if (req.files.image2) {
-      const imagePath2 = `http://localhost:3000/uploads/${req.files.image2[0].filename}`;
+      const imagePath2 = `https://unafilm-production.up.railway.app/uploads/${req.files.image2[0].filename}`;
       updatedFilmData.imageUrl2 = imagePath2; // Update the imageUrl2 field
     }
 

@@ -291,13 +291,13 @@ router.post('/', upload.fields([
         };
 
         if (req.files.slika1) {
-            newNovostData.slika1 = `/uploads/${req.files.slika1[0].filename}`;
+            newNovostData.slika1 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika1[0].filename}`;
         }
         if (req.files.slika2) {
-            newNovostData.slika2 = `/uploads/${req.files.slika2[0].filename}`;
+            newNovostData.slika2 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika2[0].filename}`;
         }
         if (req.files.slika3) {
-            newNovostData.slika3 = `/uploads/${req.files.slika3[0].filename}`;
+            newNovostData.slika3 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika3[0].filename}`;
         }
 
         const novost = await Novost.create(newNovostData);
@@ -397,13 +397,13 @@ router.put('/:id', upload.fields([
         const updatedData = { ...req.body };
 
         if (req.files.slika1) {
-            updatedData.slika1 = `http://localhost:3000/uploads/${req.files.slika1[0].filename}`;
+            updatedData.slika1 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika1[0].filename}`;
         }
         if (req.files.slika2) {
-            updatedData.slika2 = `http://localhost:3000/uploads/${req.files.slika2[0].filename}`;
+            updatedData.slika2 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika2[0].filename}`;
         }
         if (req.files.slika3) {
-            updatedData.slika3 = `http://localhost:3000/uploads/${req.files.slika3[0].filename}`;
+            updatedData.slika3 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika3[0].filename}`;
         }
 
         await novost.update(updatedData);

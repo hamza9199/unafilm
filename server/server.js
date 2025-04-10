@@ -20,7 +20,7 @@ const PORT = 3000;
 
 
 // Testiranje konekcije s bazom
-/*(async () => {
+(async () => {
     try {
         await sequelize.authenticate();
         console.log('Konekcija s SQLite bazom je uspješna.');
@@ -31,9 +31,9 @@ const PORT = 3000;
         console.error('Greška pri konekciji s bazom:', error);
         process.exit(1);
     }
-})();*/
+})();
 
-
+/*
 (async () => {
     try {
         await sequelize.authenticate();
@@ -44,7 +44,7 @@ const PORT = 3000;
         console.error('Greška pri konekciji s bazom:', error);
         process.exit(1);
     }
-})();
+})();*/
 
 // CORS opcije
 const corsOptions = {
