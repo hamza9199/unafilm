@@ -55,7 +55,7 @@ const RelatedArticle = () => {
                             <div className={styles.entryInfo}>
                                 <span className={styles.entryDate}>{new Date(article.datumKreiranja).toLocaleDateString()}</span>
                                 <span>/</span>
-                                <span className={styles.entryComment}>{article.film.comment}</span>
+                                <span className={styles.entryComment}>{article.film.comment} komentara</span>
                             </div>
                         </article>
                     ))}
