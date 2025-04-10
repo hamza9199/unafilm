@@ -38,7 +38,7 @@ const LijeviBaner = () => {
         // Fetch films from API
         const fetchFilms = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for films
+                const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi'); // API endpoint for films
                 const randomFilms = response.data.sort(() => Math.random() - 0.5).slice(0, 4); // Get 4 random films
                 setFilms(randomFilms);
                 setLoadingFilms(false);
@@ -51,7 +51,7 @@ const LijeviBaner = () => {
         // Fetch news items from API
         const fetchNews = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/server/novosti'); // API endpoint for news
+                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti'); // API endpoint for news
                 const randomNews = response.data.sort(() => Math.random() - 0.5).slice(0, 2); // Get 2 random news
                 setNewsItems(randomNews);
                 setLoadingNews(false);

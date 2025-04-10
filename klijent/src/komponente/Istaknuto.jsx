@@ -16,7 +16,7 @@ const Istaknuto = () => {
   useEffect(() => {
     const fetchFilmovi = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/server/filmovi'); // API endpoint for films
+        const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi'); // API endpoint for films
         setFilmovi(response.data.sort(() => Math.random() - 0.5).slice(0,6)); // Limiting to 2 films
         setLoading(false);
       } catch (err) {

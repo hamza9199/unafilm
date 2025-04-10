@@ -11,7 +11,7 @@ const Uskoro = () => {
   useEffect(() => {
     const fetchFilms = async () => {
       try {
-        const response = await axios.get('http://localhost:3000/server/filmovi/uskoro'); // Replace with your actual API endpoint
+        const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi/uskoro'); // Replace with your actual API endpoint
         setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 6)); // Assuming the API returns an array of films
         setLoading(false); // Set loading to false after fetching data
       } catch {

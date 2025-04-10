@@ -77,7 +77,7 @@ const IzSvijetaFilma = () => {
         // Fetch novosti data from API
         const fetchNovosti = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/server/novosti/svijetfilma'); // Your API endpoint
+                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti/svijetfilma'); // Your API endpoint
                 setNovosti(response.data);
                 setLoading(false);
             } catch {

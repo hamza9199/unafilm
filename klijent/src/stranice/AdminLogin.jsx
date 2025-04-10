@@ -16,7 +16,7 @@ const AdminLogin = () => {
         setError('');
 
         try {
-            const response = await axios.post('http://localhost:3000/server/admin/login', {
+            const response = await axios.post('https://unafilm-production.up.railway.app/server/admin/login', {
                 username,
                 password,
             });

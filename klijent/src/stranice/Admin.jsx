@@ -46,7 +46,7 @@ const AdminDashboard = () => {
             const fetchArticles = async () => {
                 if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
                 try {
-                    const response = await fetch(`http://localhost:3000/server/filmovi/search/${searchTerm}`);
+                    const response = await fetch(`https://unafilm-production.up.railway.app/server/filmovi/search/${searchTerm}`);
                     const data = await response.json();
     
                     if (response.ok) {
@@ -66,7 +66,7 @@ const AdminDashboard = () => {
         const fetchArticles2 = async () => {
             if (!searchTerm2.trim()) return; // Prevent API call if the search term is empty
             try {
-                const response = await fetch(`http://localhost:3000/server/novosti/search/${searchTerm2}`);
+                const response = await fetch(`https://unafilm-production.up.railway.app/server/novosti/search/${searchTerm2}`);
                 const data = await response.json();
 
                 if (response.ok) {
@@ -111,7 +111,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData (film i slike) na backend
-            const response = await axios.post('http://localhost:3000/server/filmovi', formData, {
+            const response = await axios.post('https://unafilm-production.up.railway.app/server/filmovi', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Moramo postaviti ovaj header za upload fajlova
                 }
@@ -155,7 +155,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData sa filmom na backend
-            const response = await axios.put(`http://localhost:3000/server/filmovi/${selectedFilm.id}`, formData, {
+            const response = await axios.put(`https://unafilm-production.up.railway.app/server/filmovi/${selectedFilm.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
                 }
@@ -206,7 +206,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData sa novostima na backend
-            const response = await axios.post('http://localhost:3000/server/novosti', formData, {
+            const response = await axios.post('https://unafilm-production.up.railway.app/server/novosti', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
                 }
@@ -255,7 +255,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData sa novostima na backend
-            const response = await axios.put(`http://localhost:3000/server/novosti/${selectedNovost.id}`, formData, {
+            const response = await axios.put(`https://unafilm-production.up.railway.app/server/novosti/${selectedNovost.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
                 }
@@ -276,7 +276,7 @@ const AdminDashboard = () => {
 
     const fetchFilms = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/server/filmovi');
+            const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi');
             setFilms(response.data);
         } catch (error) {
             console.error('Error fetching films:', error);
@@ -285,7 +285,7 @@ const AdminDashboard = () => {
 
     const fetchNovosti = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/server/novosti');
+            const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti');
             setNovosti(response.data);
         } catch (error) {
             console.error('Error fetching novosti:', error);
@@ -294,7 +294,7 @@ const AdminDashboard = () => {
 
     const fetchPoruke = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/server/poruke');
+            const response = await axios.get('https://unafilm-production.up.railway.app/server/poruke');
             setPoruke(response.data);
         } catch (error) {
             console.error('Error fetching novosti:', error);
@@ -304,7 +304,7 @@ const AdminDashboard = () => {
 
     const handleDeleteFilm = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/server/filmovi/${id}`);
+            await axios.delete(`https://unafilm-production.up.railway.app/server/filmovi/${id}`);
             fetchFilms();
         } catch (error) {
             console.error('Error deleting film:', error);
@@ -313,7 +313,7 @@ const AdminDashboard = () => {
 
     const handleDeleteNovost = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/server/novosti/${id}`);
+            await axios.delete(`https://unafilm-production.up.railway.app/server/novosti/${id}`);
             fetchNovosti();
         } catch (error) {
             console.error('Error deleting novost:', error);
@@ -322,7 +322,7 @@ const AdminDashboard = () => {
 
     const handleDeletePoruke = async (id) => {
         try {
-            await axios.delete(`http://localhost:3000/server/poruke/${id}`);
+            await axios.delete(`https://unafilm-production.up.railway.app/server/poruke/${id}`);
             fetchPoruke();
         } catch (error) {
             console.error('Error deleting poruka:', error);
