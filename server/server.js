@@ -20,12 +20,25 @@ const PORT = 3000;
 
 
 // Testiranje konekcije s bazom
-(async () => {
+/*(async () => {
     try {
         await sequelize.authenticate();
         console.log('Konekcija s SQLite bazom je uspješna.');
         await sequelize.query('PRAGMA foreign_keys = ON;');
         await sequelize.sync({ force: false }); // Onemogućeno automatsko ažuriranje
+        console.log('Baza sinhronizovana.');
+    } catch (error) {
+        console.error('Greška pri konekciji s bazom:', error);
+        process.exit(1);
+    }
+})();*/
+
+
+(async () => {
+    try {
+        await sequelize.authenticate();
+        console.log('Konekcija s MySQL bazom je uspješna.');
+        await sequelize.sync({ alter: true }); // Sinhronizacija modela s bazom
         console.log('Baza sinhronizovana.');
     } catch (error) {
         console.error('Greška pri konekciji s bazom:', error);
