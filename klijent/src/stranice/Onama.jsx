@@ -3,15 +3,22 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/Onama.module.css';
 import Breadcrumb from '../komponente/Breadcrumb';
+import slika1 from './../assets/img_52-1.jpg'; // Adjust the path as necessary
+import slika2 from './../assets/img_53-1.jpg'; // Adjust the path as necessary
+import slika3 from './../assets/img_54-1.jpg'; // Adjust the path as necessary
+import slika4 from './../assets/img_56-1.jpg'; // Adjust the path as necessary
+import slika5 from './../assets/img_57-1.jpg'; // Adjust the path as necessary
+import slika6 from './../assets/img_58-1.jpg'; // Adjust the path as necessary
+
 
 const Onama = () => {
     const images = [
-        "https://unafilm.ba/wp-content/uploads/2022/05/img_56-1.jpg",
-        "https://unafilm.ba/wp-content/uploads/2022/05/img_58-1.jpg",
-        "https://unafilm.ba/wp-content/uploads/2022/05/img_57-1.jpg",
-        "https://unafilm.ba/wp-content/uploads/2022/05/img_52-1.jpg",
-        "https://unafilm.ba/wp-content/uploads/2022/05/img_54-1.jpg",
-        "https://unafilm.ba/wp-content/uploads/2022/05/img_53-1.jpg"
+        slika1,
+        slika2,
+        slika3,
+        slika4,
+        slika5,
+        slika6,
     ];
 
     return (
