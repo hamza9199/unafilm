@@ -119,6 +119,8 @@ const AdminDashboard = () => {
     
             // Ako je uspešno, ažuriraj filmsku listu
             fetchFilms();
+            setSelectedFilm(null);
+            setSelectedOption('films')
             console.log('Film created successfully:', response.data);
         } catch (error) {
             console.error('Error creating film:', error);
@@ -164,6 +166,7 @@ const AdminDashboard = () => {
             // Ako je uspešno, ažuriraj filmsku listu
             fetchFilms();
             setSelectedFilm(null);
+            setSelectedOption('films')
             console.log('Film updated successfully:', response.data);
         } catch (error) {
             console.error('Error updating film:', error);
@@ -214,6 +217,8 @@ const AdminDashboard = () => {
     
             // Ako je uspešno, ažuriraj listu novosti
             fetchNovosti();
+            setSelectedNovost(null);
+            setSelectedOption('novosti')
             console.log('Novost created successfully:', response.data);
         } catch (error) {
             console.error('Error creating novost:', error);
@@ -264,6 +269,7 @@ const AdminDashboard = () => {
             // Ako je uspešno, ažuriraj listu novosti
             fetchNovosti();
             setSelectedNovost(null);
+            setSelectedOption('novosti')
             console.log('Novost updated successfully:', response.data);
         } catch (error) {
             console.error('Error updating novost:', error);
@@ -563,7 +569,7 @@ const AdminDashboard = () => {
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Release Date</label>
-                                <input className={styles.input} type="text" placeholder="Release Date" value={newFilm.releaseDate} onChange={(e) => setNewFilm({ ...newFilm, releaseDate: e.target.value })} />
+                                <input className={styles.input} type="date" placeholder="Release Date" value={newFilm.releaseDate} onChange={(e) => setNewFilm({ ...newFilm, releaseDate: e.target.value })} />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Trajanje</label>
@@ -664,7 +670,7 @@ const AdminDashboard = () => {
             <label className={styles.formLabel}>Release Date</label>
             <input
                 className={styles.formInput}
-                type="text"
+                type="date"
                 value={newFilm.releaseDate}
                 onChange={(e) => setNewFilm({ ...newFilm, releaseDate: e.target.value })}
             />
