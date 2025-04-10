@@ -3,7 +3,6 @@ import axios from 'axios';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/AdminDashboard.module.css';
-import storage from "../context/firebase"
 
 const AdminDashboard = () => {
     const [films, setFilms] = useState([]);
@@ -85,141 +84,192 @@ const AdminDashboard = () => {
 
        
 
-    const upload = (items, callback) => {
-        let uploadedCount = 0;
-        const uploadedUrls = {};
-    
-        items.forEach((item) => {
-            const fileName = new Date().getTime() + item.label + item.file.name;
-            const uploadTask = storage.ref(`/items/${fileName}`).put(item.file);
-    
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const progress =
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log("Upload is " + progress + "% complete");
-                },
-                (error) => {
-                    console.error("Error uploading file:", error);
-                },
-                () => {
-                    uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-                        uploadedUrls[item.label] = url;
-                        uploadedCount++;
-    
-                        if (uploadedCount === items.length) {
-                            callback(uploadedUrls);
-                        }
-                    });
-                }
-            );
-        });
-    };
+ 
     
     const handleCreateFilm = async () => {
-        const itemsToUpload = [
-            { file: newFilm.imageUrl, label: "imageUrl" },
-            { file: newFilm.imageUrl2, label: "imageUrl2" },
-        ];
+        const formData = new FormData();
     
-        upload(itemsToUpload, async (uploadedUrls) => {
-            const updatedFilm = { ...newFilm, ...uploadedUrls };
+        // Dodaj filmove podatke
+        formData.append('title', newFilm.title);
+        formData.append('description', newFilm.description);
+        formData.append('trailerUrl', newFilm.trailerUrl);
+        formData.append('duration', newFilm.duration);
+        formData.append('reditelj', newFilm.reditelj);
+        formData.append('type', newFilm.type);
+        formData.append('tipMjesta', newFilm.tipMjesta);
+        formData.append('comment', newFilm.comment);
+
     
-            try {
-                await axios.post('http://localhost:3000/server/filmovi', updatedFilm);
-                fetchFilms();
-            } catch (error) {
-                console.error('Error creating film:', error);
-            }
-        });
+    
+        // Dodaj slike (ako postoje)
+        if (newFilm.imageUrl) {
+            formData.append('image1', newFilm.imageUrl); // Prva slika
+        }
+        if (newFilm.imageUrl2) {
+            formData.append('image2', newFilm.imageUrl2); // Druga slika
+        }
+    
+        try {
+            // Pošaljemo formData (film i slike) na backend
+            const response = await axios.post('http://localhost:3000/server/filmovi', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Moramo postaviti ovaj header za upload fajlova
+                }
+            });
+    
+            // Ako je uspešno, ažuriraj filmsku listu
+            fetchFilms();
+            console.log('Film created successfully:', response.data);
+        } catch (error) {
+            console.error('Error creating film:', error);
+        }
     };
+    
+    
     
     const handleUpdateFilm = async () => {
-        const itemsToUpload = [];
+        const formData = new FormData();
+    
+        // Dodaj filmove podatke
+        formData.append('title', newFilm.title);
+        formData.append('description', newFilm.description);
+        formData.append('trailerUrl', newFilm.trailerUrl);
+        formData.append('duration', newFilm.duration);
+        formData.append('reditelj', newFilm.reditelj);
+        formData.append('type', newFilm.type);
+        formData.append('tipMjesta', newFilm.tipMjesta);
+        formData.append('comment', newFilm.comment);
+
+        // Dodaj slike (ako postoje i ako su fajlovi)
         if (newFilm.imageUrl instanceof File) {
-            itemsToUpload.push({ file: newFilm.imageUrl, label: "imageUrl" });
+            formData.append('image1', newFilm.imageUrl); // Dodaj prvu sliku
+        } else if (newFilm.imageUrl) {
+            formData.append('image1', newFilm.imageUrl); // Ako je putanja, koristi to
         }
+    
         if (newFilm.imageUrl2 instanceof File) {
-            itemsToUpload.push({ file: newFilm.imageUrl2, label: "imageUrl2" });
+            formData.append('image2', newFilm.imageUrl2); // Dodaj drugu sliku
+        } else if (newFilm.imageUrl2) {
+            formData.append('image2', newFilm.imageUrl2); // Ako je putanja, koristi to
         }
-
-        if (itemsToUpload.length > 0) {
-            upload(itemsToUpload, async (uploadedUrls) => {
-                const updatedFilm = { ...newFilm, ...uploadedUrls };
-
-                try {
-                    await axios.put(`http://localhost:3000/server/filmovi/${selectedFilm.id}`, updatedFilm);
-                    fetchFilms();
-                    setSelectedFilm(null);
-                } catch (error) {
-                    console.error('Error updating film:', error);
+    
+        try {
+            // Pošaljemo formData sa filmom na backend
+            const response = await axios.put(`http://localhost:3000/server/filmovi/${selectedFilm.id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
                 }
             });
-        } else {
-            try {
-                await axios.put(`http://localhost:3000/server/filmovi/${selectedFilm.id}`, newFilm);
-                fetchFilms();
-                setSelectedFilm(null);
-            } catch (error) {
-                console.error('Error updating film:', error);
-            }
+    
+            // Ako je uspešno, ažuriraj filmsku listu
+            fetchFilms();
+            setSelectedFilm(null);
+            console.log('Film updated successfully:', response.data);
+        } catch (error) {
+            console.error('Error updating film:', error);
         }
     };
+    
     
     const handleCreateNovost = async () => {
-        const itemsToUpload = [
-            { file: newNovost.slika1, label: "slika1" },
-            { file: newNovost.slika2, label: "slika2" },
-            { file: newNovost.slika3, label: "slika3" },
-        ];
+        const formData = new FormData();
     
-        upload(itemsToUpload, async (uploadedUrls) => {
-            const updatedNovost = { ...newNovost, ...uploadedUrls };
-    
-            try {
-                await axios.post('http://localhost:3000/server/novosti', updatedNovost);
-                fetchNovosti();
-            } catch (error) {
-                console.error('Error creating novost:', error);
-            }
-        });
-    };
-    
-    const handleUpdateNovost = async () => {
-        const itemsToUpload = [];
+        // Dodaj novost podatke
+        formData.append('title', newNovost.title);
+        formData.append('kreator', newNovost.kreator);
+        formData.append('tekst', newNovost.tekst);
+        formData.append('tekst2', newNovost.tekst2);
+        formData.append('tekst3', newNovost.tekst3);
+        formData.append('tekst4', newNovost.tekst4);
+        formData.append('tipNovosti', newNovost.tipNovosti);
+        formData.append('filmId', newNovost.filmId);
+
+        
+        // Dodaj slike (ako postoje i ako su fajlovi)
         if (newNovost.slika1 instanceof File) {
-            itemsToUpload.push({ file: newNovost.slika1, label: "slika1" });
+            formData.append('slika1', newNovost.slika1); // Dodaj prvu sliku
+        } else if (newNovost.slika1) {
+            formData.append('slika1', newNovost.slika1); // Ako je putanja, koristi to
         }
+    
         if (newNovost.slika2 instanceof File) {
-            itemsToUpload.push({ file: newNovost.slika2, label: "slika2" });
+            formData.append('slika2', newNovost.slika2); // Dodaj drugu sliku
+        } else if (newNovost.slika2) {
+            formData.append('slika2', newNovost.slika2); // Ako je putanja, koristi to
         }
+    
         if (newNovost.slika3 instanceof File) {
-            itemsToUpload.push({ file: newNovost.slika3, label: "slika3" });
+            formData.append('slika3', newNovost.slika3); // Dodaj treću sliku
+        } else if (newNovost.slika3) {
+            formData.append('slika3', newNovost.slika3); // Ako je putanja, koristi to
         }
-
-        if (itemsToUpload.length > 0) {
-            upload(itemsToUpload, async (uploadedUrls) => {
-                const updatedNovost = { ...newNovost, ...uploadedUrls };
-
-                try {
-                    await axios.put(`http://localhost:3000/server/novosti/${selectedNovost.id}`, updatedNovost);
-                    fetchNovosti();
-                    setSelectedNovost(null);
-                } catch (error) {
-                    console.error('Error updating novost:', error);
+    
+        try {
+            // Pošaljemo formData sa novostima na backend
+            const response = await axios.post('http://localhost:3000/server/novosti', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
                 }
             });
-        } else {
-            try {
-                await axios.put(`http://localhost:3000/server/novosti/${selectedNovost.id}`, newNovost);
-                fetchNovosti();
-                setSelectedNovost(null);
-            } catch (error) {
-                console.error('Error updating novost:', error);
-            }
+    
+            // Ako je uspešno, ažuriraj listu novosti
+            fetchNovosti();
+            console.log('Novost created successfully:', response.data);
+        } catch (error) {
+            console.error('Error creating novost:', error);
         }
     };
+    
+    
+    const handleUpdateNovost = async () => {
+        const formData = new FormData();
+    
+        // Dodaj novost podatke
+        formData.append('title', newNovost.title);
+        formData.append('kreator', newNovost.kreator);
+        formData.append('tekst', newNovost.tekst);
+        formData.append('tekst2', newNovost.tekst2);
+        formData.append('tekst3', newNovost.tekst3);
+        formData.append('tekst4', newNovost.tekst4);
+        formData.append('tipNovosti', newNovost.tipNovosti);
+        formData.append('filmId', newNovost.filmId);
+    
+        // Dodaj slike (ako postoje i ako su fajlovi)
+        if (newNovost.slika1 instanceof File) {
+            formData.append('slika1', newNovost.slika1); // Dodaj prvu sliku
+        } else if (newNovost.slika1) {
+            formData.append('slika1', newNovost.slika1); // Ako je putanja, koristi to
+        }
+    
+        if (newNovost.slika2 instanceof File) {
+            formData.append('slika2', newNovost.slika2); // Dodaj drugu sliku
+        } else if (newNovost.slika2) {
+            formData.append('slika2', newNovost.slika2); // Ako je putanja, koristi to
+        }
+    
+        if (newNovost.slika3 instanceof File) {
+            formData.append('slika3', newNovost.slika3); // Dodaj treću sliku
+        } else if (newNovost.slika3) {
+            formData.append('slika3', newNovost.slika3); // Ako je putanja, koristi to
+        }
+    
+        try {
+            // Pošaljemo formData sa novostima na backend
+            const response = await axios.put(`http://localhost:3000/server/novosti/${selectedNovost.id}`, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
+                }
+            });
+    
+            // Ako je uspešno, ažuriraj listu novosti
+            fetchNovosti();
+            setSelectedNovost(null);
+            console.log('Novost updated successfully:', response.data);
+        } catch (error) {
+            console.error('Error updating novost:', error);
+        }
+    };
+    
     
 
 
@@ -521,7 +571,7 @@ const AdminDashboard = () => {
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Reditelj</label>
-                                <input className={styles.input} type="text" placeholder="Author" value={newFilm.reditelj} onChange={(e) => setNewFilm({ ...newFilm, author: e.target.value })} />
+                                <input className={styles.input} type="text" placeholder="Author" value={newFilm.reditelj} onChange={(e) => setNewFilm({ ...newFilm, reditelj: e.target.value })} />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Comment</label>

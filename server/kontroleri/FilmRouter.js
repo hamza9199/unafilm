@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 const  Film  = require('../modeli/Film');
 const { Sequelize, Op } = require('sequelize'); 
+const multer = require('multer');
+const storage = require('../kontroleri/multer.js'); // Import the multer storage configuration
+const upload = multer({ storage });
+
 
 /**
  * @swagger
@@ -260,13 +264,41 @@ router.get('/', async (req, res) => {
   }
 });
 
-
-// Create a new film
-router.post('/', async (req, res) => {
+// Create a new film with image upload
+router.post('/', upload.fields([
+  { name: "image1", maxCount: 1 },
+  { name: "image2", maxCount: 1 }
+]), async (req, res) => {
   try {
-    console.log("Received data:", req.body);  // Dodaj ovu liniju
-    const newFilm = await Film.create(req.body);
-    res.status(201).json(newFilm);
+    const { title, description, trailerUrl, releaseDate, duration, reditelj, type, tipMjesta } = req.body;
+
+    const newFilmData = {
+      title,
+      description,
+      trailerUrl,
+      releaseDate,
+      duration,
+      reditelj,
+      type,
+      tipMjesta,
+    };
+
+    if (req.files.image1) {
+      const imagePath1 = `http://localhost:3000/uploads/${req.files.image1[0].filename}`;
+      newFilmData.imageUrl = imagePath1; // Set the imageUrl field
+    }
+
+    if (req.files.image2) {
+      const imagePath2 = `http://localhost:3000/uploads/${req.files.image2[0].filename}`;
+      newFilmData.imageUrl2 = imagePath2; // Set the imageUrl2 field
+    }
+
+    const newFilm = await Film.create(newFilmData);
+
+    res.status(201).json({
+      message: "Film created successfully",
+      film: newFilm,
+    });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
@@ -341,14 +373,30 @@ router.get('/:id', async (req, res) => {
 
 
 
-// Update an existing film by ID
-router.put('/:id', async (req, res) => {
+// Update an existing film by ID with image upload
+router.put('/:id', upload.fields([
+  { name: "image1", maxCount: 1 },
+  { name: "image2", maxCount: 1 }
+]), async (req, res) => {
   try {
     const film = await Film.findByPk(req.params.id);
     if (!film) {
       return res.status(404).json({ error: 'Film not found' });
     }
-    await film.update(req.body);
+
+    const updatedFilmData = { ...req.body };
+
+    if (req.files.image1) {
+      const imagePath1 = `http://localhost:3000/uploads/${req.files.image1[0].filename}`;
+      updatedFilmData.imageUrl = imagePath1; // Update the imageUrl field
+    }
+
+    if (req.files.image2) {
+      const imagePath2 = `http://localhost:3000/uploads/${req.files.image2[0].filename}`;
+      updatedFilmData.imageUrl2 = imagePath2; // Update the imageUrl2 field
+    }
+
+    await film.update(updatedFilmData);
     res.json(film);
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -406,6 +454,8 @@ router.get('/search/:query', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while searching for films. Please try again later.' });
   }
 });
+
+
 
 
 

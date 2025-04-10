@@ -3,13 +3,21 @@ const sequelize = require('../sequelizeInstance');
 const Film = require('../modeli/Film');  
 
 const Novost = sequelize.define('Novost', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,  
+    },
     filmId: {
         type: DataTypes.INTEGER,  
+        allowNull: true,
         references: {
-            model: Film,  
+            model: Film,
             key: 'id',
         },
-        allowNull: true,
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+
     },
     title: {
         type: DataTypes.STRING,
@@ -64,5 +72,6 @@ const Novost = sequelize.define('Novost', {
 });
 
 Novost.belongsTo(Film, { foreignKey: 'filmId', as: 'film' });
+
 
 module.exports = Novost;

@@ -2,6 +2,11 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelizeInstance');
 
 const Admin = sequelize.define('Admin', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,  // Osigurava automatski inkrement ID
+      },
     username: {
         type: DataTypes.STRING,
         allowNull: false,

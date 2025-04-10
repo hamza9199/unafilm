@@ -2,6 +2,11 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelizeInstance');
 
 const Poruka = sequelize.define('Poruka', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,  // Osigurava automatski inkrement ID
+      },
     ime: {
         type: DataTypes.STRING,
         allowNull: false,

@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './css/Header.module.css';
 import {  useNavigate } from 'react-router-dom';
+import logo from './../assets/unaFilm141-2.png'; // Adjust the path as necessary
+
 
 const Header = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -32,7 +34,7 @@ const Header = () => {
             <div className={styles.container}>
                 <div className={styles.logo}>
                     <a href="/">
-                        <img src="https://unafilm.ba/wp-content/uploads/2024/12/unaFilm141-2.png" alt="Una Film Distribucija" />
+                        <img src={logo} alt="Una Film Distribucija" />
                     </a>
                 </div>
                 <nav id="amy-site-nav" className={`${styles.nav} ${isMobileMenuOpen ? styles.mobileOpen : ''}`}>

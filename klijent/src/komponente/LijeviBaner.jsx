@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/LijeviBaner.module.css';
+import logo from './../assets/unaFilm-2.jpg'; // Adjust the path as necessary
+
 
 // Component for rendering each film item
 const FilmItem = ({ src, alt, title, duration, id }) => {
@@ -80,7 +82,7 @@ const LijeviBaner = () => {
                         decoding="async"
                         width="320"
                         height="320"
-                        src="https://unafilm.ba/wp-content/uploads/2024/12/unaFilm-2.jpg"
+                        src={logo}
                         alt=""
                         className={styles.wpImage}
                     />

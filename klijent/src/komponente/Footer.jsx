@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Footer.module.css';
+import logo from './../assets/unaFilm141-2.png'; // Adjust the path as necessary
 
 const Footer = () => {
     const [movies, setMovies] = useState([]);
@@ -43,7 +44,7 @@ const Footer = () => {
                                 <div className={styles.footerLogo}>
                                     <a href="https://unafilm.ba/">
                                         <img
-                                            src="https://unafilm.ba/wp-content/uploads/2024/12/unaFilm141-2.png"
+                                            src={logo}
                                             alt="Una Film Logo"
                                         />
                                     </a>

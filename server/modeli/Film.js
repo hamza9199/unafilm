@@ -1,7 +1,13 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelizeInstance');
 
+
 const Film = sequelize.define('Film', {
+    id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,  // Osigurava automatski inkrement ID
+      },
     title: {//
         type: DataTypes.STRING,
         allowNull: true,
