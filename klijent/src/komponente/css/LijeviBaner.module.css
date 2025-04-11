@@ -2,7 +2,7 @@
 .sidebar {
     width: 300px;
     padding: 20px;
-    }
+}
 
 .widgetBlock {
     margin-bottom: 20px;
@@ -13,7 +13,7 @@
 }
 
 .wpImage {
-    max-width: 290px;
+    max-width: 100%;
     height: auto;
 }
 
@@ -28,6 +28,8 @@
 
 .entryItem {
     display: flex;
+    align-items: center;
+    gap: 15px;
     margin-bottom: 15px;
 }
 
@@ -35,14 +37,13 @@
     width: 120px;
     height: 180px;
     overflow: hidden;
+    flex-shrink: 0;
 }
 
-.image2 {
-    width: 100px;
-    height: 90px;
+.image {
+    width: auto;
+    height: 180px;
     object-fit: cover;
-    object-position: center;
-
 }
 
 .entryThumb2 {
@@ -50,17 +51,15 @@
     height: 90px;
     overflow: hidden;
 }
-.image {
-    width: auto;
-    height: 180px;
-}
 
+.image2 {
+    width: 100%;
+    height: 90px;
+    object-fit: cover;
+}
 
 .entryContent {
-    margin-left: 20px;
-}
-.entryContent2 {
-    margin-left: -130px;
+    flex-grow: 1;
 }
 
 .entryTitle {
@@ -91,43 +90,23 @@
     margin-right: 5px;
 }
 
-
-
+/* Responsive Styles */
 @media (max-width: 768px) {
     .sidebar {
-        width: 300px;
+        width: 90%;
         padding: 10px;
     }
 
-    .wpImage {
-        max-width: 100%;
+    .mobileGrid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
     }
 
     .entryItem {
-        flex-wrap: wrap;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-
-    .entryThumb, .entryThumb2 {
-        width: 48%;
-        height: auto;
-        margin-bottom: 10px;
-    }
-
-    .image, .image2 {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
-
-    .entryContent, .entryContent2 {
-        margin-left: 0;
-        width: 100%;
-    }
-
-    .entryTitle {
-        font-size: 1rem;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .widgetBlock {
@@ -137,5 +116,39 @@
     .widgetTitle {
         font-size: 1.5rem;
         margin-bottom: 20px;
+    }
+
+
+    .entryThumb, .entryThumb2 {
+        width: 100%;
+        height: auto;
+    }
+
+    .image, .image2 {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .entryContent {
+        width: 100%;
+        text-align: center;
+    }
+
+    .entryTitle {
+        font-size: 1rem;
+    }
+
+    .newsSection {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .newsItem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 }

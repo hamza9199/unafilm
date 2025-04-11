@@ -148,6 +148,8 @@
       width: 100%;
       max-width: calc(343px - 20px); /* Adjusted for smaller screens */
       margin: 0 auto; /* Center the slider */
+      height: 250px;
+      border-radius: 10px;
     }
 
     .slideItem {
@@ -161,6 +163,7 @@
 
     .slideContent {
       bottom: 10px;
+      top: 40px;
       left: 15px;
       padding: 15px;
       width: 95%;
@@ -189,6 +192,7 @@
       left: 20px;
       width: 90%;
       height: 300px;
+      background-color:transparent;
     }
 
     .iframeContainer {

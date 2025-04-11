@@ -11,8 +11,9 @@
 @media (max-width: 768px) {
     .kon {
         flex-direction: column;
-        padding: 15px;
-        margin-top: 15px;
+        padding: 25px;
+        margin-top: -20px;
         align-items: flex-start;
+        margin-bottom: -50px;
     }
 }

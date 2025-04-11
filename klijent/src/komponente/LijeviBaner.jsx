@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/LijeviBaner.module.css';
-import logo from './../assets/unaFilm-2.jpg'; // Adjust the path as necessary
+import logo from './../assets/unaFilm-2.jpg';
 
-
-// Component for rendering each film item
 const FilmItem = ({ src, alt, title, duration, id }) => {
     return (
         <div className={styles.entryItem}>
             <div className={styles.entryThumb}>
+                <a href={`/arhiva/film/${id}`}>
                 <img className={styles.image} src={src} alt={alt} />
+                </a>
             </div>
             <div className={styles.entryContent}>
                 <h2 className={styles.entryTitle}>
@@ -25,7 +25,6 @@ const FilmItem = ({ src, alt, title, duration, id }) => {
     );
 };
 
-// Main Sidebar component
 const LijeviBaner = () => {
     const [films, setFilms] = useState([]);
     const [newsItems, setNewsItems] = useState([]);
@@ -33,13 +32,19 @@ const LijeviBaner = () => {
     const [loadingNews, setLoadingNews] = useState(true);
     const [errorFilms, setErrorFilms] = useState(null);
     const [errorNews, setErrorNews] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
     useEffect(() => {
-        // Fetch films from API
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    useEffect(() => {
         const fetchFilms = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi'); // API endpoint for films
-                const randomFilms = response.data.sort(() => Math.random() - 0.5).slice(0, 4); // Get 4 random films
+                const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi');
+                const randomFilms = response.data.sort(() => Math.random() - 0.5).slice(0, 4);
                 setFilms(randomFilms);
                 setLoadingFilms(false);
             } catch (err) {
@@ -48,11 +53,10 @@ const LijeviBaner = () => {
             }
         };
 
-        // Fetch news items from API
         const fetchNews = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti'); // API endpoint for news
-                const randomNews = response.data.sort(() => Math.random() - 0.5).slice(0, 2); // Get 2 random news
+                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti');
+                const randomNews = response.data.sort(() => Math.random() - 0.5).slice(0, 2);
                 setNewsItems(randomNews);
                 setLoadingNews(false);
             } catch (err) {
@@ -65,67 +69,48 @@ const LijeviBaner = () => {
         fetchNews();
     }, []);
 
-    if (loadingFilms || loadingNews) {
-        return <p>Loading...</p>;
-    }
-
-    if (errorFilms || errorNews) {
-        return <p>Error: {errorFilms || errorNews}</p>;
-    }
+    if (loadingFilms || loadingNews) return <p>Loading...</p>;
+    if (errorFilms || errorNews) return <p>Error: {errorFilms || errorNews}</p>;
 
     return (
         <aside id="sidebar" className={styles.sidebar}>
             <div className={styles.widgetBlock}>
                 <figure className={styles.wpBlockImage}>
-                    <img
-                        fetchpriority="high"
-                        decoding="async"
-                        width="320"
-                        height="320"
-                        src={logo}
-                        alt=""
-                        className={styles.wpImage}
-                    />
+                    <img src={logo} alt="Logo" className={styles.wpImage} />
                 </figure>
             </div>
             <div className={styles.widgetList}>
                 <h4 className={styles.widgetTitle}>Filmovi</h4>
-                {films.map((film, index) => (
-                    <FilmItem
-                        key={index}
-                        src={film.imageUrl}
-                        alt={film.title}
-                        title={film.title}
-                        duration={film.duration}
-                        id={film.id}
+                <div className={isMobile ? styles.mobileGrid : ''}>
+                    {films.slice(0, isMobile ? 2 : films.length).map((film, index) => (
+                        <FilmItem key={index} src={film.imageUrl} alt={film.title} title={film.title} duration={film.duration} id={film.id} />
+                    ))}
+                </div>
 
-                    />
-                ))}
             </div>
             <div className={styles.widgetList}>
                 <h4 className={styles.widgetTitle}>Najnovije vijesti</h4>
-                {newsItems.map((item, index) => (
-                    <div key={index} className={styles.entryItem}>
-                        <div className={styles.entryThumb2}>
-                            <img
-                                src={item.film.imageUrl}
-                                alt={item.film.title}
-                                className={styles.image2}
-                            />
-                        </div>
-                        <div className={styles.entryContent2}>
-                            <h2 className={styles.entryTitle}>
-                                <a href={`/novosti/film/${item.id}`}
-                                >{item.title}</a>
-                            </h2>
-                            <div className={styles.entryMeta}>
-                                <span className={styles.entryDate}>{new Date(item.datumKreiranja).toLocaleDateString()}</span>
-                                <span> / </span>
-                                <span className={styles.entryComment}>{item.film.comment} komentara</span>
+                <div className={isMobile ? styles.mobileGrid : ''}>
+                    {newsItems.map((item, index) => (
+                        <div key={index} className={styles.entryItem}>
+                            <div className={styles.entryThumb2}>
+                                <a href={`/novosti/film/${item.id}`}>
+                                <img src={item.film.imageUrl} alt={item.film.title} className={styles.image2} />
+                                </a>
+                            </div>
+                            <div className={styles.entryContent2}>
+                                <h2 className={styles.entryTitle}>
+                                    <a href={`/novosti/film/${item.id}`}>{item.title}</a>
+                                </h2>
+                                <div className={styles.entryMeta}>
+                                    <span className={styles.entryDate}>{new Date(item.datumKreiranja).toLocaleDateString()}</span>
+                                    <span> / </span>
+                                    <span className={styles.entryComment}>{item.film.comment} komentara</span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </aside>
     );

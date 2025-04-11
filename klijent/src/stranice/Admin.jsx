@@ -356,6 +356,17 @@ const AdminDashboard = () => {
         window.location.href = '/'; // Redirect to the login page
     };
 
+    const convertToEmbedUrl = (url) => {
+        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+|(?:v|e(?:mbed)?)\/([^/\n\s]+)|(?:.*[?&]v=([^&\n\s]+))|(?:.*[?&]embed=([^&\n\s]+))|(?:.*[?&]watch\?v=([^&\n\s]+)))(?:[^\s]*)?)/;
+        const match = url.match(regex);
+        if (match) {
+          const videoId = match[1] || match[2] || match[3] || match[4];
+          return `https://www.youtube.com/embed/${videoId}`;
+        }
+        return url; // If it's not a valid YouTube URL, return the original URL.
+      };
+      
+
     return (
         <>
             <Header />
@@ -411,12 +422,38 @@ const AdminDashboard = () => {
                                     <tr key={film.id} className={styles.tr}>
                                         <td className={styles.td}>{film.title}</td>
                                         <td className={styles.td}>
-                                            <button className={styles.button} onClick={() => {
+                                            <a className={styles.button} onClick={() => {
                                                 setSelectedFilm(film); 
                                                 setNewFilm(film); // Pre-populate form with selected film's data
                                                 setSelectedOption('updateFilm');
-                                            }}>Ažuriraj</button>
-                                            <button className={styles.button} onClick={() => handleDeleteFilm(film.id)}>Obriši</button>
+                                            }}>
+                                        <svg
+                                        fill="#000000"
+                                        height="20px"
+                                        width="20px"
+                                        version="1.1"
+                                        id="Capa_1"
+                                        viewBox="0 0 24.758 24.758"
+                                        xmlSpace="preserve"
+                                        >
+                                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                            <g id="c188_arrow">
+                                                <path
+                                                id="_x3C_Group_x3E__6_"
+                                                d="M12.527,0.003c0.013,0,0.015,0,0.019,0c0.007,0,0.007,0,0.009,0c0,0,0,0,0.004,0l0,0 c0.002,0,0.008,0,0.01,0c0.004,0,0.004,0,0.004,0s0,0,0.003,0c0.026-0.006,0.035-0.002,0.054-0.002 c3.205,0,6.32,1.271,8.621,3.503l2.536-2.569c0.122-0.123,0.31-0.16,0.461-0.094c0.159,0.065,0.264,0.219,0.264,0.392v8.351 c0,0.234-0.19,0.424-0.422,0.424h-8.246c-0.005,0-0.013,0-0.019,0c-0.236,0-0.424-0.189-0.424-0.424 c0-0.159,0.085-0.296,0.212-0.367l2.499-2.533c-1.482-1.432-3.418-2.213-5.539-2.213c-4.332,0.022-7.858,3.572-7.858,7.97 c0.034,4.328,3.58,7.849,7.979,7.849l-0.009,4.468h-0.06C5.844,24.756,0.29,19.24,0.247,12.378 C0.247,5.609,5.75,0.062,12.527,0.003z"
+                                                />
+                                            </g>
+                                            <g id="Capa_1_6_"></g>
+                                            </g>
+                                        </g>
+                                        </svg>
+                                            </a>
+                                            <a className={styles.button} onClick={() => handleDeleteFilm(film.id)}>
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>                                           
+                                             </a>
                                         </td>
                                     </tr>
                                 ))}
@@ -451,12 +488,39 @@ const AdminDashboard = () => {
                                         <tr key={novost.id} className={styles.tr}>
                                             <td className={styles.td}>{novost.title}</td>
                                             <td className={styles.td}>
-                                                <button className={styles.button} onClick={() => {
+                                                <a className={styles.button} onClick={() => {
                                                     setSelectedNovost(novost);
                                                     setNewNovost(novost); // Pre-populate form with selected novost's data
                                                     setSelectedOption('updateNovost');
-                                                }}>Ažuriraj</button>
-                                                <button className={styles.button} onClick={() => handleDeleteNovost(novost.id)}>Obriši</button>
+                                                }}>
+                                                     <svg
+                                        fill="#000000"
+                                        height="20px"
+                                        width="20px"
+                                        version="1.1"
+                                        id="Capa_1"
+                                        viewBox="0 0 24.758 24.758"
+                                        xmlSpace="preserve"
+                                        >
+                                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                            <g id="c188_arrow">
+                                                <path
+                                                id="_x3C_Group_x3E__6_"
+                                                d="M12.527,0.003c0.013,0,0.015,0,0.019,0c0.007,0,0.007,0,0.009,0c0,0,0,0,0.004,0l0,0 c0.002,0,0.008,0,0.01,0c0.004,0,0.004,0,0.004,0s0,0,0.003,0c0.026-0.006,0.035-0.002,0.054-0.002 c3.205,0,6.32,1.271,8.621,3.503l2.536-2.569c0.122-0.123,0.31-0.16,0.461-0.094c0.159,0.065,0.264,0.219,0.264,0.392v8.351 c0,0.234-0.19,0.424-0.422,0.424h-8.246c-0.005,0-0.013,0-0.019,0c-0.236,0-0.424-0.189-0.424-0.424 c0-0.159,0.085-0.296,0.212-0.367l2.499-2.533c-1.482-1.432-3.418-2.213-5.539-2.213c-4.332,0.022-7.858,3.572-7.858,7.97 c0.034,4.328,3.58,7.849,7.979,7.849l-0.009,4.468h-0.06C5.844,24.756,0.29,19.24,0.247,12.378 C0.247,5.609,5.75,0.062,12.527,0.003z"
+                                                />
+                                            </g>
+                                            <g id="Capa_1_6_"></g>
+                                            </g>
+                                        </g>
+                                        </svg>
+                                                </a>
+                                                <a className={styles.button} onClick={() => handleDeleteNovost(novost.id)}>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>                                           
+
+                                                </a>
                                             </td>
                                         </tr>
                                     ))}
@@ -485,7 +549,10 @@ const AdminDashboard = () => {
                                             <td className={styles.td}>{poruka.poruka}</td>
                                             <td className={styles.td}>
                                 
-                                                <button className={styles.button} onClick={() => handleDeletePoruke(poruka.id)}>Obriši</button>
+                                                <a className={styles.button} onClick={() => handleDeletePoruke(poruka.id)}>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>                                           
+
+                                                </a>
                                             </td>
                                         </tr>
                                     ))}
@@ -509,12 +576,39 @@ const AdminDashboard = () => {
                                         <tr key={film.id} className={styles.tr}>
                                             <td className={styles.td}>{film.title}</td>
                                             <td className={styles.td}>
-                                                <button className={styles.button} onClick={() => {
+                                                <a className={styles.button} onClick={() => {
                                                     setSelectedFilm(film); 
                                                     setNewFilm(film); // Pre-populate form with selected film's data
                                                     setSelectedOption('updateFilm');
-                                                }}>Ažuriraj</button>
-                                                <button className={styles.button} onClick={() => handleDeleteFilm(film.id)}>Obriši</button>
+                                                }}>
+                                                     <svg
+                                        fill="#000000"
+                                        height="20px"
+                                        width="20px"
+                                        version="1.1"
+                                        id="Capa_1"
+                                        viewBox="0 0 24.758 24.758"
+                                        xmlSpace="preserve"
+                                        >
+                                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                            <g id="c188_arrow">
+                                                <path
+                                                id="_x3C_Group_x3E__6_"
+                                                d="M12.527,0.003c0.013,0,0.015,0,0.019,0c0.007,0,0.007,0,0.009,0c0,0,0,0,0.004,0l0,0 c0.002,0,0.008,0,0.01,0c0.004,0,0.004,0,0.004,0s0,0,0.003,0c0.026-0.006,0.035-0.002,0.054-0.002 c3.205,0,6.32,1.271,8.621,3.503l2.536-2.569c0.122-0.123,0.31-0.16,0.461-0.094c0.159,0.065,0.264,0.219,0.264,0.392v8.351 c0,0.234-0.19,0.424-0.422,0.424h-8.246c-0.005,0-0.013,0-0.019,0c-0.236,0-0.424-0.189-0.424-0.424 c0-0.159,0.085-0.296,0.212-0.367l2.499-2.533c-1.482-1.432-3.418-2.213-5.539-2.213c-4.332,0.022-7.858,3.572-7.858,7.97 c0.034,4.328,3.58,7.849,7.979,7.849l-0.009,4.468h-0.06C5.844,24.756,0.29,19.24,0.247,12.378 C0.247,5.609,5.75,0.062,12.527,0.003z"
+                                                />
+                                            </g>
+                                            <g id="Capa_1_6_"></g>
+                                            </g>
+                                        </g>
+                                        </svg>
+                                                </a>
+                                                <a className={styles.button} onClick={() => handleDeleteFilm(film.id)}>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>                                           
+
+                                                </a>
                                             </td>
                                         </tr>
                                     ))}
@@ -538,12 +632,39 @@ const AdminDashboard = () => {
                                         <tr key={novost.id} className={styles.tr}>
                                             <td className={styles.td}>{novost.title}</td>
                                             <td className={styles.td}>
-                                                <button className={styles.button} onClick={() => {
+                                                <a className={styles.button} onClick={() => {
                                                     setSelectedNovost(novost);
                                                     setNewNovost(novost); // Pre-populate form with selected novost's data
                                                     setSelectedOption('updateNovost');
-                                                }}>Ažuriraj</button>
-                                                <button className={styles.button} onClick={() => handleDeleteNovost(novost.id)}>Obriši</button>
+                                                }}>
+                                                     <svg
+                                        fill="#000000"
+                                        height="20px"
+                                        width="20px"
+                                        version="1.1"
+                                        id="Capa_1"
+                                        viewBox="0 0 24.758 24.758"
+                                        xmlSpace="preserve"
+                                        >
+                                        <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <g>
+                                            <g id="c188_arrow">
+                                                <path
+                                                id="_x3C_Group_x3E__6_"
+                                                d="M12.527,0.003c0.013,0,0.015,0,0.019,0c0.007,0,0.007,0,0.009,0c0,0,0,0,0.004,0l0,0 c0.002,0,0.008,0,0.01,0c0.004,0,0.004,0,0.004,0s0,0,0.003,0c0.026-0.006,0.035-0.002,0.054-0.002 c3.205,0,6.32,1.271,8.621,3.503l2.536-2.569c0.122-0.123,0.31-0.16,0.461-0.094c0.159,0.065,0.264,0.219,0.264,0.392v8.351 c0,0.234-0.19,0.424-0.422,0.424h-8.246c-0.005,0-0.013,0-0.019,0c-0.236,0-0.424-0.189-0.424-0.424 c0-0.159,0.085-0.296,0.212-0.367l2.499-2.533c-1.482-1.432-3.418-2.213-5.539-2.213c-4.332,0.022-7.858,3.572-7.858,7.97 c0.034,4.328,3.58,7.849,7.979,7.849l-0.009,4.468h-0.06C5.844,24.756,0.29,19.24,0.247,12.378 C0.247,5.609,5.75,0.062,12.527,0.003z"
+                                                />
+                                            </g>
+                                            <g id="Capa_1_6_"></g>
+                                            </g>
+                                        </g>
+                                        </svg>
+                                                </a>
+                                                <a className={styles.button} onClick={() => handleDeleteNovost(novost.id)}>
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M18 6L17.1991 18.0129C17.129 19.065 17.0939 19.5911 16.8667 19.99C16.6666 20.3412 16.3648 20.6235 16.0011 20.7998C15.588 21 15.0607 21 14.0062 21H9.99377C8.93927 21 8.41202 21 7.99889 20.7998C7.63517 20.6235 7.33339 20.3412 7.13332 19.99C6.90607 19.5911 6.871 19.065 6.80086 18.0129L6 6M4 6H20M16 6L15.7294 5.18807C15.4671 4.40125 15.3359 4.00784 15.0927 3.71698C14.8779 3.46013 14.6021 3.26132 14.2905 3.13878C13.9376 3 13.523 3 12.6936 3H11.3064C10.477 3 10.0624 3 9.70951 3.13878C9.39792 3.26132 9.12208 3.46013 8.90729 3.71698C8.66405 4.00784 8.53292 4.40125 8.27064 5.18807L8 6" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg>                                           
+
+                                                </a>
                                             </td>
                                         </tr>
                                     ))}
@@ -565,7 +686,11 @@ const AdminDashboard = () => {
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Trailer URL</label>
-                                <input className={styles.input} type="text" placeholder="Trailer URL" value={newFilm.trailerUrl} onChange={(e) => setNewFilm({ ...newFilm, trailerUrl: e.target.value })} />
+                                <input className={styles.input} type="text" placeholder="Trailer URL" value={newFilm.trailerUrl} onChange={(e) => {
+                                    const trailerUrl = e.target.value;
+                                    const embedUrl = convertToEmbedUrl(trailerUrl);
+                                    setNewFilm({ ...newFilm, trailerUrl: embedUrl });
+                                    }} />
                             </div>                    
                             <div className={styles.div}>
                                 <label className={styles.label}>Image</label>
@@ -657,7 +782,11 @@ const AdminDashboard = () => {
                 className={styles.formInput}
                 type="text"
                 value={newFilm.trailerUrl}
-                onChange={(e) => setNewFilm({ ...newFilm, trailerUrl: e.target.value })}
+                onChange={(e) => {
+                    const trailerUrl = e.target.value;
+                    const embedUrl = convertToEmbedUrl(trailerUrl);
+                    setNewFilm({ ...newFilm, trailerUrl: embedUrl });
+                  }}
             />
         </div>
 

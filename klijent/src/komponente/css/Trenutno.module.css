@@ -267,6 +267,7 @@
     width: 90%;
     padding: 15px;
     font-size: 14px;
+    display: none;
   }
 
   .selectedFilm .left {
@@ -293,6 +294,7 @@
     transform: translateX(-50%);
     width: 90%;
     height: auto;
+    display: none;
   }
 
   .selectedTrailer {

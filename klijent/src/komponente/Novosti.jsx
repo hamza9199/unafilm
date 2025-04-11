@@ -48,11 +48,13 @@ const Novosti = () => {
                 <div key={index} className={styles.col}>
                   <div className={styles.entryItem}>
                     <div className={styles.entryThumb}>
+                      <a href={`/novosti/film/${film.id}`}>
                       <img
                         src={film.film.imageUrl}
                         alt={film.film.imageAlt}
                         className={styles.imga}
                       />
+                      </a>
                     <div className={styles.entryCat}>
                       {(() => {
                         switch (film.tipNovosti) {

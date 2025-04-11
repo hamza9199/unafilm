@@ -93,14 +93,18 @@ const Footer = () => {
                                 {movies.map((movie, index) => (
                                     <div key={index} className={styles.entryItem}>
                                         <div className={styles.entryThumb}>
+                                            <a href={`/novosti/film/${movie.id}`}
+                                            >
                                             <img
                                                 src={movie.film.imageUrl}
                                                 alt={movie.film.title}
+                                                href={`/novosti/film/${movie.id}`}
                                             />
+                                            </a>
                                         </div>
                                         <div className={styles.entryContent}>
                                             <h2 className={styles.entryTitle}>
-                                                <a href={movie.link}>
+                                                <a href={`/novosti/film/${movie.id}`}>
                                                     {movie.title}
                                                 </a>
                                             </h2>

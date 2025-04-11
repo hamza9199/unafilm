@@ -374,4 +374,21 @@ input::placeholder, textarea::placeholder {
     .content {
       padding: 15px;
     }
+
+    .table {
+      display: block;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .th, .td {
+      white-space: nowrap;
+    }
+
+    .searchBox{
+      width: 100%;
+    }
+    .searchBox input {
+      width: 100%;
+    }
   }

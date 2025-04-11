@@ -3,10 +3,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #f5f5f5;
-  padding: 30px;
+  padding: 20px;
   padding-right: 250px;
   overflow: visible;
+  margin-bottom: 80px;
 }
 
 .kon {
@@ -15,7 +15,7 @@
 
 .headingContainer {
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .hiddenMobile {
@@ -24,42 +24,6 @@
 
 .hiddenDesktop {
   display: block;
-}
-
-@media (max-width: 768px) {
-  .hiddenMobile {
-    display: block;
-  }
-
-  .hiddenDesktop {
-    display: none;
-  }
-
-  .container {
-    padding: 20px;
-  }
-
-  .title {
-    font-size: 14px;
-  }
-
-  .movieList li {
-    flex-direction: row;  /* Change to row to place number and title side by side */
-    align-items: center;
-    font-size: 16px;
-    padding-bottom: 8px;
-  }
-
-  .number {
-    width: 25px;
-    height: 25px;
-    font-size: 14px;
-    margin-right: 10px;
-  }
-
-  .link {
-    font-size: 14px;
-  }
 }
 
 .title {
@@ -77,8 +41,10 @@
   align-items: center; /* Align items in a row */
   margin: 9px 0;
   font-size: 18px;
-  padding-bottom: 10px;
+  padding-bottom: 30px;
   border-bottom: 1px solid #ddd;
+  margin-bottom: -2px;
+  margin-top: -2px;
 }
 
 .number {
@@ -105,3 +71,47 @@
 .link:hover {
   color: #007bff;
 }
+
+
+@media (max-width: 768px) {
+  .hiddenMobile {
+    display: block;
+  }
+
+  .hiddenDesktop {
+    display: none;
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  .movieList li {
+    flex-direction: row;  /* Change to row to place number and title side by side */
+    align-items: center;
+    font-size: 16px;
+    padding-bottom: 20px;
+  }
+  .movieList{
+    margin-bottom: -80px;
+    margin-top: 1px;
+  }
+
+  .number {
+    width: 25px;
+    height: 25px;
+    font-size: 14px;
+    margin-right: 10px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+}
+

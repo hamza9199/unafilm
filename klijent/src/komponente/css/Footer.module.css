@@ -5,11 +5,11 @@
     min-height: 514px;
     color: #bdbdbd;
     font-size: 15px;
-    position: relative;  /* Change to relative for proper flow within the page */
+    position: relative;
     left: 0;
     right: 0;
-    width: 100%;  /* Ensure it spans the full width without overflow */
-    overflow: hidden;  /* Prevents any overflow beyond the container */
+    width: 100%;
+    overflow: hidden;
 }
 
 .container {
@@ -24,9 +24,9 @@
 
 .amyFooterWidgets {
     display: flex;
-    flex-wrap: wrap;  /* Allow wrapping on smaller screens */
+    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px;
+    gap: 20px; /* Razmak između kolona */
 }
 
 .colMd3,
@@ -36,12 +36,12 @@
 }
 
 .colMd3 {
-    flex: 0 0 25%;
+    flex: 1 1 25%; /* Omogućava 25% širine, ali može rasti do 25% */
     max-width: 25%;
 }
 
 .colMd6 {
-    flex: 0 0 50%;
+    flex: 1 1 30%; /* Omogućava 50% širine, ali može rasti do 50% */
     max-width: 50%;
 }
 
@@ -189,7 +189,7 @@
         min-height: auto;
         background: url('../../assets/footer_bg.png') no-repeat;
         background-color: transparent;
-        background-size: cover; /* Ensure the background scales properly */
+        background-size: cover;
     }
 
     .container {
@@ -197,13 +197,13 @@
     }
 
     .amyFooterWidgets {
-        flex-wrap: wrap;  /* Allow widgets to wrap */
+        flex-wrap: wrap;
         gap: 15px;
     }
 
     .colMd3,
     .colMd6 {
-        flex: 0 0 100%;  /* Full width for mobile */
+        flex: 1 1 100%; /* Full width for mobile */
         max-width: 100%;
     }
 

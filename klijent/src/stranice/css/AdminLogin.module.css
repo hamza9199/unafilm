@@ -61,3 +61,28 @@
 .button:hover {
     background: #0056b3;
 }
+
+
+@media (max-width: 768px) {
+    .container {
+        padding: 50px;
+        margin: 20px;
+        margin-top: 80px;
+    }
+
+    .title {
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+
+    .input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .button {
+        font-size: 18px;
+        padding: 10px 20px;
+    }
+}

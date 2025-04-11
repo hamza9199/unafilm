@@ -176,6 +176,10 @@
 
 }
 
+.searchIconSvg{
+    color: #080808;
+}
+
 /* Mobile Style for Search Box */
 @media (max-width: 768px) {
     .nav {
@@ -190,6 +194,9 @@
         padding: 10px 0;
     }
 
+    .searchIconSvg{
+        color: #f8f6f6;
+    }
    
     .mobileOpen {
         display: flex;
@@ -225,7 +232,7 @@
     }
 
     .menuToggle span {
-        background: white;
+        background: rgb(5, 5, 5);
         height: 3px;
         width: 25px;
         margin: 4px 0;
@@ -234,7 +241,7 @@
 
     .searchBox {
         position: static;
-        width: 100%;
+        width: 88%;
         padding: 10px;
         margin-top: 10px;
         transform: none;
@@ -276,5 +283,10 @@
 
     .submenu a:hover {
         background-color: #00aaff;
+        color: #f6f1f1;
+    }
+
+    .searchIcon{
+        color: #faf5f5;
     }
 }

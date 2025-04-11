@@ -29,8 +29,8 @@
     grid-template-columns: repeat(3, 1fr); /* Create 3 equal-width columns */
     gap: 20px;
     z-index: 2;
-    padding-left: 300px;
-    padding-right: 300px;
+    padding-left: 250px;
+    padding-right: 250px;
     margin: 0 auto; /* Centers the grid */
 }
 
@@ -66,9 +66,8 @@
 .thumbnailContainer {
     position: relative;
     display: inline-block;
-    width: 100%;
-    height: 100%;
-    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    width: 500px;
+    height: 300px;
     background-color: #000;
     border-radius: 8px;
 }
@@ -99,8 +98,8 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
+    width: 600px;
+    height: 300px;
     object-fit: cover;
     border-radius: 8px;
     max-width: 100%; /* Ensure images do not exceed the container */
@@ -111,7 +110,7 @@
 .overlay {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 47%;
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 0.3s ease;
@@ -136,6 +135,7 @@
     margin-top: 10px;
     z-index: 2;
 }
+
 
 /* Responsive styles for various screen sizes */
 @media (max-width: 780px) {
@@ -182,14 +182,14 @@
         top: 50px;
         left: 5px;
         width: 95%;
-        height: auto;
+        background-color: transparent;
     }
 
     .thumbnailContainer {
-        padding-top: 56.25%; /* Maintains aspect ratio */
-        width: 250px;
-        height: auto; /* Fixed height for thumbnail container */
-        margin: 0 auto; /* Centers the thumbnail container */
+        padding-top: 0; /* 16:9 Aspect Ratio */
+        width: 100%; /* Full width for smaller screens */
+        height: 200px; /* Reduced height for thumbnail container */
+       
     }
 
     .videoContainer {
@@ -206,8 +206,7 @@
         position: absolute;
         top: 0;
         left: 0;
-        width: 250px;
-        height: 100%;
+        width: 100%;
         object-fit: cover;
         border-radius: 8px;
         max-width: 100%;
@@ -215,7 +214,12 @@
     }
 
     .overlay {
-        font-size: 40px; /* Adjusted for smaller screens */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+        transition: opacity 0.3s ease;
     }
 
     .playIcon {
