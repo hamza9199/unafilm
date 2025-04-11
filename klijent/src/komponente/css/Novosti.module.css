@@ -114,4 +114,43 @@
 
   }
   
-  
+  @media (max-width: 768px) {
+    .novostiSection {
+      margin-left: 15px;
+      margin-right: 15px;
+    }
+
+    .container {
+      padding-left: 20px;
+      padding-right: 20px;
+      flex-direction: column;
+    }
+
+    .row {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .entryThumb {
+      height: auto;
+    }
+
+    .entryCat {
+      font-size: 0.8rem;
+      padding: 3px 10px;
+    }
+
+    .entryTitle a {
+      font-size: 1rem;
+    }
+
+    .entryBtn {
+      padding: 8px 15px;
+      font-size: 0.9rem;
+    }
+
+    .imga {
+      max-width: 100%;
+      height: auto;
+    }
+  }

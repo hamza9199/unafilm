@@ -186,8 +186,11 @@
         left: 0;
         width: 100%;
         background: #1b203f;
+        z-index: 1000;
+        padding: 10px 0;
     }
 
+   
     .mobileOpen {
         display: flex;
     }
@@ -195,13 +198,83 @@
     .menu {
         flex-direction: column;
         text-align: center;
+        padding: 0;
     }
 
     .menu li {
-        margin: 10px 0;
+        margin: 15px 0;
+    }
+
+    .menu a {
+        font-size: 18px;
+        color: white;
+    }
+
+    .menu a:hover {
+        color: #00aaff;
     }
 
     .menuToggle {
         display: flex;
+        flex-direction: column;
+        cursor: pointer;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        z-index: 1100;
+    }
+
+    .menuToggle span {
+        background: white;
+        height: 3px;
+        width: 25px;
+        margin: 4px 0;
+        transition: 0.3s;
+    }
+
+    .searchBox {
+        position: static;
+        width: 100%;
+        padding: 10px;
+        margin-top: 10px;
+        transform: none;
+        opacity: 1;
+        display: block;
+        box-shadow: none;
+    }
+
+    .searchBox input {
+        width: 100%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    .logo img {
+        max-height: 40px; /* Reduce logo size for mobile */
+        margin-left: 10px; /* Adjust margin for better alignment */
+    }
+
+    /* Fix for dropdown menus under Filmovi and Novosti */
+    .submenu {
+        position: static;
+        background: #1b203f;
+        box-shadow: none;
+        padding: 0;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .submenu li {
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .submenu a {
+        color: white;
+        font-size: 16px;
+    }
+
+    .submenu a:hover {
+        background-color: #00aaff;
     }
 }

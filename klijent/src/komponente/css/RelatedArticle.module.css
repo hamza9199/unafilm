@@ -58,3 +58,41 @@
 .entryComment {
     margin-right: 5px;
 }
+
+@media (max-width: 768px) {
+    .entryRelated {
+        padding: 15px;
+        margin-top: 50px;
+    }
+
+    .relatedTitle {
+        font-size: 1.25rem;
+    }
+
+    .amyRelated {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .colMd4 {
+        flex: 1 1 100%;
+    }
+
+    .articleImage {
+        width: 100%;
+        height: auto;
+    }
+
+    .entryTitle {
+        font-size: 1rem;
+    }
+
+    .entryInfo {
+        font-size: 0.75rem;
+    }
+}

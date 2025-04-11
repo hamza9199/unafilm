@@ -248,3 +248,68 @@
   background-color: rgba(0, 0, 0, 0.7);
   z-index: 1000000;
 }
+
+
+/* Responsive design for phones */
+@media (max-width: 768px) {
+  .container {
+    padding: 10px;
+    margin-right: 0;
+    max-width: 250px;
+    max-height: auto;
+  }
+
+  .selectedFilm {
+    flex-direction: column; /* Stack image and text vertically */
+    top: auto;
+    left: auto;
+    transform: none;
+    width: 90%;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .selectedFilm .left {
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .selectedFilm .right {
+    padding-left: 0;
+  }
+
+  .movieItem {
+    max-width: 95%;
+    margin: 20px auto; /* Increased margin to space out movies */
+  }
+
+  .title2 {
+    font-size: 16px;
+  }
+
+  .iframeContainer {
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: auto;
+  }
+
+  .selectedTrailer {
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: auto;
+    display: none;
+  }
+
+  .slick-prev, .slick-next {
+    width: 30px;
+    height: 30px;
+  }
+
+  .slick-prev:before, .slick-next:before {
+    font-size: 16px;
+  }
+}

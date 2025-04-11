@@ -12,9 +12,9 @@ const Trenutno = () => {
   const [selectedFilm, setSelectedFilm] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0); // Prati početni indeks slajdera
-    const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+  const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth); // Za praćenje veličine prozora
   
-
   useEffect(() => {
     axios.get('https://unafilm-production.up.railway.app/server/filmovi/trenutno')
       .then(response => {
@@ -26,9 +26,30 @@ const Trenutno = () => {
         setLoading(false);
       });
   }, []);
+  
+  // Postavljanje broja slajdova na osnovu širine prozora
+  const getSlidesToShow = () => {
+    if (windowWidth < 768) {
+      return 2; // Prikazuje samo 2 slajda na mobilnim uređajima
+    }
+    return 3; // Prikazuje 3 slajda na većim uređajima
+  };
+
+  // Responsivno praćenje promjena širine prozora
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   const settings = {
-    slidesToShow: 3,
+    slidesToShow: getSlidesToShow(), // Dinamički broj slajdova na osnovu širine
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,

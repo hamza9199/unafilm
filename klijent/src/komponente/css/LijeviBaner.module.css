@@ -90,3 +90,52 @@
 .entryDate, .entryComment {
     margin-right: 5px;
 }
+
+
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 300px;
+        padding: 10px;
+    }
+
+    .wpImage {
+        max-width: 100%;
+    }
+
+    .entryItem {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .entryThumb, .entryThumb2 {
+        width: 48%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .image, .image2 {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .entryContent, .entryContent2 {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .entryTitle {
+        font-size: 1rem;
+    }
+
+    .widgetBlock {
+        margin-bottom: 15px;
+    }
+
+    .widgetTitle {
+        font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+}

@@ -69,7 +69,8 @@
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 1000px;
+    width: 100%;
+    max-width: 1000px; /* Dodano kako bi post bio maksimalne širine */
 }
 
 .row {
@@ -177,3 +178,58 @@
 
 }
 
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin-left: 0px; /* Adjusted margin for smaller screens */
+        margin-right: 0px;
+        gap: 20px;
+        max-width: 100%;
+    }
+    
+        .lijeviBaner {
+            flex: none;
+            width: 100%;
+        }
+    
+        .articleItemsWrapper {
+            flex: none;
+            width: 100%;
+            gap: 10px;
+        }
+    
+        .articleItem {
+            flex-direction: column;
+            gap: 10px;
+    
+        }
+    
+        .post {
+            padding: 10px;
+            box-sizing: border-box; /* Dodano kako bi padding bio uključeni u širinu */
+        }
+    
+        .row {
+            flex-direction: column;
+            gap: 10px;
+        }
+    
+        .entryThumb, .entryContent {
+            flex: none;
+            
+        }
+    
+        
+    
+        .pagination {
+            flex-direction: row;
+            gap: 5px;
+        }
+    
+        .pagination button, .pagination .page-number {
+            width: 100%;
+            text-align: center;
+        }
+    }

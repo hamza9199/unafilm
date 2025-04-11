@@ -42,7 +42,7 @@ const Footer = () => {
                             <div className={`${styles.amyWidget} ${styles.about}`}>
                                 <h4 className={styles.amyTitle}></h4>
                                 <div className={styles.footerLogo}>
-                                    <a href="https://unafilm.ba/">
+                                    <a href="/">
                                         <img
                                             src={logo}
                                             alt="Una Film Logo"

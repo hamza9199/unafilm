@@ -58,3 +58,32 @@
     font-weight: bold;
     color: #f1efef;
 }
+
+
+@media (max-width: 768px) {
+    .breadcrumbContainer {
+        height: auto;
+        padding: 10px 0;
+    }
+
+    .innerContainer {
+        padding: 0 10px;
+        margin-top: 80px;
+    }
+
+    .pageTitle {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .breadcrumb {
+        font-size: 14px;
+        text-align: center;
+        margin-right: 0;
+        margin-top: 15px;
+    }
+
+    .breadcrumbItem {
+        margin: 0 3px;
+    }
+}

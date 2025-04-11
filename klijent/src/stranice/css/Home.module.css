@@ -7,3 +7,12 @@
     overflow: visible;
 
 }
+
+@media (max-width: 768px) {
+    .kon {
+        flex-direction: column;
+        padding: 15px;
+        margin-top: 15px;
+        align-items: flex-start;
+    }
+}

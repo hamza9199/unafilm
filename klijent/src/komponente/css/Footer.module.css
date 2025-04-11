@@ -1,15 +1,15 @@
 .amySiteFooter {
     background: url('../../assets/footer_bg.png') no-repeat;
     background-color: transparent;
-    background-size:auto;
+    background-size: cover;
     min-height: 514px;
     color: #bdbdbd;
     font-size: 15px;
-    position: absolute;
+    position: relative;  /* Change to relative for proper flow within the page */
     left: 0;
     right: 0;
-    width: 100vw; 
-
+    width: 100%;  /* Ensure it spans the full width without overflow */
+    overflow: hidden;  /* Prevents any overflow beyond the container */
 }
 
 .container {
@@ -24,7 +24,7 @@
 
 .amyFooterWidgets {
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;  /* Allow wrapping on smaller screens */
     justify-content: space-between;
     gap: 20px;
 }
@@ -156,7 +156,7 @@
     text-decoration: none;
     font-size: 14px;
     font-weight: bold;
-    text-transform: uppercase; /* Added uppercase */
+    text-transform: uppercase;
     display: block;
     margin-bottom: 5px;
 }
@@ -176,10 +176,61 @@
 .entryItem {
     margin-bottom: 0;
     padding-bottom: 15px;
-    border-bottom: 1px solid #979696 ;
+    border-bottom: 1px solid #979696;
     padding-top: 15px;
 }
 
 .entryItem:last-child {
     border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .amySiteFooter {
+        min-height: auto;
+        background: url('../../assets/footer_bg.png') no-repeat;
+        background-color: transparent;
+        background-size: cover; /* Ensure the background scales properly */
+    }
+
+    .container {
+        padding-top: 50px;
+    }
+
+    .amyFooterWidgets {
+        flex-wrap: wrap;  /* Allow widgets to wrap */
+        gap: 15px;
+    }
+
+    .colMd3,
+    .colMd6 {
+        flex: 0 0 100%;  /* Full width for mobile */
+        max-width: 100%;
+    }
+
+    .amyWidgetTitle h4 {
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    .menuItem a {
+        font-size: 12px;
+    }
+
+    .entryThumb img {
+        width: 90px;
+        height: 70px;
+    }
+
+    .entryTitle a {
+        font-size: 12px;
+    }
+
+    .entryMeta {
+        font-size: 10px;
+    }
+
+    .entryItem {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 }

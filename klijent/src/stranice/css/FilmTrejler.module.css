@@ -137,19 +137,58 @@
 
 
 @media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
     .pageContent {
         width: 95%;
     }
 
+    .article {
+        padding: 15px;
+    }
+
+    .entryTop {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .entryTitle {
-        font-size: 28px;
+        font-size: 24px;
+        text-align: center;
     }
 
     .entryContent {
         font-size: 16px;
+        align-items: center;
+    }
+
+    .smallImg {
+        width: 90%;
+    }
+
+    .videoWrapper {
+        margin: 15px 0;
+    }
+
+    .entryMeta {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .entryDate, .entryComment {
+        font-size: 16px;
+        text-align: center;
     }
 
     .heading {
         font-size: 18px;
+        text-align: center;
+    }
+
+    .figure {
+        margin: 20px 0;
     }
 }

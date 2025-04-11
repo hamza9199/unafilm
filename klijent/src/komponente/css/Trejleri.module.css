@@ -2,18 +2,15 @@
 .container {
     background-image: url('https://unafilm.ba/wp-content/uploads/2024/12/wallpapersden.com_starry-sky-hd-dark-blue-night_2912x1632-scaled.jpg');
     text-align: center;
-    background-size: cover;
+    background-size: 100%;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     padding-top: 20px;
     padding-bottom: 30px;
-    width: auto; 
+    width: 100%; /* Make sure it takes full width */
     margin-top: 50px;
     overflow: hidden;
-    overflow: hidden;
-
-    
 }
 
 /* Heading styling */
@@ -34,6 +31,7 @@
     z-index: 2;
     padding-left: 300px;
     padding-right: 300px;
+    margin: 0 auto; /* Centers the grid */
 }
 
 /* Individual trailer item */
@@ -44,7 +42,6 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     cursor: pointer;
 }
-
 
 .iframeContainer {
     position: fixed;
@@ -70,10 +67,12 @@
     position: relative;
     display: inline-block;
     width: 100%;
+    height: 100%;
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
     background-color: #000;
     border-radius: 8px;
 }
+
 .videoContainer {
     position: relative;
     display: inline-block;
@@ -83,7 +82,7 @@
     border-radius: 8px;
 }
 
-.closeButton{
+.closeButton {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -136,4 +135,95 @@
     color: white;
     margin-top: 10px;
     z-index: 2;
+}
+
+/* Responsive styles for various screen sizes */
+@media (max-width: 780px) {
+    .container {
+        padding-top: 5px;
+        padding-bottom: 15px;
+        margin-top: 10px;
+        width: 100%; /* Ensures the container takes full width */
+        background-image: url('https://unafilm.ba/wp-content/uploads/2024/12/wallpapersden.com_starry-sky-hd-dark-blue-night_2912x1632-scaled.jpg');
+        background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+        overflow: hidden;
+    }
+
+    .heading {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .trailerGrid {
+        grid-template-columns: 1fr; /* Single column layout for small screens */
+        gap: 10px; /* Reduced gap */
+        padding-left: 10px; /* Reduced padding on the left */
+        padding-right: 10px; /* Reduced padding on the right */
+        justify-items: center; /* Centers the items horizontally */
+    }
+
+    .trailerItem {
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        height: 200px; /* Reduced height for trailer items */
+        width: 100%; /* Ensure it takes full width */
+    }
+
+    .iframeContainer {
+        top: 50px;
+        left: 5px;
+        width: 95%;
+    }
+
+    .selectedTrailer {
+        top: 50px;
+        left: 5px;
+        width: 95%;
+        height: auto;
+    }
+
+    .thumbnailContainer {
+        padding-top: 56.25%; /* Maintains aspect ratio */
+        width: 250px;
+        height: auto; /* Fixed height for thumbnail container */
+        margin: 0 auto; /* Centers the thumbnail container */
+    }
+
+    .videoContainer {
+        padding-top: 10%; /* Adjusted for smaller screens */
+    }
+
+    .closeButton {
+        font-size: 10px;
+        top: 3px;
+        right: 3px;
+    }
+
+    .thumbnail {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px;
+        max-width: 100%;
+        max-height: 100%; /* Prevent overflow */
+    }
+
+    .overlay {
+        font-size: 40px; /* Adjusted for smaller screens */
+    }
+
+    .playIcon {
+        font-size: 40px;
+    }
+
+    .title {
+        font-size: 0.9rem;
+        margin-top: 3px;
+    }
 }
