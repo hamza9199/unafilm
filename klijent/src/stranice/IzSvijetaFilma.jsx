@@ -12,6 +12,7 @@ const ArticleItem = ({ film, novost }) => {
             <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
                 <div className={styles.row}>
                     <div className={`${styles.entryThumb} col-md-5 col-xs-5 has-thumb`}>
+                        <a href={`/novosti/iz-svijeta-filma/film/${novost.id}`} rel="bookmark">
                         <img
                             width="300"
                             height="133"
@@ -20,6 +21,7 @@ const ArticleItem = ({ film, novost }) => {
                             alt={film.title || 'Film image'}
                             decoding="async"
                         />
+                        </a>
                     </div>
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
                         <h1 className={`${styles.entryTitle} entry-title p-name`} itemprop="name headline">
