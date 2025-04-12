@@ -259,6 +259,7 @@
     .logo img {
         max-height: 40px; /* Reduce logo size for mobile */
         margin-left: 10px; /* Adjust margin for better alignment */
+        margin-top: 6px;
     }
 
     /* Fix for dropdown menus under Filmovi and Novosti */
@@ -269,10 +270,11 @@
         padding: 0;
         margin-top: 10px;
         width: 100%;
+        margin-bottom: -20px;
     }
 
     .submenu li {
-        padding: 10px 0;
+        padding: 0px 0;
         text-align: center;
     }
 

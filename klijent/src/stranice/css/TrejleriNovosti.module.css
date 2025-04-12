@@ -15,14 +15,14 @@
     flex: 4; /* Sekcija za članke zauzima veći prostor */
     display: flex;
     flex-direction: column; /* Svi članci u jednoj koloni */
-    gap: 4px; /* Razmak između članaka */
+    gap: 10px; /* Razmak između članaka */
     justify-content: center;
 }
 
 .articleItem {
     display: flex;
     flex-direction: row; /* Svaki članak se raspoređuje horizontalno */
-    gap: 20px; /* Razmak između slike i sadržaja */
+    gap: 4px; /* Razmak između slike i sadržaja */
 }
 
 
@@ -66,13 +66,18 @@
 
 .post {
     background-color: #fff;
-    padding: 15px;
+    padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
     max-width: 1000px; /* Dodano kako bi post bio maksimalne širine */
 }
 
+.entryImage {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
 .row {
     display: flex;
     gap: 20px;

@@ -126,6 +126,10 @@
       flex-direction: column;
     }
 
+    .col{
+      width: 100%;
+      padding: 0;
+    }
     .row {
       flex-direction: column;
       gap: 10px;

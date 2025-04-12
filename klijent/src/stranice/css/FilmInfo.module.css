@@ -139,7 +139,7 @@
     }
 
     .pageContent {
-        width: 95%;
+        width: 100%;
     }
 
     .article {
@@ -181,7 +181,7 @@
     }
 
     .smallImg {
-        width: 70%; /* Adjusted to make images smaller */
+        width: 100%; /* Adjusted to make images smaller */
         margin-bottom: 20px;
         margin-top: 20px;
     }
@@ -189,5 +189,11 @@
     .videoWrapper {
         margin-bottom: 20px;
         margin-top: 20px;
+        width: 100%;
+    }
+
+    .videoWrapper iframe {
+        width: 100%;
+        height: 160px; /* Adjusted height for smaller screens */
     }
 }

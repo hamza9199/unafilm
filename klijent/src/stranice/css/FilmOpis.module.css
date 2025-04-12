@@ -103,8 +103,9 @@ iframe {
     }
 
     .entryImage img {
-        max-width: 100%;
+        max-width: 90%;
         margin: 0 auto;
+        margin-left: 18px;
     }
 
     .entryInfo {
@@ -131,7 +132,7 @@ iframe {
     }
 
     iframe {
-        width: 100%;
+        width: 90%;
         height: auto;
     }
 }

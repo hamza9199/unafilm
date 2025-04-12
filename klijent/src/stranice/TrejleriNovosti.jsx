@@ -17,7 +17,7 @@ const ArticleItem = ({ film, novost }) => {
                             width="300"
                             height="133"
                             src={film.imageUrl} // Ensure this is correct, otherwise use film.imageUrl properly
-                            className="attachment-medium size-medium wp-post-image"
+                            className={styles.entryImage}
                             alt={film.title || 'Film image'}
                             decoding="async"
                         />

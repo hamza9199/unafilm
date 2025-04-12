@@ -97,8 +97,8 @@ const FilmInfo = () => {
                                     {novost.film.trailerUrl && (
                                         <div className={styles.videoWrapper}>
                                             <iframe 
-                                                width="560" 
-                                                height="315" 
+                                                width="660" 
+                                                height="415" 
                                                 src={novost.film.trailerUrl} 
                                                 title="Trailer"
                                                 frameBorder="0" 
