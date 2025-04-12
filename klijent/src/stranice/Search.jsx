@@ -8,6 +8,8 @@ import styles from './css/Search.module.css';
 
 const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id }) => {
     return (
+        <a href={`/arhiva/film/${id}`} className={styles.articleImage}>
+
         <div className={styles.articleItem}>
             <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
                 <div className={styles.row}>
@@ -38,6 +40,7 @@ const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id 
                 </div>
             </article>
         </div>
+        </a>
     );
 };
 

@@ -130,6 +130,11 @@
     margin-top: 30px;
 }
 
+.videoWrapper iframe {
+    width: 650px;
+    height: 350px; /* Adjusted height for larger screens */
+    border-radius: 10px;
+}
 
 
 @media (max-width: 768px) {

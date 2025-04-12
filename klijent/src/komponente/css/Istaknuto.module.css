@@ -128,6 +128,13 @@
   left: 653px;
 }
 
+.iframeContainer iframe {
+  width: 700px;
+  height: 410px;
+  border-radius: 8px;
+  border: none;
+}
+
 .selectedTrailer {
   position: fixed;
   top: 200px;
@@ -200,6 +207,13 @@
       left: 10px;
       width: 90%;
       height: 300px;
+    }
+
+    .iframeContainer iframe {
+      width: 100%;
+      height: 200px;
+      border-radius: 8px;
+      border: none;
     }
 
     .closeButton {

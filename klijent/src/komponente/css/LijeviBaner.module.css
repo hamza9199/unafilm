@@ -15,6 +15,7 @@
 .wpImage {
     max-width: 100%;
     height: auto;
+    
 }
 
 .widgetList {
@@ -41,8 +42,8 @@
 }
 
 .image {
-    width: auto;
-    height: 180px;
+    width: 100%;
+    height: auto;
     object-fit: cover;
 }
 

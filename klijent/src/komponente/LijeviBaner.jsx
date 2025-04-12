@@ -83,7 +83,7 @@ const LijeviBaner = () => {
                 <h4 className={styles.widgetTitle}>Filmovi</h4>
                 <div className={isMobile ? styles.mobileGrid : ''}>
                     {films.slice(0, isMobile ? 2 : films.length).map((film, index) => (
-                        <FilmItem key={index} src={film.imageUrl} alt={film.title} title={film.title} duration={film.duration} id={film.id} />
+                        <FilmItem key={index} src={film.imageUrl2} alt={film.title} title={film.title} duration={film.duration} id={film.id} />
                     ))}
                 </div>
 
