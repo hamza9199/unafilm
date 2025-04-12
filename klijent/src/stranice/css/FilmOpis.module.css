@@ -137,8 +137,8 @@
         font-size: 1.2rem;
     }
 
-    iframe {
+    .entryMedia iframe {
         width: 90%;
-        height: auto;
+        height: 200px;
     }
 }
