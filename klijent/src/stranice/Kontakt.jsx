@@ -57,7 +57,7 @@ const Kontakt = () => {
                 </div>
                 
                 <div className={styles.formSection}>
-                    <h2 className="text-xl font-semibold mb-4">Kontaktirajte nas</h2>
+                    <h2 className={styles.title}>Kontaktirajte nas</h2>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-4">
                             <label className={styles.formLabel}>Ime</label>
