@@ -19,6 +19,7 @@ import Search from './stranice/Search';
 import AdminDashboard from './stranice/Admin';
 import AdminLogin from './stranice/AdminLogin';
 import LoadingScreen from './komponente/LoadingScreen';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const AppContent = () => {
   const [loading, setLoading] = useState(false);
@@ -67,6 +68,7 @@ function App() {
   return (
     <Router>
       <AppContent />
+      <SpeedInsights />
     </Router>
   );
 }
