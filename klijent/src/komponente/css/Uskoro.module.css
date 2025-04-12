@@ -30,6 +30,7 @@
   font-size: 30px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 35px;
 }
 
 .movieList {
@@ -72,6 +73,9 @@
   color: #007bff;
 }
 
+.con2{
+  text-align: center;
+}
 
 @media (max-width: 768px) {
   .hiddenMobile {
@@ -84,12 +88,15 @@
 
   .container {
     padding: 20px;
+    margin: 0 auto;
   }
 
   .title {
     font-size: 30px;
     font-weight: bold;
     color: #333;
+    text-align: center;
+    margin-bottom:10px;
   }
 
   .movieList li {
@@ -97,9 +104,10 @@
     align-items: center;
     font-size: 16px;
     padding-bottom: 20px;
+    margin: 0 auto; /* Center the list items */
   }
   .movieList{
-    margin-bottom: -80px;
+    margin-bottom: 5px;
     margin-top: 1px;
   }
 

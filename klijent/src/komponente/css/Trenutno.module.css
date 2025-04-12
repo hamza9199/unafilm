@@ -249,14 +249,21 @@
   z-index: 1000000;
 }
 
+.con2{
+  text-align: center;
+}
+
 
 /* Responsive design for phones */
 @media (max-width: 768px) {
   .container {
-    padding: 10px;
+    padding:10px;
     margin-right: 0;
     max-width: 250px;
     max-height: auto;
+    margin: 0 auto; /* Center the container */
+    width: 100%;
+    padding-left: 20px;
   }
 
   .selectedFilm {
@@ -286,6 +293,8 @@
 
   .title2 {
     font-size: 16px;
+    align-items: center;
+    text-align: center;
   }
 
   .iframeContainer {

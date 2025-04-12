@@ -67,7 +67,7 @@ const Trenutno = () => {
   }
 
   return (
-    <div>
+    <div className={styles.con2}>
       <h2 className={styles.title}>Trenutno u kinima</h2>
       <div className={styles.container}>
         <Slider {...settings}>
