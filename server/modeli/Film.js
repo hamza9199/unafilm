@@ -54,6 +54,10 @@ const Film = sequelize.define('Film', {
         type: DataTypes.ENUM('uskoro', 'trenutno', 'arhiva'),
         allowNull: true,  
     },
+    opis: {//
+        type: DataTypes.TEXT,
+        allowNull: true,
+    },
     
     createdAt: {
         type: DataTypes.DATE,

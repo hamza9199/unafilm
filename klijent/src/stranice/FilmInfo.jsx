@@ -6,6 +6,7 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
+import { Helmet } from 'react-helmet';
 
 const FilmInfo = () => {
     const { id } = useParams(); // Preuzimanje id-a iz URL-a
@@ -39,6 +40,28 @@ const FilmInfo = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>{film.title} - Una Film</title>
+                <meta name="description" content={film.opis} />
+                <link rel="canonical" href={`https://unafilm.com/novosti/iz-svijeta-filma/film/${id}`} />
+                <meta name="keywords" content={`${film.title}, film, novosti`} />
+                <meta name="author" content="Una Film" />
+                <meta property="og:title" content={film.title} />
+
+                <meta property="og:description" content={film.opis} />
+                <meta property="og:image" content={film.imageUrl} />
+                <meta property="og:url" content={`https://unafilm.com/novosti/traileri/film/${id}`} />
+                <meta property="og:type" content="article" />
+                <meta property="og:site_name" content="Una Film" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={novost.film.title} />
+                <meta name="twitter:description" content={novost.film.opis} />
+                <meta name="twitter:image" content={novost.film.imageUrl} />
+                <meta name="twitter:site" content="@UnaFilm" />
+                <meta name="twitter:creator" content="@UnaFilm" />
+                </Helmet>
+
+
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },

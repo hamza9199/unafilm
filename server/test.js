@@ -21,6 +21,7 @@ async function insertMovies() {
                 comment: 10,
                 type: 'film',
                 tipMjesta: 'uskoro',
+                opis: 'Opis 1',
                 createdAt: '2025-04-07 23:36:58',
             },
             
@@ -39,6 +40,7 @@ async function insertMovies() {
                 comment: i * 5,
                 type: 'film',
                 tipMjesta: i % 3 === 0 ? 'uskoro' : i % 3 === 1 ? 'trenutno' : 'arhiva',
+                opis: `Opis ${i}`,
                 createdAt: '2025-04-07 23:36:58',
             });
         }

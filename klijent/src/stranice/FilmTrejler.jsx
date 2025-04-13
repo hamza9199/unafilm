@@ -6,6 +6,7 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
+import { Helmet } from 'react-helmet';
 
 const FilmTrejler = () => {
     const { id } = useParams(); 
@@ -36,6 +37,25 @@ const FilmTrejler = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>{novost.film.title} - Una Film</title>
+                <meta name="description" content={novost.film.opis} />
+                <link rel="canonical" href={`https://unafilm.com/novosti/traileri/film/${id}`} />
+                <meta name="keywords" content={`${novost.film.title}, film, trailer, novosti`} />
+                <meta name="author" content="Una Film" />
+                <meta property="og:title" content={novost.film.title} />
+                <meta property="og:description" content={novost.film.opis} />
+                <meta property="og:image" content={novost.film.imageUrl} />
+                <meta property="og:url" content={`https://unafilm.com/novosti/traileri/film/${id}`} />
+                <meta property="og:type" content="article" />
+                <meta property="og:site_name" content="Una Film" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={novost.film.title} />
+                <meta name="twitter:description" content={novost.film.opis} />
+                <meta name="twitter:image" content={novost.film.imageUrl} />
+                <meta name="twitter:site" content="@UnaFilm" />
+                <meta name="twitter:creator" content="@UnaFilm" />
+            </Helmet>
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
@@ -95,7 +115,7 @@ const FilmTrejler = () => {
 
                                     {novost.tekst4 ? (
                                             <p className={styles.pu}>
-                                                {novost.tekst4}
+                                                {novost.film.opis}
                                             </p>
                                     ) : null}
                                 </div>

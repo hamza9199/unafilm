@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/AdminDashboard.module.css';
+import { Helmet } from 'react-helmet';
 
 const AdminDashboard = () => {
     const [films, setFilms] = useState([]);
@@ -10,7 +11,7 @@ const AdminDashboard = () => {
     const [poruke, setPoruke] = useState([]);
     const [newFilm, setNewFilm] = useState({
         title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
-        duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro'
+        duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro', opis:''
     });
     const [newNovost, setNewNovost] = useState({
         filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
@@ -98,6 +99,7 @@ const AdminDashboard = () => {
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
         formData.append('comment', newFilm.comment);
+        formData.append('opis', newFilm.opis);
 
     
     
@@ -122,7 +124,8 @@ const AdminDashboard = () => {
             setSelectedFilm(null);
             setNewFilm({
                 title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
-                duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro'
+                duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro',
+                opis:''
             });
             setSelectedOption('films')
             console.log('Film created successfully:', response.data);
@@ -145,6 +148,7 @@ const AdminDashboard = () => {
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
         formData.append('comment', newFilm.comment);
+        formData.append('opis', newFilm.opis);
 
         // Dodaj slike (ako postoje i ako su fajlovi)
         if (newFilm.imageUrl instanceof File) {
@@ -172,7 +176,8 @@ const AdminDashboard = () => {
             setSelectedFilm(null);
             setNewFilm({
                 title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
-                duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro'
+                duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro',
+                opis:''
             });
             setSelectedOption('films')
             console.log('Film updated successfully:', response.data);
@@ -194,6 +199,7 @@ const AdminDashboard = () => {
         formData.append('tekst4', newNovost.tekst4);
         formData.append('tipNovosti', newNovost.tipNovosti);
         formData.append('filmId', newNovost.filmId);
+
 
         
         // Dodaj slike (ako postoje i ako su fajlovi)
@@ -370,6 +376,14 @@ const AdminDashboard = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>Admin Dashboard - Una Film</title>
+                <meta name="description" content="Admin dashboard for managing films, news, and messages." />
+                <meta name="keywords" content="admin, dashboard, Una Film, films, news, messages" />
+                <meta name="author" content="Una Film" />
+                
+
+            </Helmet>
             <div className={styles.container}>
                 <aside className={styles.sidebar}>
                     <nav className={styles.nav}>
@@ -746,6 +760,11 @@ const AdminDashboard = () => {
 
                                 </select>
                             </div>
+                            <div className={styles.div}>
+                                <label className={styles.label}>Opis</label>
+                                <input className={styles.input} type="text" placeholder="Opis" value={newFilm.opis} onChange={(e) => setNewFilm({ ...newFilm, opis: e.target.value })} />
+                            </div>
+
                             <button className={styles.button} onClick={handleCreateFilm}>Create Film</button>
                         </section>
                     )}
@@ -878,6 +897,16 @@ const AdminDashboard = () => {
                                     <option value="trenutno">Trenutno u kinima</option>
                                     <option value="arhiva">Arhiva</option>
             </select>
+        </div>
+
+        <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Opis</label>
+            <input
+                className={styles.formInput}
+                type="text"
+                value={newFilm.opis}
+                onChange={(e) => setNewFilm({ ...newFilm, opis: e.target.value })}
+            />
         </div>
 
         <button className={styles.updateButton} onClick={handleUpdateFilm}>Update Film</button>

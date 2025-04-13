@@ -5,6 +5,7 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
+import Helmet from 'react-helmet'; // Import Helmet for managing document head
 
 const ArticleItem = ({ film, novost }) => {
     return (
@@ -85,6 +86,13 @@ const Novosti = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>Novosti - Una Film</title>
+                <meta name="description" content="Novosti - Una Film Distribucija" />
+
+                <meta name="keywords" content="Novosti, Una Film, distribucija filmova" />
+                <meta name="author" content="Una Film" />
+            </Helmet>
             <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: 'Novosti', link: '/novosti' }]} />
             <div className={styles.container}>
                 <LijeviBaner />

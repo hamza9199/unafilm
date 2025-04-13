@@ -4,6 +4,8 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/Kontakt.module.css';
 import Breadcrumb from '../komponente/Breadcrumb';
+import Helmet from 'react-helmet'; // Import Helmet for managing document head
+
 
 const Kontakt = () => {
     const [formData, setFormData] = useState({
@@ -35,6 +37,12 @@ const Kontakt = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>Kontakt - Una Film</title>
+                <meta name="description" content="Kontaktirajte Una Film za više informacija." />
+                <meta name="keywords" content="kontakt, Una Film, distribucija filmova" />
+                <meta name="author" content="Una Film" />
+            </Helmet>
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },

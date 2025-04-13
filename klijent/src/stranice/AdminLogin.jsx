@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/AdminLogin.module.css';
+import { Helmet } from 'react-helmet';
 
 const AdminLogin = () => {
     const [username, setUsername] = useState('');
@@ -33,6 +34,11 @@ const AdminLogin = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>Admin Login - Una Film</title>
+                <meta name="description" content="Admin login page for Una Film" />
+                <meta name="keywords" content="admin, login, Una Film" />
+            </Helmet>
             <div className={styles.container}>
                 <h2 className={styles.title}>Admin Login</h2>
                 <form onSubmit={handleLogin} className={styles.form}>

@@ -4,6 +4,7 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import styles from './css/Arhiva.module.css'; 
+import { Helmet } from 'react-helmet';
 
 const Arhiva = () => {
     const [movies, setMovies] = useState([]);
@@ -39,6 +40,11 @@ const Arhiva = () => {
     return (
         <>
             <Header/>  
+            <Helmet>
+                <title>Arhiva - Una Film</title>
+                <meta name="description" content="Arhiva filmova Una Film" />
+                
+            </Helmet>
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },

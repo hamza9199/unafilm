@@ -9,6 +9,8 @@ import slika3 from './../assets/img_54-1.jpg'; // Adjust the path as necessary
 import slika4 from './../assets/img_56-1.jpg'; // Adjust the path as necessary
 import slika5 from './../assets/img_57-1.jpg'; // Adjust the path as necessary
 import slika6 from './../assets/img_58-1.jpg'; // Adjust the path as necessary
+import Helmet from 'react-helmet'; // Import Helmet for managing document head
+
 
 
 const Onama = () => {
@@ -24,6 +26,12 @@ const Onama = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>O nama - Una Film</title>
+                <meta name="description" content="O nama - Una Film Distribucija" />
+                <meta name="keywords" content="O nama, Una Film, distribucija filmova" />
+                <meta name="author" content="Una Film" />
+            </Helmet>
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },

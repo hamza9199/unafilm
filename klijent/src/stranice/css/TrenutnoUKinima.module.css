@@ -7,6 +7,20 @@
     margin-bottom: 50px;
 }
 
+.selectedFilm {
+    position: absolute;
+    top: -40px;
+    display: flex;
+    background-color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 12px;
+    z-index: 10;
+    transition: all 0.3s ease-in-out;
+    width: 700px;
+    height: auto;
+  }
+
 .title {
     font-size: 2rem;
     margin-bottom: 20px;

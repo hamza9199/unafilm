@@ -6,6 +6,52 @@
   max-height: 500px;
 }
 
+.left {
+  flex-shrink: 0;
+  width: 200px;  /* Adjust based on desired image size */
+  margin-right: 20px;
+}
+
+.left img {
+  width: 180px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.right {
+  margin-left: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.movieTitle {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+.metaInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #6e6e6e;
+  margin-bottom: 10px;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #f6f3f3;
+  line-height: 1.4;
+  margin-bottom: 30px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+
 .slick-slide {
   display: block;
   padding: 0 10px;
@@ -46,27 +92,12 @@
   height: auto;
 }
 
-.selectedFilm .left {
-  flex: 1; /* Ostavlja prostor za sliku */
-  max-width: 180px;
-}
 
-.selectedFilm .left img {
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
-}
 
-.selectedFilm .right {
-  flex: 2; /* Više prostora za tekst */
-  padding-left: 15px;
-}
 
-.movieTitle {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 8px;
-}
+
+
+
 
 .duration,
 .releaseDate {
@@ -75,16 +106,7 @@
   margin-bottom: 5px;
 }
 
-.description {
-  font-size: 14px;
-  color: #bbb;
-  margin-bottom: 10px;
-}
 
-.buttons {
-  display: flex;
-  gap: 10px;
-}
 
 .watchButton,
 .infoButton {

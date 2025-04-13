@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import styles from './css/FilmOpis.module.css'; // Import CSS module
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
+import { Helmet } from 'react-helmet';
 
 const FilmOpis = () => {
     const { id } = useParams(); // Koristimo useParams da dobijemo id iz URL-a
@@ -34,6 +35,26 @@ const FilmOpis = () => {
     return (
         <>
             <Header />
+            <Helmet>
+                <title>{movie.title} - Una Film</title>
+                <meta name="description" content={movie.opis} />
+                <link rel="canonical" href={`https://unafilm.com/filmovi/${id}`} />
+                <meta name="keywords" content={`${movie.title}, film, opis, Una Film`} />
+                <meta name="author" content="Una Film" />
+
+                <meta property="og:title" content={movie.title} />
+                <meta property="og:description" content={movie.opis} />
+                <meta property="og:image" content={movie.imageUrl} />
+                <meta property="og:url" content={`https://unafilm.com/filmovi/${id}`} />
+                <meta property="og:type" content="article" />
+                <meta property="og:site_name" content="Una Film" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={movie.title} />
+                <meta name="twitter:description" content={movie.opis} />
+                <meta name="twitter:image" content={movie.imageUrl} />
+                <meta name="twitter:site" content="@UnaFilm" />
+                <meta name="twitter:creator" content="@UnaFilm" />
+            </Helmet>
             <div className={styles.container}>
                 <section className={styles.pageHeader}>
                     <img 
@@ -57,7 +78,7 @@ const FilmOpis = () => {
                         </div>
                         <div className={styles.entryDescription}>
                             <h3>Opis</h3>
-                            <p>{movie.description}</p>
+                            <p>{movie.opis}</p>
                         </div>
                     </div>
                 </section>

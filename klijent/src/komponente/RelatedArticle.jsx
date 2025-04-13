@@ -39,6 +39,8 @@ const RelatedArticle = () => {
                     {articles.map((article, index) => (
                         <article key={index} className={`${styles.colMd4} ${styles.article}`}>
                             <div className={styles.entryThumb}>
+                                <a href={`/novosti/film/${article.id}`} className={styles.articleLink}>
+                                    
                                 <img
                                     width="360"
                                     height="203"
@@ -46,6 +48,7 @@ const RelatedArticle = () => {
                                     alt={article.film.imageAlt}
                                     className={styles.articleImage}
                                 />
+                                </a>
                             </div>
                             <h3 className={styles.entryTitle}>
                                 <a href={`/novosti/film/${article.id}`}className={styles.articleLink}>

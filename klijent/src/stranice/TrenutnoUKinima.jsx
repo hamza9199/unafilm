@@ -4,6 +4,8 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import styles from './css/TrenutnoUKinima.module.css';
+import Helmet from 'react-helmet'; // Import Helmet for managing document head
+
 
 const TrenutnoUKinima = () => {
     const [movies, setMovies] = useState([]);
@@ -39,6 +41,14 @@ const TrenutnoUKinima = () => {
     return (
         <>
             <Header />
+
+            <Helmet>
+                <title>Trenutno u kinima - Una Film</title>
+                <meta name="description" content="Trenutno u kinima - Una Film" />
+                <meta name="keywords" content="filmovi, trenutačno u kinima, Una Film" />
+                <meta name="author" content="Una Film" />
+            </Helmet>
+
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },

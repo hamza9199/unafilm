@@ -110,34 +110,40 @@ const Trenutno = () => {
         </Slider>
 
         {selectedFilm && (
-          <div 
-            className={styles.selectedFilm}
-            onMouseEnter={() => {
-              setHoveredIndex(hoveredIndex);
-              setSelectedFilm(selectedFilm);
-            }}
-            onMouseLeave={() => {
-              setHoveredIndex(null);
-              setSelectedFilm(null);
-            }}
-            style={{
-              left: (340 * hoveredIndex) + 'px',
-            }}          
-          >
-            <div className={styles.left}>
-              <img 
-                src={selectedFilm.imageUrl2}
-                alt={selectedFilm.title}
-                className={styles.movieImage}
-              />
+          <div
+          className={styles.selectedFilm}
+          onMouseEnter={() => {
+            setHoveredIndex(hoveredIndex);
+            setSelectedFilm(selectedFilm);
+          }}
+          onMouseLeave={() => {
+            setHoveredIndex(null);
+            setSelectedFilm(null);
+          }}
+          style={{
+            left: `${340 * hoveredIndex}px`,
+          }}
+        >
+          <div className={styles.left}>
+            <img 
+              src={selectedFilm.imageUrl2}
+              alt={selectedFilm.title}
+            />
+          </div>
+      
+          <div className={styles.right}>
+            <h3 className={styles.movieTitle}>
+              <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`}>
+                {selectedFilm.title}
+              </a>
+            </h3>
+      
+            <div className={styles.metaInfo}>
+              <span>{new Date(selectedFilm.releaseDate).toLocaleDateString()}</span>
+              <span>{selectedFilm.duration} min</span>
             </div>
-            <div className={styles.right}>
-              <h3 className={styles.movieTitle}>
-                <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`}>{selectedFilm.title}</a>
-              </h3>
-              <p className={styles.duration}>Trajanje: {selectedFilm.duration} min</p>
-              <p className={styles.releaseDate}>Datum izlaska: {new Date(selectedFilm.releaseDate).toLocaleDateString()}</p>
-              <p className={styles.description}>{selectedFilm.description}</p>
+      
+            <p className={styles.description}>{selectedFilm.description}</p>
               <div className={styles.buttons}>
                 <a onClick={() => setSelectedTrailer(selectedFilm.trailerUrl)} className={styles.watchButton}>
                 <svg
