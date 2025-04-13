@@ -100,6 +100,8 @@ const Search = () => {
     const articlesPerPage = 15;
 
     useEffect(() => {
+        setArticles([]); // Reset articles on new search
+        setNovosti([]); // Reset novosti on new search
         const fetchArticles = async () => {
             if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
             setLoading(true);
