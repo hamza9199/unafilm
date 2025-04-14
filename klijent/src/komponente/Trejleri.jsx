@@ -39,8 +39,8 @@ const Trejleri = () => {
             {selectedTrailer === trailer.trailerUrl ? (
               <div className={styles.videoContainer}>
               <iframe
-                width="430"
-                height="203"
+                width="830"
+                height="300"
                 src={trailer.trailerUrl.replace("watch?v=", "embed/")} // Zamjena za embed URL
                 title={trailer.title}
                 frameBorder="0"
