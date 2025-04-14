@@ -45,17 +45,26 @@ const AdminDashboard = () => {
 
     useEffect(() => {
             const fetchArticles = async () => {
-                if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
-                try {
-                    const response = await fetch(`https://unafilm-production.up.railway.app/server/filmovi/search/${searchTerm}`);
-                    const data = await response.json();
-    
-                    if (response.ok) {
-                        setFilms(data);
+                if (!searchTerm.trim()) {
+                    try {
+                        const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi');
+                        setFilms(response.data);
+                    } catch (error) {
+                        console.error('Error fetching films:', error);
+                    }
+                }
+                else{
+                    try {
+                        const response = await fetch(`https://unafilm-production.up.railway.app/server/filmovi/search/${searchTerm}`);
+                        const data = await response.json();
+        
+                        if (response.ok) {
+                            setFilms(data);
+                        } 
+                    } catch {
+                        console.error('Error fetching articles. Please try again later.');
                     } 
-                } catch {
-                    console.error('Error fetching articles. Please try again later.');
-                } 
+                }
             };
 
            
@@ -65,17 +74,26 @@ const AdminDashboard = () => {
 
     useEffect(() => {
         const fetchArticles2 = async () => {
-            if (!searchTerm2.trim()) return; // Prevent API call if the search term is empty
-            try {
-                const response = await fetch(`https://unafilm-production.up.railway.app/server/novosti/search/${searchTerm2}`);
-                const data = await response.json();
+            if (!searchTerm2.trim()) {
+                try {
+                    const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti');
+                    setNovosti(response.data);
+                } catch (error) {
+                    console.error('Error fetching novosti:', error);
+                }
+            }
+            else{
+                try {
+                    const response = await fetch(`https://unafilm-production.up.railway.app/server/novosti/search/${searchTerm2}`);
+                    const data = await response.json();
 
-                if (response.ok) {
-                    setNovosti(data);
+                    if (response.ok) {
+                        setNovosti(data);
+                    } 
+                } catch {
+                    console.error('Error fetching articles. Please try again later.');
                 } 
-            } catch {
-                console.error('Error fetching articles. Please try again later.');
-            } 
+            }
         };
 
        
@@ -331,31 +349,47 @@ const AdminDashboard = () => {
 
 
     const handleDeleteFilm = async (id) => {
-        try {
-            await axios.delete(`https://unafilm-production.up.railway.app/server/filmovi/${id}`);
-            fetchFilms();
-        } catch (error) {
-            console.error('Error deleting film:', error);
+        const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovaj film?');
+        if (confirmed) {
+            try {
+                await axios.delete(`https://unafilm-production.up.railway.app/server/filmovi/${id}`);
+                fetchFilms();
+            } catch (error) {
+                console.error('Error deleting film:', error);
+            }
+        } else {
+            console.log('Film nije obrisan!');
         }
     };
-
+    
     const handleDeleteNovost = async (id) => {
-        try {
-            await axios.delete(`https://unafilm-production.up.railway.app/server/novosti/${id}`);
-            fetchNovosti();
-        } catch (error) {
-            console.error('Error deleting novost:', error);
+        const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu novost?');
+        if (confirmed) {
+            try {
+                await axios.delete(`https://unafilm-production.up.railway.app/server/novosti/${id}`);
+                fetchNovosti();
+            } catch (error) {
+                console.error('Error deleting novost:', error);
+            }
+        } else {
+            console.log('Novost nije obrisana!');
         }
     };
-
+    
     const handleDeletePoruke = async (id) => {
-        try {
-            await axios.delete(`https://unafilm-production.up.railway.app/server/poruke/${id}`);
-            fetchPoruke();
-        } catch (error) {
-            console.error('Error deleting poruka:', error);
+        const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu poruku?');
+        if (confirmed) {
+            try {
+                await axios.delete(`https://unafilm-production.up.railway.app/server/poruke/${id}`);
+                fetchPoruke();
+            } catch (error) {
+                console.error('Error deleting poruka:', error);
+            }
+        } else {
+            console.log('Poruka nije obrisana!');
         }
     };
+    
 
     const handleLogout = () => {
         localStorage.removeItem('adminToken'); // Remove user data from local storage
@@ -372,6 +406,19 @@ const AdminDashboard = () => {
         return url; // If it's not a valid YouTube URL, return the original URL.
       };
       
+      const handleSelectedOption = (opt) => {
+        setNewFilm({
+            title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+            duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro',
+            opis:''
+        });      
+        setNewNovost({
+            filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
+            slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
+        });
+        
+         setSelectedOption(opt);
+      }
 
     return (
         <>
@@ -394,13 +441,11 @@ const AdminDashboard = () => {
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
                             <li className={styles.li} onClick={() => handleLogout()}>Logout</li>
-                            <li className={styles.li} onClick={() => setSelectedOption('films')}>Svi Filmovi</li>
-                            <li className={styles.li} onClick={() => setSelectedOption('novosti')}>Sve Novosti</li>
-                            <li className={styles.li} onClick={() => setSelectedOption('poruke')}>Sve Poruke</li>
-                            <li className={styles.li} onClick={() => setSelectedOption('createFilm')}>Kreiraj Film</li>
-                            <li className={styles.li} onClick={() => setSelectedOption('createNovost')}>Kreiraj Novost</li>
-                            <li className={styles.li} onClick={() => setSelectedOption('pretragaFilmova')}>Pretraga Filmova</li>
-                            <li className={styles.li} onClick={() => setSelectedOption('pretragaNovosti')}>Pretraga Novosti</li>
+                            <li className={styles.li} onClick={() => handleSelectedOption('pretragaFilmova')}>Pretraga Filmova</li>
+                            <li className={styles.li} onClick={() => handleSelectedOption('pretragaNovosti')}>Pretraga Novosti</li>
+                            <li className={styles.li} onClick={() => handleSelectedOption('poruke')}>Sve Poruke</li>
+                            <li className={styles.li} onClick={() => handleSelectedOption('createFilm')}>Kreiraj Film</li>
+                            <li className={styles.li} onClick={() => handleSelectedOption('createNovost')}>Kreiraj Novost</li>                       
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
@@ -715,12 +760,18 @@ const AdminDashboard = () => {
                                 />
                             </div>
                             <div className={styles.div}>
+                                <img src={newFilm.imageUrl} alt="Preview" className={styles.imagePreview} />
+                            </div>
+                            <div className={styles.div}>
                                 <label className={styles.label}>Image 2</label>
                                 <input
                                     className={styles.input}
                                     type="file"
                                     onChange={(e) => setNewFilm({ ...newFilm, imageUrl2: e.target.files[0] })}
                                 />
+                            </div>
+                            <div className={styles.div}>
+                                <img src={newFilm.imageUrl2} alt="Preview" className={styles.imagePreview} />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Release Date</label>
@@ -820,6 +871,9 @@ const AdminDashboard = () => {
             />
         </div>
         <div className={styles.formGroup}>
+            <img src={newFilm.imageUrl} alt="Preview" className={styles.imagePreview} />
+        </div>
+        <div className={styles.formGroup}>
             <label className={styles.formLabel}>Image URL2</label>
             <input
                 className={styles.formInput}
@@ -828,7 +882,9 @@ const AdminDashboard = () => {
             />
         </div>
 
-      
+        <div className={styles.formGroup}>
+            <img src={newFilm.imageUrl2} alt="Preview" className={styles.imagePreview} />
+        </div>
 
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Release Date</label>
@@ -1007,6 +1063,10 @@ const AdminDashboard = () => {
             />
         </div>
 
+        <div className={styles.formGroup}>
+            <img src={newNovost.slika1} alt="Preview" className={styles.imagePreview} />
+        </div>
+
         {/* Image 2 URL */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 2 URL</label>
@@ -1017,6 +1077,10 @@ const AdminDashboard = () => {
             />
         </div>
 
+        <div className={styles.formGroup}>
+            <img src={newNovost.slika2} alt="Preview" className={styles.imagePreview} />
+        </div>
+
         {/* Image 3 URL */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 3 URL</label>
@@ -1025,6 +1089,10 @@ const AdminDashboard = () => {
                 type="file"
                 onChange={(e) => setNewNovost({ ...newNovost, slika3: e.target.files[0] })}
             />
+        </div>
+
+        <div className={styles.formGroup}>
+            <img src={newNovost.slika3} alt="Preview" className={styles.imagePreview} />
         </div>
 
         {/* Type of News */}
@@ -1129,6 +1197,11 @@ const AdminDashboard = () => {
                 onChange={(e) => setNewNovost({ ...newNovost, slika1: e.target.files[0] })}
             />
         </div>
+
+        <div className={styles.formGroup}>
+            <img src={newNovost.slika1} alt="Preview" className={styles.imagePreview} />
+        </div>
+
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 2 URL</label>
             <input
@@ -1138,12 +1211,19 @@ const AdminDashboard = () => {
             />
         </div>
         <div className={styles.formGroup}>
+            <img src={newNovost.slika2} alt="Preview" className={styles.imagePreview} />
+        </div>
+        <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 3 URL</label>
             <input
                 className={styles.formInput}
                 type="file"
                 onChange={(e) => setNewNovost({ ...newNovost, slika3:  e.target.files[0] })}
             />
+        </div>
+
+        <div className={styles.formGroup}>
+            <img src={newNovost.slika3} alt="Preview" className={styles.imagePreview} />
         </div>
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Tip Novosti</label>

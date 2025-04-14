@@ -3,9 +3,10 @@
     display: flex;
     min-height: 100vh;
     background-color: #f8f9fa;
-    width: 95vw;
+    width: 99.1vw;
     margin: 0 auto;
-    padding-top:50px;
+    padding-top:0px;
+    max-width:100%;
   }
   
   /* Sidebar styles */
@@ -49,6 +50,7 @@
   .content {
     flex: 1;
     padding: 20px;
+    margin-top: 80px;
   }
   
   /* Section styling */
@@ -359,11 +361,27 @@ input::placeholder, textarea::placeholder {
   box-sizing: border-box;
 }
 
+.imagePreview {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+
   
   /* Responsive adjustments */
   @media (max-width: 768px) {
     .container {
       flex-direction: column;
+      padding-top:60px;
+
     }
     
     .sidebar {
@@ -373,6 +391,8 @@ input::placeholder, textarea::placeholder {
     
     .content {
       padding: 15px;
+      margin-top: 30px;
+
     }
 
     .table {
@@ -390,5 +410,10 @@ input::placeholder, textarea::placeholder {
     }
     .searchBox input {
       width: 100%;
+    }
+
+    .imagePreview {
+      width: 100%;
+      height: auto;
     }
   }

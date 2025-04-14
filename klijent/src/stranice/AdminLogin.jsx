@@ -40,6 +40,7 @@ const AdminLogin = () => {
                 <meta name="keywords" content="admin, login, Una Film" />
             </Helmet>
             <div className={styles.container}>
+                <div  className={styles.container2}>
                 <h2 className={styles.title}>Admin Login</h2>
                 <form onSubmit={handleLogin} className={styles.form}>
                     <div className={styles.inputGroup}>
@@ -67,6 +68,7 @@ const AdminLogin = () => {
                     {error && <p className={styles.error}>{error}</p>}
                     <button type="submit" className={styles.button}>Login</button>
                 </form>
+                </div>
             </div>
             <Footer />
         </>
