@@ -29,9 +29,9 @@ async function insertNovost() {
               tekst4: `Što se tiče glumačkih izvedbi, Christopher Abbott (Uboga stvorenja/Poor Things, 2024., nominiran za Zlatni globus za nastup u TV seriji Kvaka 22/Catch-22, 2019.), koji je odličan u svom nastupu te je uspio pokazati svu kompleksnost svoga lika (i njegove transformacije) te uvjerljivu emotivnost. Uz njega je tu Julia Garner (Projekt Anna/Inventing Anna, 2022., Asistentica/The Assistant, 2019., dobitnica Zlatnog globusa za nastup u TV seriji Ozark, 2017.-2022.), koja je vrlo solidna. Mali prigovor se može uputiti na Whannell i Tuck jer je dojam da su scenaristički mogli dati još malo prostora njenom liku (to se odnosi i na karakternu obradu).
           
           Gledajući u cjelini, Leigh Whannell snimio je sasvim solidan horor film koji u sebi nosi dovoljno jeze da vas prodrma. Njegova specifičnost leži u građenju atmosfere i vrlo dobrim vođenjem priče (dvije priče) ujednačenim ritmom. Klasična priča dobila je nove ideje koje u potpunosti funkcioniraju i mijenjaju njezinu bit. Zbog toga možemo reći da film Čovjek vuk nije samo film o vukodlaku (ili ako vam je draže – čudovištima) već nudi i nešto više od toga.`,
-              slika1: 'https://unafilm-production.up.railway.app/uploads/1744737452158.jpg',
-              slika2: 'https://unafilm-production.up.railway.app/uploads/1744737452158.jpg',
-              slika3: 'https://unafilm-production.up.railway.app/uploads/1744737452158.jpg',
+              slika1: 'https://unafilm-production.up.railway.app/uploads/1744669847947.jpg',
+              slika2: 'https://unafilm-production.up.railway.app/uploads/1744669847947.jpg',
+              slika3: 'https://unafilm-production.up.railway.app/uploads/1744669847947.jpg',
               tipNovosti: 'novost',
               datumKreiranja: '2025-04-07 23:36:58',
             },

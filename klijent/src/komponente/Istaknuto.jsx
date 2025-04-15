@@ -79,12 +79,12 @@ const Istaknuto = () => {
               </div>
               <div className={styles.slideContent}>
                 <h2 className={styles.slideTitle}>
-                  <a href={`/arhiva/film/${film.id}`} rel="noopener noreferrer">
+                  <a href={`/arhiva/film/${film.id}`} rel="noopener noreferrer" className={styles.slideLink}>
                     {film.title}
                   </a>
                 </h2>
                 <div className={styles.slideDesc}>
-                  <p>{film.description}</p>
+                  <p className={styles.desc}>{film.description}</p>
                 </div>
                 <div className={styles.slideButton}>
                   <a  onClick={() => setSelectedTrailer(film.trailerUrl)} className={styles.trailerLink} target="_blank" rel="noopener noreferrer">

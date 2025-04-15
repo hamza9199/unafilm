@@ -1,5 +1,4 @@
 .istaknutoSection {
-    background-color: #f8f8f8;
     margin-top: 80px;
   overflow: hidden;
   }
@@ -8,6 +7,7 @@
     overflow: hidden;
     max-width: calc(1943px - 40px); /* Adjusted for responsiveness */
     margin: 0 auto; /* Center the slider */
+    height: 600px;
 }
 
 .slideItem {
@@ -155,7 +155,7 @@
       width: 100%;
       max-width: calc(343px - 20px); /* Adjusted for smaller screens */
       margin: 0 auto; /* Center the slider */
-      height: 250px;
+      height: 350px;
       border-radius: 10px;
     }
 
@@ -173,11 +173,12 @@
       top: 40px;
       left: 15px;
       padding: 15px;
-      width: 95%;
+      width: 88%;
+
     }
 
     .slideTitle a {
-      font-size: 18px;
+      font-size: 15px;
     }
 
     .slideButton a {
@@ -220,5 +221,10 @@
       top: 5px;
       right: 5px;
       font-size: 12px;
+    }
+    .desc{
+      font-size: 12px;
+      text-wrap: normal;
+      overflow: hidden;
     }
   }
