@@ -7,6 +7,7 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 import { Helmet } from 'react-helmet';
+import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
 
 const FilmInfo = () => {
     const { id } = useParams(); // Preuzimanje id-a iz URL-a
@@ -107,31 +108,40 @@ const FilmInfo = () => {
                                     <p><em>Preuzeto sa: {novost.kreator}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                    {novost.slika1 && <img className={styles.smallImg} src={novost.slika1} alt=""  />}
-                                    {novost.tekst && <p>{novost.tekst}</p>}
+                                        {novost.slika1 && <img className={styles.smallImg} src={novost.slika1} alt="" />}
+                                        <div style={{ textAlign: 'justify' }}>
+                                        {novost.tekst && <ReactMarkdown>{novost.tekst}</ReactMarkdown>}
+                                        </div>
 
-                                    {novost.slika2 && <img className={styles.smallImg}  src={novost.slika2} alt=""  />}
-                                    {novost.tekst2 && <p>{novost.tekst2}</p>}
+                                        {novost.slika2 && <img className={styles.smallImg} src={novost.slika2} alt="" />}
+                                        <div style={{ textAlign: 'justify' }}>
+                                        {novost.tekst2 && <ReactMarkdown>{novost.tekst2}</ReactMarkdown>}
+                                        </div>
 
-                                    {novost.slika3 && <img className={styles.smallImg}  src={novost.slika3} alt="" />}
-                                    {novost.tekst3 && <p>{novost.tekst3}</p>}
-
+                                        {novost.slika3 && <img className={styles.smallImg} src={novost.slika3} alt="" />}
+                                        <div style={{ textAlign: 'justify'}}>
+                                        {novost.tekst3 && <ReactMarkdown>{novost.tekst3}</ReactMarkdown>}
+                                        </div>
 
                                     {novost.film.trailerUrl && (
                                         <div className={styles.videoWrapper}>
-                                            <iframe 
-                                                width="660" 
-                                                height="415" 
-                                                src={novost.film.trailerUrl} 
-                                                title="Trailer"
-                                                frameBorder="0" 
-                                                allowFullScreen
-                                            ></iframe>
+                                        <iframe
+                                            width="660"
+                                            height="415"
+                                            src={novost.film.trailerUrl}
+                                            title="Trailer"
+                                            frameBorder="0"
+                                            allowFullScreen
+                                        ></iframe>
                                         </div>
                                     )}
-                                    {novost.tekst4 && <p>{novost.tekst4}</p>}
+
+                                        <div style={{ textAlign: 'justify' }}>
+                                        {novost.tekst4 && <ReactMarkdown>{novost.tekst4}</ReactMarkdown>}
+                                        </div>
 
                                 </div>
+
                             </div>
                         </div>
                         <RelatedArticle />

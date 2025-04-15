@@ -12,12 +12,14 @@
   },
   "dependencies": {
     "@mui/icons-material": "^7.0.1",
+    "@uiw/react-md-editor": "^4.0.5",
     "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.8.4",
     "firebase": "^11.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-helmet": "^6.1.0",
+    "react-markdown": "^10.1.0",
     "react-router-dom": "^7.4.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1"

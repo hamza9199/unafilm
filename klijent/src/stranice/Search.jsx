@@ -36,7 +36,11 @@ const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id 
                             <span className={styles.entryComment}>{comment} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                            <p>{description}</p>
+                        <p>
+                            {description.length > 300 
+                                ? `${description.substring(0, 300)}...` 
+                                : description}
+                            </p> 
                         </div>
                     </div>
                 </div>
@@ -73,7 +77,11 @@ const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id }) => {
                             <span>/</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                            <p>{tekst}</p>
+                        <p>
+                            {tekst.length > 300 
+                                ? `${tekst.substring(0, 300)}...` 
+                                : tekst}
+                            </p> 
                         </div>
                     </div>
                 </div>

@@ -77,8 +77,8 @@ const FilmOpis = () => {
                             <span className={styles.duration}>Trajanje: {movie.duration} min</span>
                         </div>
                         <div className={styles.entryDescription}>
-                            <h3>Opis</h3>
-                            <p>{movie.opis}</p>
+                            <h3 className={styles.title3}>Opis</h3>
+                            <p className={styles.opis}>{movie.opis}</p>
                         </div>
                     </div>
                 </section>

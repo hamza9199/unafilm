@@ -58,7 +58,11 @@ const ArticleItem = ({ film, novost }) => {
                             <span className={styles.entryComment}>{film.comment} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                            <p>{novost.tekst4}</p>
+                        <p>
+                            {film.opis.length > 300 
+                                ? `${film.opis.substring(0, 300)}...` 
+                                : film.opis}
+                            </p> 
                         </div>
                     </div>
                 </div>

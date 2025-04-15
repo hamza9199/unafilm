@@ -59,6 +59,7 @@
 .movieDescription {
     font-size: 1rem;
     margin-bottom: 20px;
+    text-align: justify;  /* Justify the text for better readability */
 }
 
 .buttonContainer {
@@ -187,12 +188,14 @@
 
     .movieDescription {
         font-size: 0.9rem;
+        text-align: justify;
     }
 
     .buttonContainer {
-        flex-direction: column;
+        flex-direction: row;
         gap: 5px;
         margin-top: 10px;
+        justify-content: center;
     }
 
     .infoButton, .trailerButton {

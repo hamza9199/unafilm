@@ -84,7 +84,10 @@
     border: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
+.opis{
+    text-align: justify;
+    
+}
 @media (max-width: 768px) {
     .container {
         padding: 5px;
@@ -121,7 +124,8 @@
     .entryTitle {
         font-size: 2rem;
         text-align: center;
-    }
+        
+}
 
     .entryDetails {
         font-size: 0.9rem;
@@ -140,5 +144,14 @@
     .entryMedia iframe {
         width: 90%;
         height: 200px;
+    }
+    .title3{
+        text-align: center;
+    }
+
+    .opis{
+        text-align: justify;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 }

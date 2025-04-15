@@ -4,6 +4,7 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/AdminDashboard.module.css';
 import { Helmet } from 'react-helmet';
+import MDEditor from '@uiw/react-md-editor';
 
 const AdminDashboard = () => {
     const [films, setFilms] = useState([]);
@@ -114,9 +115,9 @@ const AdminDashboard = () => {
         formData.append('trailerUrl', newFilm.trailerUrl);
         formData.append('duration', newFilm.duration);
         formData.append('reditelj', newFilm.reditelj);
+        formData.append('comment', newFilm.comment);
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
-        formData.append('comment', newFilm.comment);
         formData.append('opis', newFilm.opis);
 
     
@@ -163,9 +164,9 @@ const AdminDashboard = () => {
         formData.append('trailerUrl', newFilm.trailerUrl);
         formData.append('duration', newFilm.duration);
         formData.append('reditelj', newFilm.reditelj);
+        formData.append('comment', newFilm.comment);
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
-        formData.append('comment', newFilm.comment);
         formData.append('opis', newFilm.opis);
 
         // Dodaj slike (ako postoje i ako su fajlovi)
@@ -1014,43 +1015,47 @@ const AdminDashboard = () => {
 
         {/* Text 1 */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 1</label>
-            <textarea
-                className={styles.formTextarea}
-                value={newNovost.tekst}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst: e.target.value })}
-            />
-        </div>
+  <label className={styles.formLabel}>Text 1</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
+    />
+  </div>
+</div>
 
         {/* Text 2 */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 2</label>
-            <textarea
-                className={styles.formTextarea}
-                value={newNovost.tekst2}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst2: e.target.value })}
-            />
-        </div>
+  <label className={styles.formLabel}>Text 2</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst2}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst2: value })}
+    />
+  </div>
+</div>
 
         {/* Text 3 */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 3</label>
-            <textarea
-                className={styles.formTextarea}
-                value={newNovost.tekst3}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst3: e.target.value })}
-            />
-        </div>
+  <label className={styles.formLabel}>Text 3</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst3}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst3: value })}
+    />
+  </div>
+</div>
 
         {/* Text 4 */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 4</label>
-            <textarea
-                className={styles.formTextarea}
-                value={newNovost.tekst4}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst4: e.target.value })}
-            />
-        </div>
+  <label className={styles.formLabel}>Text 4</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst4}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst4: value })}
+    />
+  </div>
+</div>
 
 
         {/* Image 1 URL */}
@@ -1154,41 +1159,41 @@ const AdminDashboard = () => {
             />
         </div>
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 1</label>
-            <textarea
-                className={styles.formTextarea}
-                placeholder="Tekst 1"
-                value={newNovost.tekst}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst: e.target.value })}
-            ></textarea>
-        </div>
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 2</label>
-            <textarea
-                className={styles.formTextarea}
-                placeholder="Tekst 2"
-                value={newNovost.tekst2}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst2: e.target.value })}
-            ></textarea>
-        </div>
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 3</label>
-            <textarea
-                className={styles.formTextarea}
-                placeholder="Tekst 3"
-                value={newNovost.tekst3}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst3: e.target.value })}
-            ></textarea>
-        </div>
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Text 4</label>
-            <textarea
-                className={styles.formTextarea}
-                placeholder="Tekst 4"
-                value={newNovost.tekst4}
-                onChange={(e) => setNewNovost({ ...newNovost, tekst4: e.target.value })}
-            ></textarea>
-        </div>
+  <label className={styles.formLabel}>Text 1</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
+    />
+  </div>
+</div>
+<div className={styles.formGroup}>
+  <label className={styles.formLabel}>Text 2</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst2}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst2: value })}
+    />
+  </div>
+</div>
+<div className={styles.formGroup}>
+  <label className={styles.formLabel}>Text 3</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst3}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst3: value })}
+    />
+  </div>
+</div>
+<div className={styles.formGroup}>
+  <label className={styles.formLabel}>Text 4</label>
+  <div data-color-mode="light">
+    <MDEditor
+      value={newNovost.tekst4}
+      onChange={(value) => setNewNovost({ ...newNovost, tekst4: value })}
+    />
+  </div>
+</div>
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Slika 1 URL</label>
             <input

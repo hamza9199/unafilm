@@ -6,6 +6,7 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
 
 const ArticleItem = ({ film, novost }) => {
     return (
@@ -36,7 +37,11 @@ const ArticleItem = ({ film, novost }) => {
                             <span className={styles.entryDate}>{new Date(novost.datumKreiranja).toLocaleDateString()}</span>
                         </div>
                         <div className={styles.entrySummary}>
-                            <p>{novost.tekst}</p>
+                        <p>
+                            {novost.tekst.length > 300 
+                                ? `${novost.tekst.substring(0, 300)}...` 
+                                : novost.tekst}
+                            </p>
                         </div>
                     </div>
                 </div>

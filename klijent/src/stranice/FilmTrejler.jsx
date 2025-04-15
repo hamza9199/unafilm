@@ -113,7 +113,7 @@ const FilmTrejler = () => {
                                         <p>No trailer available.</p>
                                     )}
 
-                                    {novost.tekst4 ? (
+                                    {novost.film.opis ? (
                                             <p className={styles.pu}>
                                                 {novost.film.opis}
                                             </p>
