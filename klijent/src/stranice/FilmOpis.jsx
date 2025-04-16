@@ -77,6 +77,9 @@ const FilmOpis = () => {
                         <h1 className={styles.entryTitle}>{movie.title}</h1>
                         <div className={styles.entryDetails}>
                             <span className={styles.duration}>Trajanje: {movie.duration} min</span>
+
+                            <span className={styles.releaseDate}>Datum izlaska: {new Date(movie.releaseDate).toLocaleDateString()}</span>
+
                         </div>
                         <div className={styles.entryDescription}>
                             <h3 className={styles.title3}>Opis</h3>
