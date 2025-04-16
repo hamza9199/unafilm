@@ -422,22 +422,29 @@ const AdminDashboard = () => {
       }
 
     const handleSkiniBazu = async () => {
-        try {
-            const response = await axios.get('https://unafilm-production.up.railway.app/server/download/database', {
-                responseType: 'blob',
-            });
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'database.sqlite'); // Specify the file name
-            document.body.appendChild(link);
-            link.click();
-        } catch (error) {
-            console.error('Error downloading database:', error);
+        const confirmed = window.confirm('Da li ste sigurni da želite skinuti bazu?');
+        if (confirmed) {
+            try {
+                const response = await axios.get('https://unafilm-production.up.railway.app/server/download/database', {
+                    responseType: 'blob',
+                });
+                const url = window.URL.createObjectURL(new Blob([response.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'database.sqlite'); // Specify the file name
+                document.body.appendChild(link);
+                link.click();
+            } catch (error) {
+                console.error('Error downloading database:', error);
+            }
+        } else {
+            console.log('Baza nije skinuta!');
         }
     }
 
     const handleSkiniFolder = async () => {
+        const confirmed = window.confirm('Da li ste sigurni da želite skinuti folder?');
+        if (confirmed) {
         try {
             const response = await axios.get('https://unafilm-production.up.railway.app/server/download/uploads', {
                 responseType: 'blob',
@@ -451,6 +458,10 @@ const AdminDashboard = () => {
         } catch (error) {
             console.error('Error downloading folder:', error);
         }
+        } else {
+            console.log('Folder nije skinut!');
+        }
+
     }
 
     return (
