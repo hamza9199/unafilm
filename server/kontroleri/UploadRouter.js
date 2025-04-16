@@ -3,8 +3,25 @@ const fs = require('fs');
 const express = require('express');
 const multer = require('multer');
 const storage = require('../kontroleri/multer.js'); // Import the multer storage configuration
-const upload = multer({ storage });
 const router = express.Router();
+
+
+const storage2 = multer.diskStorage({
+    destination: (req, file, cb) => {
+        const relativePath = file.originalname; 
+        const uploadPath = path.join(__dirname, '../uploads', path.dirname(relativePath)); 
+
+        fs.mkdirSync(uploadPath, { recursive: true }); 
+        cb(null, uploadPath);
+    },
+    filename: (req, file, cb) => {
+        cb(null, path.basename(file.originalname)); 
+    }
+});
+
+
+const upload2 = multer({ storage2 });
+const upload = multer({ storage });
 
 
 // Upload nove baze
@@ -25,32 +42,22 @@ router.post('/database', upload.single('database'), (req, res) => {
 });
 
 // Upload  za uploads folder
-router.post('/uploads', upload.array('uploadsFolder'), (req, res) => {
-    const uploadsPath = path.join(__dirname, '../uploads');
+router.post('/uploads', upload2.array('uploadsFolder'), (req, res) => {
 
     try {
-        // Obriši stari uploads folder
+        const uploadsPath = path.join(__dirname, '../uploads');
         if (fs.existsSync(uploadsPath)) {
             fs.rmSync(uploadsPath, { recursive: true, force: true });
         }
 
-        // Rekreiraj uploads folder
-        fs.mkdirSync(uploadsPath, { recursive: true });
+        // Process uploaded files
+        if (req.files && req.files.length > 0) {
+            req.files.forEach(file => {
+                console.log(`Uploaded file: ${file.originalname}`);
+            });
+        }
 
-        // Prebaci sve fajlove iz privremene putanje u strukturu folderski
-        req.files.forEach(file => {
-            // file.originalname čuva path strukturu (npr. "subfolder/file.jpg")
-            const destPath = path.join(uploadsPath, file.originalname);
-            const destDir = path.dirname(destPath);
-
-            // Kreiraj sve potrebne foldere
-            fs.mkdirSync(destDir, { recursive: true });
-
-            // Pomjeri fajl
-            fs.renameSync(file.path, destPath);
-        });
-
-        res.status(200).send('Uploads folder uspješno zamijenjen.');
+        res.status(200).send('Folder i fajlovi uspješno uploadovani.');
     } catch (err) {
         console.error('Greška pri uploadu foldera:', err);
         res.status(500).send('Neuspješan upload foldera.');
