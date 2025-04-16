@@ -50,7 +50,7 @@ const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id 
     );
 };
 
-const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id }) => {
+const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id, film }) => {
     return (
         <a href={`/novosti/film/${id}`} className={styles.articleImage}>
 
@@ -69,12 +69,15 @@ const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id }) => {
                                 <span className={styles.entryDate}>{new Date(datumKreiranja).toLocaleDateString()}</span>
                             </a>
                             <span>/</span>
+                            
                             <span className={styles.entryCategory}>
                                             {tipNovosti}
                                     
                             
                             </span>
                             <span>/</span>
+                        <span className={styles.entryComment}>{film.comment} komentara</span>
+
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                         <p>
