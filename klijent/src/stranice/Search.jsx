@@ -50,7 +50,7 @@ const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id 
     );
 };
 
-const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id, film }) => {
+const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id }) => {
     return (
         <a href={`/novosti/film/${id}`} className={styles.articleImage}>
 
@@ -76,7 +76,7 @@ const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id, film }) => 
                             
                             </span>
                             <span>/</span>
-                        <span className={styles.entryComment}>{film.comment} komentara</span>
+                        <span className={styles.entryComment}>10 komentara</span>
 
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
