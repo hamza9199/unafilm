@@ -8,6 +8,7 @@ import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
+import rehypeRaw from 'rehype-raw';
 
 const FilmInfo = () => {
     const { id } = useParams(); // Preuzimanje id-a iz URL-a
@@ -99,7 +100,7 @@ const FilmInfo = () => {
                             <div className={styles.entryLeft}>
                                 <h1 className={styles.entryTitle}>
                                     <a 
-                                        href={`/arhiva/film/${novost.film.id}`}
+                                        href={`/novost/film/${novost.id}`}
                                         className={styles.entryLink}
                                         itemProp="url"
                                     >
@@ -108,8 +109,8 @@ const FilmInfo = () => {
                                     <p><em>Preuzeto sa: {novost.kreator}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                        <div style={{ textAlign: 'center' }}>
-                                        {novost.tekst && <ReactMarkdown>{novost.tekst}</ReactMarkdown>}
+                                        <div >
+                                        {novost.tekst && <ReactMarkdown rehypePlugins={[rehypeRaw]}>{novost.tekst}</ReactMarkdown>}
                                         </div>
 
                                     

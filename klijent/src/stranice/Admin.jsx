@@ -14,11 +14,10 @@ const AdminDashboard = () => {
     const [poruke, setPoruke] = useState([]);
     const [newFilm, setNewFilm] = useState({
         title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
-        duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro', opis:''
+        duration: 0, reditelj: '', comment: 0, opis:'', type: 'film', tipMjesta: 'uskoro' 
     });
     const [newNovost, setNewNovost] = useState({
-        filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
-        slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
+        filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost'
     });
     const [selectedFilm, setSelectedFilm] = useState(null);
     const [selectedNovost, setSelectedNovost] = useState(null);
@@ -118,9 +117,9 @@ const AdminDashboard = () => {
         formData.append('duration', newFilm.duration);
         formData.append('reditelj', newFilm.reditelj);
         formData.append('comment', newFilm.comment);
+        formData.append('opis', newFilm.opis);
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
-        formData.append('opis', newFilm.opis);
 
     
     
@@ -209,22 +208,11 @@ const AdminDashboard = () => {
     
     
     const handleCreateNovost = async () => {
-        const formData = new FormData();
-    
-        // Dodaj novost podatke
-        formData.append('title', newNovost.title);
-        formData.append('kreator', newNovost.kreator);
-        formData.append('tekst', newNovost.tekst);
-        formData.append('tipNovosti', newNovost.tipNovosti);
-        formData.append('filmId', newNovost.filmId);
+        
     
         try {
             // Pošaljemo formData sa novostima na backend
-            const response = await axios.post('https://unafilm-production.up.railway.app/server/novosti', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
-                }
-            });
+            const response = await axios.post('https://unafilm-production.up.railway.app/server/novosti', newNovost);
     
             // Ako je uspešno, ažuriraj listu novosti
             fetchNovosti();
@@ -240,22 +228,11 @@ const AdminDashboard = () => {
     };
     
     const handleUpdateNovost = async () => {
-        const formData = new FormData();
-    
-        // Dodaj novost podatke
-        formData.append('title', newNovost.title);
-        formData.append('kreator', newNovost.kreator);
-        formData.append('tekst', newNovost.tekst);
-        formData.append('tipNovosti', newNovost.tipNovosti);
-        formData.append('filmId', newNovost.filmId);
-    
+        console.log(newNovost)
+        
         try {
             // Pošaljemo formData sa novostima na backend
-            const response = await axios.put(`https://unafilm-production.up.railway.app/server/novosti/${selectedNovost.id}`, formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
-                }
-            });
+            const response = await axios.put(`https://unafilm-production.up.railway.app/server/novosti/${selectedNovost.id}`, newNovost);
     
             // Ako je uspešno, ažuriraj listu novosti
             fetchNovosti();
@@ -906,8 +883,15 @@ const AdminDashboard = () => {
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Opis</label>
-                                <input className={styles.input} type="text" placeholder="Opis" value={newFilm.opis} onChange={(e) => setNewFilm({ ...newFilm, opis: e.target.value })} />
-                            </div>
+                                 <div data-color-mode="light">
+                                    <MDEditor
+                                    value={newFilm.opis}
+                                    onChange={(value) => setNewFilm({ ...newFilm, opis: value })}
+                                    />
+                                </div>         
+                             </div>
+
+                                     
 
                             <button className={styles.button} onClick={handleCreateFilm}>Create Film</button>
                         </section>
