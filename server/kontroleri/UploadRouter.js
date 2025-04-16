@@ -1,20 +1,20 @@
-const path = require('path');
-const fs = require('fs');
-const express = require('express');
-const multer = require('multer');
-const storage = require('../kontroleri/multer.js'); // Import the multer storage configuration
+import path from 'path';
+import fs from 'fs';
+import express from 'express';
+import multer from 'multer';
+import storage from '../kontroleri/multer.js'; // Import the multer storage configuration
 const router = express.Router();
 
 
 const storage2 = multer.diskStorage({
-    destination: (req, file, cb) => {
+    destination: (_, file, cb) => {
         const relativePath = file.originalname; 
-        const uploadPath = path.join(__dirname, '../uploads', path.dirname(relativePath)); 
+        const uploadPath = path.join(process.cwd(), 'uploads', path.dirname(relativePath)); 
 
         fs.mkdirSync(uploadPath, { recursive: true }); 
         cb(null, uploadPath);
     },
-    filename: (req, file, cb) => {
+    filename: (_, file, cb) => {
         cb(null, path.basename(file.originalname)); 
     }
 });
@@ -45,7 +45,7 @@ router.post('/database', upload.single('database'), (req, res) => {
 router.post('/uploads', upload2.array('uploads'), (req, res) => {
 
     try {
-        const uploadsPath = path.join(__dirname, '../uploads');
+        const uploadsPath = path.join(process.cwd(), 'uploads');
         if (fs.existsSync(uploadsPath)) {
             fs.rmSync(uploadsPath, { recursive: true, force: true });
         }

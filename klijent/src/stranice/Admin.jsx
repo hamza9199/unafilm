@@ -560,7 +560,7 @@ const AdminDashboard = () => {
 
                 {selectedOption === 'uploadBaza' &&
                 <section className={styles.updateSection}>
-                    <h3 className={styles.sectionTitle}>Uplodad Baze</h3>
+                    <h3 className={styles.sectionTitle}>Upload Baze</h3>
                     <div className={styles.formGroup}>
                         <label className={styles.formLabel}>Baza</label>
                         <input
@@ -578,7 +578,7 @@ const AdminDashboard = () => {
 
             {selectedOption === 'uploadFolder' &&
                 <section className={styles.updateSection}>
-                    <h3 className={styles.sectionTitle}>Uplodad Foldera Slika</h3>
+                    <h3 className={styles.sectionTitle}>Upload Foldera Slika</h3>
                     <div className={styles.formGroup}>
                         <label className={styles.formLabel}>Folder</label>
                         <input
