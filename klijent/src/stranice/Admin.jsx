@@ -215,32 +215,8 @@ const AdminDashboard = () => {
         formData.append('title', newNovost.title);
         formData.append('kreator', newNovost.kreator);
         formData.append('tekst', newNovost.tekst);
-        formData.append('tekst2', newNovost.tekst2);
-        formData.append('tekst3', newNovost.tekst3);
-        formData.append('tekst4', newNovost.tekst4);
         formData.append('tipNovosti', newNovost.tipNovosti);
         formData.append('filmId', newNovost.filmId);
-
-
-        
-        // Dodaj slike (ako postoje i ako su fajlovi)
-        if (newNovost.slika1 instanceof File) {
-            formData.append('slika1', newNovost.slika1); // Dodaj prvu sliku
-        } else if (newNovost.slika1) {
-            formData.append('slika1', newNovost.slika1); // Ako je putanja, koristi to
-        }
-    
-        if (newNovost.slika2 instanceof File) {
-            formData.append('slika2', newNovost.slika2); // Dodaj drugu sliku
-        } else if (newNovost.slika2) {
-            formData.append('slika2', newNovost.slika2); // Ako je putanja, koristi to
-        }
-    
-        if (newNovost.slika3 instanceof File) {
-            formData.append('slika3', newNovost.slika3); // Dodaj treću sliku
-        } else if (newNovost.slika3) {
-            formData.append('slika3', newNovost.slika3); // Ako je putanja, koristi to
-        }
     
         try {
             // Pošaljemo formData sa novostima na backend
@@ -254,16 +230,14 @@ const AdminDashboard = () => {
             fetchNovosti();
             setSelectedNovost(null);
             setNewNovost({
-                filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
-                slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
+                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost'
             });
-            setSelectedOption('novosti')
+            setSelectedOption('novosti');
             console.log('Novost created successfully:', response.data);
         } catch (error) {
             console.error('Error creating novost:', error);
         }
     };
-    
     
     const handleUpdateNovost = async () => {
         const formData = new FormData();
@@ -272,30 +246,8 @@ const AdminDashboard = () => {
         formData.append('title', newNovost.title);
         formData.append('kreator', newNovost.kreator);
         formData.append('tekst', newNovost.tekst);
-        formData.append('tekst2', newNovost.tekst2);
-        formData.append('tekst3', newNovost.tekst3);
-        formData.append('tekst4', newNovost.tekst4);
         formData.append('tipNovosti', newNovost.tipNovosti);
         formData.append('filmId', newNovost.filmId);
-    
-        // Dodaj slike (ako postoje i ako su fajlovi)
-        if (newNovost.slika1 instanceof File) {
-            formData.append('slika1', newNovost.slika1); // Dodaj prvu sliku
-        } else if (newNovost.slika1) {
-            formData.append('slika1', newNovost.slika1); // Ako je putanja, koristi to
-        }
-    
-        if (newNovost.slika2 instanceof File) {
-            formData.append('slika2', newNovost.slika2); // Dodaj drugu sliku
-        } else if (newNovost.slika2) {
-            formData.append('slika2', newNovost.slika2); // Ako je putanja, koristi to
-        }
-    
-        if (newNovost.slika3 instanceof File) {
-            formData.append('slika3', newNovost.slika3); // Dodaj treću sliku
-        } else if (newNovost.slika3) {
-            formData.append('slika3', newNovost.slika3); // Ako je putanja, koristi to
-        }
     
         try {
             // Pošaljemo formData sa novostima na backend
@@ -309,16 +261,14 @@ const AdminDashboard = () => {
             fetchNovosti();
             setSelectedNovost(null);
             setNewNovost({
-                filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
-                slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
+                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost'
             });
-            setSelectedOption('novosti')
+            setSelectedOption('novosti');
             console.log('Novost updated successfully:', response.data);
         } catch (error) {
             console.error('Error updating novost:', error);
         }
     };
-    
     
 
 
@@ -1100,13 +1050,16 @@ const AdminDashboard = () => {
 
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Opis</label>
-            <input
-                className={styles.formInput}
-                type="text"
-                value={newFilm.opis}
-                onChange={(e) => setNewFilm({ ...newFilm, opis: e.target.value })}
-            />
+           
+            <div data-color-mode="light">
+    <MDEditor
+      value={newFilm.opis}
+      onChange={(value) => setNewFilm({ ...newFilm, opis: value })}
+    />
+  </div>
         </div>
+
+    
 
         <button className={styles.updateButton} onClick={handleUpdateFilm}>Update Film</button>
     </section>
@@ -1166,81 +1119,7 @@ const AdminDashboard = () => {
   </div>
 </div>
 
-        {/* Text 2 */}
-        <div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 2</label>
-  <div data-color-mode="light">
-    <MDEditor
-      value={newNovost.tekst2}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst2: value })}
-    />
-  </div>
-</div>
-
-        {/* Text 3 */}
-        <div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 3</label>
-  <div data-color-mode="light">
-    <MDEditor
-      value={newNovost.tekst3}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst3: value })}
-    />
-  </div>
-</div>
-
-        {/* Text 4 */}
-        <div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 4</label>
-  <div data-color-mode="light">
-    <MDEditor
-      value={newNovost.tekst4}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst4: value })}
-    />
-  </div>
-</div>
-
-
-        {/* Image 1 URL */}
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Slika 1 URL</label>
-            <input
-                className={styles.formInput}
-                type="file"
-                onChange={(e) => setNewNovost({ ...newNovost, slika1: e.target.files[0] })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <img src={newNovost.slika1} alt="Preview" className={styles.imagePreview} />
-        </div>
-
-        {/* Image 2 URL */}
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Slika 2 URL</label>
-            <input
-                className={styles.formInput}
-                type="file"
-                onChange={(e) => setNewNovost({ ...newNovost, slika2: e.target.files[0] })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <img src={newNovost.slika2} alt="Preview" className={styles.imagePreview} />
-        </div>
-
-        {/* Image 3 URL */}
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Slika 3 URL</label>
-            <input
-                className={styles.formInput}
-                type="file"
-                onChange={(e) => setNewNovost({ ...newNovost, slika3: e.target.files[0] })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <img src={newNovost.slika3} alt="Preview" className={styles.imagePreview} />
-        </div>
+      
 
         {/* Type of News */}
         <div className={styles.formGroup}>
@@ -1300,7 +1179,8 @@ const AdminDashboard = () => {
                 onChange={(e) => setNewNovost({ ...newNovost, kreator: e.target.value })}
             />
         </div>
-        <div className={styles.formGroup}>
+        
+                <div className={styles.formGroup}>
   <label className={styles.formLabel}>Text 1</label>
   <div data-color-mode="light">
     <MDEditor
@@ -1309,69 +1189,8 @@ const AdminDashboard = () => {
     />
   </div>
 </div>
-<div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 2</label>
-  <div data-color-mode="light">
-    <MDEditor
-      value={newNovost.tekst2}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst2: value })}
-    />
-  </div>
-</div>
-<div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 3</label>
-  <div data-color-mode="light">
-    <MDEditor
-      value={newNovost.tekst3}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst3: value })}
-    />
-  </div>
-</div>
-<div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 4</label>
-  <div data-color-mode="light">
-    <MDEditor
-      value={newNovost.tekst4}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst4: value })}
-    />
-  </div>
-</div>
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Slika 1 URL</label>
-            <input
-                className={styles.formInput}
-                type="file"
-                onChange={(e) => setNewNovost({ ...newNovost, slika1: e.target.files[0] })}
-            />
-        </div>
 
-        <div className={styles.formGroup}>
-            <img src={newNovost.slika1} alt="Preview" className={styles.imagePreview} />
-        </div>
-
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Slika 2 URL</label>
-            <input
-                className={styles.formInput}
-                type="file"
-                onChange={(e) => setNewNovost({ ...newNovost, slika2:  e.target.files[0] })}
-            />
-        </div>
-        <div className={styles.formGroup}>
-            <img src={newNovost.slika2} alt="Preview" className={styles.imagePreview} />
-        </div>
-        <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Slika 3 URL</label>
-            <input
-                className={styles.formInput}
-                type="file"
-                onChange={(e) => setNewNovost({ ...newNovost, slika3:  e.target.files[0] })}
-            />
-        </div>
-
-        <div className={styles.formGroup}>
-            <img src={newNovost.slika3} alt="Preview" className={styles.imagePreview} />
-        </div>
+       
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Tip Novosti</label>
             <select

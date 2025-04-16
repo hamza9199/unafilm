@@ -270,35 +270,18 @@ router.get('/', async (req, res) => {
 });
 
 
-// Create a new novost with image upload
-router.post('/', upload.fields([
-    { name: "slika1", maxCount: 1 },
-    { name: "slika2", maxCount: 1 },
-    { name: "slika3", maxCount: 1 }
-]), async (req, res) => {
+// Create a new novost without image upload
+router.post('/', async (req, res) => {
     try {
-        const { title, kreator, tekst, tekst2, tekst3, tekst4, tipNovosti, filmId } = req.body;
+        const { title, kreator, tekst, tipNovosti, filmId } = req.body;
 
         const newNovostData = {
             title,
             kreator,
             tekst,
-            tekst2,
-            tekst3,
-            tekst4,
             tipNovosti,
             filmId
         };
-
-        if (req.files.slika1) {
-            newNovostData.slika1 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika1[0].filename}`;
-        }
-        if (req.files.slika2) {
-            newNovostData.slika2 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika2[0].filename}`;
-        }
-        if (req.files.slika3) {
-            newNovostData.slika3 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika3[0].filename}`;
-        }
 
         const novost = await Novost.create(newNovostData);
 
@@ -384,27 +367,13 @@ router.get('/:id', async (req, res) => {
 
 
 
-// Update an existing novost by ID, including updating uploaded images
-router.put('/:id', upload.fields([
-    { name: "slika1", maxCount: 1 },
-    { name: "slika2", maxCount: 1 },
-    { name: "slika3", maxCount: 1 }
-]), async (req, res) => {
+// Update an existing novost by ID without updating uploaded images
+router.put('/:id', async (req, res) => {
     try {
         const novost = await Novost.findByPk(req.params.id);
         if (!novost) return res.status(404).json({ message: 'Novost not found' });
 
         const updatedData = { ...req.body };
-
-        if (req.files.slika1) {
-            updatedData.slika1 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika1[0].filename}`;
-        }
-        if (req.files.slika2) {
-            updatedData.slika2 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika2[0].filename}`;
-        }
-        if (req.files.slika3) {
-            updatedData.slika3 = `https://unafilm-production.up.railway.app/uploads/${req.files.slika3[0].filename}`;
-        }
 
         await novost.update(updatedData);
         res.status(200).json(novost);

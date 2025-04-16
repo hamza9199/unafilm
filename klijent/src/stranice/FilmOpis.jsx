@@ -4,6 +4,7 @@ import styles from './css/FilmOpis.module.css'; // Import CSS module
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import { Helmet } from 'react-helmet';
+import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
 
 const FilmOpis = () => {
     const { id } = useParams(); // Koristimo useParams da dobijemo id iz URL-a
@@ -55,6 +56,7 @@ const FilmOpis = () => {
                 <meta name="twitter:site" content="@UnaFilm" />
                 <meta name="twitter:creator" content="@UnaFilm" />
             </Helmet>
+            
             <div className={styles.container}>
                 <section className={styles.pageHeader}>
                     <img 
@@ -78,7 +80,9 @@ const FilmOpis = () => {
                         </div>
                         <div className={styles.entryDescription}>
                             <h3 className={styles.title3}>Opis</h3>
-                            <p className={styles.opis}>{movie.opis}</p>
+                            <div style={{ textAlign: 'justify' }}>
+                                            {movie.opis && <ReactMarkdown>{movie.opis}</ReactMarkdown>}
+                                            </div>
                         </div>
                     </div>
                 </section>

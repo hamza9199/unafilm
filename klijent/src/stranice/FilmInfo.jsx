@@ -42,7 +42,7 @@ const FilmInfo = () => {
         <>
             <Header />
             <Helmet>
-                <title>{film.title} - Una Film</title>
+                <title>{novost.title} - Una Film</title>
                 <meta name="description" content={film.opis} />
                 <link rel="canonical" href={`https://unafilm.com/novosti/iz-svijeta-filma/film/${id}`} />
                 <meta name="keywords" content={`${film.title}, film, novosti`} />
@@ -66,7 +66,7 @@ const FilmInfo = () => {
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: film.title, link: `novosti/iz-svijeta-filma/film/${id}` }, // Dinamički link sa id
+                    { name: novost.title, link: `novosti/film/${id}` }, // Dinamički link sa id
                 ]}
             />
 
@@ -108,21 +108,11 @@ const FilmInfo = () => {
                                     <p><em>Preuzeto sa: {novost.kreator}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                        {novost.slika1 && <img className={styles.smallImg} src={novost.slika1} alt="" />}
-                                        <div style={{ textAlign: 'justify' }}>
+                                        <div style={{ textAlign: 'center' }}>
                                         {novost.tekst && <ReactMarkdown>{novost.tekst}</ReactMarkdown>}
                                         </div>
 
-                                        {novost.slika2 && <img className={styles.smallImg} src={novost.slika2} alt="" />}
-                                        <div style={{ textAlign: 'justify' }}>
-                                        {novost.tekst2 && <ReactMarkdown>{novost.tekst2}</ReactMarkdown>}
-                                        </div>
-
-                                        {novost.slika3 && <img className={styles.smallImg} src={novost.slika3} alt="" />}
-                                        <div style={{ textAlign: 'justify'}}>
-                                        {novost.tekst3 && <ReactMarkdown>{novost.tekst3}</ReactMarkdown>}
-                                        </div>
-
+                                    
                                     {novost.film.trailerUrl && (
                                         <div className={styles.videoWrapper}>
                                         <iframe
@@ -136,9 +126,7 @@ const FilmInfo = () => {
                                         </div>
                                     )}
 
-                                        <div style={{ textAlign: 'justify' }}>
-                                        {novost.tekst4 && <ReactMarkdown>{novost.tekst4}</ReactMarkdown>}
-                                        </div>
+                                        
 
                                 </div>
 

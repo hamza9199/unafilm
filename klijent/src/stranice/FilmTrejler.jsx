@@ -7,6 +7,7 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 import { Helmet } from 'react-helmet';
+import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
 
 const FilmTrejler = () => {
     const { id } = useParams(); 
@@ -114,9 +115,9 @@ const FilmTrejler = () => {
                                     )}
 
                                     {novost.film.opis ? (
-                                            <p className={styles.pu}>
-                                                {novost.film.opis}
-                                            </p>
+                                            <div style={{ textAlign: 'justify' }}>
+                                            {novost.film.opis && <ReactMarkdown>{novost.film.opis}</ReactMarkdown>}
+                                            </div>
                                     ) : null}
                                 </div>
                             </div>

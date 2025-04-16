@@ -28,7 +28,7 @@ const ArticleItem = ({ film, novost }) => {
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
                         <h1 className={`${styles.entryTitle} entry-title p-name`} itemprop="name headline">
                             <a href={`/novosti/traileri/film/${novost.id}`} rel="bookmark" className="u-url url" itemprop="url">
-                                {film.title}
+                                {novost.title}
                             </a>
                         </h1>
                         <div className={styles.entryInfo}>
