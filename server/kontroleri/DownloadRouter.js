@@ -6,7 +6,7 @@ const router = express.Router();
 
 // Ruta za preuzimanje SQLite baze
 router.get('/database', (req, res) => {
-    const dbPath = '../database.sqlite'; // Relativna putanja prema server.js lokaciji
+    const dbPath = path.join(__dirname, '../database.sqlite'); // Relativna putanja prema server.js lokaciji
     if (fs.existsSync(dbPath)) {
         res.download(dbPath, 'database.sqlite', (err) => {
             if (err) {
@@ -21,7 +21,7 @@ router.get('/database', (req, res) => {
 
 // Ruta za preuzimanje cijelog uploads foldera kao ZIP
 router.get('/uploads', (req, res) => {
-    const uploadsPath = '../uploads';
+    const uploadsPath = path.join(__dirname, '../uploads');
 
     if (!fs.existsSync(uploadsPath)) {
         return res.status(404).send('Uploads folder ne postoji.');
