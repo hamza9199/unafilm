@@ -398,37 +398,41 @@ router.delete('/:id', async (req, res) => {
 // Search novosti by title 
 router.get('/search/:query', async (req, res) => {
     try {
-      const query = req.params.query;
-  
-      // Proveravamo da li je query prazan
-      if (!query || query.trim() === '') {
-        return res.status(400).json({ error: 'Query parameter is required' });
-      }
-  
-      // Sanitizacija unosa, obavezno bježite od specijalnih karaktera
-      const sanitizedQuery = query.replace(/[^a-zA-Z0-9 ]/g, '');
-  
-      // Pretraga filmova po naslovu ili opisu
-      const novosti = await Novost.findAll({
-        where: {
-          [Op.or]: [
-            { title: { [Op.like]: `%${sanitizedQuery}%` } },
-          ],
-        },
-      });
-  
-      // Ako nema filmova
-      if (novosti.length === 0) {
-        return res.status(404).json({ message: 'No novosti found matching your search criteria.' });
-      }
-  
-      // Vraćamo pronađene filmove
-      res.json(novosti);
+        const query = req.params.query;
+
+        // Proveravamo da li je query prazan
+        if (!query || query.trim() === '') {
+            return res.status(400).json({ error: 'Query parameter is required' });
+        }
+
+        // Sanitizacija unosa, obavezno bježite od specijalnih karaktera
+        const sanitizedQuery = query.replace(/[^a-zA-Z0-9 ]/g, '');
+
+        // Pretraga novosti po naslovu ili opisu, uključujući povezani Film model
+        const novosti = await Novost.findAll({
+            where: {
+                [Op.or]: [
+                    { title: { [Op.like]: `%${sanitizedQuery}%` } },
+                ],
+            },
+            include: [{
+                model: Film,
+                as: 'film' // Povezivanje sa filmom
+            }]
+        });
+
+        // Ako nema novosti
+        if (novosti.length === 0) {
+            return res.status(404).json({ message: 'No novosti found matching your search criteria.' });
+        }
+
+        // Vraćamo pronađene novosti
+        res.json(novosti);
     } catch (err) {
-      console.error('Error during search:', err.message);
-      res.status(500).json({ error: 'An error occurred while searching for novosti. Please try again later.' });
+        console.error('Error during search:', err.message);
+        res.status(500).json({ error: 'An error occurred while searching for novosti. Please try again later.' });
     }
-  });
+});
 
 
 
