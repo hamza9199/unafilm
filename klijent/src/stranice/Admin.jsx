@@ -499,7 +499,7 @@ const AdminDashboard = () => {
     
         const formData = new FormData();
         folderFiles.forEach(file => {
-            formData.append('uploadsFolder', file, file.webkitRelativePath);
+            formData.append('uploads', file, file.webkitRelativePath);
         });
     
         try {
@@ -547,7 +547,7 @@ const AdminDashboard = () => {
                             <li className={styles.li} onClick={() => handleSkiniBazu()}>Skini Bazu</li>                       
                             <li className={styles.li} onClick={() => handleSkiniFolder()}>Skini Folder Svih Slika</li>        
                             <li className={styles.li} onClick={() => handleSelectedOption('uploadBaza')}>Uploduj Bazu</li>                       
-                          {/* <li className={styles.li} onClick={() => handleSelectedOption('uploadFolder')}>Uploduj Folder Svih Slika</li> */}      
+                           <li className={styles.li} onClick={() => handleSelectedOption('uploadFolder')}>Uploduj Folder Svih Slika</li>       
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
@@ -583,7 +583,7 @@ const AdminDashboard = () => {
                         <label className={styles.formLabel}>Folder</label>
                         <input
                             type="file"
-                            name="uploadsFolder"
+                            name="uploads"
                             className={styles.formInput}
                             webkitdirectory="true"
                             directory="true"

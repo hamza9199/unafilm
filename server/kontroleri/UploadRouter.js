@@ -42,7 +42,7 @@ router.post('/database', upload.single('database'), (req, res) => {
 });
 
 // Upload  za uploads folder
-router.post('/uploads', upload2.array('uploadsFolder'), (req, res) => {
+router.post('/uploads', upload2.array('uploads'), (req, res) => {
 
     try {
         const uploadsPath = path.join(__dirname, '../uploads');
