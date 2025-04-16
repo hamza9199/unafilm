@@ -78,10 +78,12 @@ const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id }) => {
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                         <p>
-                            {tekst.length > 300 
-                                ? `${tekst.substring(0, 300)}...` 
-                                : tekst}
-                            </p> 
+                            {
+                                tekst.replace(/[#*>]/g, '').length > 300 
+                                ? `${tekst.replace(/[#*>]/g, '').substring(0, 300)}...` 
+                                : tekst.replace(/[#*>]/g, '')
+                            }
+                        </p>
                         </div>
                     </div>
                 </div>

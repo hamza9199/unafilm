@@ -38,10 +38,13 @@ const ArticleItem = ({ film, novost }) => {
                         </div>
                         <div className={styles.entrySummary}>
                         <p>
-                            {novost.tekst.length > 300 
-                                ? `${novost.tekst.substring(0, 300)}...` 
-                                : novost.tekst}
-                            </p>
+  {
+    novost.tekst.replace(/[#*>]/g, '').length > 300 
+      ? `${novost.tekst.replace(/[#*>]/g, '').substring(0, 300)}...` 
+      : novost.tekst.replace(/[#*>]/g, '')
+  }
+</p>
+
                         </div>
                     </div>
                 </div>

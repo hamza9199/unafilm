@@ -10,6 +10,7 @@ const AdminRouter = require('./kontroleri/AdminRouter');
 const FilmRouter = require('./kontroleri/FilmRouter');
 const NovostRouter = require('./kontroleri/NovostRouter');
 const PorukaRouter = require('./kontroleri/PorukaRouter');
+const DownloadRouter = require('./kontroleri/DownloadRouter'); 
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 
@@ -71,6 +72,7 @@ app.use('/server/filmovi', FilmRouter);
 app.use('/server/novosti', NovostRouter);
 app.use('/server/admin', AdminRouter);
 app.use('/server/poruke', PorukaRouter);
+app.use('/server/download', DownloadRouter);
 
 app.use("/" , (req, res) => {
     res.status(200).json({ message: "Server radi!" });

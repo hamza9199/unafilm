@@ -421,6 +421,38 @@ const AdminDashboard = () => {
          setSelectedOption(opt);
       }
 
+    const handleSkiniBazu = async () => {
+        try {
+            const response = await axios.get('https://unafilm-production.up.railway.app/server/download/database', {
+                responseType: 'blob',
+            });
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'database.sqlite'); // Specify the file name
+            document.body.appendChild(link);
+            link.click();
+        } catch (error) {
+            console.error('Error downloading database:', error);
+        }
+    }
+
+    const handleSkiniFolder = async () => {
+        try {
+            const response = await axios.get('https://unafilm-production.up.railway.app/server/download/uploads', {
+                responseType: 'blob',
+            });
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'uploads.zip'); // Specify the file name
+            document.body.appendChild(link);
+            link.click();
+        } catch (error) {
+            console.error('Error downloading folder:', error);
+        }
+    }
+
     return (
         <>
             <Header />
@@ -446,7 +478,9 @@ const AdminDashboard = () => {
                             <li className={styles.li} onClick={() => handleSelectedOption('pretragaNovosti')}>Pretraga Novosti</li>
                             <li className={styles.li} onClick={() => handleSelectedOption('poruke')}>Sve Poruke</li>
                             <li className={styles.li} onClick={() => handleSelectedOption('createFilm')}>Kreiraj Film</li>
-                            <li className={styles.li} onClick={() => handleSelectedOption('createNovost')}>Kreiraj Novost</li>                       
+                            <li className={styles.li} onClick={() => handleSelectedOption('createNovost')}>Kreiraj Novost</li>
+                            <li className={styles.li} onClick={() => handleSkiniBazu()}>Skini Bazu</li>                       
+                            <li className={styles.li} onClick={() => handleSkiniFolder()}>Skini Folder Svih Slika</li>                                              
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
