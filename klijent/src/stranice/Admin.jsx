@@ -547,7 +547,7 @@ const AdminDashboard = () => {
                             <li className={styles.li} onClick={() => handleSkiniBazu()}>Skini Bazu</li>                       
                             <li className={styles.li} onClick={() => handleSkiniFolder()}>Skini Folder Svih Slika</li>        
                             <li className={styles.li} onClick={() => handleSelectedOption('uploadBaza')}>Uploduj Bazu</li>                       
-                           <li className={styles.li} onClick={() => handleSelectedOption('uploadFolder')}>Uploduj Folder Svih Slika</li>       
+                          {/* <li className={styles.li} onClick={() => handleSelectedOption('uploadFolder')}>Uploduj Folder Svih Slika</li>*/}       
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
