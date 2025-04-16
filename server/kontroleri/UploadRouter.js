@@ -25,7 +25,7 @@ router.post('/database', upload.single('database'), (req, res) => {
 });
 
 // Upload  za uploads folder
-router.post('/uploads', upload.array('uploadsFolder'), (req, res) => {
+router.post('/uploads', upload.array('uploads'), (req, res) => {
     const uploadsPath = path.join(__dirname, '../uploads');
 
     try {

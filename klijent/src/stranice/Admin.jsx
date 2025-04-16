@@ -499,7 +499,7 @@ const AdminDashboard = () => {
     
         const formData = new FormData();
         folderFiles.forEach(file => {
-            formData.append('uploadsFolder', file, file.webkitRelativePath);
+            formData.append('uploads', file, file.webkitRelativePath);
         });
     
         try {
@@ -583,7 +583,7 @@ const AdminDashboard = () => {
                         <label className={styles.formLabel}>Folder</label>
                         <input
                             type="file"
-                            name="uploadsFolder"
+                            name="uploads"
                             className={styles.formInput}
                             webkitdirectory="true"
                             directory="true"
