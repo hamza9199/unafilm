@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet';
 import MDEditor from '@uiw/react-md-editor';
 
 const AdminDashboard = () => {
+    const [bazaFile, setBazaFile] = useState(null);
+    const [folderFiles, setFolderFiles] = useState([]);
     const [films, setFilms] = useState([]);
     const [novosti, setNovosti] = useState([]);
     const [poruke, setPoruke] = useState([]);
@@ -464,6 +466,58 @@ const AdminDashboard = () => {
 
     }
 
+    const handleBazaChange = (e) => {
+        setBazaFile(e.target.files[0]);
+    };
+    
+    const handleFolderChange = (e) => {
+        setFolderFiles([...e.target.files]); // Array jer može biti više fajlova
+    };
+
+    const handleUploadBaza = async () => {
+        if (!bazaFile) return alert("Odaberi bazu!");
+    
+        const formData = new FormData();
+        formData.append('database', bazaFile);
+    
+        try {
+            const res = await fetch('https://unafilm-production.up.railway.app/server/upload/database', {
+                method: 'POST',
+                body: formData
+            });
+    
+            if (res.ok) alert('Baza uspješno uploadovana!');
+            else alert('Greška pri uploadu baze!');
+        } catch (err) {
+            console.error(err);
+            alert('Greška u mreži!');
+        }
+    };
+    
+    const handleUploadFolder = async () => {
+        if (!folderFiles.length) return alert("Odaberi folder!");
+    
+        const formData = new FormData();
+        folderFiles.forEach(file => {
+            formData.append('uploadsFolder', file, file.webkitRelativePath);
+        });
+    
+        try {
+            const res = await fetch('https://unafilm-production.up.railway.app/server/upload/uploads', {
+                method: 'POST',
+                body: formData
+            });
+    
+            if (res.ok) alert('Folder uspješno uploadovan!');
+            else alert('Greška pri uploadu foldera!');
+        } catch (err) {
+            console.error(err);
+            alert('Greška u mreži!');
+        }
+    };
+    
+    
+
     return (
         <>
             <Header />
@@ -491,7 +545,9 @@ const AdminDashboard = () => {
                             <li className={styles.li} onClick={() => handleSelectedOption('createFilm')}>Kreiraj Film</li>
                             <li className={styles.li} onClick={() => handleSelectedOption('createNovost')}>Kreiraj Novost</li>
                             <li className={styles.li} onClick={() => handleSkiniBazu()}>Skini Bazu</li>                       
-                            <li className={styles.li} onClick={() => handleSkiniFolder()}>Skini Folder Svih Slika</li>                                              
+                            <li className={styles.li} onClick={() => handleSkiniFolder()}>Skini Folder Svih Slika</li>        
+                            <li className={styles.li} onClick={() => handleSelectedOption('uploadBaza')}>Uploduj Bazu</li>                       
+                            <li className={styles.li} onClick={() => handleSelectedOption('uploadFolder')}>Uploduj Folder Svih Slika</li>        
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
@@ -501,6 +557,47 @@ const AdminDashboard = () => {
                     </nav>
                 </aside>
                 <main className={styles.content}>
+
+                {selectedOption === 'uploadBaza' &&
+                <section className={styles.updateSection}>
+                    <h3 className={styles.sectionTitle}>Uplodad Baze</h3>
+                    <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Baza</label>
+                        <input
+                            type="file"
+                            className={styles.formInput}
+                            onChange={handleBazaChange}
+                        />
+                    </div>
+
+                    <button className={styles.updateButton} onClick={handleUploadBaza}>
+                        Upload Baza
+                    </button>
+                </section>
+            }
+
+            {selectedOption === 'uploadFolder' &&
+                <section className={styles.updateSection}>
+                    <h3 className={styles.sectionTitle}>Uplodad Foldera Slika</h3>
+                    <div className={styles.formGroup}>
+                        <label className={styles.formLabel}>Folder</label>
+                        <input
+                            type="file"
+                            name="uploadsFolder"
+                            className={styles.formInput}
+                            webkitdirectory="true"
+                            directory="true"
+                            multiple
+                            onChange={handleFolderChange}
+                        />
+                    </div>
+
+                    <button className={styles.updateButton} onClick={handleUploadFolder}>
+                        Upload Foldera
+                    </button>
+                </section>
+            }
+
 
                     {selectedOption === 'pretragaFilmova' && 
                         <section className={styles.section}>
