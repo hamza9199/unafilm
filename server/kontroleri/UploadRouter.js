@@ -1,9 +1,10 @@
-import path from 'path';
-import fs from 'fs';
-import express from 'express';
-import multer from 'multer';
-import storage from '../kontroleri/multer.js'; // Import the multer storage configuration
+const path = require('path');
+const fs = require('fs');
+const express = require('express');
+const multer = require('multer');
+const storage = require('../kontroleri/multer.js'); // Import the multer storage configuration
 const router = express.Router();
+
 
 
 const storage2 = multer.diskStorage({
