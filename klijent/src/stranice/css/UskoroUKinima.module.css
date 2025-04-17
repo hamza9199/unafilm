@@ -127,7 +127,11 @@
     z-index: 1000000;
   }
 
-
+.uzo{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
 @media (max-width: 768px) {
     .container {
         padding: 10px;

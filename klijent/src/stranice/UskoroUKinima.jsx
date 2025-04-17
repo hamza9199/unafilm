@@ -64,6 +64,16 @@ const UskoroUKinima = () => {
                                 </div>
                                 <div className={styles.movieText}>
                                     <a href={`/uskoro-u-kinima/film/${movie.id}`} className={styles.movieTitle}>{movie.title}</a>
+                                    <div className={styles.uzo}>
+                                        <span className={styles.releaseDate}>
+                                                                    {new Date(movie.releaseDate).toLocaleDateString("bs-BA", {
+                                                                        day: "numeric",
+                                                                        month: "long",
+                                                                        year: "numeric",
+                                                                    })}
+                                                                    </span>
+                                                        <span className={styles.duration}>{movie.duration} min</span>
+                                                        </div>                          
                                     <p className={styles.movieDescription}>{
     movie.description.replace(/[#*>]/g, '').length > 180 
       ? `${movie.description.replace(/[#*>]/g, '').substring(0, 180)}...` 

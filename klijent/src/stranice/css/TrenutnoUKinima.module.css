@@ -148,6 +148,11 @@
     border: none;
   }
 
+  .uzo{
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+  }
 
 @media (max-width: 768px) {
     .container {

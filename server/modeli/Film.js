@@ -32,7 +32,6 @@ const Film = sequelize.define('Film', {
     releaseDate: {//
         type: DataTypes.DATE,
         allowNull: true,
-        defaultValue: DataTypes.NOW,
     },
     duration: {//
         type: DataTypes.INTEGER,

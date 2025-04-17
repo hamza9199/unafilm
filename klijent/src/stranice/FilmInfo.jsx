@@ -90,7 +90,11 @@ const FilmInfo = () => {
                         <div className={styles.entryBottom}>
                             <div className={styles.entryMeta}>
                                 <div className={styles.entryDate}>
-                                <span className={styles.day}>{new Date(novost.datumKreiranja).toLocaleDateString()}</span>
+                                <span className={styles.day}>{new Date(novost.datumKreiranja).toLocaleDateString("bs-BA", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                })}</span>
 
                                 </div>
                                 <div className={styles.entryComment}>
