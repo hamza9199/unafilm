@@ -20,7 +20,7 @@ const ArticleItem = ({ film, novost }) => {
                             height="133"
                             src={novost.film ? film.imageUrl : novost.image} // Ensure this is correct, otherwise use film.imageUrl properly
                             className={styles.entryImage}
-                            alt={film.title || 'Film image'}
+                            alt='Film image'
                             decoding="async"
                         />
                         </a>
@@ -106,7 +106,7 @@ const Novosti = () => {
                 <LijeviBaner />
                 <div className={styles.articleItemsWrapper}>
                     {currentNovosti.map((novost, index) => (
-                        novost?.film  && <ArticleItem key={index} film={novost?.film} novost={novost} />
+                        <ArticleItem key={index} film={novost?.film} novost={novost} />
                     ))}
                 </div>
               

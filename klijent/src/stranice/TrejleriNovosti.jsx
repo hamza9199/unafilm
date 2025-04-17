@@ -18,9 +18,9 @@ const ArticleItem = ({ film, novost }) => {
                         <img
                             width="300"
                             height="133"
-                            src={film.imageUrl} // Ensure this is correct, otherwise use film.imageUrl properly
+                            src={novost.film ? film.imageUrl : novost.image} // Ensure this is correct, otherwise use film.imageUrl properly
                             className={styles.entryImage}
-                            alt={film.title || 'Film image'}
+                            alt={'Film image'}
                             decoding="async"
                         />
                         </a>
@@ -55,13 +55,16 @@ const ArticleItem = ({ film, novost }) => {
                                 )}
                             </span>
                             <span>/</span>
-                            <span className={styles.entryComment}>{film.comment} komentara</span>
+                            <span className={styles.entryComment}>{novost.film ? film.comment : "100"} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                         <p>
-                            {film.opis.length > 300 
+                            {film?.opis
+                            ? (film.opis.length > 300 
                                 ? `${film.opis.substring(0, 300)}...` 
-                                : film.opis}
+                                : film.opis)
+                            : "Trailer filma" 
+                            }
                             </p> 
                         </div>
                     </div>
@@ -126,8 +129,7 @@ const TrejleriNovosti = () => {
                         <p>{error}</p>
                     ) : (
                         currentNovosti.map((novost, index) => (
-                            novost.film && <ArticleItem key={index} film={novost.film} novost={novost} />
-                        ))
+                             <ArticleItem key={index} film={novost.film || null} novost={novost} /> ))
                     )}
                 </div>
             </div>

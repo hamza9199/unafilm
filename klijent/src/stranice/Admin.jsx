@@ -17,7 +17,7 @@ const AdminDashboard = () => {
         duration: 0, reditelj: '', comment: 0, opis:'', type: 'film', tipMjesta: 'uskoro' 
     });
     const [newNovost, setNewNovost] = useState({
-        filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost',image:'',
+        filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image:'',
     });
     const [selectedFilm, setSelectedFilm] = useState(null);
     const [selectedNovost, setSelectedNovost] = useState(null);
@@ -210,44 +210,78 @@ const AdminDashboard = () => {
     
     
     const handleCreateNovost = async () => {
-        
-    
-        try {
-            // Pošaljemo formData sa novostima na backend
-            const response = await axios.post('https://unafilm-production.up.railway.app/server/novosti', newNovost);
-    
-            // Ako je uspešno, ažuriraj listu novosti
-            fetchNovosti();
-            setSelectedNovost(null);
-            setNewNovost({
-                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost' ,image:'',
-            });
-            setSelectedOption('novosti');
-            console.log('Novost created successfully:', response.data);
-        } catch (error) {
-            console.error('Error creating novost:', error);
-        }
-    };
+    const formData = new FormData();
+
+    // Dodaj podatke
+    formData.append('title', newNovost.title);
+    formData.append('kreator', newNovost.kreator);
+    formData.append('tekst', newNovost.tekst);
+    formData.append('tipNovosti', newNovost.tipNovosti);
+
+    // Ako postoji filmId i nije prazan
+    if (newNovost.filmId) {
+        formData.append('filmId', newNovost.filmId);
+    }
+
+    // Dodaj sliku ako je File objekat
+    if (newNovost.image instanceof File) {
+        formData.append('image', newNovost.image);
+    }
+
+    try {
+        const response = await axios.post('https://unafilm-production.up.railway.app/server/novosti', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        fetchNovosti();
+        setSelectedNovost(null);
+        setNewNovost({ filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image: '' });
+        setSelectedOption('novosti');
+        console.log('Novost created successfully:', response.data);
+    } catch (error) {
+        console.error('Error creating novost:', error);
+    }
+};
+
     
     const handleUpdateNovost = async () => {
-        console.log(newNovost)
-        
-        try {
-            // Pošaljemo formData sa novostima na backend
-            const response = await axios.put(`https://unafilm-production.up.railway.app/server/novosti/${selectedNovost.id}`, newNovost);
-    
-            // Ako je uspešno, ažuriraj listu novosti
-            fetchNovosti();
-            setSelectedNovost(null);
-            setNewNovost({
-                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image:'', 
-            });
-            setSelectedOption('novosti');
-            console.log('Novost updated successfully:', response.data);
-        } catch (error) {
-            console.error('Error updating novost:', error);
-        }
-    };
+    const formData = new FormData();
+
+    // Dodaj podatke
+    formData.append('title', newNovost.title);
+    formData.append('kreator', newNovost.kreator);
+    formData.append('tekst', newNovost.tekst);
+    formData.append('tipNovosti', newNovost.tipNovosti);
+
+    // Ako postoji filmId i nije prazan
+    if (newNovost.filmId) {
+        formData.append('filmId', newNovost.filmId);
+    }
+
+    // Dodaj sliku ako je File objekat
+    if (newNovost.image instanceof File) {
+        formData.append('image', newNovost.image);
+    }
+
+    try {
+        const response = await axios.put(`https://unafilm-production.up.railway.app/server/novosti/${selectedNovost.id}`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        });
+
+        fetchNovosti();
+        setSelectedNovost(null);
+        setNewNovost({ filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image: '' });
+        setSelectedOption('novosti');
+        console.log('Novost updated successfully:', response.data);
+    } catch (error) {
+        console.error('Error updating novost:', error);
+    }
+};
+
     
 
 

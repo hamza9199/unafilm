@@ -110,7 +110,7 @@ const FilmTrejler = () => {
 
                                     <div style={{ textAlign: 'justify' }}>
                                         <ReactMarkdown>
-                                            {novost.film ? novost.film.opis : novost.text}
+                                            {novost.film ? novost.film.opis : novost.tekst}
                                         </ReactMarkdown>
                                     </div>
 
