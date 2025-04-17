@@ -80,7 +80,7 @@ const FilmInfo = () => {
                                 <img 
                                     width="990" 
                                     height="440" 
-                                    src={film.imageUrl} 
+                                    src={film?.imageUrl || novost.image} 
                                     className={styles.img}
                                     alt={film.title}
                                     decoding="async" 

@@ -270,8 +270,8 @@ router.get('/', async (req, res) => {
 });
 
 
-// Create a new novost without image upload
-router.post('/', async (req, res) => {
+// Create a new novost with image upload
+router.post('/', upload.single('image'), async (req, res) => {
     try {
         const { title, kreator, tekst, tipNovosti, filmId } = req.body;
 
@@ -280,8 +280,13 @@ router.post('/', async (req, res) => {
             kreator,
             tekst,
             tipNovosti,
-            filmId
+            filmId,
         };
+
+        if (req.file) {
+            const imagePath = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
+            newNovostData.image = imagePath;
+        }
 
         const novost = await Novost.create(newNovostData);
 
@@ -367,13 +372,19 @@ router.get('/:id', async (req, res) => {
 
 
 
-// Update an existing novost by ID without updating uploaded images
-router.put('/:id', async (req, res) => {
+// Update an existing novost by ID and update image if provided
+router.put('/:id', upload.single('image'), async (req, res) => {
     try {
         const novost = await Novost.findByPk(req.params.id);
         if (!novost) return res.status(404).json({ message: 'Novost not found' });
 
         const updatedData = { ...req.body };
+
+        // If a new image is uploaded, update the image field
+        if (req.file) {
+            const imagePath = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
+            updatedData.image = imagePath;
+        }
 
         await novost.update(updatedData);
         res.status(200).json(novost);

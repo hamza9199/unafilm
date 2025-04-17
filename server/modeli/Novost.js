@@ -31,6 +31,10 @@ const Novost = sequelize.define('Novost', {
         type: DataTypes.TEXT,
         allowNull: true,
     },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
     tipNovosti: {
         type: DataTypes.STRING,
         allowNull: true,

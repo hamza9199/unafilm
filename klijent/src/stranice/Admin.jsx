@@ -17,7 +17,7 @@ const AdminDashboard = () => {
         duration: 0, reditelj: '', comment: 0, opis:'', type: 'film', tipMjesta: 'uskoro' 
     });
     const [newNovost, setNewNovost] = useState({
-        filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost'
+        filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost',image:'',
     });
     const [selectedFilm, setSelectedFilm] = useState(null);
     const [selectedNovost, setSelectedNovost] = useState(null);
@@ -220,7 +220,7 @@ const AdminDashboard = () => {
             fetchNovosti();
             setSelectedNovost(null);
             setNewNovost({
-                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost'
+                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost' ,image:'',
             });
             setSelectedOption('novosti');
             console.log('Novost created successfully:', response.data);
@@ -240,7 +240,7 @@ const AdminDashboard = () => {
             fetchNovosti();
             setSelectedNovost(null);
             setNewNovost({
-                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost'
+                filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image:'', 
             });
             setSelectedOption('novosti');
             console.log('Novost updated successfully:', response.data);
@@ -345,7 +345,7 @@ const AdminDashboard = () => {
             opis:''
         });      
         setNewNovost({
-            filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '',
+            filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '', image: '',
             slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
         });
         
@@ -1105,7 +1105,15 @@ const AdminDashboard = () => {
   </div>
 </div>
 
-      
+      {/* Image URL */}
+        <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Image URL</label>
+            <input
+                className={styles.formInput}
+                type="file"
+                onChange={(e) => setNewNovost({ ...newNovost, image: e.target.files[0] })}
+            />
+        </div>
 
         {/* Type of News */}
         <div className={styles.formGroup}>
@@ -1165,6 +1173,16 @@ const AdminDashboard = () => {
                 onChange={(e) => setNewNovost({ ...newNovost, kreator: e.target.value })}
             />
         </div>
+
+        <div className={styles.formGroup}>
+    <label className={styles.formLabel}>Image URL</label>
+    <input
+        className={styles.formInput}
+        type="file"
+        onChange={(e) => setNewNovost({ ...newNovost, image: e.target.files[0] })}
+    />
+</div>
+
         
                 <div className={styles.formGroup}>
   <label className={styles.formLabel}>Text 1</label>

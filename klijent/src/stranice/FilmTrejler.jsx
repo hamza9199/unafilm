@@ -72,7 +72,7 @@ const FilmTrejler = () => {
                                 <img 
                                     width="990" 
                                     height="440" 
-                                    src={novost.film.imageUrl} 
+                                    src={novost.film?.imageUrl || novost.image} 
                                     className={styles.img}
                                     alt={novost.film.title}
                                     decoding="async"
@@ -118,11 +118,12 @@ const FilmTrejler = () => {
                                         <p>No trailer available.</p>
                                     )}
 
-                                    {novost.film.opis ? (
-                                            <div style={{ textAlign: 'justify' }}>
-                                            {novost.film.opis && <ReactMarkdown>{novost.film.opis}</ReactMarkdown>}
-                                            </div>
-                                    ) : null}
+                                    <div style={{ textAlign: 'justify' }}>
+                                        <ReactMarkdown>
+                                            {novost.film?.opis ? novost.film.opis : novost.text}
+                                        </ReactMarkdown>
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
