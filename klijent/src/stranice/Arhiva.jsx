@@ -5,6 +5,8 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import styles from './css/Arhiva.module.css'; 
 import { Helmet } from 'react-helmet';
+import { format } from 'date-fns';
+import { bs } from 'date-fns/locale';
 
 const Arhiva = () => {
     const [movies, setMovies] = useState([]);
@@ -62,13 +64,9 @@ const Arhiva = () => {
                                 <div className={styles.movieText}>
                                     <a href={`/arhiva/film/${movie.id}`} className={styles.movieTitle}>{movie.title}</a>
                                     <div className={styles.uzo}>
-                                        <span className={styles.releaseDate}>
-                                                                        {new Date(movie.releaseDate).toLocaleDateString("bs-BA", {
-                                                                            day: "numeric",
-                                                                            month: "long",
-                                                                            year: "numeric",
-                                                                        })}
-                                                                        </span>
+                                       <span className={styles.releaseDate}>
+  {format(new Date(movie.releaseDate), "d. MMMM yyyy", { locale: bs })}
+</span>
                                                             <span className={styles.duration}>{movie.duration} min</span>
                                                             </div>
                                     <p className={styles.movieDescription}>{

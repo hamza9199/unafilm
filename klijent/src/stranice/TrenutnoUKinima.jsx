@@ -5,7 +5,8 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import styles from './css/TrenutnoUKinima.module.css';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
-
+import { format } from 'date-fns';
+import { bs } from 'date-fns/locale';
 
 const TrenutnoUKinima = () => {
     const [movies, setMovies] = useState([]);
@@ -67,12 +68,8 @@ const TrenutnoUKinima = () => {
                                     <a href={`/trenutno-u-kinima/film/${movie.id}`} className={styles.movieTitle}>{movie.title}</a>
                                     <div className={styles.uzo}>
                                      <span className={styles.releaseDate}>
-                                                                    {new Date(movie.releaseDate).toLocaleDateString("bs-BA", {
-                                                                        day: "numeric",
-                                                                        month: "long",
-                                                                        year: "numeric",
-                                                                    })}
-                                                                    </span>
+                                       {format(new Date(movie.releaseDate), "d. MMMM yyyy", { locale: bs })}
+                                     </span>
                                                        <span className={styles.duration}>{movie.duration} min</span>
                                                        </div>
                                                                     

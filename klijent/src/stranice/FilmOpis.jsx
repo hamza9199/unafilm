@@ -5,7 +5,8 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
-
+import { format } from 'date-fns';
+import { bs } from 'date-fns/locale';
 const FilmOpis = () => {
     const { id } = useParams(); // Koristimo useParams da dobijemo id iz URL-a
     const [movie, setMovie] = useState(null);
@@ -78,13 +79,9 @@ const FilmOpis = () => {
                         <div className={styles.entryDetails}>
                             <span className={styles.duration}>Trajanje: {movie.duration} min</span>
 
-                                <span className={styles.releaseDate}>
-                                Datum izlaska: {new Date(movie.releaseDate).toLocaleDateString("bs-BA", {
-                                    day: "numeric",
-                                    month: "long",
-                                    year: "numeric",
-                                })}
-                                </span>
+                               <span className={styles.releaseDate}>
+                                 {format(new Date(movie.releaseDate), "d. MMMM yyyy", { locale: bs })}
+                               </span>
 
                         </div>
                         <div className={styles.entryDescription}>

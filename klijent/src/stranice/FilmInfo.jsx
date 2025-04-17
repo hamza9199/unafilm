@@ -9,7 +9,8 @@ import RelatedArticle from '../komponente/RelatedArticle';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
 import rehypeRaw from 'rehype-raw';
-
+import { format } from 'date-fns';
+import { bs } from 'date-fns/locale';
 const FilmInfo = () => {
     const { id } = useParams(); // Preuzimanje id-a iz URL-a
     const [novost, setNovost] = useState(null);
@@ -81,11 +82,9 @@ const FilmInfo = () => {
                         <div className={styles.entryBottom}>
                             <div className={styles.entryMeta}>
                                 <div className={styles.entryDate}>
-                                <span className={styles.day}>{new Date(novost.datumKreiranja).toLocaleDateString("bs-BA", {
-                                    day: "numeric",
-                                    month: "long",
-                                    year: "numeric",
-                                })}</span>
+                                <span className={styles.releaseDate}>
+                                  {format(new Date(novost.datumKreiranja), "d. MMMM yyyy", { locale: bs })}
+                                </span>
 
                                 </div>
                                 <div className={styles.entryComment}>

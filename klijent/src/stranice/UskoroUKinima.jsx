@@ -5,7 +5,8 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
-
+import { format } from 'date-fns';
+import { bs } from 'date-fns/locale';
 
 const UskoroUKinima = () => {
     const [movies, setMovies] = useState([]); // Držimo podatke o filmovima
@@ -65,13 +66,9 @@ const UskoroUKinima = () => {
                                 <div className={styles.movieText}>
                                     <a href={`/uskoro-u-kinima/film/${movie.id}`} className={styles.movieTitle}>{movie.title}</a>
                                     <div className={styles.uzo}>
-                                        <span className={styles.releaseDate}>
-                                                                    {new Date(movie.releaseDate).toLocaleDateString("bs-BA", {
-                                                                        day: "numeric",
-                                                                        month: "long",
-                                                                        year: "numeric",
-                                                                    })}
-                                                                    </span>
+                                       <span className={styles.releaseDate}>
+                                         {format(new Date(movie.releaseDate), "d. MMMM yyyy", { locale: bs })}
+                                       </span>
                                                         <span className={styles.duration}>{movie.duration} min</span>
                                                         </div>                          
                                     <p className={styles.movieDescription}>{

@@ -148,6 +148,11 @@
         align-items: center;
     }
 
+    .uzo{
+        flex-direction: column;
+        gap: 0px;
+    }
+
     .iframeContainer iframe {
         width: 100%;
         height: 200px;
