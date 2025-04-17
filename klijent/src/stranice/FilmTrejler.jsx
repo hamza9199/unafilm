@@ -8,6 +8,7 @@ import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
+import rehypeRaw from 'rehype-raw';
 
 const FilmTrejler = () => {
     const { id } = useParams(); 
@@ -109,7 +110,7 @@ const FilmTrejler = () => {
                                     )}
 
                                     <div style={{ textAlign: 'justify' }}>
-                                        <ReactMarkdown>
+                                        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
                                             {novost.film ? novost.film.opis : novost.tekst}
                                         </ReactMarkdown>
                                     </div>
