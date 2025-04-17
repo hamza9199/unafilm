@@ -280,8 +280,8 @@ router.post('/', upload.single('image'), async (req, res) => {
             kreator,
             tekst,
             tipNovosti,
-            filmId,
-        };
+            filmId: filmId ? filmId : null,  // Ako nije poslat filmId, postavi null
+            };
 
         if (req.file) {
             const imagePath = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
