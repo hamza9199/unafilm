@@ -13,7 +13,7 @@ const AdminDashboard = () => {
     const [novosti, setNovosti] = useState([]);
     const [poruke, setPoruke] = useState([]);
     const [newFilm, setNewFilm] = useState({
-        title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+        title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '', releaseDate: '',
         duration: 0, reditelj: '', comment: 0, opis:'', type: 'film', tipMjesta: 'uskoro' 
     });
     const [newNovost, setNewNovost] = useState({
@@ -116,6 +116,7 @@ const AdminDashboard = () => {
         formData.append('trailerUrl', newFilm.trailerUrl);
         formData.append('duration', newFilm.duration);
         formData.append('reditelj', newFilm.reditelj);
+        formData.append('releaseDate', newFilm.releaseDate);
         formData.append('comment', newFilm.comment);
         formData.append('opis', newFilm.opis);
         formData.append('type', newFilm.type);
@@ -143,7 +144,7 @@ const AdminDashboard = () => {
             fetchFilms();
             setSelectedFilm(null);
             setNewFilm({
-                title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+                title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '', releaseDate: '',
                 duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro',
                 opis:''
             });
@@ -165,6 +166,7 @@ const AdminDashboard = () => {
         formData.append('trailerUrl', newFilm.trailerUrl);
         formData.append('duration', newFilm.duration);
         formData.append('reditelj', newFilm.reditelj);
+        formData.append('releaseDate', newFilm.releaseDate);
         formData.append('comment', newFilm.comment);
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
@@ -195,7 +197,7 @@ const AdminDashboard = () => {
             fetchFilms();
             setSelectedFilm(null);
             setNewFilm({
-                title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+                title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '', releaseDate: '',
                 duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro',
                 opis:''
             });
@@ -338,7 +340,7 @@ const AdminDashboard = () => {
       
       const handleSelectedOption = (opt) => {
         setNewFilm({
-            title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '',
+            title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '', releaseDate: '',
             duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro',
             opis:''
         });      
