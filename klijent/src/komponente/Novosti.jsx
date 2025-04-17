@@ -60,8 +60,8 @@ const Novosti = () => {
                         switch (film.tipNovosti) {
                           case "svijetfilma":
                             return "SVIJET FILMA";
-                          case "uskoro":
-                            return "USKORO";
+                          case "trailer":
+                            return "TRAILER";
                           case "novost":
                             return "NOVOST";
                           default:
