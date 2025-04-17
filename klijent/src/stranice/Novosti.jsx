@@ -39,13 +39,14 @@ const ArticleItem = ({ film, novost }) => {
                         <div className={styles.entrySummary}>
                         <p>
   {
-    /<\/?[a-z][\s\S]*>/i.test(novost.tekst) // Provjera da li postoje HTML tagovi
+    /<(iframe|style)[\s\S]*?>[\s\S]*?<\/\1>/i.test(novost.tekst) // Provjera da li postoji <iframe> ili <style>
       ? 'Trailer Filma'
       : novost.tekst.replace(/[#*>]/g, '').length > 300 
           ? `${novost.tekst.replace(/[#*>]/g, '').substring(0, 300)}...` 
           : novost.tekst.replace(/[#*>]/g, '')
   }
 </p>
+
 
 
                         </div>
