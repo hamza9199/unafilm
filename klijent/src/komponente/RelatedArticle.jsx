@@ -44,8 +44,8 @@ const RelatedArticle = () => {
                                 <img
                                     width="360"
                                     height="203"
-                                    src={article.film.imageUrl}
-                                    alt={article.film.imageAlt}
+                                    src={article.film ? article.film.imageUrl : article.image}
+                                    alt=""
                                     className={styles.articleImage}
                                 />
                                 </a>
@@ -58,7 +58,7 @@ const RelatedArticle = () => {
                             <div className={styles.entryInfo}>
                                 <span className={styles.entryDate}>{new Date(article.datumKreiranja).toLocaleDateString()}</span>
                                 <span>/</span>
-                                <span className={styles.entryComment}>{article.film.comment} komentara</span>
+                                <span className={styles.entryComment}>{article.film ? article.film.comment : "100"} komentara</span>
                             </div>
                         </article>
                     ))}

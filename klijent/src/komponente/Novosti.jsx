@@ -50,8 +50,8 @@ const Novosti = () => {
                     <div className={styles.entryThumb}>
                       <a href={`/novosti/film/${film.id}`}>
                       <img
-                        src={film.film.imageUrl}
-                        alt={film.film.imageAlt}
+                        src={film.film ? film.film.imageUrl : film.image}
+                        alt=""
                         className={styles.imga}
                       />
                       </a>

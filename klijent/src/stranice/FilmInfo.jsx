@@ -44,21 +44,12 @@ const FilmInfo = () => {
             <Header />
             <Helmet>
                 <title>{novost.title} - Una Film</title>
-                <meta name="description" content={film.opis} />
                 <link rel="canonical" href={`https://unafilm.com/novosti/iz-svijeta-filma/film/${id}`} />
-                <meta name="keywords" content={`${film.title}, film, novosti`} />
                 <meta name="author" content="Una Film" />
-                <meta property="og:title" content={film.title} />
-
-                <meta property="og:description" content={film.opis} />
-                <meta property="og:image" content={film.imageUrl} />
                 <meta property="og:url" content={`https://unafilm.com/novosti/traileri/film/${id}`} />
                 <meta property="og:type" content="article" />
                 <meta property="og:site_name" content="Una Film" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={novost.film.title} />
-                <meta name="twitter:description" content={novost.film.opis} />
-                <meta name="twitter:image" content={novost.film.imageUrl} />
                 <meta name="twitter:site" content="@UnaFilm" />
                 <meta name="twitter:creator" content="@UnaFilm" />
                 </Helmet>
@@ -80,9 +71,9 @@ const FilmInfo = () => {
                                 <img 
                                     width="990" 
                                     height="440" 
-                                    src={film?.imageUrl || novost.image} 
+                                    src={novost.film ? film.imageUrl : novost.image} 
                                     className={styles.img}
-                                    alt={film.title}
+                                    alt={novost.film ? film.title : "Film"}
                                     decoding="async" 
                                 />
                             </div>
@@ -98,7 +89,7 @@ const FilmInfo = () => {
 
                                 </div>
                                 <div className={styles.entryComment}>
-                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film.comment} komentara
+                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film ? novost.film.comment : "100"} komentara
                                 </div>
                             </div>
                             <div className={styles.entryLeft}>
@@ -118,12 +109,12 @@ const FilmInfo = () => {
                                         </div>
 
                                     
-                                    {novost.film.trailerUrl && (
+                                    {novost.film  && (
                                         <div className={styles.videoWrapper}>
                                         <iframe
                                             width="660"
                                             height="415"
-                                            src={novost.film.trailerUrl}
+                                            src={novost.film ? novost.film.trailerUrl : null}
                                             title="Trailer"
                                             frameBorder="0"
                                             allowFullScreen

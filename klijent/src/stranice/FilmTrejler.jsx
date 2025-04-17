@@ -39,28 +39,18 @@ const FilmTrejler = () => {
         <>
             <Header />
             <Helmet>
-                <title>{novost.film.title} - Una Film</title>
-                <meta name="description" content={novost.film.opis} />
-                <link rel="canonical" href={`https://unafilm.com/novosti/traileri/film/${id}`} />
-                <meta name="keywords" content={`${novost.film.title}, film, trailer, novosti`} />
+                <title>{novost.film ? novost.film.title : novost.title} - Una Film</title>
                 <meta name="author" content="Una Film" />
-                <meta property="og:title" content={novost.film.title} />
-                <meta property="og:description" content={novost.film.opis} />
-                <meta property="og:image" content={novost.film.imageUrl} />
-                <meta property="og:url" content={`https://unafilm.com/novosti/traileri/film/${id}`} />
                 <meta property="og:type" content="article" />
                 <meta property="og:site_name" content="Una Film" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta name="twitter:title" content={novost.film.title} />
-                <meta name="twitter:description" content={novost.film.opis} />
-                <meta name="twitter:image" content={novost.film.imageUrl} />
                 <meta name="twitter:site" content="@UnaFilm" />
                 <meta name="twitter:creator" content="@UnaFilm" />
             </Helmet>
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: novost.film.title, link: `/novosti/traileri/film/${id}` },
+                    { name: novost.film ? novost.film.title : novost.title, link: `/novosti/traileri/film/${id}` },
                 ]}
             />
             <div className={styles.container}>
@@ -72,9 +62,9 @@ const FilmTrejler = () => {
                                 <img 
                                     width="990" 
                                     height="440" 
-                                    src={novost.film?.imageUrl || novost.image} 
+                                    src={novost.film ? novost.film.imageUrl : novost.image} 
                                     className={styles.img}
-                                    alt={novost.film.title}
+                                    alt={novost.film ? novost.film.title : "Film"}
                                     decoding="async"
                                 />
                             </div>
@@ -89,38 +79,38 @@ const FilmTrejler = () => {
                                 })}</span>
                                 </div>
                                 <div className={styles.entryComment}>
-                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film.comment} komentara
+                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film ? novost.film.comment : "100"} komentara
                                 </div>
                             </div>
                             <div className={styles.entryLeft}>
                                 <h1 className={styles.entryTitle}>
                                     <a 
-                                        href={`/arhiva/film/${novost.film.id}`}
+                                        href={`/arhiva/film/${novost.film ? novost.film.id : novost.id}`}
                                         className={styles.entryLink}
                                         itemProp="url"
                                     >
-                                        {novost.film.title}
+                                        {novost.film ? novost.film.title : novost.title}
                                     </a>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                    {novost.film.trailerUrl ? (
+                                    {novost.film ? (
                                         <div className={styles.videoWrapper}>
                                             <iframe
                                                 width="560"
                                                 height="315"
-                                                src={novost.film.trailerUrl}
+                                                src={novost.film ? novost.film.trailerUrl : null}
                                                 title={novost.film.title}
                                                 frameBorder="0"
                                                 allowFullScreen
                                             ></iframe>
                                         </div>
                                     ) : (
-                                        <p>No trailer available.</p>
+                                        null
                                     )}
 
                                     <div style={{ textAlign: 'justify' }}>
                                         <ReactMarkdown>
-                                            {novost.film?.opis ? novost.film.opis : novost.text}
+                                            {novost.film ? novost.film.opis : novost.text}
                                         </ReactMarkdown>
                                     </div>
 

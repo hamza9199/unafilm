@@ -380,7 +380,10 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 
         const updatedData = { ...req.body };
 
-        // If a new image is uploaded, update the image field
+        // Ako je filmId poslan i nije prazan string, koristi ga; inače postavi null
+        updatedData.filmId = req.body.filmId ? req.body.filmId : null;
+
+        // Ako je nova slika postavljena, ažuriraj image polje
         if (req.file) {
             const imagePath = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
             updatedData.image = imagePath;
@@ -392,6 +395,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
         res.status(400).json({ message: 'Error updating novost', error });
     }
 });
+
 
 // Delete a novost by ID
 router.delete('/:id', async (req, res) => {

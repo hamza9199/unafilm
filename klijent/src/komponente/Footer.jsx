@@ -96,8 +96,8 @@ const Footer = () => {
                                             <a href={`/novosti/film/${movie.id}`}
                                             >
                                             <img
-                                                src={movie.film.imageUrl}
-                                                alt={movie.film.title}
+                                                src={movie.film ? movie.film.imageUrl : movie.image}
+                                                    alt={movie.film ? movie.film.title : "No Title"}
                                                 href={`/novosti/film/${movie.id}`}
                                             />
                                             </a>
@@ -111,7 +111,7 @@ const Footer = () => {
                                             <div className={styles.entryMeta}>
                                                 <span className={styles.entryDate}>{new Date(movie.datumKreiranja).toLocaleDateString()}</span>
                                                 <span> / </span>
-                                                <span className={styles.entryComment}>{movie.film.comment} komentara</span>
+                                                <span className={styles.entryComment}>{movie.film ? movie.film.comment : "100"} komentara</span>
                                             </div>
                                         </div>
                                         <div className={styles.clearfix}></div>

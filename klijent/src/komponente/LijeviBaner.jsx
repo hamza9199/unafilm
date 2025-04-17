@@ -95,7 +95,7 @@ const LijeviBaner = () => {
                         <div key={index} className={styles.entryItem}>
                             <div className={styles.entryThumb2}>
                                 <a href={`/novosti/film/${item.id}`}>
-                                <img src={item.film.imageUrl} alt={item.film.title} className={styles.image2} />
+                                <img src={item.film ? item.film.imageUrl : item.image} alt={item.film ? item.film.title : "No image"} className={styles.image2} />
                                 </a>
                             </div>
                             <div className={styles.entryContent2}>
@@ -105,7 +105,7 @@ const LijeviBaner = () => {
                                 <div className={styles.entryMeta}>
                                     <span className={styles.entryDate}>{new Date(item.datumKreiranja).toLocaleDateString()}</span>
                                     <span> / </span>
-                                    <span className={styles.entryComment}>{item.film.comment} komentara</span>
+                                    <span className={styles.entryComment}>{item.film ? item.film.comment : "100"} komentara</span>
                                 </div>
                             </div>
                         </div>
