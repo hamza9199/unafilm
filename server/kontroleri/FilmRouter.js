@@ -270,7 +270,7 @@ router.post('/', upload.fields([
   { name: "image2", maxCount: 1 }
 ]), async (req, res) => {
   try {
-    const { title, description, trailerUrl, releaseDate, duration, reditelj, type, tipMjesta } = req.body;
+    const { title, description, trailerUrl, releaseDate, duration, reditelj, comment, type, tipMjesta, opis } = req.body;
 
     const newFilmData = {
       title,
@@ -279,8 +279,10 @@ router.post('/', upload.fields([
       releaseDate,
       duration,
       reditelj,
+      comment,
       type,
       tipMjesta,
+      opis,
     };
 
     if (req.files.image1) {

@@ -64,7 +64,11 @@ const UskoroUKinima = () => {
                                 </div>
                                 <div className={styles.movieText}>
                                     <a href={`/uskoro-u-kinima/film/${movie.id}`} className={styles.movieTitle}>{movie.title}</a>
-                                    <p className={styles.movieDescription}>{movie.description}</p>
+                                    <p className={styles.movieDescription}>{
+    movie.description.replace(/[#*>]/g, '').length > 180 
+      ? `${movie.description.replace(/[#*>]/g, '').substring(0, 180)}...` 
+      : movie.description.replace(/[#*>]/g, '')
+  }</p>
                                     <div className={styles.buttonContainer}>
                                         <a href={`/uskoro-u-kinima/film/${movie.id}`} className={styles.infoButton}  rel="noopener noreferrer">
                                         

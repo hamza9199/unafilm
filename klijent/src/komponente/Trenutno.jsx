@@ -143,7 +143,11 @@ const Trenutno = () => {
               <span>{selectedFilm.duration} min</span>
             </div>
       
-            <p className={styles.description}>{selectedFilm.description}</p>
+            <p className={styles.description}>{
+    selectedFilm.description.replace(/[#*>]/g, '').length > 150 
+      ? `${selectedFilm.description.replace(/[#*>]/g, '').substring(0, 150)}...` 
+      : selectedFilm.description.replace(/[#*>]/g, '')
+  }</p>
               <div className={styles.buttons}>
                 <a onClick={() => setSelectedTrailer(selectedFilm.trailerUrl)} className={styles.watchButton}>
                 <svg

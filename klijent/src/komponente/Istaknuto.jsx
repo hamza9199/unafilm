@@ -84,7 +84,15 @@ const Istaknuto = () => {
                   </a>
                 </h2>
                 <div className={styles.slideDesc}>
-                  <p className={styles.desc}>{film.description}</p>
+                  <p className={styles.desc}>
+
+ {
+    film.description.replace(/[#*>]/g, '').length > 150 
+      ? `${film.description.replace(/[#*>]/g, '').substring(0, 150)}...` 
+      : film.description.replace(/[#*>]/g, '')
+  }
+
+                  </p>
                 </div>
                 <div className={styles.slideButton}>
                   <a  onClick={() => setSelectedTrailer(film.trailerUrl)} className={styles.trailerLink} target="_blank" rel="noopener noreferrer">
