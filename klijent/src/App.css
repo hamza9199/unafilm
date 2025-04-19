@@ -1,6 +1,6 @@
 #root {
   margin: 0 auto;
-  font-family: Verdana (sans-serif), Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #333;
@@ -14,7 +14,7 @@ body{
   background-color: #f0f0f0;
   width: 100%; 
   scrollbar-width: none;
-  font-family: Verdana (sans-serif), Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
 
 }
 
