@@ -4,7 +4,7 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/AdminDashboard.module.css';
 import { Helmet } from 'react-helmet';
-import MDEditor from '@uiw/react-md-editor';
+import MDEditor, { commands } from '@uiw/react-md-editor';
 
 const AdminDashboard = () => {
     const [bazaFile, setBazaFile] = useState(null);
@@ -921,9 +921,63 @@ const AdminDashboard = () => {
                                 <label className={styles.label}>Opis</label>
                                  <div data-color-mode="light">
                                     <MDEditor
-                                    value={newFilm.opis}
-                                    onChange={(value) => setNewFilm({ ...newFilm, opis: value })}
-                                    />
+   value={newFilm.opis}
+      onChange={(value) => setNewFilm({ ...newFilm, opis: value })}
+  commands={[
+    ...commands.getCommands(),
+
+    // Komanda za sliku
+    {
+      name: "insertImage",
+      keyCommand: "insertImage",
+      buttonProps: { "aria-label": "Insert image tag" },
+      icon: <span>🖼️</span>,
+      execute: (state, api) => {
+        const imageUrl = prompt("Unesite URL slike:");
+        if (!imageUrl) return;
+
+        const altText = state.selectedText || "description";
+        const newText = `<img src="${imageUrl}" alt="${altText}" width="85%" style="display: block; margin: 0 auto;" />`;
+
+        api.replaceSelection(newText);
+      },
+    },
+
+    // Komanda za YouTube video
+    {
+      name: "insertIframe",
+      keyCommand: "insertIframe",
+      buttonProps: { "aria-label": "Insert iframe tag" },
+      icon: <span>🎬</span>,
+      execute: (state, api) => {
+        let videoUrl = prompt("Unesite YouTube link (npr: https://www.youtube.com/watch?v=VIDEO_ID):");
+        if (!videoUrl) return;
+
+        // Izvuci video ID iz bilo kog formata YouTube linka
+        const videoIdMatch = videoUrl.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
+        const videoId = videoIdMatch ? videoIdMatch[1] : null;
+
+        if (!videoId) {
+          alert("Neispravan YouTube link!");
+          return;
+        }
+
+        const newText = `<style>
+  @media (max-width: 768px) {
+    iframe.responsive-yt {
+      height: 100% !important;
+    }
+  }
+</style> 
+
+<iframe class="responsive-yt" width="85%" height="500px" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+        api.replaceSelection(newText);
+      },
+    },
+  ]}
+/>
                                 </div>         
                              </div>
 
@@ -1072,10 +1126,65 @@ const AdminDashboard = () => {
             <label className={styles.formLabel}>Opis</label>
            
             <div data-color-mode="light">
+    
     <MDEditor
-      value={newFilm.opis}
+   value={newFilm.opis}
       onChange={(value) => setNewFilm({ ...newFilm, opis: value })}
-    />
+  commands={[
+    ...commands.getCommands(),
+
+    // Komanda za sliku
+    {
+      name: "insertImage",
+      keyCommand: "insertImage",
+      buttonProps: { "aria-label": "Insert image tag" },
+      icon: <span>🖼️</span>,
+      execute: (state, api) => {
+        const imageUrl = prompt("Unesite URL slike:");
+        if (!imageUrl) return;
+
+        const altText = state.selectedText || "description";
+        const newText = `<img src="${imageUrl}" alt="${altText}" width="85%" style="display: block; margin: 0 auto;" />`;
+
+        api.replaceSelection(newText);
+      },
+    },
+
+    // Komanda za YouTube video
+    {
+      name: "insertIframe",
+      keyCommand: "insertIframe",
+      buttonProps: { "aria-label": "Insert iframe tag" },
+      icon: <span>🎬</span>,
+      execute: (state, api) => {
+        let videoUrl = prompt("Unesite YouTube link (npr: https://www.youtube.com/watch?v=VIDEO_ID):");
+        if (!videoUrl) return;
+
+        // Izvuci video ID iz bilo kog formata YouTube linka
+        const videoIdMatch = videoUrl.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
+        const videoId = videoIdMatch ? videoIdMatch[1] : null;
+
+        if (!videoId) {
+          alert("Neispravan YouTube link!");
+          return;
+        }
+
+        const newText = `<style>
+  @media (max-width: 768px) {
+    iframe.responsive-yt {
+      height: 100% !important;
+    }
+  }
+</style> 
+
+<iframe class="responsive-yt" width="85%" height="500px" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+        api.replaceSelection(newText);
+      },
+    },
+  ]}
+/>
   </div>
         </div>
 
@@ -1133,9 +1242,63 @@ const AdminDashboard = () => {
   <label className={styles.formLabel}>Text 1</label>
   <div data-color-mode="light">
     <MDEditor
-      value={newNovost.tekst}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
-    />
+  value={newNovost.tekst}
+  onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
+  commands={[
+    ...commands.getCommands(),
+
+    // Komanda za sliku
+    {
+      name: "insertImage",
+      keyCommand: "insertImage",
+      buttonProps: { "aria-label": "Insert image tag" },
+      icon: <span>🖼️</span>,
+      execute: (state, api) => {
+        const imageUrl = prompt("Unesite URL slike:");
+        if (!imageUrl) return;
+
+        const altText = state.selectedText || "description";
+        const newText = `<img src="${imageUrl}" alt="${altText}" width="85%" style="display: block; margin: 0 auto;" />`;
+
+        api.replaceSelection(newText);
+      },
+    },
+
+    // Komanda za YouTube video
+    {
+      name: "insertIframe",
+      keyCommand: "insertIframe",
+      buttonProps: { "aria-label": "Insert iframe tag" },
+      icon: <span>🎬</span>,
+      execute: (state, api) => {
+        let videoUrl = prompt("Unesite YouTube link (npr: https://www.youtube.com/watch?v=VIDEO_ID):");
+        if (!videoUrl) return;
+
+        // Izvuci video ID iz bilo kog formata YouTube linka
+        const videoIdMatch = videoUrl.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
+        const videoId = videoIdMatch ? videoIdMatch[1] : null;
+
+        if (!videoId) {
+          alert("Neispravan YouTube link!");
+          return;
+        }
+
+        const newText = `<style>
+  @media (max-width: 768px) {
+    iframe.responsive-yt {
+      height: 100% !important;
+    }
+  }
+</style> 
+
+<iframe class="responsive-yt" width="85%" height="500px" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+        api.replaceSelection(newText);
+      },
+    },
+  ]}
+/>
   </div>
 </div>
 
@@ -1221,10 +1384,66 @@ const AdminDashboard = () => {
                 <div className={styles.formGroup}>
   <label className={styles.formLabel}>Text 1</label>
   <div data-color-mode="light">
-    <MDEditor
-      value={newNovost.tekst}
-      onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
-    />
+   <MDEditor
+  value={newNovost.tekst}
+  onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
+  commands={[
+    ...commands.getCommands(),
+
+    // Komanda za sliku
+    {
+      name: "insertImage",
+      keyCommand: "insertImage",
+      buttonProps: { "aria-label": "Insert image tag" },
+      icon: <span>🖼️</span>,
+      execute: (state, api) => {
+        const imageUrl = prompt("Unesite URL slike:");
+        if (!imageUrl) return;
+
+        const altText = state.selectedText || "description";
+        const newText = `<img src="${imageUrl}" alt="${altText}" width="85%" style="display: block; margin: 0 auto;" />`;
+
+        api.replaceSelection(newText);
+      },
+    },
+
+    // Komanda za YouTube video
+    {
+      name: "insertIframe",
+      keyCommand: "insertIframe",
+      buttonProps: { "aria-label": "Insert iframe tag" },
+      icon: <span>🎬</span>,
+      execute: (state, api) => {
+        let videoUrl = prompt("Unesite YouTube link (npr: https://www.youtube.com/watch?v=VIDEO_ID):");
+        if (!videoUrl) return;
+
+        // Izvuci video ID iz bilo kog formata YouTube linka
+        const videoIdMatch = videoUrl.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
+        const videoId = videoIdMatch ? videoIdMatch[1] : null;
+
+        if (!videoId) {
+          alert("Neispravan YouTube link!");
+          return;
+        }
+
+        const newText = `<style>
+  @media (max-width: 768px) {
+    iframe.responsive-yt {
+      height: 100% !important;
+    }
+  }
+</style> 
+
+<iframe class="responsive-yt" width="85%" height="500px" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+
+        api.replaceSelection(newText);
+      },
+    },
+  ]}
+/>
+
+
   </div>
 </div>
 
