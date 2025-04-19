@@ -121,7 +121,7 @@ const Trenutno = () => {
             setSelectedFilm(null);
           }}
           style={{
-            left: `${340 * hoveredIndex}px`,
+            left: `${320 * hoveredIndex}px`,
           }}
         >
           <div className={styles.left}>
