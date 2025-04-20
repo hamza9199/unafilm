@@ -976,6 +976,51 @@ const AdminDashboard = () => {
         api.replaceSelection(newText);
       },
     },
+
+    {
+  name: "insertMultipleImages",
+  keyCommand: "insertMultipleImages",
+  buttonProps: { "aria-label": "Insert multiple images" },
+  icon: <span>🖼️</span>,
+  execute: async (state, api) => {
+    let addMore = true;
+    const images = [];
+
+    while (addMore) {
+      const count = parseInt(prompt("Koliko slika želite dodati?"));
+      if (isNaN(count) || count <= 0) {
+        addMore = confirm("Niste unijeli ispravan broj slika. Želite li pokušati ponovo?");
+        continue;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const imageUrl = prompt(`Unesite URL slike ${i + 1}:`);
+        if (!imageUrl) {
+          addMore = confirm("Niste unijeli URL slike. Želite li pokušati ponovo?");
+          break;
+        }
+        images.push(imageUrl);
+      }
+
+      if (addMore) {
+        addMore = confirm("Želite li unijeti još slika?");
+      }
+    }
+
+    if (images.length > 0) {
+      let gridHtml = "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;'>";
+
+      images.forEach((imageUrl) => {
+        gridHtml += `<img src="${imageUrl}" alt="description" style="max-width: 100%; height: auto; border-radius: 10px;"/>`;
+      });
+
+      gridHtml += "</div>";
+      
+      api.replaceSelection(gridHtml);
+    }
+  },
+},
+
   ]}
 />
                                 </div>         
@@ -1183,6 +1228,50 @@ const AdminDashboard = () => {
         api.replaceSelection(newText);
       },
     },
+
+     {
+  name: "insertMultipleImages",
+  keyCommand: "insertMultipleImages",
+  buttonProps: { "aria-label": "Insert multiple images" },
+  icon: <span>🖼️</span>,
+  execute: async (state, api) => {
+    let addMore = true;
+    const images = [];
+
+    while (addMore) {
+      const count = parseInt(prompt("Koliko slika želite dodati?"));
+      if (isNaN(count) || count <= 0) {
+        addMore = confirm("Niste unijeli ispravan broj slika. Želite li pokušati ponovo?");
+        continue;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const imageUrl = prompt(`Unesite URL slike ${i + 1}:`);
+        if (!imageUrl) {
+          addMore = confirm("Niste unijeli URL slike. Želite li pokušati ponovo?");
+          break;
+        }
+        images.push(imageUrl);
+      }
+
+      if (addMore) {
+        addMore = confirm("Želite li unijeti još slika?");
+      }
+    }
+
+    if (images.length > 0) {
+      let gridHtml = "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;'>";
+
+      images.forEach((imageUrl) => {
+        gridHtml += `<img src="${imageUrl}" alt="description" style="max-width: 100%; height: auto; border-radius: 10px;"/>`;
+      });
+
+      gridHtml += "</div>";
+      
+      api.replaceSelection(gridHtml);
+    }
+  },
+},
   ]}
 />
   </div>
@@ -1297,6 +1386,50 @@ const AdminDashboard = () => {
         api.replaceSelection(newText);
       },
     },
+
+     {
+  name: "insertMultipleImages",
+  keyCommand: "insertMultipleImages",
+  buttonProps: { "aria-label": "Insert multiple images" },
+  icon: <span>🖼️</span>,
+  execute: async (state, api) => {
+    let addMore = true;
+    const images = [];
+
+    while (addMore) {
+      const count = parseInt(prompt("Koliko slika želite dodati?"));
+      if (isNaN(count) || count <= 0) {
+        addMore = confirm("Niste unijeli ispravan broj slika. Želite li pokušati ponovo?");
+        continue;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const imageUrl = prompt(`Unesite URL slike ${i + 1}:`);
+        if (!imageUrl) {
+          addMore = confirm("Niste unijeli URL slike. Želite li pokušati ponovo?");
+          break;
+        }
+        images.push(imageUrl);
+      }
+
+      if (addMore) {
+        addMore = confirm("Želite li unijeti još slika?");
+      }
+    }
+
+    if (images.length > 0) {
+      let gridHtml = "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;'>";
+
+      images.forEach((imageUrl) => {
+        gridHtml += `<img src="${imageUrl}" alt="description" style="max-width: 100%; height: auto; border-radius: 10px;"/>`;
+      });
+
+      gridHtml += "</div>";
+      
+      api.replaceSelection(gridHtml);
+    }
+  },
+},
   ]}
 />
   </div>
@@ -1440,6 +1573,50 @@ const AdminDashboard = () => {
         api.replaceSelection(newText);
       },
     },
+
+     {
+  name: "insertMultipleImages",
+  keyCommand: "insertMultipleImages",
+  buttonProps: { "aria-label": "Insert multiple images" },
+  icon: <span>🖼️</span>,
+  execute: async (state, api) => {
+    let addMore = true;
+    const images = [];
+
+    while (addMore) {
+      const count = parseInt(prompt("Koliko slika želite dodati?"));
+      if (isNaN(count) || count <= 0) {
+        addMore = confirm("Niste unijeli ispravan broj slika. Želite li pokušati ponovo?");
+        continue;
+      }
+
+      for (let i = 0; i < count; i++) {
+        const imageUrl = prompt(`Unesite URL slike ${i + 1}:`);
+        if (!imageUrl) {
+          addMore = confirm("Niste unijeli URL slike. Želite li pokušati ponovo?");
+          break;
+        }
+        images.push(imageUrl);
+      }
+
+      if (addMore) {
+        addMore = confirm("Želite li unijeti još slika?");
+      }
+    }
+
+    if (images.length > 0) {
+      let gridHtml = "<div style='display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px;'>";
+
+      images.forEach((imageUrl) => {
+        gridHtml += `<img src="${imageUrl}" alt="description" style="max-width: 100%; height: auto; border-radius: 10px;"/>`;
+      });
+
+      gridHtml += "</div>";
+      
+      api.replaceSelection(gridHtml);
+    }
+  },
+},
   ]}
 />
 
