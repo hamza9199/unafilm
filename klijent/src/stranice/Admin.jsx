@@ -386,6 +386,10 @@ const AdminDashboard = () => {
             filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '', image: '',
             slika1: '', slika2: '', slika3: '', tipNovosti: 'novost'
         });
+
+        setImagePreview("");
+        setImagePreview2("");
+        setImagePreview3("");
         
          setSelectedOption(opt);
       }
