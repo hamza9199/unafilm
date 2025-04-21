@@ -41,7 +41,7 @@ const FilmTrejler = () => {
         <>
             <Header />
             <Helmet>
-                <title>{novost.film ? novost.film.title : novost.title} - Una Film</title>
+                <title>{novost.title} - Una Film</title>
                 <meta name="author" content="Una Film" />
                 <meta property="og:type" content="article" />
                 <meta property="og:site_name" content="Una Film" />
@@ -52,7 +52,7 @@ const FilmTrejler = () => {
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: novost.film ? novost.film.title : novost.title, link: `/novosti/traileri/film/${id}` },
+                    { name: novost.title, link: `/novosti/traileri/film/${id}` },
                 ]}
             />
             <div className={styles.container}>
