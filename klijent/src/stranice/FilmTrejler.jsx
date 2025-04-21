@@ -85,11 +85,11 @@ const FilmTrejler = () => {
                             <div className={styles.entryLeft}>
                                 <h1 className={styles.entryTitle}>
                                     <a 
-                                        href={`/arhiva/film/${novost.film ? novost.film.id : novost.id}`}
+                                        href={`/novost/film/${novost.id}`}
                                         className={styles.entryLink}
                                         itemProp="url"
                                     >
-                                        {novost.film ? novost.film.title : novost.title}
+                                        {novost.title}
                                     </a>
                                 </h1>
                                 <div className={styles.entryContent}>
