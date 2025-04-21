@@ -62,7 +62,7 @@ server/
 
 1. Klonirajte repozitorij:
     ```bash
-    git clone https://github.com/your-repo/una-film-distribucija.git
+    git clone https://github.com/Hamza9199/UnaFilm
     cd una-film-distribucija/server
     ```
 
