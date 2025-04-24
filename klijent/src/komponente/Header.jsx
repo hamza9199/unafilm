@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import styles from './css/Header.module.css';
 import {  useNavigate } from 'react-router-dom';
 import logo from './../assets/unaFilm141-2.png'; // Adjust the path as necessary
+import { FaSearch } from 'react-icons/fa'; // Na vrhu fajla
+import DropdownSubmenu from './DropdownSubmenu';
 
 
 const Header = () => {
@@ -65,13 +67,17 @@ const Header = () => {
                                 </svg>
                             </a>
                             <div className={`${styles.searchBox} ${isSearchOpen ? styles.open : ''}`}>
-                                <form onSubmit={handleSearchSubmit}>
-                                    <input
-                                        type="text"
-                                        placeholder="Pretraži..."
-                                        value={searchTerm}
-                                        onChange={handleSearchInputChange}
-                                    />
+                                  <form onSubmit={handleSearchSubmit} className={styles.searchForm}>
+                                    <div className={styles.searchInputWrapper}>
+                                        <FaSearch className={styles.searchIconInput} />
+                                        <input
+                                            type="text"
+                                            placeholder="Pretraži filmove..."
+                                            value={searchTerm}
+                                            onChange={handleSearchInputChange}
+                                            className={styles.searchInput}
+                                        />
+                                    </div>
                                 </form>
                             </div>
                         </li>
