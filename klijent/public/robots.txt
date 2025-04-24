@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://unafilm.vercel.app/sitemap.xml
