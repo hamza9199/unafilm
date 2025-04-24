@@ -772,12 +772,12 @@ const handleImage3Change = (e)=>{
                         <section className={styles.updateSection}>
                             <h3 className={styles.h3}>Kreiraj Film</h3>
                             <div className={styles.div}>
-                                <label className={styles.label}>Title</label>
-                                <input className={styles.input} type="text" placeholder="Title" value={newFilm.title} onChange={(e) => setNewFilm({ ...newFilm, title: e.target.value })} />
+                                <label className={styles.label}>Naslov Filma/Serije</label>
+                                <input className={styles.input} type="text" placeholder="ime" value={newFilm.title} onChange={(e) => setNewFilm({ ...newFilm, title: e.target.value })} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Description</label>
-                                <input className={styles.input} type="text" placeholder="Description" value={newFilm.description} onChange={(e) => setNewFilm({ ...newFilm, description: e.target.value })} />
+                                <label className={styles.label}>Deskripcija</label>
+                                <input className={styles.input} type="text" placeholder="deskripcija" value={newFilm.description} onChange={(e) => setNewFilm({ ...newFilm, description: e.target.value })} />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Trailer URL</label>
@@ -788,7 +788,7 @@ const handleImage3Change = (e)=>{
                                     }} />
                             </div>                    
                             <div className={styles.div}>
-                                <label className={styles.label}>Image</label>
+                                <label className={styles.label}>Velika Slika</label>
                                 <input
                                     className={styles.input}
                                     type="file"
@@ -799,7 +799,7 @@ const handleImage3Change = (e)=>{
                                 <img src={imagePreview2} alt="Preview" className={styles.imagePreview} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Image 2</label>
+                                <label className={styles.label}>Mala Slika</label>
                                 <input
                                     className={styles.input}
                                     type="file"
@@ -810,23 +810,23 @@ const handleImage3Change = (e)=>{
                                 <img src={imagePreview3} alt="Preview" className={styles.imagePreview} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Release Date</label>
+                                <label className={styles.label}>Datum izlaska</label>
                                 <input className={styles.input} type="date" placeholder="Release Date" value={newFilm.releaseDate} onChange={(e) => setNewFilm({ ...newFilm, releaseDate: e.target.value })} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Trajanje</label>
-                                <input className={styles.input} type="number" placeholder="Trajanje" value={newFilm.duration} onChange={(e) => setNewFilm({ ...newFilm, duration: e.target.value })} />
+                                <label className={styles.label}>Trajanje filma/serije</label>
+                                <input className={styles.input} type="number" placeholder="" value={newFilm.duration} onChange={(e) => setNewFilm({ ...newFilm, duration: e.target.value })} />
                             </div>
                             <div className={styles.div}>
                                 <label className={styles.label}>Reditelj</label>
-                                <input className={styles.input} type="text" placeholder="Author" value={newFilm.reditelj} onChange={(e) => setNewFilm({ ...newFilm, reditelj: e.target.value })} />
+                                <input className={styles.input} type="text" placeholder="Reditelj" value={newFilm.reditelj} onChange={(e) => setNewFilm({ ...newFilm, reditelj: e.target.value })} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Comment</label>
-                                <input className={styles.input} type="text" placeholder="Comment" value={newFilm.comment} onChange={(e) => setNewFilm({ ...newFilm, comment: e.target.value })} />
+                                <label className={styles.label}>Broj Komentara</label>
+                                <input className={styles.input} type="number" placeholder="" value={newFilm.comment} onChange={(e) => setNewFilm({ ...newFilm, comment: e.target.value })} />
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Type</label>
+                                <label className={styles.label}>Tip</label>
                                 <select className={styles.select}
                                     value={newFilm.type}
                                     onChange={(e) => setNewFilm({ ...newFilm, type: e.target.value })}
@@ -836,7 +836,7 @@ const handleImage3Change = (e)=>{
                                 </select>
                             </div>
                             <div className={styles.div}>
-                                <label className={styles.label}>Location Type</label>
+                                <label className={styles.label}>Mjesto na Stranici</label>
                                 <select className={styles.select}
                                     value={newFilm.tipMjesta}
                                     onChange={(e) => setNewFilm({ ...newFilm, tipMjesta: e.target.value })}
@@ -853,6 +853,8 @@ const handleImage3Change = (e)=>{
                                     <MDEditor
    value={newFilm.opis}
       onChange={(value) => setNewFilm({ ...newFilm, opis: value })}
+        height={600}
+
   commands={[
     ...commands.getCommands(),
 
@@ -975,7 +977,7 @@ const handleImage3Change = (e)=>{
         <h3 className={styles.sectionTitle}>Ažuriraj Film</h3>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Title</label>
+            <label className={styles.formLabel}>Naslov Filma/Serije</label>
             <input
                 className={styles.formInput}
                 type="text"
@@ -985,7 +987,7 @@ const handleImage3Change = (e)=>{
         </div>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Description</label>
+            <label className={styles.formLabel}>Deskripcija</label>
             <input
                 className={styles.formInput}
                 type="text"
@@ -1011,7 +1013,7 @@ const handleImage3Change = (e)=>{
        
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Image URL</label>
+            <label className={styles.formLabel}>Velika Slika</label>
             <input
                 className={styles.formInput}
                 type="file"
@@ -1022,7 +1024,7 @@ const handleImage3Change = (e)=>{
             <img src={newFilm.imageUrl || imagePreview2} alt="Preview" className={styles.imagePreview} />
         </div>
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Image URL2</label>
+            <label className={styles.formLabel}>Mala Slika</label>
             <input
                 className={styles.formInput}
                 type="file"
@@ -1035,7 +1037,7 @@ const handleImage3Change = (e)=>{
         </div>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Release Date</label>
+            <label className={styles.formLabel}>Datum Izlaska</label>
             <input
                 className={styles.formInput}
                 type="date"
@@ -1045,7 +1047,7 @@ const handleImage3Change = (e)=>{
         </div>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Duration</label>
+            <label className={styles.formLabel}>Trajanje Filma/Serije</label>
             <input
                 className={styles.formInput}
                 type="number"
@@ -1067,7 +1069,7 @@ const handleImage3Change = (e)=>{
         </div>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Comment</label>
+            <label className={styles.formLabel}>Broj Komentara</label>
             <input
                 className={styles.formInput}
                 type="text"
@@ -1091,7 +1093,7 @@ const handleImage3Change = (e)=>{
         </div>
 
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Location Type</label>
+            <label className={styles.formLabel}>Mjesto na Stranici</label>
             <select
                 className={styles.formSelect}
                 value={newFilm.tipMjesta}
@@ -1111,6 +1113,8 @@ const handleImage3Change = (e)=>{
     <MDEditor
    value={newFilm.opis}
       onChange={(value) => setNewFilm({ ...newFilm, opis: value })}
+        height={600}
+
   commands={[
     ...commands.getCommands(),
 
@@ -1231,7 +1235,7 @@ const handleImage3Change = (e)=>{
         <h3 className={styles.sectionTitle}>Ažuriraj Novost</h3>
         {/* Film Selection */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Film</label>
+            <label className={styles.formLabel}>Izaberi Film vezan za Novost ako je potrebno</label>
                <Select
     
     value={films.find(f => f.id === newNovost.filmId)}
@@ -1246,7 +1250,7 @@ const handleImage3Change = (e)=>{
 
         {/* Title */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Title</label>
+            <label className={styles.formLabel}>Naslov Novosti</label>
             <input
                 className={styles.formInput}
                 type="text"
@@ -1257,7 +1261,7 @@ const handleImage3Change = (e)=>{
 
         {/* Kreator */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Kreator</label>
+            <label className={styles.formLabel}>Kreator Preuzete ili Kreirane Novosti</label>
             <input
                 className={styles.formInput}
                 type="text"
@@ -1268,11 +1272,12 @@ const handleImage3Change = (e)=>{
 
         {/* Text 1 */}
         <div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 1</label>
+  <label className={styles.formLabel}>Tekst Novosti</label>
   <div data-color-mode="light">
     <MDEditor
   value={newNovost.tekst}
   onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
+height={600}
   commands={[
     ...commands.getCommands(),
 
@@ -1383,7 +1388,7 @@ const handleImage3Change = (e)=>{
 
       {/* Image URL */}
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Image URL</label>
+            <label className={styles.formLabel}>Glavna Slika Novosti ako je potrebna</label>
             <input
                 className={styles.formInput}
                 type="file"
@@ -1419,7 +1424,7 @@ const handleImage3Change = (e)=>{
     <section className={styles.createSection}>
         <h3 className={styles.sectionTitle}>Kreiraj Novost</h3>
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Film</label>
+            <label className={styles.formLabel}>Izaberi Film vezan za Novost ako je potrebno</label>
            <Select
     value={films.find(f => f.id === newNovost.filmId)}
     onChange={(selectedOption) =>
@@ -1431,17 +1436,17 @@ const handleImage3Change = (e)=>{
 />
         </div>
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Title</label>
+            <label className={styles.formLabel}>Naslov Novosti</label>
             <input
                 className={styles.formInput}
                 type="text"
-                placeholder="Title"
+                placeholder="Naslov"
                 value={newNovost.title}
                 onChange={(e) => setNewNovost({ ...newNovost, title: e.target.value })}
             />
         </div>
         <div className={styles.formGroup}>
-            <label className={styles.formLabel}>Kreator</label>
+            <label className={styles.formLabel}>Kreator Preuzete ili Kreirane Novosti</label>
             <input
                 className={styles.formInput}
                 type="text"
@@ -1452,7 +1457,7 @@ const handleImage3Change = (e)=>{
         </div>
 
         <div className={styles.formGroup}>
-    <label className={styles.formLabel}>Image URL</label>
+    <label className={styles.formLabel}>Glavna Slika Novosti ako je potrebna</label>
     <input
         className={styles.formInput}
         type="file"
@@ -1467,11 +1472,12 @@ const handleImage3Change = (e)=>{
 
         
                 <div className={styles.formGroup}>
-  <label className={styles.formLabel}>Text 1</label>
+  <label className={styles.formLabel}>Tekst Novosti</label>
   <div data-color-mode="light">
    <MDEditor
   value={newNovost.tekst}
   onChange={(value) => setNewNovost({ ...newNovost, tekst: value })}
+  height={600}
   commands={[
     ...commands.getCommands(),
 

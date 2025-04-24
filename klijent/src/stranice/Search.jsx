@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../komponente/Header';
@@ -8,7 +9,7 @@ import styles from './css/Search.module.css';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
 
 
-const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id }) => {
+const ArticleItem = ({  title, releaseDate, tipMjesta, opis, comment, id }) => {
     return (
         <a href={`/arhiva/film/${id}`} className={styles.articleImage}>
 
@@ -36,11 +37,23 @@ const ArticleItem = ({  title, releaseDate, tipMjesta, description, comment, id 
                             <span className={styles.entryComment}>{comment} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                        <p>
-                            {description.length > 300 
-                                ? `${description.substring(0, 300)}...` 
-                                : description}
-                            </p> 
+                         <p>
+  {
+    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
+    /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(opis) || /[<#\*\-_\[\]]/i.test(opis) 
+      ? opis
+          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
+          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
+          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
+          + (opis.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+      : opis
+          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
+          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
+          + (opis.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+  }
+</p>
                         </div>
                     </div>
                 </div>
@@ -82,11 +95,19 @@ const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id }) => {
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                        <p>
   {
-    /<(iframe|style)[\s\S]*?>[\s\S]*?<\/\1>/i.test(tekst) // Provjera da li postoji <iframe> ili <style>
-      ? 'Trailer Filma'
-      : tekst.replace(/[#*>]/g, '').length > 300 
-          ? `${tekst.replace(/[#*>]/g, '').substring(0, 300)}...` 
-          : tekst.replace(/[#*>]/g, '')
+    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
+    /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(tekst) || /[<#\*\-_\[\]]/i.test(tekst) 
+      ? tekst
+          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
+          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
+          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
+          + (tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+      : tekst
+          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
+          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
+          + (tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
   }
 </p>
 
