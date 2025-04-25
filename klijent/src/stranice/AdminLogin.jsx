@@ -5,11 +5,13 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/AdminLogin.module.css';
 import { Helmet } from 'react-helmet';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const AdminLogin = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (e) => {
@@ -40,34 +42,44 @@ const AdminLogin = () => {
                 <meta name="keywords" content="admin, login, Una Film" />
             </Helmet>
             <div className={styles.container}>
-                <div  className={styles.container2}>
-                <h2 className={styles.title}>Admin Login</h2>
-                <form onSubmit={handleLogin} className={styles.form}>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="username">Korisničko Ime</label>
-                        <input
-                            type="text"
-                            id="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                            className={styles.input}
-                        />
-                    </div>
-                    <div className={styles.inputGroup}>
-                        <label htmlFor="password">Lozinka</label>
-                        <input
-                            type="password"
-                            id="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                            className={styles.input}
-                        />
-                    </div>
-                    {error && <p className={styles.error}>{error}</p>}
-                    <button type="submit" className={styles.button}>Login</button>
-                </form>
+                <div className={styles.container2}>
+                    <h2 className={styles.title}>Admin Login</h2>
+                    <form onSubmit={handleLogin} className={styles.form}>
+                        <div className={styles.inputGroup}>
+                            <label htmlFor="username">Korisničko Ime</label>
+                            <input
+                                type="text"
+                                id="username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                                className={styles.input}
+                            />
+                        </div>
+                        <div className={styles.inputGroup} style={{ position: 'relative' }}>
+                            <label htmlFor="password">Lozinka</label>
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                id="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className={styles.input}
+                                style={{ paddingRight: '25px' }}
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setShowPassword((prev) => !prev)}
+                                className={styles.togglePasswordBtn}
+                                tabIndex={-1}
+                                aria-label={showPassword ? "Sakrij lozinku" : "Prikaži lozinku"}
+                            >
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
+                        </div>
+                        {error && <p className={styles.error}>{error}</p>}
+                        <button type="submit" className={styles.button}>Login</button>
+                    </form>
                 </div>
             </div>
             <Footer />

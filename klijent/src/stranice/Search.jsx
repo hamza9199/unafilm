@@ -7,116 +7,99 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import styles from './css/Search.module.css';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import { Link } from 'react-router-dom';
 
+const ArticleItem = ({ title, releaseDate, tipMjesta, opis, comment, id }) => {
+    const link = `/arhiva/film/${id}`;
 
-const ArticleItem = ({  title, releaseDate, tipMjesta, opis, comment, id }) => {
+    const parsedOpis = opis
+        ? /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(opis) || /[<#\*\-_\[\]]/i.test(opis)
+            ? opis
+                  .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')
+                  .replace(/<[^>]*>/g, '')
+                  .replace(/[\*\#\<_\-_\[\]\>]/g, '')
+                  .substring(0, 300) + (opis.length > 300 ? '...' : '')
+            : opis
+                  .replace(/<[^>]*>/g, '')
+                  .replace(/[\*\#\<_\-_\[\]\>]/g, '')
+                  .substring(0, 300) + (opis.length > 300 ? '...' : '')
+        : '';
+
     return (
-        <a href={`/arhiva/film/${id}`} className={styles.articleImage}>
-
-        <div className={styles.articleItem}>
-            <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
-                <div className={styles.row}>
-                    <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
-                        <h1 className={styles.entryTitle} itemprop="name headline">
-                            <a href={`/arhiva/film/${id}`} rel="bookmark" className={styles.entryTitle} itemprop="url">
+        <Link to={link} className={styles.articleImage}>
+            <div className={styles.articleItem}>
+                <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
+                    <div className={styles.row}>
+                        <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
+                            <h1 className={styles.entryTitle} itemProp="name headline">
                                 {title}
-                            </a>
-                        </h1>
-                        <div className={styles.entryInfo}>
-                            
-                            <a className="url u-url" href={`/arhiva/film/${id}`}>
-                                <span className={styles.entryDate}>{new Date(releaseDate).toLocaleDateString()}</span>
-                            </a>
-                            <span>/</span>
-                            <span className={styles.entryCategory}>
-                                            {tipMjesta}
-                                    
-                            
-                            </span>
-                            <span>/</span>
-                            <span className={styles.entryComment}>{comment} komentara</span>
-                        </div>
-                        <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                         <p>
-  {
-    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
-    /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(opis) || /[<#\*\-_\[\]]/i.test(opis) 
-      ? opis
-          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
-          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (opis.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
-      : opis
-          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (opis.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
-  }
-</p>
+                            </h1>
+                            <div className={styles.entryInfo}>
+                                <span className={styles.entryDate}>
+                                    {new Date(releaseDate).toLocaleDateString()}
+                                </span>
+                                <span>/</span>
+                                <span className={styles.entryCategory}>
+                                    {tipMjesta}
+                                </span>
+                                <span>/</span>
+                                <span className={styles.entryComment}>{comment} komentara</span>
+                            </div>
+                            <div className={`${styles.entrySummary} entry-summary p-summary`} itemProp="description">
+                                {opis && <p>{parsedOpis}</p>}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </div>
-        </a>
+                </article>
+            </div>
+        </Link>
     );
 };
 
-const NovostItem = ({  title, datumKreiranja, tipNovosti, tekst, id }) => {
+
+const NovostItem = ({ title, datumKreiranja, tipNovosti, tekst, id }) => {
+    const link = `/novosti/film/${id}`;
+    const parsedTekst = tekst
+        ? /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(tekst) || /[<#\*\-_\[\]]/i.test(tekst)
+            ? tekst
+                  .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')
+                  .replace(/<[^>]*>/g, '')
+                  .replace(/[\*\#\<_\-_\[\]\>]/g, '')
+                  .substring(0, 300) + (tekst.length > 300 ? '...' : '')
+            : tekst
+                  .replace(/<[^>]*>/g, '')
+                  .replace(/[\*\#\<_\-_\[\]\>]/g, '')
+                  .substring(0, 300) + (tekst.length > 300 ? '...' : '')
+        : '';
+
     return (
-        <a href={`/novosti/film/${id}`} className={styles.articleImage}>
-
-        <div className={styles.articleItem}>
-            <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
-                <div className={styles.row}>
-                    <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
-                        <h1 className={styles.entryTitle} itemprop="name headline">
-                            <a href={`/novosti/film/${id}`} rel="bookmark" className={styles.entryTitle} itemprop="url">
+        <Link to={link} className={styles.articleImage}>
+            <div className={styles.articleItem}>
+                <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
+                    <div className={styles.row}>
+                        <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
+                            <h1 className={styles.entryTitle} itemProp="name headline">
                                 {title}
-                            </a>
-                        </h1>
-                        <div className={styles.entryInfo}>
-                            
-                            <a className="url u-url" href={`/novosti/film/${id}`}>
-                                <span className={styles.entryDate}>{new Date(datumKreiranja).toLocaleDateString()}</span>
-                            </a>
-                            <span>/</span>
-                            
-                            <span className={styles.entryCategory}>
-                                            {tipNovosti}
-                                    
-                            
-                            </span>
-                            <span>/</span>
-                        <span className={styles.entryComment}>10 komentara</span>
-
-                        </div>
-                        <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
-                       <p>
-  {
-    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
-    /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(tekst) || /[<#\*\-_\[\]]/i.test(tekst) 
-      ? tekst
-          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
-          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
-      : tekst
-          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
-  }
-</p>
-
+                            </h1>
+                            <div className={styles.entryInfo}>
+                                <span className={styles.entryDate}>
+                                    {new Date(datumKreiranja).toLocaleDateString()}
+                                </span>
+                                <span>/</span>
+                                <span className={styles.entryCategory}>
+                                    {tipNovosti}
+                                </span>
+                                <span>/</span>
+                                <span className={styles.entryComment}>10 komentara</span>
+                            </div>
+                            <div className={`${styles.entrySummary} entry-summary p-summary`} itemProp="description">
+                                {tekst && <p>{parsedTekst}</p>}
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </div>
-        </a>
+                </article>
+            </div>
+        </Link>
     );
 };
 
