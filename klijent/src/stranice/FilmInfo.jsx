@@ -104,7 +104,7 @@ const FilmInfo = () => {
                                 </h1>
                                 <div className={styles.entryContent}>
                                         <div >
-                                        {novost.tekst && <ReactMarkdown rehypePlugins={[rehypeRaw]}>{novost.tekst}</ReactMarkdown>}
+                                        <ReactMarkdown rehypePlugins={[rehypeRaw]}>{novost.film ? novost.film.opis : novost.tekst}</ReactMarkdown>
                                         </div>
 
                                     
