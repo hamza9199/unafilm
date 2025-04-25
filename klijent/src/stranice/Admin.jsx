@@ -1394,7 +1394,7 @@ height={600}
         </div>
 
          <div className={styles.formGroup}> 
-            <img src={newNovost.image || imagePreview} alt="Preview" className={styles.imagePreview} />
+            <img src={imagePreview || newNovost.image} alt="Preview" className={styles.imagePreview} />
         </div>
 
         {/* Type of News */}
