@@ -129,10 +129,10 @@ const AdminDashboard = () => {
     
     
         // Dodaj slike (ako postoje)
-        if (newFilm.imageUrl) {
+        if (newFilm.imageUrl instanceof File) {
             formData.append('image1', newFilm.imageUrl); // Prva slika
         }
-        if (newFilm.imageUrl2) {
+        if (newFilm.imageUrl2 instanceof File) {
             formData.append('image2', newFilm.imageUrl2); // Druga slika
         }
     
@@ -179,14 +179,11 @@ const AdminDashboard = () => {
         // Dodaj slike (ako postoje i ako su fajlovi)
         if (newFilm.imageUrl instanceof File) {
             formData.append('image1', newFilm.imageUrl); // Dodaj prvu sliku
-        } else if (newFilm.imageUrl) {
-            formData.append('image1', newFilm.imageUrl); // Ako je putanja, koristi to
         }
+        
     
         if (newFilm.imageUrl2 instanceof File) {
             formData.append('image2', newFilm.imageUrl2); // Dodaj drugu sliku
-        } else if (newFilm.imageUrl2) {
-            formData.append('image2', newFilm.imageUrl2); // Ako je putanja, koristi to
         }
     
         try {
@@ -514,7 +511,7 @@ const handleImage3Change = (e)=>{
     const file = e.target.files[0];
 
      if (file) {
-        setNewFilm({ ...newFilm, imageUrl: file });
+        setNewFilm({ ...newFilm, imageUrl2: file });
         const previewURL = URL.createObjectURL(file);
         setImagePreview3(previewURL);
      }
@@ -1021,7 +1018,7 @@ const handleImage3Change = (e)=>{
             />
         </div>
         <div className={styles.formGroup}>
-            <img src={newFilm.imageUrl || imagePreview2} alt="Preview" className={styles.imagePreview} />
+            <img src={imagePreview2 || newFilm.imageUrl} alt="Preview" className={styles.imagePreview} />
         </div>
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Mala Slika</label>
@@ -1033,7 +1030,7 @@ const handleImage3Change = (e)=>{
         </div>
 
         <div className={styles.formGroup}>
-            <img src={newFilm.imageUrl2 || imagePreview3} alt="Preview" className={styles.imagePreview} />
+            <img src={imagePreview3|| newFilm.imageUrl2} alt="Preview" className={styles.imagePreview} />
         </div>
 
         <div className={styles.formGroup}>

@@ -5,6 +5,8 @@ const { Sequelize, Op } = require('sequelize');
 const multer = require('multer');
 const storage = require('../kontroleri/multer.js'); // Import the multer storage configuration
 const upload = multer({ storage });
+const fs = require('fs');
+const path = require('path');
 
 
 /**
@@ -386,24 +388,44 @@ router.put('/:id', upload.fields([
       return res.status(404).json({ error: 'Film not found' });
     }
 
-    const updatedFilmData = { ...req.body };
+    // Putanje do fajlova koje treba obrisati
+    const oldImagePath1 = film.imageUrl?.split('/uploads/')[1];
+    const oldImagePath2 = film.imageUrl2?.split('/uploads/')[1];
+
+    const updatedData = {
+      ...req.body,
+    };
 
     if (req.files.image1) {
-      const imagePath1 = `https://unafilm-production.up.railway.app/uploads/${req.files.image1[0].filename}`;
-      updatedFilmData.imageUrl = imagePath1; // Update the imageUrl field
+      const newImage1 = req.files.image1[0];
+      updatedData.imageUrl = `https://unafilm-production.up.railway.app/uploads/${newImage1.filename}`;
+
+      // Obrisi staru sliku ako postoji
+      if (oldImagePath1) {
+        fs.unlink(path.join(__dirname, '..', 'uploads', oldImagePath1), (err) => {
+          if (err) console.error('Greška pri brisanju stare slike 1:', err.message);
+        });
+      }
     }
 
     if (req.files.image2) {
-      const imagePath2 = `https://unafilm-production.up.railway.app/uploads/${req.files.image2[0].filename}`;
-      updatedFilmData.imageUrl2 = imagePath2; // Update the imageUrl2 field
+      const newImage2 = req.files.image2[0];
+      updatedData.imageUrl2 = `https://unafilm-production.up.railway.app/uploads/${newImage2.filename}`;
+
+      if (oldImagePath2) {
+        fs.unlink(path.join(__dirname, '..', 'uploads', oldImagePath2), (err) => {
+          if (err) console.error('Greška pri brisanju stare slike 2:', err.message);
+        });
+      }
     }
 
-    await film.update(updatedFilmData);
-    res.json(film);
+    await film.update(updatedData);
+    res.status(200).json({ message: "Film updated successfully", film });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
+
 
 // Delete a film by ID
 router.delete('/:id', async (req, res) => {
@@ -412,12 +434,30 @@ router.delete('/:id', async (req, res) => {
     if (!film) {
       return res.status(404).json({ error: 'Film not found' });
     }
+
+    const imagePath1 = film.imageUrl?.split('/uploads/')[1];
+    const imagePath2 = film.imageUrl2?.split('/uploads/')[1];
+
+    // Obrisi slike ako postoje
+    if (imagePath1) {
+      fs.unlink(path.join(__dirname, '..', 'uploads', imagePath1), (err) => {
+        if (err) console.error('Greška pri brisanju slike 1:', err.message);
+      });
+    }
+
+    if (imagePath2) {
+      fs.unlink(path.join(__dirname, '..', 'uploads', imagePath2), (err) => {
+        if (err) console.error('Greška pri brisanju slike 2:', err.message);
+      });
+    }
+
     await film.destroy();
-    res.json({ message: 'Film deleted successfully' });
+    res.status(200).json({ message: "Film deleted successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 
 

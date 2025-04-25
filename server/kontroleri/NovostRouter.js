@@ -5,6 +5,8 @@ const { Op } = require('sequelize');
 const multer = require('multer');
 const storage = require('../kontroleri/multer.js'); // Import the multer storage configuration
 const upload = multer({ storage });
+const fs = require('fs');
+const path = require('path');
 
 const router = express.Router();
 
@@ -376,38 +378,72 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', upload.single('image'), async (req, res) => {
     try {
         const novost = await Novost.findByPk(req.params.id);
-        if (!novost) return res.status(404).json({ message: 'Novost not found' });
 
-        const updatedData = { ...req.body };
-
-        // Ako je filmId poslan i nije prazan string, koristi ga; inače postavi null
-        updatedData.filmId = req.body.filmId ? req.body.filmId : null;
-
-        // Ako je nova slika postavljena, ažuriraj image polje
-        if (req.file) {
-            const imagePath = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
-            updatedData.image = imagePath;
+        if (!novost) {
+            return res.status(404).json({ message: 'Novost not found' });
         }
 
-        await novost.update(updatedData);
-        res.status(200).json(novost);
+        // Ako se šalje nova slika
+        if (req.file) {
+            // Parsiraj ime stare slike iz URL-a
+            const oldImageFilename = novost.image?.split('/').pop();
+            const oldImagePath = path.join(__dirname, '..', 'uploads', oldImageFilename);
+
+            // Obriši staru sliku ako postoji
+            if (fs.existsSync(oldImagePath)) {
+                fs.unlinkSync(oldImagePath);
+            }
+
+            // Postavi novu sliku
+            novost.image = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
+        }
+
+        // Ažuriraj ostale podatke
+        novost.title = req.body.title || novost.title;
+        novost.kreator = req.body.kreator || novost.kreator;
+        novost.tekst = req.body.tekst || novost.tekst;
+        novost.tipNovosti = req.body.tipNovosti || novost.tipNovosti;
+        novost.filmId = req.body.filmId || null;
+
+        await novost.save();
+
+        res.status(200).json({ message: 'Novost updated successfully', novost });
+
     } catch (error) {
         res.status(400).json({ message: 'Error updating novost', error });
     }
 });
 
 
+
 // Delete a novost by ID
 router.delete('/:id', async (req, res) => {
     try {
         const novost = await Novost.findByPk(req.params.id);
-        if (!novost) return res.status(404).json({ message: 'Novost not found' });
+
+        if (!novost) {
+            return res.status(404).json({ message: 'Novost not found' });
+        }
+
+        // Obriši sliku ako postoji
+        if (novost.image) {
+            const imageFilename = novost.image.split('/').pop();
+            const imagePath = path.join(__dirname, '..', 'uploads', imageFilename);
+
+            if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+            }
+        }
+
         await novost.destroy();
+
         res.status(200).json({ message: 'Novost deleted successfully' });
+
     } catch (error) {
         res.status(500).json({ message: 'Error deleting novost', error });
     }
 });
+
 
 
 // Search novosti by title 
