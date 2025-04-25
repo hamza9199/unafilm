@@ -111,7 +111,7 @@ const Trenutno = () => {
 
         {selectedFilm && (
           <div
-          className={styles.selectedFilm}
+              className={`${styles.selectedFilm} ${styles.active}`}
           onMouseEnter={() => {
             setHoveredIndex(hoveredIndex);
             setSelectedFilm(selectedFilm);

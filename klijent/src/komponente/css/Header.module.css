@@ -83,7 +83,6 @@
 }
 
 .submenu {
-    display: none;
     position: absolute;
     background: #080808;
     list-style: none;
@@ -92,10 +91,20 @@
     left: 0;
     min-width: 200px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    z-index: 1000;
 }
 
+
 .hasSubmenu:hover .submenu {
-    display: block;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0px);
+        transition-delay: 0.1s;
 }
 
 .submenu li {
@@ -325,8 +334,20 @@
         margin-top: 10px;
         width: 100%;
         margin-bottom: -20px;
+        transform: translateY(10px);
+        opacity: 1;
+        visibility: visible;
+        transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+        display: none;
     }
 
+    .hasSubmenu:hover .submenu {
+        display: block;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0px);
+        transition-delay: 0.1s;
+    }
     .submenu li {
         padding: 0px 0;
         text-align: center;
