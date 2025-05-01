@@ -2,25 +2,23 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from '../komponente/Header';
+import CustomCheckbox from '../komponente/CustomCheckbox';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import styles from './css/Search.module.css';
-import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 const ArticleItem = ({ title, releaseDate, tipMjesta, opis, comment, id }) => {
     const link = `/arhiva/film/${id}`;
-
     const parsedOpis = opis
         ? /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(opis) || /[<#\*\-_\[\]]/i.test(opis)
-            ? opis
-                  .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')
+            ? opis.replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')
                   .replace(/<[^>]*>/g, '')
                   .replace(/[\*\#\<_\-_\[\]\>]/g, '')
                   .substring(0, 300) + (opis.length > 300 ? '...' : '')
-            : opis
-                  .replace(/<[^>]*>/g, '')
+            : opis.replace(/<[^>]*>/g, '')
                   .replace(/[\*\#\<_\-_\[\]\>]/g, '')
                   .substring(0, 300) + (opis.length > 300 ? '...' : '')
         : '';
@@ -56,18 +54,15 @@ const ArticleItem = ({ title, releaseDate, tipMjesta, opis, comment, id }) => {
     );
 };
 
-
 const NovostItem = ({ title, datumKreiranja, tipNovosti, tekst, id }) => {
     const link = `/novosti/film/${id}`;
     const parsedTekst = tekst
         ? /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(tekst) || /[<#\*\-_\[\]]/i.test(tekst)
-            ? tekst
-                  .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')
+            ? tekst.replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')
                   .replace(/<[^>]*>/g, '')
                   .replace(/[\*\#\<_\-_\[\]\>]/g, '')
                   .substring(0, 300) + (tekst.length > 300 ? '...' : '')
-            : tekst
-                  .replace(/<[^>]*>/g, '')
+            : tekst.replace(/<[^>]*>/g, '')
                   .replace(/[\*\#\<_\-_\[\]\>]/g, '')
                   .substring(0, 300) + (tekst.length > 300 ? '...' : '')
         : '';
@@ -103,7 +98,6 @@ const NovostItem = ({ title, datumKreiranja, tipNovosti, tekst, id }) => {
     );
 };
 
-
 const Search = () => {
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
@@ -114,8 +108,9 @@ const Search = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const [showMovies, setShowMovies] = useState(true); // State for showing movies
+    const [showNovosti, setShowNovosti] = useState(true); // State for showing novosti
     const [combinedResults, setCombinedResults] = useState([]);
-
 
     const articlesPerPage = 15;
 
@@ -166,37 +161,43 @@ const Search = () => {
         fetchNovosti();
     }, [searchTerm]);
 
+    useEffect(() => {
+        // Combine and sort by date (newest first)
+        const combined = [
+            ...(showMovies ? articles.map(item => ({ ...item, type: 'article' })) : []),
+            ...(showNovosti ? novosti.map(item => ({ ...item, type: 'novost' })) : [])
+        ];
 
-        useEffect(() => {
-            // Kombinovanje i sortiranje po datumu (noviji prvi)
-            const combined = [
-                ...articles.map((item) => ({ ...item, type: 'article' })),
-                ...novosti.map((item) => ({ ...item, type: 'novost' }))
-            ];
+        combined.sort((a, b) => {
+            const dateA = new Date(a.releaseDate || a.datumKreiranja);
+            const dateB = new Date(b.releaseDate || b.datumKreiranja);
+            return dateB - dateA;
+        });
 
-            combined.sort((a, b) => {
-                const dateA = new Date(a.releaseDate || a.datumKreiranja);
-                const dateB = new Date(b.releaseDate || b.datumKreiranja);
-                return dateB - dateA;
-            });
+        setCombinedResults(combined);
+        setCurrentPage(1); // Reset to first page
+    }, [articles, novosti, showMovies, showNovosti]);
 
-            setCombinedResults(combined);
-            setCurrentPage(1); // Resetuj na prvu stranicu
-        }, [articles, novosti]);
+    const totalPages = Math.ceil(combinedResults.length / articlesPerPage);
 
-
-        const totalPages = Math.ceil(combinedResults.length / articlesPerPage);
-        
     const handlePageChange = (page) => {
         if (page > 0 && page <= totalPages) {
             setCurrentPage(page);
         }
     };
 
-    const currentArticles =  combinedResults.slice(
+    const currentArticles = combinedResults.slice(
         (currentPage - 1) * articlesPerPage,
         currentPage * articlesPerPage
     );
+
+    const handleMovieCheckboxChange = () => {
+        setShowMovies(!showMovies);
+    };
+
+    const handleNovostiCheckboxChange = () => {
+        setShowNovosti(!showNovosti);
+    };
 
     return (
         <>
@@ -207,43 +208,52 @@ const Search = () => {
                 <meta name="keywords" content={`filmovi, pretraga, ${searchTerm}`} />
                 <meta name="author" content="Una Film" />
             </Helmet>
-            <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: `Search: ${searchTerm}`, link: '/search' }]} />
-            <div className={styles.container}>
-                <LijeviBaner />
-                <div className={styles.articleItemsWrapper}>
-                    {loading && <p>Loading...</p>}
-                    {error && <p className={styles.error}>{error}</p>}
-                    {articles.length === 0 && novosti.length === 0 && !loading && !error &&  (
-                        <p className={styles.noResults}>Nema rezultata za vašu pretragu.</p>
-                    )}
-                    {currentArticles.map((item, index) => {
-    return item.type === 'article'
-        ? <ArticleItem key={index} {...item} />
-        : <NovostItem key={index} {...item} />;
-})}
+            <Breadcrumb items={[
+                { name: 'Una Film Distribucija', link: '/' },
+                { name: `Rezultati pretrage za: ${searchTerm}`, link: '/search' }
+            ]} />
+<div className={styles.container}>
+<LijeviBaner />
+<div className={styles.content}>
+<div className={styles.filterCheckboxes}>
+    <CustomCheckbox label="Filmovi" checked={showMovies} onChange={handleMovieCheckboxChange} />
+    <CustomCheckbox label="Novosti" checked={showNovosti} onChange={handleNovostiCheckboxChange} />
+</div>
 
-                </div>
-            </div>
-            {combinedResults.length > 0 && !loading && !error && (
-    <nav className={styles.pagination}>
-        {Array.from({ length: totalPages }, (_, i) => (
-            <span
-                key={i}
-                className={currentPage === i + 1 ? styles.currentPage : styles.pageNumbers}
-                onClick={() => handlePageChange(i + 1)}
-            >
-                {i + 1}
-            </span>
-        ))}
-        {currentPage < totalPages && (
-            <span className={styles.nextPage} onClick={() => handlePageChange(currentPage + 1)}>Next »</span>
-        )}
-    </nav>
+{loading ? (
+<p>Loading...</p>
+) : error ? (
+<p>{error}</p>
+) : currentArticles.length === 0 ? (
+<p className={styles.nema}>Nema rezultata za: {searchTerm}</p>
+) : (
+<>
+{currentArticles.map(item =>
+item.type === 'article' ? (
+<ArticleItem key={item.id} {...item} />
+) : (
+<NovostItem key={item.id} {...item} />
+)
 )}
-
-            <Footer />
-        </>
-    );
+</>
+)}
+{totalPages > 1 && (
+<div className={styles.pagination}>
+<button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+« Previous
+</button>
+<span> Page {currentPage} of {totalPages} </span>
+<button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+Next »
+</button>
+</div>
+)}
+</div>
+</div>
+<Footer />
+</>
+);
 };
+
 
 export default Search;

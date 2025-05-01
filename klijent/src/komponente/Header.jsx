@@ -84,7 +84,7 @@ useEffect(() => {
                                         <FaSearch className={styles.searchIconInput} />
                                         <input
                                             type="text"
-                                            placeholder="Pretraži filmove..."
+                                            placeholder="Pretraži..."
                                             value={searchTerm}
                                             onChange={handleSearchInputChange}
                                             className={styles.searchInput}
