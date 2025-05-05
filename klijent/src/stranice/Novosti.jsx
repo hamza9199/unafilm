@@ -40,6 +40,22 @@ const ArticleItem = ({ film, novost }) => {
                         <div className={styles.entrySummary}>
                   <p>
   {
+    novost.tekst && (
+    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
+    /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(novost.tekst) || /[<#\*\-_\[\]]/i.test(novost.tekst) 
+      ? novost.tekst
+          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
+          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
+          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
+          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+      : novost.tekst
+          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
+          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
+          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+    )
+    ||
      film?.opis && ( // Provjera da li film.opis nije null ili prazan
       // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
       /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(film.opis) || /[<#\*\-_\[\]]/i.test(film.opis)
@@ -55,21 +71,7 @@ const ArticleItem = ({ film, novost }) => {
             .substring(0, 300) // Ograničavanje teksta na 300 karaktera
             + (film.opis.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
     )
-    || novost.tekst && (
-    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
-    /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(novost.tekst) || /[<#\*\-_\[\]]/i.test(novost.tekst) 
-      ? novost.tekst
-          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
-          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
-      : novost.tekst
-          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
-    )
+    
   }
 </p>
 
