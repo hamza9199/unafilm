@@ -53,13 +53,12 @@ const FilmInfo = () => {
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta name="twitter:site" content="@UnaFilm" />
                 <meta name="twitter:creator" content="@UnaFilm" />
-                </Helmet>
-
+            </Helmet>
 
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: novost.title, link: `novosti/film/${id}` }, // Dinamički link sa id
+                    { name: novost.title, link: `novosti/film/${id}` },
                 ]}
             />
 
@@ -82,10 +81,9 @@ const FilmInfo = () => {
                         <div className={styles.entryBottom}>
                             <div className={styles.entryMeta}>
                                 <div className={styles.entryDate}>
-                                <span className={styles.releaseDate}>
-                                  {format(new Date(novost.datumKreiranja), "d. MMMM yyyy", { locale: bs })}
-                                </span>
-
+                                    <span className={styles.releaseDate}>
+                                        {format(new Date(novost.datumKreiranja), "d. MMMM yyyy", { locale: bs })}
+                                    </span>
                                 </div>
                                 <div className={styles.entryComment}>
                                     <i className="fa fa-comments" aria-hidden="true"></i> {novost.film ? novost.film.comment : "100"} komentara
@@ -103,28 +101,28 @@ const FilmInfo = () => {
                                     <p><em>Preuzeto sa: {novost.kreator}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
-                                        <div >
-                                        <ReactMarkdown rehypePlugins={[rehypeRaw]}>{novost.film ? novost.film.opis : novost.tekst}</ReactMarkdown>
-                                        </div>
-
-                                    
-                                    {novost.film  && (
+                                    <div>
+                                        <ReactMarkdown rehypePlugins={[rehypeRaw]}>
+                                            {
+                                                novost.tekst !== null && novost.tekst !== undefined && novost.tekst !== ""
+                                                    ? novost.tekst
+                                                    : (novost.film && novost.film.opis ? novost.film.opis : "")
+                                            }
+                                        </ReactMarkdown>
+                                    </div>
+                                    {novost.film && (
                                         <div className={styles.videoWrapper}>
-                                        <iframe
-                                            width="660"
-                                            height="415"
-                                            src={novost.film ? novost.film.trailerUrl : null}
-                                            title="Trailer"
-                                            frameBorder="0"
-                                            allowFullScreen
-                                        ></iframe>
+                                            <iframe
+                                                width="660"
+                                                height="415"
+                                                src={novost.film ? novost.film.trailerUrl : null}
+                                                title="Trailer"
+                                                frameBorder="0"
+                                                allowFullScreen
+                                            ></iframe>
                                         </div>
                                     )}
-
-                                        
-
                                 </div>
-
                             </div>
                         </div>
                         <RelatedArticle />
