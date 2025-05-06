@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Novosti.module.css';
+import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
 
 const Novosti = () => {
   const [films, setFilms] = useState([]); // State to store films
@@ -24,7 +25,7 @@ const Novosti = () => {
   }, []); // Empty dependency array to fetch only on mount
 
   if (loading) {
-    return <p>Loading...</p>; // Show loading state
+    return <LoadingScreen />; // Show loading screen while fetching data
   }
 
   if (error) {

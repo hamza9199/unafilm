@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Footer.module.css';
 import logo from './../assets/unaFilm141-2.png'; // Adjust the path as necessary
+import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
 
 const Footer = () => {
     const [movies, setMovies] = useState([]);
@@ -25,7 +26,7 @@ const Footer = () => {
     }, []);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return <LoadingScreen />; // Show loading screen while fetching data
     }
 
     if (error) {

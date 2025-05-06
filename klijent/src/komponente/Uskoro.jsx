@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Uskoro.module.css'; // Import the CSS module
+import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
 
 const Uskoro = () => {
   const [films, setFilms] = useState([]); // State to store the films
@@ -37,7 +38,7 @@ const Uskoro = () => {
   }, []); // Empty dependency array to run the effect only once on mount
 
   if (loading) {
-    return <p>Loading...</p>; // Show loading state
+    return <LoadingScreen />; // Show loading screen while fetching data
   }
 
   if (error) {

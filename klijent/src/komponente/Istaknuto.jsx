@@ -4,6 +4,7 @@ import styles from './css/Istaknuto.module.css';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';  // Ensure slick carousel styles are loaded
 import 'slick-carousel/slick/slick-theme.css'; // Ensure theme styles are loaded
+import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
 
 const Istaknuto = () => {
   const [filmovi, setFilmovi] = useState([]);
@@ -59,7 +60,7 @@ const Istaknuto = () => {
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingScreen />; // Show loading screen while fetching data
   }
 
   if (error) {

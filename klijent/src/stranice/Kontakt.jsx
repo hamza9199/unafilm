@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/Kontakt.module.css';
 import Breadcrumb from '../komponente/Breadcrumb';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import LoadingScreen from '../komponente/LoadingScreen';
 
 
 const Kontakt = () => {
@@ -13,6 +14,8 @@ const Kontakt = () => {
         email: '',
         poruka: '',
     });
+
+    const [loading, setLoading] = useState(true); // State to manage loading screen
 
     const [statusMessage, setStatusMessage] = useState('');
 
@@ -34,8 +37,20 @@ const Kontakt = () => {
         }
     };
 
+    // Simulate loading for 2 seconds (2000 milliseconds)
+    setTimeout(() => {
+        setLoading(false); // Set loading to false after 2 seconds
+    }, 1000);
+
+
+    useEffect(() => {
+        setLoading(true);
+    }, []);
+
     return (
         <>
+            
+           {loading && <LoadingScreen />} 
             <Header />
             <Helmet>
                 <title>Kontakt - Una Film</title>

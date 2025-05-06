@@ -11,6 +11,8 @@ import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderov
 import rehypeRaw from 'rehype-raw';
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
+import LoadingScreen from '../komponente/LoadingScreen';
+
 const FilmTrejler = () => {
     const { id } = useParams(); 
     const [novost, setNovost] = useState(null);
@@ -34,7 +36,7 @@ const FilmTrejler = () => {
     }, [id]);
 
     if (!novost) {
-        return <div>Loading...</div>;
+        return <LoadingScreen />; // Prikazujemo LoadingScreen dok se podaci učitavaju
     }
 
     return (

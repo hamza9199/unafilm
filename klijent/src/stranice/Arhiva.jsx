@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
+import LoadingScreen from '../komponente/LoadingScreen';
 import Breadcrumb from '../komponente/Breadcrumb';
 import styles from './css/Arhiva.module.css'; 
 import { Helmet } from 'react-helmet';
@@ -32,7 +33,7 @@ const Arhiva = () => {
     }, []); // Prazan niz znači da se ovo poziva samo jednom, kada se komponenta učita
 
     if (loading) {
-        return <p>Loading movies...</p>; // Prikazivanje poruke dok se filmovi učitavaju
+        return <LoadingScreen />; // Prikazivanje loading ekrana dok se filmovi učitavaju
     }
 
     if (error) {

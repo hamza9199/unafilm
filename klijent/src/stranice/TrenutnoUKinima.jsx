@@ -7,6 +7,7 @@ import styles from './css/TrenutnoUKinima.module.css';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
+import LoadingScreen from '../komponente/LoadingScreen';
 
 const TrenutnoUKinima = () => {
     const [movies, setMovies] = useState([]);
@@ -32,7 +33,7 @@ const TrenutnoUKinima = () => {
     }, []); // Prazan niz znači da se ovo poziva samo jednom, kada se komponenta učitava
 
     if (loading) {
-        return <p>Loading movies...</p>; // Prikazivanje poruke dok se filmovi učitavaju
+        return <LoadingScreen />; // Prikazivanje loading ekrana dok se podaci učitavaju
     }
 
     if (error) {

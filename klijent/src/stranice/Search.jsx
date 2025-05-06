@@ -9,6 +9,8 @@ import LijeviBaner from '../komponente/LijeviBaner';
 import styles from './css/Search.module.css';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router-dom';
+import LoadingScreen from '../komponente/LoadingScreen';
+
 
 const ArticleItem = ({ title, releaseDate, tipMjesta, opis, comment, id }) => {
     const link = `/arhiva/film/${id}`;
@@ -221,7 +223,7 @@ const Search = () => {
 </div>
 
 {loading ? (
-<p>Loading...</p>
+<LoadingScreen/>
 ) : error ? (
 <p>{error}</p>
 ) : currentArticles.length === 0 ? (

@@ -7,6 +7,7 @@ import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import LoadingScreen from '../komponente/LoadingScreen';
 
 
 const ArticleItem = ({ film, novost }) => {
@@ -139,7 +140,7 @@ const IzSvijetaFilma = () => {
                 <LijeviBaner />
                 <div className={styles.articleItemsWrapper}>
                     {loading ? (
-                        <p>Loading novosti...</p>
+                        <LoadingScreen /> // Loading screen component
                     ) : error ? (
                         <p>{error}</p>
                     ) : (

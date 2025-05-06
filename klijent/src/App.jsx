@@ -1,6 +1,6 @@
 import './App.css';
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './stranice/Home';
 import FilmInfo from './stranice/FilmInfo';
 import Onama from './stranice/Onama';
@@ -18,22 +18,12 @@ import FilmOpis from './stranice/FilmOpis';
 import Search from './stranice/Search';
 import AdminDashboard from './stranice/Admin';
 import AdminLogin from './stranice/AdminLogin';
-import LoadingScreen from './komponente/LoadingScreen';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 const AppContent = () => {
-  const [loading, setLoading] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => setLoading(false), 1000); // Simulacija učitavanja
-    return () => clearTimeout(timer);
-  }, [location]);
 
   return (
     <>
-      {loading && <LoadingScreen />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/o-nama" element={<Onama />} />

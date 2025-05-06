@@ -11,6 +11,8 @@ import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderov
 import rehypeRaw from 'rehype-raw';
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
+import LoadingScreen from '../komponente/LoadingScreen';
+
 const FilmInfo = () => {
     const { id } = useParams(); // Preuzimanje id-a iz URL-a
     const [novost, setNovost] = useState(null);
@@ -35,7 +37,10 @@ const FilmInfo = () => {
     }, [id]); // Poziva se svaki put kada se id promeni
 
     if (!novost) {
-        return <div>Loading...</div>; // Prikazujemo loading dok ne učitamo podatke
+        return (
+                <LoadingScreen /> 
+            
+        );
     }
 
     const { film } = novost; // Preuzimanje filma iz odgovora

@@ -10,6 +10,7 @@ import slika4 from './../assets/img_56-1.jpg'; // Adjust the path as necessary
 import slika5 from './../assets/img_57-1.jpg'; // Adjust the path as necessary
 import slika6 from './../assets/img_58-1.jpg'; // Adjust the path as necessary
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import LoadingScreen from '../komponente/LoadingScreen';
 
 
 
@@ -23,8 +24,19 @@ const Onama = () => {
         slika6,
     ];
 
+    const [loading, setLoading] = React.useState(true);
+
+    React.useEffect(() => {
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000); // Simulate a loading time of 2 seconds
+
+        return () => clearTimeout(timer); // Cleanup the timer on component unmount
+    }, []);
+
     return (
         <>
+        {loading && <LoadingScreen />}
             <Header />
             <Helmet>
                 <title>O nama - Una Film</title>

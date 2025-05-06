@@ -7,6 +7,8 @@ import { Helmet } from 'react-helmet';
 import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
+import LoadingScreen from '../komponente/LoadingScreen';
+
 const FilmOpis = () => {
     const { id } = useParams(); // Koristimo useParams da dobijemo id iz URL-a
     const [movie, setMovie] = useState(null);
@@ -31,7 +33,7 @@ const FilmOpis = () => {
     }, [id]); // Ponovno učitavanje kada se id promeni
 
     if (!movie) {
-        return <div>Loading...</div>;
+        return <LoadingScreen />; // Prikazujemo LoadingScreen dok se podaci učitavaju
     }
 
     return (

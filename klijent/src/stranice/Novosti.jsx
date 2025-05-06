@@ -8,6 +8,7 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
 import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
+import LoadingScreen from '../komponente/LoadingScreen';
 
 const ArticleItem = ({ film, novost }) => {
     return (
@@ -122,7 +123,7 @@ const Novosti = () => {
         currentPage * novostiPerPage
     );
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <LoadingScreen />;
     if (error) return <p>{error}</p>;
 
     return (

@@ -4,6 +4,8 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'; 
 import axios from 'axios';
+import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
+
 
 const Trenutno = () => {
   const [films, setFilms] = useState([]); 
@@ -59,7 +61,7 @@ const Trenutno = () => {
   };
 
   if (loading) {
-    return <div>Loading films...</div>;
+    return <LoadingScreen />; // Prikazuje loading ekran dok se podaci učitavaju
   }
 
   if (error) {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Trejleri.module.css';
+import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
 
 const Trejleri = () => {
   const [trailers, setTrailers] = useState([]); // State za trejlere
@@ -23,7 +24,7 @@ const Trejleri = () => {
     fetchTrailers();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <LoadingScreen />; // Prikaz loading ekrana dok se podaci učitavaju
   if (error) return <p>{error}</p>;
 
   return (
