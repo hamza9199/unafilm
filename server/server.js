@@ -14,6 +14,7 @@ const DownloadRouter = require('./kontroleri/DownloadRouter');
 const UploadRouter =   require('./kontroleri/UploadRouter')
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
+const cron = require('node-cron'); // <-- Add this line
 
 const app = express();
 require('dotenv').config();
@@ -68,6 +69,35 @@ swaggerSetup(app);
 
 // Serve Images as Static Files
 app.use("/uploads", express.static("uploads"));
+
+// Periodic job to update film status based on dates
+cron.schedule('0 * * * *', async () => { // Runs every hour at minute 0
+    try {
+        // Move "trenutno" to "arhiva" if "do" has passed
+        await Film.update(
+            { tipMjesta: 'arhiva' },
+            {
+                where: {
+                    tipMjesta: 'trenutno',
+                    do: { [sequelize.Sequelize.Op.lt]: new Date() }
+                }
+            }
+        );
+        // Move "uskoro" to "trenutno" if "od" has started
+        await Film.update(
+            { tipMjesta: 'trenutno' },
+            {
+                where: {
+                    tipMjesta: 'uskoro',
+                    od: { [sequelize.Sequelize.Op.lte]: new Date() }
+                }
+            }
+        );
+        // Optionally log or handle results
+    } catch (err) {
+        console.error('Error updating film statuses:', err);
+    }
+});
 
 // Rute
 app.use('/server/filmovi', FilmRouter);

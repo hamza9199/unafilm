@@ -18,7 +18,7 @@ const AdminDashboard = () => {
     const [poruke, setPoruke] = useState([]);
     const [newFilm, setNewFilm] = useState({
         title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '', releaseDate: '',
-        duration: 0, reditelj: '', comment: 0, opis:'', type: 'film', tipMjesta: 'uskoro' 
+        duration: 0, reditelj: '', comment: 0, opis:'', type: 'film', tipMjesta: 'uskoro', od: '', do: '' 
     });
     const [newNovost, setNewNovost] = useState({
         filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image:'',
@@ -125,6 +125,8 @@ const AdminDashboard = () => {
         formData.append('opis', newFilm.opis);
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
+        formData.append('od', newFilm.od);
+        formData.append('do', newFilm.do);
 
     
     
@@ -175,6 +177,8 @@ const AdminDashboard = () => {
         formData.append('type', newFilm.type);
         formData.append('tipMjesta', newFilm.tipMjesta);
         formData.append('opis', newFilm.opis);
+        formData.append('od', newFilm.od);
+        formData.append('do', newFilm.do);
 
         // Dodaj slike (ako postoje i ako su fajlovi)
         if (newFilm.imageUrl instanceof File) {
@@ -377,7 +381,7 @@ const AdminDashboard = () => {
         setNewFilm({
             title: '', description: '', trailerUrl: '', imageUrl: '', imageUrl2: '', releaseDate: '',
             duration: 0, reditelj: '', comment: 0, type: 'film', tipMjesta: 'uskoro',
-            opis:''
+            opis:'', od: '', do: ''
         });      
         setNewNovost({
             filmId: '', title: '', kreator: '', tekst: '', tekst2: '', tekst3: '', tekst4: '', image: '',
@@ -844,6 +848,17 @@ const handleImage3Change = (e)=>{
 
                                 </select>
                             </div>
+
+                            <div className={styles.div}>
+                                <label className={styles.label}>Datum od u kinima</label>
+                                <input className={styles.input} type="date" placeholder="Release Date" value={newFilm.od} onChange={(e) => setNewFilm({ ...newFilm, od: e.target.value })} />
+                            </div>
+
+                            <div className={styles.div}>
+                                <label className={styles.label}>Datum do u kinima</label>
+                                <input className={styles.input} type="date" placeholder="Release Date" value={newFilm.do} onChange={(e) => setNewFilm({ ...newFilm, do: e.target.value })} />
+                            </div>
+
                             <div className={styles.div}>
                                 <label className={styles.label}>Opis</label>
                                  <div data-color-mode="light">
@@ -1100,6 +1115,27 @@ const handleImage3Change = (e)=>{
                                     <option value="trenutno">Trenutno u kinima</option>
                                     <option value="arhiva">Arhiva</option>
             </select>
+        </div>
+
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Datum od u kinima</label>
+            <input
+                className={styles.formInput}
+                type="date"
+                value={newFilm.od}
+                onChange={(e) => setNewFilm({ ...newFilm, od: e.target.value })}
+            />
+        </div>
+
+          <div className={styles.formGroup}>
+            <label className={styles.formLabel}>Datum do u kinima</label>
+            <input
+                className={styles.formInput}
+                type="date"
+                value={newFilm.do}
+                onChange={(e) => setNewFilm({ ...newFilm, do: e.target.value })}
+            />
         </div>
 
         <div className={styles.formGroup}>

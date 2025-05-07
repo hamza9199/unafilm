@@ -22,6 +22,8 @@ async function insertMovies() {
                 type: 'film',
                 tipMjesta: 'arhiva',
                 opis: "Pirates of the Caribbean: At World's End is a 2007 American epic fantasy swashbuckler film directed by Gore Verbinski, produced by Jerry Bruckheimer, and written by Ted Elliott and Terry Rossio. The direct sequel to Pirates of the Caribbean: Dead Man's Chest, it is the third installment in the Pirates of the Caribbean film series, and follows an urgent quest to locate and save Captain Jack Sparrow, trapped on a sea of sand in Davy Jones' Locker, and convene the Brethren Court in a war against the East India Trading Company.",
+                od: '2025-04-01',
+                do: '2025-04-15',
                 createdAt: '2025-04-07 23:36:58',
             },
             
@@ -41,6 +43,8 @@ async function insertMovies() {
                 type: 'film',
                 tipMjesta: i % 3 === 0 ? 'uskoro' : i % 3 === 1 ? 'trenutno' : 'arhiva',
                 opis: `Opis ${i}`,
+                od: `2025-04-${String(i).padStart(2, '0')}`,
+                do: `2025-04-${String(i+5).padStart(2, '0')}`,
                 createdAt: '2025-04-07 23:36:58',
             });
         }

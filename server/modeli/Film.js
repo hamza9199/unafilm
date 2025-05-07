@@ -58,7 +58,14 @@ const Film = sequelize.define('Film', {
         type: DataTypes.TEXT,
         allowNull: true,
     },
-    
+    od: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
+    do: {
+        type: DataTypes.DATE,
+        allowNull: true,
+    },
     createdAt: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
