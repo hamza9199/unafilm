@@ -40,12 +40,4 @@
     <loc>https://unafilm.vercel.app/search</loc>
     <priority>0.6</priority>
   </url>
-  <url>
-    <loc>https://unafilm.vercel.app/admin</loc>
-    <priority>0.4</priority>
-  </url>
-  <url>
-    <loc>https://unafilm.vercel.app/admin-login</loc>
-    <priority>0.4</priority>
-  </url>
 </urlset>
