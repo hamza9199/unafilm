@@ -78,7 +78,7 @@ const AdminLogin = () => {
                             </button>
                         </div>
                         {error && <p className={styles.error}>{error}</p>}
-                        <button type="submit" className={styles.button}>Login</button>
+                        <button type="submit" onClick={handleLogin} className={styles.button}>Login</button>
                     </form>
                 </div>
             </div>
