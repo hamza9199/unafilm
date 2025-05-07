@@ -13,10 +13,13 @@ const Trejleri = () => {
     const fetchTrailers = async () => {
       try {
         const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi/uskoro');
-        setTrailers(response.data.sort(() => Math.random() - 0.5).slice(0, 6));
+        const response2 = await axios.get('https://unafilm-production.up.railway.app/server/filmovi/trenutno');
+
+        const combinedTrailers = [...response.data, ...response2.data].sort(() => Math.random() - 0.5).slice(0, 6);
+        setTrailers(combinedTrailers);
         setLoading(false);
-      } catch {
-        setError('Failed to fetch trailers');
+      } catch (error) {
+        setError('Failed to fetch trailers: ' + error.message);
         setLoading(false);
       }
     };
