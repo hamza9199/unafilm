@@ -58,7 +58,7 @@ const Uskoro = () => {
           {films.slice(0, numberOfFilms).map((film, index) => ( // Display the appropriate number of films
             <li key={index}>
               <span className={styles.number}>{index + 1}</span>
-              <a href={`/uskoro-u-kinima/film/${film.id}`} className={styles.link}>{film.title}</a> {/* Assuming `film.link` is provided by the API */}
+              <a href={`/uskoro-u-kinima/film/${film.uuid}`} className={styles.link}>{film.title}</a> {/* Assuming `film.link` is provided by the API */}
             </li>
           ))}
         </ul>

@@ -49,7 +49,7 @@ const Novosti = () => {
                 <div key={index} className={styles.col}>
                   <div className={styles.entryItem}>
                     <div className={styles.entryThumb}>
-                      <a href={`/novosti/film/${film.id}`}>
+                      <a href={`/novosti/film/${film.uuid}`}>
                       <img
                         src={film.film ? film.film.imageUrl : film.image}
                         alt=""
@@ -73,11 +73,11 @@ const Novosti = () => {
                     </div>
                     <div className={styles.entryContent}>
                       <h2 className={styles.entryTitle}>
-                        <a href={`/novosti/film/${film.id}`}>
+                        <a href={`/novosti/film/${film.uuid}`}>
                           {film.title}
                         </a>
                       </h2>
-                      <a className={styles.entryBtn} href={`/novosti/film/${film.id}`}>
+                      <a className={styles.entryBtn} href={`/novosti/film/${film.uuid}`}>
                         Pročitaj više
                       </a>
                     </div>

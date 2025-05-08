@@ -3,17 +3,17 @@ import axios from 'axios';
 import styles from './css/LijeviBaner.module.css';
 import logo from './../assets/unaFilm-2.jpg';
 
-const FilmItem = ({ src, alt, title, duration, id }) => {
+const FilmItem = ({ src, alt, title, duration, uuid }) => {
     return (
         <div className={styles.entryItem}>
             <div className={styles.entryThumb}>
-                <a href={`/arhiva/film/${id}`}>
+                <a href={`/arhiva/film/${uuid}`}>
                 <img className={styles.image} src={src} alt={alt} />
                 </a>
             </div>
             <div className={styles.entryContent}>
                 <h2 className={styles.entryTitle}>
-                    <a href={`/arhiva/film/${id}`}>{title}</a>
+                    <a href={`/arhiva/film/${uuid}`}>{title}</a>
                 </h2>
                 <div>
                     <span className={styles.duration}>
@@ -83,7 +83,7 @@ const LijeviBaner = () => {
                 <h4 className={styles.widgetTitle}>Filmovi</h4>
                 <div className={isMobile ? styles.mobileGrid : ''}>
                     {films.slice(0, isMobile ? 2 : films.length).map((film, index) => (
-                        <FilmItem key={index} src={film.imageUrl2} alt={film.title} title={film.title} duration={film.duration} id={film.id} />
+                        <FilmItem key={index} src={film.imageUrl2} alt={film.title} title={film.title} duration={film.duration} uuid={film.uuid} />
                     ))}
                 </div>
 
@@ -94,13 +94,13 @@ const LijeviBaner = () => {
                     {newsItems.map((item, index) => (
                         <div key={index} className={styles.entryItem}>
                             <div className={styles.entryThumb2}>
-                                <a href={`/novosti/film/${item.id}`}>
+                                <a href={`/novosti/film/${item.uuid}`}>
                                 <img src={item.film ? item.film.imageUrl : item.image} alt={item.film ? item.film.title : "No image"} className={styles.image2} />
                                 </a>
                             </div>
                             <div className={styles.entryContent2}>
                                 <h2 className={styles.entryTitle}>
-                                    <a href={`/novosti/film/${item.id}`}>{item.title}</a>
+                                    <a href={`/novosti/film/${item.uuid}`}>{item.title}</a>
                                 </h2>
                                 <div className={styles.entryMeta}>
                                     <span className={styles.entryDate}>{new Date(item.datumKreiranja).toLocaleDateString()}</span>

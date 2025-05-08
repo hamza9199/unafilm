@@ -39,7 +39,7 @@ const RelatedArticle = () => {
                     {articles.map((article, index) => (
                         <article key={index} className={`${styles.colMd4} ${styles.article}`}>
                             <div className={styles.entryThumb}>
-                                <a href={`/novosti/film/${article.id}`} className={styles.articleLink}>
+                                <a href={`/novosti/film/${article.uuid}`} className={styles.articleLink}>
                                     
                                 <img
                                     width="360"
@@ -51,7 +51,7 @@ const RelatedArticle = () => {
                                 </a>
                             </div>
                             <h3 className={styles.entryTitle}>
-                                <a href={`/novosti/film/${article.id}`}className={styles.articleLink}>
+                                <a href={`/novosti/film/${article.uuid}`}className={styles.articleLink}>
                                     {article.title}
                                 </a>
                             </h3>

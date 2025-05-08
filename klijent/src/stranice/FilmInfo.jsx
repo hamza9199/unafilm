@@ -97,7 +97,7 @@ const FilmInfo = () => {
                             <div className={styles.entryLeft}>
                                 <h1 className={styles.entryTitle}>
                                     <a 
-                                        href={`/novost/film/${novost.uuid}`}
+                                        href={`/novosti/film/${novost.uuid}`}
                                         className={styles.entryLink}
                                         itemProp="url"
                                     >

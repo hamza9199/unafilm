@@ -94,7 +94,7 @@ const Trenutno = () => {
               >
                 <div className={styles.movieFront}></div>
                 <div className={styles.movieFront}>
-                  <a href={`/trenutno-u-kinima/film/${film.id}`} className={styles.moviePoster}>
+                  <a href={`/trenutno-u-kinima/film/${film.uuid}`} className={styles.moviePoster}>
                     <img 
                       src={film.imageUrl2}
                       alt={film.title}
@@ -103,7 +103,7 @@ const Trenutno = () => {
                   </a>
                 </div>
                 <div className={styles.dole}>
-                  <a className={styles.title2} href={`/trenutno-u-kinima/film/${film.id}`}>{film.title}</a>
+                  <a className={styles.title2} href={`/trenutno-u-kinima/film/${film.uuid}`}>{film.title}</a>
                   <p className={styles.releaseDate}>{new Date(film.releaseDate).toLocaleDateString()}</p>
                 </div>
               </div>
@@ -135,7 +135,7 @@ const Trenutno = () => {
       
           <div className={styles.right}>
             <h3 className={styles.movieTitle}>
-              <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`}>
+              <a href={`/trenutno-u-kinima/film/${selectedFilm.uuid}`}>
                 {selectedFilm.title}
               </a>
             </h3>
@@ -179,7 +179,7 @@ const Trenutno = () => {
   </g>
 </svg>
                 </a>
-                <a href={`/trenutno-u-kinima/film/${selectedFilm.id}`} className={styles.infoButton}>
+                <a href={`/trenutno-u-kinima/film/${selectedFilm.uuid}`} className={styles.infoButton}>
                 <svg width="30px" height="20px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path fill-rule="evenodd" clip-rule="evenodd" d="M1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12ZM10.25 11C10.25 10.4477 10.6977 10 11.25 10H12.75C13.3023 10 13.75 10.4477 13.75 11V18C13.75 18.5523 13.3023 19 12.75 19H11.25C10.6977 19 10.25 18.5523 10.25 18V11ZM14 7C14 5.89543 13.1046 5 12 5C10.8954 5 10 5.89543 10 7C10 8.10457 10.8954 9 12 9C13.1046 9 14 8.10457 14 7Z" fill="#000000"></path> </g></svg>
 
                 </a>
