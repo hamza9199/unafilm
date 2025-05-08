@@ -18,7 +18,11 @@ const Trenutno = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth); // Za praćenje veličine prozora
   
   useEffect(() => {
-    axios.get('https://unafilm.up.railway.app/server/filmovi/trenutno')
+    axios.get('https://unafilm.up.railway.app/server/filmovi/trenutno' , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                })
       .then(response => {
         setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 6)); 
         setLoading(false);

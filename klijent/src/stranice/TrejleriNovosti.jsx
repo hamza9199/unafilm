@@ -113,7 +113,11 @@ const TrejleriNovosti = () => {
         // Fetch novosti data from API
         const fetchNovosti = async () => {
             try {
-                const response = await axios.get('https://unafilm.up.railway.app/server/novosti/trailer'); // Replace with your API endpoint
+                const response = await axios.get('https://unafilm.up.railway.app/server/novosti/trailer', {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                }); // Replace with your API endpoint
                 setNovosti(response.data);
                 setLoading(false);
             } catch {

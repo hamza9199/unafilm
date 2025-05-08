@@ -17,7 +17,11 @@ const FilmOpis = () => {
         // API poziv za pretragu filma prema id-u
         const fetchMovieData = async () => {
             try {
-                const response = await fetch(`https://unafilm.up.railway.app/server/filmovi/${id}`);
+                const response = await fetch(`https://unafilm.up.railway.app/server/filmovi/${id}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Film not found');
                 }

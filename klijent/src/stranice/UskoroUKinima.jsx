@@ -19,7 +19,11 @@ const UskoroUKinima = () => {
         // Funkcija za dobijanje filmova sa API-ja
         const fetchMovies = async () => {
             try {
-                const response = await axios.get('https://unafilm.up.railway.app/server/filmovi/uskoro'); // Ovde promeniti API endpoint
+                const response = await axios.get('https://unafilm.up.railway.app/server/filmovi/uskoro', {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                }); // Ovde promeniti API endpoint
                 setMovies(response.data); // Postavljanje dobijenih filmova u stanje
                 setLoading(false); // Završeno učitavanje
             } catch (err) {

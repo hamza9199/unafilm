@@ -12,8 +12,16 @@ const Trejleri = () => {
   useEffect(() => {
     const fetchTrailers = async () => {
       try {
-        const response = await axios.get('https://unafilm.up.railway.app/server/filmovi/uskoro');
-        const response2 = await axios.get('https://unafilm.up.railway.app/server/filmovi/trenutno');
+        const response = await axios.get('https://unafilm.up.railway.app/server/filmovi/uskoro' , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
+        const response2 = await axios.get('https://unafilm.up.railway.app/server/filmovi/trenutno' , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
 
         const combinedTrailers = [...response.data, ...response2.data].sort(() => Math.random() - 0.5).slice(0, 6);
         setTrailers(combinedTrailers);

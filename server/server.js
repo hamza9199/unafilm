@@ -62,6 +62,20 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+
+// Middleware za provjeru API ključa
+app.use((req, res, next) => {
+    const apiKey = req.headers['x-api-key'];
+    const VALID_API_KEY = process.env.API_KEY; // Dodaj ovo u .env
+
+    if (apiKey && apiKey === VALID_API_KEY) {
+        next(); // Autorizovan
+    } else {
+        res.status(401).json({ error: 'Unauthorized: Invalid or missing API key' });
+    }
+});
+
+
 // Swagger setup
 const swaggerSetup = require('./kontroleri/swagger.js');
 swaggerSetup(app);

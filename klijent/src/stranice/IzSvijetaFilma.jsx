@@ -101,7 +101,11 @@ const IzSvijetaFilma = () => {
         // Fetch novosti data from API
         const fetchNovosti = async () => {
             try {
-                const response = await axios.get('https://unafilm.up.railway.app/server/novosti/svijetfilma'); // Your API endpoint
+                const response = await axios.get('https://unafilm.up.railway.app/server/novosti/svijetfilma', {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                }); // Your API endpoint
                 setNovosti(response.data);
                 setLoading(false);
             } catch {

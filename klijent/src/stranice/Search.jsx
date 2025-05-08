@@ -124,7 +124,11 @@ const Search = () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`https://unafilm.up.railway.app/server/filmovi/search/${searchTerm}`);
+                const response = await fetch(`https://unafilm.up.railway.app/server/filmovi/search/${searchTerm}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                });
                 const data = await response.json();
 
                 if (response.ok) {
@@ -144,7 +148,11 @@ const Search = () => {
             setLoading(true);
             setError(null);
             try {
-                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/search/${searchTerm}`);
+                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/search/${searchTerm}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                });
                 const data = await response.json();
 
                 if (response.ok) {

@@ -19,10 +19,19 @@ const AdminLogin = () => {
         setError('');
 
         try {
-            const response = await axios.post('https://unafilm.up.railway.app/server/admin/login', {
+           const response = await axios.post(
+            'https://unafilm.up.railway.app/server/admin/login',
+            {
                 username,
-                password,
-            });
+                password
+            },
+            {
+                headers: {
+                    'x-api-key': 'admin'
+                }
+            }
+        );
+
 
             if (response.data.message === 'Login successful') {
                 localStorage.setItem('adminToken', "992299"); // Save token to local storage

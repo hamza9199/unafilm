@@ -27,13 +27,18 @@ const Kontakt = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://unafilm.up.railway.app/server/poruke', formData);
+            const response = await axios.post('https://unafilm.up.railway.app/server/poruke', formData, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                });
             if (response.status === 201) {
                 setStatusMessage('Poruka je uspješno poslana!');
                 setFormData({ ime: '', email: '', poruka: '' }); // Reset form
             }
-        } catch  {
+        } catch (error) {
             setStatusMessage('Došlo je do greške prilikom slanja poruke.');
+            console.error(error);
         }
     };
 

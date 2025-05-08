@@ -53,7 +53,11 @@ const AdminDashboard = () => {
             const fetchArticles = async () => {
                 if (!searchTerm.trim()) {
                     try {
-                        const response = await axios.get('https://unafilm.up.railway.app/server/filmovi');
+                        const response = await axios.get('https://unafilm.up.railway.app/server/filmovi' , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
                         setFilms(response.data);
                     } catch (error) {
                         console.error('Error fetching films:', error);
@@ -61,7 +65,11 @@ const AdminDashboard = () => {
                 }
                 else{
                     try {
-                        const response = await fetch(`https://unafilm.up.railway.app/server/filmovi/search/${searchTerm}`);
+                        const response = await fetch(`https://unafilm.up.railway.app/server/filmovi/search/${searchTerm}` , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
                         const data = await response.json();
         
                         if (response.ok) {
@@ -82,7 +90,11 @@ const AdminDashboard = () => {
         const fetchArticles2 = async () => {
             if (!searchTerm2.trim()) {
                 try {
-                    const response = await axios.get('https://unafilm.up.railway.app/server/novosti');
+                    const response = await axios.get('https://unafilm.up.railway.app/server/novosti' , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
                     setNovosti(response.data);
                 } catch (error) {
                     console.error('Error fetching novosti:', error);
@@ -90,7 +102,11 @@ const AdminDashboard = () => {
             }
             else{
                 try {
-                    const response = await fetch(`https://unafilm.up.railway.app/server/novosti/search/${searchTerm2}`);
+                    const response = await fetch(`https://unafilm.up.railway.app/server/novosti/search/${searchTerm2}` , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
                     const data = await response.json();
 
                     if (response.ok) {
@@ -142,7 +158,8 @@ const AdminDashboard = () => {
             // Pošaljemo formData (film i slike) na backend
             const response = await axios.post('https://unafilm.up.railway.app/server/filmovi', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data' // Moramo postaviti ovaj header za upload fajlova
+                    'Content-Type': 'multipart/form-data', // Moramo postaviti ovaj header za upload fajlova
+                    'x-api-key': 'admin'
                 }
             });
     
@@ -194,7 +211,8 @@ const AdminDashboard = () => {
             // Pošaljemo formData sa filmom na backend
             const response = await axios.put(`https://unafilm.up.railway.app/server/filmovi/${selectedFilm.id}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
+                    'Content-Type': 'multipart/form-data' ,// Postavljanje headera za fajlove
+                    'x-api-key': 'admin'
                 }
             });
     
@@ -236,7 +254,8 @@ const AdminDashboard = () => {
     try {
         const response = await axios.post('https://unafilm.up.railway.app/server/novosti', formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'x-api-key': 'admin'
             }
         });
 
@@ -273,7 +292,9 @@ const AdminDashboard = () => {
     try {
         const response = await axios.put(`https://unafilm.up.railway.app/server/novosti/${selectedNovost.id}`, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'multipart/form-data',
+                'x-api-key': 'admin'
+
             }
         });
 
@@ -293,7 +314,11 @@ const AdminDashboard = () => {
 
     const fetchFilms = async () => {
         try {
-            const response = await axios.get('https://unafilm.up.railway.app/server/filmovi');
+            const response = await axios.get('https://unafilm.up.railway.app/server/filmovi', {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
             setFilms(response.data);
         } catch (error) {
             console.error('Error fetching films:', error);
@@ -302,7 +327,11 @@ const AdminDashboard = () => {
 
     const fetchNovosti = async () => {
         try {
-            const response = await axios.get('https://unafilm.up.railway.app/server/novosti');
+            const response = await axios.get('https://unafilm.up.railway.app/server/novosti', {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
             setNovosti(response.data);
         } catch (error) {
             console.error('Error fetching novosti:', error);
@@ -311,7 +340,11 @@ const AdminDashboard = () => {
 
     const fetchPoruke = async () => {
         try {
-            const response = await axios.get('https://unafilm.up.railway.app/server/poruke');
+            const response = await axios.get('https://unafilm.up.railway.app/server/poruke', {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
             setPoruke(response.data);
         } catch (error) {
             console.error('Error fetching novosti:', error);
@@ -323,9 +356,12 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovaj film?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm.up.railway.app/server/filmovi/${id}`);
-                fetchFilms();
-                fetchFilms();
+                await axios.delete(`https://unafilm.up.railway.app/server/filmovi/${id}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
+                await fetchFilms();
             } catch (error) {
                 console.error('Error deleting film:', error);
             }
@@ -338,9 +374,12 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu novost?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm.up.railway.app/server/novosti/${id}`);
-                fetchNovosti();
-                fetchNovosti();
+                await axios.delete(`https://unafilm.up.railway.app/server/novosti/${id}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
+                await fetchNovosti();
             } catch (error) {
                 console.error('Error deleting novost:', error);
             }
@@ -353,8 +392,12 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu poruku?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm.up.railway.app/server/poruke/${id}`);
-                fetchPoruke();
+                await axios.delete(`https://unafilm.up.railway.app/server/poruke/${id}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
+                await fetchPoruke();
             } catch (error) {
                 console.error('Error deleting poruka:', error);
             }
@@ -403,7 +446,11 @@ const AdminDashboard = () => {
             try {
                 const response = await axios.get('https://unafilm.up.railway.app/server/download/database', {
                     responseType: 'blob',
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
                 });
+
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
@@ -424,6 +471,9 @@ const AdminDashboard = () => {
             try {
                 const response = await axios.get('https://unafilm.up.railway.app/server/download/uploads', {
                     responseType: 'blob',
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
                 });
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
@@ -457,7 +507,10 @@ const AdminDashboard = () => {
         try {
             const res = await fetch('https://unafilm.up.railway.app/server/upload/database', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                 headers: {
+                        'x-api-key': 'admin'
+                    }
             });
     
             if (res.ok) alert('Baza uspješno uploadovana!');
@@ -479,7 +532,10 @@ const AdminDashboard = () => {
         try {
             const res = await fetch('https://unafilm.up.railway.app/server/upload/uploads', {
                 method: 'POST',
-                body: formData
+                body: formData,
+                headers: {
+                        'x-api-key': 'admin'
+                    }
             });
     
             if (res.ok) alert('Folder uspješno uploadovan!');

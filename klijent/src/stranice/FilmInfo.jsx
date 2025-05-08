@@ -21,7 +21,11 @@ const FilmInfo = () => {
         // API poziv za pretragu novosti prema id-u   
         const fetchNovostData = async () => {
             try {
-                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/${id}`); // Endpoint za pretragu po id
+                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/${id}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                }); // Endpoint za pretragu po id
                 if (!response.ok) {
                     throw new Error('Novost not found');
                 }

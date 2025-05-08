@@ -20,7 +20,11 @@ const FilmTrejler = () => {
     useEffect(() => {
         const fetchNovostData = async () => {
             try {
-                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/${id}`);
+                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/${id}`, {
+                    headers: {
+                        'x-api-key': 'admin'
+                    }
+                });
                 if (!response.ok) {
                     throw new Error('Novost not found');
                 }
