@@ -325,6 +325,7 @@ const AdminDashboard = () => {
             try {
                 await axios.delete(`https://unafilm.up.railway.app/server/filmovi/${id}`);
                 fetchFilms();
+                fetchFilms();
             } catch (error) {
                 console.error('Error deleting film:', error);
             }
@@ -338,6 +339,7 @@ const AdminDashboard = () => {
         if (confirmed) {
             try {
                 await axios.delete(`https://unafilm.up.railway.app/server/novosti/${id}`);
+                fetchNovosti();
                 fetchNovosti();
             } catch (error) {
                 console.error('Error deleting novost:', error);
