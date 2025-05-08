@@ -43,7 +43,7 @@ const LijeviBaner = () => {
     useEffect(() => {
         const fetchFilms = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi');
+                const response = await axios.get('https://unafilm.up.railway.app/server/filmovi');
                 const randomFilms = response.data.sort(() => Math.random() - 0.5).slice(0, 4);
                 setFilms(randomFilms);
                 setLoadingFilms(false);
@@ -55,7 +55,7 @@ const LijeviBaner = () => {
 
         const fetchNews = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti');
+                const response = await axios.get('https://unafilm.up.railway.app/server/novosti');
                 const randomNews = response.data.sort(() => Math.random() - 0.5).slice(0, 2);
                 setNewsItems(randomNews);
                 setLoadingNews(false);

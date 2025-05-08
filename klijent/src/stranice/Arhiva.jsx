@@ -19,7 +19,7 @@ const Arhiva = () => {
         // Funkcija za dobijanje filmova sa API-ja
         const fetchMovies = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi/arhiva');
+                const response = await axios.get('https://unafilm.up.railway.app/server/filmovi/arhiva');
                 setMovies(response.data); // Postavljanje dobijenih filmova u stanje
                 setLoading(false); // Završeno učitavanje
                 console.log(response.data)

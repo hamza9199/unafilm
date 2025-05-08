@@ -19,7 +19,7 @@ const AdminLogin = () => {
         setError('');
 
         try {
-            const response = await axios.post('https://unafilm-production.up.railway.app/server/admin/login', {
+            const response = await axios.post('https://unafilm.up.railway.app/server/admin/login', {
                 username,
                 password,
             });

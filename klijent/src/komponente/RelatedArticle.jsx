@@ -11,7 +11,7 @@ const RelatedArticle = () => {
         // Fetch related articles from API
         const fetchArticles = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti'); // API endpoint for related articles
+                const response = await axios.get('https://unafilm.up.railway.app/server/novosti'); // API endpoint for related articles
                 setArticles(response.data.slice(0, 3)); // Limiting to 3 articles
                 setLoading(false);
             } catch (err) {

@@ -13,7 +13,7 @@ const Footer = () => {
         // Fetch movies from API
         const fetchMovies = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti'); // API endpoint for movies
+                const response = await axios.get('https://unafilm.up.railway.app/server/novosti'); // API endpoint for movies
                 setMovies(response.data.sort(() => Math.random() - 0.5).slice(0, 2)); // Limiting to 2 movies
                 setLoading(false);
             } catch (err) {

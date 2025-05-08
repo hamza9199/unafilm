@@ -21,7 +21,7 @@ const FilmInfo = () => {
         // API poziv za pretragu novosti prema id-u   
         const fetchNovostData = async () => {
             try {
-                const response = await fetch(`https://unafilm-production.up.railway.app/server/novosti/${id}`); // Endpoint za pretragu po id
+                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/${id}`); // Endpoint za pretragu po id
                 if (!response.ok) {
                     throw new Error('Novost not found');
                 }
@@ -50,9 +50,9 @@ const FilmInfo = () => {
             <Header />
             <Helmet>
                 <title>{novost.title} - Una Film</title>
-                <link rel="canonical" href={`https://unafilm.com/novosti/iz-svijeta-filma/film/${id}`} />
+                <link rel="canonical" href={`https://unafilm.vercel.app/novosti/iz-svijeta-filma/film/${id}`} />
                 <meta name="author" content="Una Film" />
-                <meta property="og:url" content={`https://unafilm.com/novosti/traileri/film/${id}`} />
+                <meta property="og:url" content={`https://unafilm.vercel.app/novosti/traileri/film/${id}`} />
                 <meta property="og:type" content="article" />
                 <meta property="og:site_name" content="Una Film" />
                 <meta name="twitter:card" content="summary_large_image" />

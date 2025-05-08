@@ -53,7 +53,7 @@ const AdminDashboard = () => {
             const fetchArticles = async () => {
                 if (!searchTerm.trim()) {
                     try {
-                        const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi');
+                        const response = await axios.get('https://unafilm.up.railway.app/server/filmovi');
                         setFilms(response.data);
                     } catch (error) {
                         console.error('Error fetching films:', error);
@@ -61,7 +61,7 @@ const AdminDashboard = () => {
                 }
                 else{
                     try {
-                        const response = await fetch(`https://unafilm-production.up.railway.app/server/filmovi/search/${searchTerm}`);
+                        const response = await fetch(`https://unafilm.up.railway.app/server/filmovi/search/${searchTerm}`);
                         const data = await response.json();
         
                         if (response.ok) {
@@ -82,7 +82,7 @@ const AdminDashboard = () => {
         const fetchArticles2 = async () => {
             if (!searchTerm2.trim()) {
                 try {
-                    const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti');
+                    const response = await axios.get('https://unafilm.up.railway.app/server/novosti');
                     setNovosti(response.data);
                 } catch (error) {
                     console.error('Error fetching novosti:', error);
@@ -90,7 +90,7 @@ const AdminDashboard = () => {
             }
             else{
                 try {
-                    const response = await fetch(`https://unafilm-production.up.railway.app/server/novosti/search/${searchTerm2}`);
+                    const response = await fetch(`https://unafilm.up.railway.app/server/novosti/search/${searchTerm2}`);
                     const data = await response.json();
 
                     if (response.ok) {
@@ -140,7 +140,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData (film i slike) na backend
-            const response = await axios.post('https://unafilm-production.up.railway.app/server/filmovi', formData, {
+            const response = await axios.post('https://unafilm.up.railway.app/server/filmovi', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Moramo postaviti ovaj header za upload fajlova
                 }
@@ -192,7 +192,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData sa filmom na backend
-            const response = await axios.put(`https://unafilm-production.up.railway.app/server/filmovi/${selectedFilm.id}`, formData, {
+            const response = await axios.put(`https://unafilm.up.railway.app/server/filmovi/${selectedFilm.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' // Postavljanje headera za fajlove
                 }
@@ -234,7 +234,7 @@ const AdminDashboard = () => {
     }
 
     try {
-        const response = await axios.post('https://unafilm-production.up.railway.app/server/novosti', formData, {
+        const response = await axios.post('https://unafilm.up.railway.app/server/novosti', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -271,7 +271,7 @@ const AdminDashboard = () => {
     }
 
     try {
-        const response = await axios.put(`https://unafilm-production.up.railway.app/server/novosti/${selectedNovost.id}`, formData, {
+        const response = await axios.put(`https://unafilm.up.railway.app/server/novosti/${selectedNovost.id}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
@@ -293,7 +293,7 @@ const AdminDashboard = () => {
 
     const fetchFilms = async () => {
         try {
-            const response = await axios.get('https://unafilm-production.up.railway.app/server/filmovi');
+            const response = await axios.get('https://unafilm.up.railway.app/server/filmovi');
             setFilms(response.data);
         } catch (error) {
             console.error('Error fetching films:', error);
@@ -302,7 +302,7 @@ const AdminDashboard = () => {
 
     const fetchNovosti = async () => {
         try {
-            const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti');
+            const response = await axios.get('https://unafilm.up.railway.app/server/novosti');
             setNovosti(response.data);
         } catch (error) {
             console.error('Error fetching novosti:', error);
@@ -311,7 +311,7 @@ const AdminDashboard = () => {
 
     const fetchPoruke = async () => {
         try {
-            const response = await axios.get('https://unafilm-production.up.railway.app/server/poruke');
+            const response = await axios.get('https://unafilm.up.railway.app/server/poruke');
             setPoruke(response.data);
         } catch (error) {
             console.error('Error fetching novosti:', error);
@@ -323,7 +323,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovaj film?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm-production.up.railway.app/server/filmovi/${id}`);
+                await axios.delete(`https://unafilm.up.railway.app/server/filmovi/${id}`);
                 fetchFilms();
             } catch (error) {
                 console.error('Error deleting film:', error);
@@ -337,7 +337,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu novost?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm-production.up.railway.app/server/novosti/${id}`);
+                await axios.delete(`https://unafilm.up.railway.app/server/novosti/${id}`);
                 fetchNovosti();
             } catch (error) {
                 console.error('Error deleting novost:', error);
@@ -351,7 +351,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu poruku?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm-production.up.railway.app/server/poruke/${id}`);
+                await axios.delete(`https://unafilm.up.railway.app/server/poruke/${id}`);
                 fetchPoruke();
             } catch (error) {
                 console.error('Error deleting poruka:', error);
@@ -399,7 +399,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite skinuti bazu?');
         if (confirmed) {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/download/database', {
+                const response = await axios.get('https://unafilm.up.railway.app/server/download/database', {
                     responseType: 'blob',
                 });
                 const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -420,7 +420,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite skinuti folder?');
         if (confirmed) {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/download/uploads', {
+                const response = await axios.get('https://unafilm.up.railway.app/server/download/uploads', {
                     responseType: 'blob',
                 });
                 const url = window.URL.createObjectURL(new Blob([response.data]));
@@ -453,7 +453,7 @@ const AdminDashboard = () => {
         formData.append('database', bazaFile);
     
         try {
-            const res = await fetch('https://unafilm-production.up.railway.app/server/upload/database', {
+            const res = await fetch('https://unafilm.up.railway.app/server/upload/database', {
                 method: 'POST',
                 body: formData
             });
@@ -475,7 +475,7 @@ const AdminDashboard = () => {
         });
     
         try {
-            const res = await fetch('https://unafilm-production.up.railway.app/server/upload/uploads', {
+            const res = await fetch('https://unafilm.up.railway.app/server/upload/uploads', {
                 method: 'POST',
                 body: formData
             });
@@ -538,7 +538,7 @@ const handleImage3Change = (e)=>{
                     <nav className={styles.nav}>
                         <ul className={styles.ul}>
                             <li className={styles.li2}>
-                                <img src='https://unafilm.ba/wp-content/uploads/2024/12/unaFilm141-2.png'></img>
+                                <img src='https://unafilm.vercel.app/unaFilm141-2.png'></img>
                             </li>
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>

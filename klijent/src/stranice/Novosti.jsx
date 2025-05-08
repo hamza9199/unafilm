@@ -98,7 +98,7 @@ const Novosti = () => {
     useEffect(() => {
         const fetchNovosti = async () => {
             try {
-                const response = await axios.get('https://unafilm-production.up.railway.app/server/novosti/');
+                const response = await axios.get('https://unafilm.up.railway.app/server/novosti/');
                 setNovosti(response.data);
                 setLoading(false);
             } catch {

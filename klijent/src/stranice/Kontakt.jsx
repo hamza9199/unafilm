@@ -27,7 +27,7 @@ const Kontakt = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://unafilm-production.up.railway.app/server/poruke', formData);
+            const response = await axios.post('https://unafilm.up.railway.app/server/poruke', formData);
             if (response.status === 201) {
                 setStatusMessage('Poruka je uspješno poslana!');
                 setFormData({ ime: '', email: '', poruka: '' }); // Reset form
