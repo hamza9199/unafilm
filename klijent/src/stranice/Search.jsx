@@ -12,8 +12,8 @@ import { Link } from 'react-router-dom';
 import LoadingScreen from '../komponente/LoadingScreen';
 
 
-const ArticleItem = ({ title, releaseDate, tipMjesta, opis, comment, id }) => {
-    const link = `/arhiva/film/${id}`;
+const ArticleItem = ({ title, releaseDate, tipMjesta, opis, comment, uuid }) => {
+    const link = `/arhiva/film/${uuid}`;
     const parsedOpis = opis
         ? /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(opis) || /[<#\*\-_\[\]]/i.test(opis)
             ? opis.replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')
@@ -56,8 +56,8 @@ const ArticleItem = ({ title, releaseDate, tipMjesta, opis, comment, id }) => {
     );
 };
 
-const NovostItem = ({ title, datumKreiranja, tipNovosti, tekst, id }) => {
-    const link = `/novosti/film/${id}`;
+const NovostItem = ({ title, datumKreiranja, tipNovosti, tekst, uuid }) => {
+    const link = `/novosti/film/${uuid}`;
     const parsedTekst = tekst
         ? /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(tekst) || /[<#\*\-_\[\]]/i.test(tekst)
             ? tekst.replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '')

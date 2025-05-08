@@ -16,7 +16,7 @@ const ArticleItem = ({ film, novost }) => {
             <article className={`${styles.post} post-1020 post type-post status-publish format-standard has-post-thumbnail category-iz-svijeta-filma category-novosti h-entry hentry h-as-article`}>
                 <div className={styles.row}>
                     <div className={`${styles.entryThumb} col-md-5 col-xs-5 has-thumb`}>
-                        <a href={`/novosti/traileri/film/${novost.id}`} rel="bookmark" >
+                        <a href={`/novosti/traileri/film/${novost.uuid}`} rel="bookmark" >
                         <img
                             width="300"
                             height="133"
@@ -29,7 +29,7 @@ const ArticleItem = ({ film, novost }) => {
                     </div>
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
                         <h1 className={`${styles.entryTitle} entry-title p-name`} itemprop="name headline">
-                            <a href={`/novosti/traileri/film/${novost.id}`} rel="bookmark" className="u-url url" itemprop="url">
+                            <a href={`/novosti/traileri/film/${novost.uuid}`} rel="bookmark" className="u-url url" itemprop="url">
                                 {novost.title}
                             </a>
                         </h1>
@@ -40,7 +40,7 @@ const ArticleItem = ({ film, novost }) => {
                                 </a>
                             </span>
                             <span>/</span>
-                            <a className="url u-url" href={`/novosti/traileri/film/${novost.id}`}>
+                            <a className="url u-url" href={`/novosti/traileri/film/${novost.uuid}`}>
                                 <span className={styles.entryDate}>{new Date(novost.datumKreiranja).toLocaleDateString()}</span>
                             </a>
                             <span>/</span>

@@ -16,7 +16,7 @@ const ArticleItem = ({ film, novost }) => {
             <article className={styles.post}>
                 <div className={styles.row}>
                     <div className={`${styles.entryThumb} col-md-5 col-xs-5 has-thumb`}>
-                        <a href={`/novosti/film/${novost.id}`} rel="bookmark">
+                        <a href={`/novosti/film/${novost.uuid}`} rel="bookmark">
                         <img
                             width="300"
                             height="133"
@@ -29,7 +29,7 @@ const ArticleItem = ({ film, novost }) => {
                     </div>
                     <div className={`${styles.entryContent} col-md-7 col-xs-7 has-thumb`}>
                         <h1 className={styles.entryTitle}>
-                            <a href={`/novosti/film/${novost.id}`} rel="bookmark">
+                            <a href={`/novosti/film/${novost.uuid}`} rel="bookmark">
                                 {novost.title}
                             </a>
                         </h1>

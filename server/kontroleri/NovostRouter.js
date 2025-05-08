@@ -356,7 +356,8 @@ router.get('/trailer', async (req, res) => {
 // Get a single novost by ID with the associated film
 router.get('/:uuid', async (req, res) => {
     try {
-        const novost = await Novost.findOne({ where: { uuid: req.params.uuid } }, {
+         const novost = await Novost.findOne({
+            where: { uuid: req.params.uuid },
             include: [{
                 model: Film,
                 as: 'film'  // Povezivanje sa filmom
