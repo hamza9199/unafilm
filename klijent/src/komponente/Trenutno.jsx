@@ -71,7 +71,10 @@ const Trenutno = () => {
   if (error) {
     return <div>{error}</div>;
   }
-
+  const getAutoplayUrl = (url) => {
+  if (!url.includes('?')) return `${url}?autoplay=1`;
+  return `${url}&autoplay=1`;
+};
   return (
     <div className={styles.con2}>
       <h2 className={styles.title}>Trenutno u kinima</h2>
@@ -201,7 +204,7 @@ const Trenutno = () => {
                           <iframe 
                             width="700" 
                             height="400" 
-                            src={selectedTrailer} 
+                            src={getAutoplayUrl(selectedTrailer)} 
                             title="Trailer Video" 
                             frameBorder="0" 
                             allowFullScreen

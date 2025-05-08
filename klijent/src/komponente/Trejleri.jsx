@@ -37,7 +37,10 @@ const Trejleri = () => {
 
   if (loading) return <LoadingScreen />; // Prikaz loading ekrana dok se podaci učitavaju
   if (error) return <p>{error}</p>;
-
+  const getAutoplayUrl = (url) => {
+  if (!url.includes('?')) return `${url}?autoplay=1`;
+  return `${url}&autoplay=1`;
+};
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Trailer & Video</h2>
@@ -82,7 +85,7 @@ const Trejleri = () => {
             <iframe 
               width="700" 
               height="400" 
-              src={selectedTrailer} 
+              src={getAutoplayUrl(selectedTrailer)} 
               title="Trailer Video" 
               frameBorder="0" 
               allowFullScreen

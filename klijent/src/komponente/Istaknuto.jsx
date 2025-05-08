@@ -64,12 +64,18 @@ const Istaknuto = () => {
   };
 
   if (loading) {
-    return <LoadingScreen />; // Show loading screen while fetching data
+    return <LoadingScreen />; 
   }
 
   if (error) {
     return <p>Error: {error}</p>;
   }
+
+  const getAutoplayUrl = (url) => {
+  if (!url.includes('?')) return `${url}?autoplay=1`;
+  return `${url}&autoplay=1`;
+};
+
 
   return (
     <section className={styles.istaknutoSection}>
@@ -151,7 +157,7 @@ const Istaknuto = () => {
                   <iframe 
                     width="700" 
                     height="400" 
-                    src={selectedTrailer} 
+                    src={getAutoplayUrl(selectedTrailer)} 
                     title="Trailer Video" 
                     frameBorder="0" 
                     allowFullScreen

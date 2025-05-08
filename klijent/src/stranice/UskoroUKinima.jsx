@@ -42,7 +42,10 @@ const UskoroUKinima = () => {
     if (error) {
         return <p>Error: {error}</p>; // Prikazivanje greške ako je nešto pošlo po zlu
     }
-
+  const getAutoplayUrl = (url) => {
+  if (!url.includes('?')) return `${url}?autoplay=1`;
+  return `${url}&autoplay=1`;
+};
     return (
         <>
             <Header/>  
@@ -132,7 +135,7 @@ const UskoroUKinima = () => {
                                           <iframe 
                                             width="700" 
                                             height="400" 
-                                            src={selectedTrailer} 
+                                            src={getAutoplayUrl(selectedTrailer)} 
                                             title="Trailer Video" 
                                             frameBorder="0" 
                                             allowFullScreen
