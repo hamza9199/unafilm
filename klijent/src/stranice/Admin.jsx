@@ -626,7 +626,7 @@ const handleImage3Change = (e)=>{
                             <tbody className={styles.tbody}>
                                 {films.map((film) => (
                                     <tr key={film.id} className={styles.tr}>
-                                        <td className={styles.td}> <a className={styles.link} href={`/arhiva/film/${film.id}`}> {film.title} </a> </td>
+                                        <td className={styles.td}> <a className={styles.link} href={`/arhiva/film/${film.uuid}`}> {film.title} </a> </td>
                                         <td className={styles.td}>
                                             <a className={styles.button} onClick={() => {
                                                 setSelectedFilm(film); 
@@ -692,7 +692,7 @@ const handleImage3Change = (e)=>{
                                 <tbody className={styles.tbody}>
                                     {novosti.map((novost) => (
                                         <tr key={novost.id} className={styles.tr}>
-                                            <td className={styles.td}><a className={styles.link} href={`/novosti/film/${novost.id}`}>{novost.title} </a> </td>
+                                            <td className={styles.td}><a className={styles.link} href={`/novosti/film/${novost.uuid}`}>{novost.title} </a> </td>
                                             <td className={styles.td}>
                                                 <a className={styles.button} onClick={() => {
                                                     setSelectedNovost(novost);

@@ -14,14 +14,14 @@ import { bs } from 'date-fns/locale';
 import LoadingScreen from '../komponente/LoadingScreen';
 
 const FilmInfo = () => {
-    const { id } = useParams(); // Preuzimanje id-a iz URL-a
+    const { uuid } = useParams(); // Preuzimanje id-a iz URL-a
     const [novost, setNovost] = useState(null);
 
     useEffect(() => {
         // API poziv za pretragu novosti prema id-u   
         const fetchNovostData = async () => {
             try {
-                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/${id}`); // Endpoint za pretragu po id
+                const response = await fetch(`https://unafilm.up.railway.app/server/novosti/${uuid}`); // Endpoint za pretragu po id
                 if (!response.ok) {
                     throw new Error('Novost not found');
                 }
@@ -34,7 +34,7 @@ const FilmInfo = () => {
         };
 
         fetchNovostData(); // Pozivanje funkcije za pretragu novosti
-    }, [id]); // Poziva se svaki put kada se id promeni
+    }, [uuid]); // Poziva se svaki put kada se id promeni
 
     if (!novost) {
         return (
@@ -50,9 +50,9 @@ const FilmInfo = () => {
             <Header />
             <Helmet>
                 <title>{novost.title} - Una Film</title>
-                <link rel="canonical" href={`https://unafilm.vercel.app/novosti/iz-svijeta-filma/film/${id}`} />
+                <link rel="canonical" href={`https://unafilm.vercel.app/novosti/iz-svijeta-filma/film/${uuid}`} />
                 <meta name="author" content="Una Film" />
-                <meta property="og:url" content={`https://unafilm.vercel.app/novosti/traileri/film/${id}`} />
+                <meta property="og:url" content={`https://unafilm.vercel.app/novosti/traileri/film/${uuid}`} />
                 <meta property="og:type" content="article" />
                 <meta property="og:site_name" content="Una Film" />
                 <meta name="twitter:card" content="summary_large_image" />
@@ -63,7 +63,7 @@ const FilmInfo = () => {
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
-                    { name: novost.title, link: `novosti/film/${id}` },
+                    { name: novost.title, link: `novosti/film/${uuid}` },
                 ]}
             />
 

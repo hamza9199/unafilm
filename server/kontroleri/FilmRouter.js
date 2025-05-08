@@ -365,9 +365,9 @@ router.get('/arhiva', async (req, res) => {
 });
 
 // Get a single film by ID
-router.get('/:id', async (req, res) => {
+router.get('/:uuid', async (req, res) => {
   try {
-    const film = await Film.findByPk(req.params.id);
+    const film = await Film.findOne({ where: { uuid: req.params.uuid } });
     if (!film) {
       return res.status(404).json({ error: 'Film not found' });
     }
