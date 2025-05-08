@@ -286,7 +286,7 @@ router.post('/', upload.single('image'), async (req, res) => {
             };
 
         if (req.file) {
-            const imagePath = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
+            const imagePath = `https://unafilm.up.railway.app/uploads/${req.file.filename}`;
             newNovostData.image = imagePath;
         }
 
@@ -395,7 +395,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
             }
 
             // Postavi novu sliku
-            novost.image = `https://unafilm-production.up.railway.app/uploads/${req.file.filename}`;
+            novost.image = `https://unafilm.up.railway.app/uploads/${req.file.filename}`;
         }
 
         // Ažuriraj ostale podatke
