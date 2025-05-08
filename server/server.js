@@ -63,6 +63,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 
+app.use("/uploads", express.static("uploads"));
+
+
 // Middleware za provjeru API ključa
 app.use((req, res, next) => {
     const apiKey = req.headers['x-api-key'];
@@ -82,7 +85,6 @@ swaggerSetup(app);
 
 
 // Serve Images as Static Files
-app.use("/uploads", express.static("uploads"));
 
 // Periodic job to update film status based on dates
 cron.schedule('0 * * * *', async () => { // Runs every hour at minute 0
