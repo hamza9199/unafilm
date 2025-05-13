@@ -13,7 +13,7 @@ import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
 import LoadingScreen from '../komponente/LoadingScreen';
 
-const FilmInfo = () => {
+const FilmInfo = ({ svijet }) => { // Fix destructuring of svijet
     const { id } = useParams(); // Preuzimanje id-a iz URL-a
     const [novost, setNovost] = useState(null);
 
@@ -67,6 +67,8 @@ const FilmInfo = () => {
             <Breadcrumb
                 items={[
                     { name: 'Una Film Distribucija', link: '/' },
+                    { name: 'Novosti', link: `/novosti` },
+                    ...(svijet ? [{ name: 'Iz svijeta filma', link: `/novosti/iz-svijeta-filma` }] : []), // Correctly handle svijet
                     { name: novost.title, link: `novosti/film/${id}` },
                 ]}
             />

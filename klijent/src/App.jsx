@@ -27,8 +27,8 @@ const AppContent = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/o-nama" element={<Onama />} />
-        <Route path="/novosti/film/:id" element={<FilmInfo />} />
-        <Route path="/novosti/iz-svijeta-filma/film/:id" element={<FilmInfo />} />
+        <Route path="/novosti/film/:id" element={<FilmInfo svijet={false} />} />
+        <Route path="/novosti/iz-svijeta-filma/film/:id" element={<FilmInfo svijet={true} />} />
         <Route path="/novosti/traileri/film/:id" element={<FilmTrejler />} />
         <Route path="/trenutno-u-kinima/film/:id" element={<FilmOpis />} />
         <Route path="/uskoro-u-kinima/film/:id" element={<FilmOpis />} />
