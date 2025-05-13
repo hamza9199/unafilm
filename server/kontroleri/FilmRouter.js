@@ -290,12 +290,12 @@ router.post('/', upload.fields([
     };
 
     if (req.files.image1) {
-      const imagePath1 = `https://unafilm.up.railway.app/uploads/${req.files.image1[0].filename}`;
+      const imagePath1 = `https://unafilm.onrender.com/uploads/${req.files.image1[0].filename}`;
       newFilmData.imageUrl = imagePath1; // Set the imageUrl field
     }
 
     if (req.files.image2) {
-      const imagePath2 = `https://unafilm.up.railway.app/uploads/${req.files.image2[0].filename}`;
+      const imagePath2 = `https://unafilm.onrender.com/uploads/${req.files.image2[0].filename}`;
       newFilmData.imageUrl2 = imagePath2; // Set the imageUrl2 field
     }
 
@@ -400,7 +400,7 @@ router.put('/:id', upload.fields([
 
     if (req.files.image1) {
       const newImage1 = req.files.image1[0];
-      updatedData.imageUrl = `https://unafilm.up.railway.app/uploads/${newImage1.filename}`;
+      updatedData.imageUrl = `https://unafilm.onrender.com/uploads/${newImage1.filename}`;
 
       // Obrisi staru sliku ako postoji
       if (oldImagePath1) {
@@ -412,7 +412,7 @@ router.put('/:id', upload.fields([
 
     if (req.files.image2) {
       const newImage2 = req.files.image2[0];
-      updatedData.imageUrl2 = `https://unafilm.up.railway.app/uploads/${newImage2.filename}`;
+      updatedData.imageUrl2 = `https://unafilm.onrender.com/uploads/${newImage2.filename}`;
 
       if (oldImagePath2) {
         fs.unlink(path.join(__dirname, '..', 'uploads', oldImagePath2), (err) => {

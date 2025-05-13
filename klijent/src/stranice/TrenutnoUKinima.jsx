@@ -20,7 +20,7 @@ const TrenutnoUKinima = () => {
         // Funkcija za dobijanje filmova sa API-ja
         const fetchMovies = async () => {
             try {
-                const response = await axios.get('https://unafilm.up.railway.app/server/filmovi/trenutno', {
+                const response = await axios.get('https://unafilm.onrender.com/server/filmovi/trenutno', {
                     headers: {
                         'x-api-key': 'admin'
                     }

@@ -12,12 +12,12 @@ const Trejleri = () => {
   useEffect(() => {
     const fetchTrailers = async () => {
       try {
-        const response = await axios.get('https://unafilm.up.railway.app/server/filmovi/uskoro' , {
+        const response = await axios.get('https://unafilm.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
                 });
-        const response2 = await axios.get('https://unafilm.up.railway.app/server/filmovi/trenutno' , {
+        const response2 = await axios.get('https://unafilm.onrender.com/server/filmovi/trenutno' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies

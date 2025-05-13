@@ -11,7 +11,7 @@ const RelatedArticle = () => {
         // Fetch related articles from API
         const fetchArticles = async () => {
             try {
-                const response = await axios.get('https://unafilm.up.railway.app/server/novosti' , {
+                const response = await axios.get('https://unafilm.onrender.com/server/novosti' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies

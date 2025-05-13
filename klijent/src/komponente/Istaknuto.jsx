@@ -17,7 +17,7 @@ const Istaknuto = () => {
   useEffect(() => {
     const fetchFilmovi = async () => {
       try {
-        const response = await axios.get('https://unafilm.up.railway.app/server/filmovi' , {
+        const response = await axios.get('https://unafilm.onrender.com/server/filmovi' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
