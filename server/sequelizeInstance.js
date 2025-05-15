@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize');
 const mysql = require('serverless-mysql');
 
-
+/*
 const sequelize = new Sequelize({
     dialect: 'sqlite',
     storage: './database.sqlite',
@@ -10,15 +10,15 @@ const sequelize = new Sequelize({
         match: [/SQLITE_CONSTRAINT/], // Pokušaj ponovo ako naiđe na constraint grešku
         max: 3, // Maksimalno 3 pokušaja
     },
-});
-
-/*
-const sequelize = new Sequelize('defaultdb', 'avnadmin', 'AVNS_bYKnnvCQgPQoFwz-s3Q', {
-    host: 'decibel-redbullshop.h.aivencloud.com',
-    dialect: 'mysql',
-    logging: false,
-    port: '16855',
 });*/
+
+
+const sequelize = new Sequelize('unafilm_db1', 'unafilm_1', 'na3Bnpkwcp1BLF6Z', {
+    host: 'id4d.your-database.de',
+    dialect: 'mysql',
+    logging: false, // opcionalno: da ne ispisuje SQL upite u konzolu
+    port: 3306 // standardni MySQL port ako ti nije drugačije navedeno
+});
 
 
 module.exports = sequelize;

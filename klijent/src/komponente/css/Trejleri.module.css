@@ -1,6 +1,6 @@
 /* Container for the whole section */
 .container {
-    background-image: url('https://unafilm.ba/wp-content/uploads/2024/12/wallpapersden.com_starry-sky-hd-dark-blue-night_2912x1632-scaled.jpg');
+    background-image: url('/wallpapersden.com_starry-sky-hd-dark-blue-night_2912x1632-scaled.jpg');
     text-align: center;
     background-size: 100%;
     background-position: center;
@@ -150,7 +150,7 @@
         padding-bottom: 15px;
         margin-top: 10px;
         width: 100%; /* Ensures the container takes full width */
-        background-image: url('https://unafilm.ba/wp-content/uploads/2024/12/wallpapersden.com_starry-sky-hd-dark-blue-night_2912x1632-scaled.jpg');
+        background-image: url('/wallpapersden.com_starry-sky-hd-dark-blue-night_2912x1632-scaled.jpg');
         background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

@@ -1,13 +1,10 @@
 RewriteEngine On
 RewriteBase /
 
-# Ako je zahtev za postojeći fajl ili folder u public_html, serveuj normalno
+# Ako fajl ili folder postoji, posluži ga direktno
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^ - [L]
 
-# Ako je zahtev za /klijent/ i nije fajl/folder, preusmjeri na klijent/index.html
-RewriteCond %{REQUEST_URI} ^/klijent/
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^klijent/.*$ /klijent/index.html [L]
+# Inače preusmjeri sve na index.html za React routing
+RewriteRule ^ index.html [L]
