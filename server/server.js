@@ -51,7 +51,7 @@ const PORT = 3000;
 
 // CORS opcije
 const corsOptions = {
-    origin: ['https://una-film-klijent.vercel.app', 'http://localhost:5173', 'https://una-film-klijent-hamza-gacics-projects.vercel.app', 'https://una-film-klijent-git-main-hamza-gacics-projects.vercel.app', 'https://unafilm.vercel.app', 'https://unafilm.ba'],
+    origin: ['https://una-film-klijent.vercel.app', 'http://localhost:5173', 'https://una-film-klijent-hamza-gacics-projects.vercel.app', 'https://una-film-klijent-git-main-hamza-gacics-projects.vercel.app', 'https://unafilm.vercel.app', 'https://unafilm.ba', 'https://www.unafilm.ba/'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
