@@ -51,8 +51,7 @@ const PORT = 3000;
 
 // CORS opcije
 const corsOptions = {
-    origin: ['https://una-film-klijent.vercel.app', 'http://localhost:5173', 'https://una-film-klijent-hamza-gacics-projects.vercel.app', 'https://una-film-klijent-git-main-hamza-gacics-projects.vercel.app', 'https://unafilm.vercel.app'],
-
+    origin: ['https://una-film-klijent.vercel.app', 'http://localhost:5173', 'https://una-film-klijent-hamza-gacics-projects.vercel.app', 'https://una-film-klijent-git-main-hamza-gacics-projects.vercel.app', 'https://unafilm.vercel.app', 'https://unafilm.ba'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
     optionsSuccessStatus: 204,
@@ -124,7 +123,7 @@ app.use('/server/download', DownloadRouter);
 app.use('/server/upload', UploadRouter);
 
 
-app.use("/" , (req, res) => {
+app.use("/server" , (req, res) => {
     res.status(200).json({ message: "Server radi!" });
 }
 );

@@ -1,0 +1,13 @@
+RewriteEngine On
+RewriteBase /
+
+# Ako je zahtev za postojeći fajl ili folder u public_html, serveuj normalno
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Ako je zahtev za /klijent/ i nije fajl/folder, preusmjeri na klijent/index.html
+RewriteCond %{REQUEST_URI} ^/klijent/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^klijent/.*$ /klijent/index.html [L]
