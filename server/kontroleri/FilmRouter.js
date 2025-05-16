@@ -296,6 +296,7 @@ router.post('/', upload.fields([
       const localPath = path.join(__dirname, '..', 'uploads', image1.filename);
       if (fs.existsSync(localPath)) {
         await uploadToFrontend(localPath, image1.filename);
+        fs.unlinkSync(localPath);
       }
       else {
         console.error('Local file does not exist:', localPath);
@@ -309,7 +310,14 @@ router.post('/', upload.fields([
     if (req.files.image2) {
       // Upload the second image to the frontend server
       const image2 = req.files.image2[0];
-      await uploadToFrontend(path.join(__dirname, '..', 'uploads', image2.filename), image2.filename);
+      const localPath2 = path.join(__dirname, '..', 'uploads', image2.filename);
+      if (fs.existsSync(localPath2)) {
+        await uploadToFrontend(localPath2, image2.filename);
+        fs.unlinkSync(localPath2); // Delete the local file after upload
+      }
+      else {
+        console.error('Local file does not exist:', localPath2);
+      }
 
       const imagePath2 = `https://unafilm.ba/uploads/${req.files.image2[0].filename}`;
       newFilmData.imageUrl2 = imagePath2; // Set the imageUrl2 field
@@ -414,32 +422,31 @@ router.put('/:id', upload.fields([
       ...req.body,
     };
 
-    if (req.files.image1) {
+   if (req.files.image1) {
       const newImage1 = req.files.image1[0];
-
-      await uploadToFrontend(path.join(__dirname, '..', 'uploads', newImage1.filename), newImage1.filename);
+      const localPath1 = path.join(__dirname, '..', 'uploads', newImage1.filename);
       
+      await uploadToFrontend(localPath1, newImage1.filename);
       updatedData.imageUrl = `https://unafilm.ba/uploads/${newImage1.filename}`;
 
-      // Obrisi staru sliku ako postoji
       if (oldImagePath1) {
-        fs.unlink(path.join(__dirname, '..', 'uploads', oldImagePath1), (err) => {
-          if (err) console.error('Greška pri brisanju stare slike 1:', err.message);
-        });
+        await deleteFromFrontend(oldImagePath1); // << brisanje sa FTP servera
+       
       }
     }
 
+
     if (req.files.image2) {
       const newImage2 = req.files.image2[0];
+      const localPath2 = path.join(__dirname, '..', 'uploads', newImage2.filename);
 
-      await uploadToFrontend(path.join(__dirname, '..', 'uploads', newImage2.filename), newImage2.filename);
+      await uploadToFrontend(localPath2, newImage2.filename);
 
       updatedData.imageUrl2 = `https://unafilm.ba/uploads/${newImage2.filename}`;
 
       if (oldImagePath2) {
-        fs.unlink(path.join(__dirname, '..', 'uploads', oldImagePath2), (err) => {
-          if (err) console.error('Greška pri brisanju stare slike 2:', err.message);
-        });
+        await deleteFromFrontend(oldImagePath2); // << brisanje sa FTP servera
+        
       }
     }
 
@@ -464,15 +471,11 @@ router.delete('/:id', async (req, res) => {
 
     // Obrisi slike ako postoje
     if (imagePath1) {
-      fs.unlink(path.join(__dirname, '..', 'uploads', imagePath1), (err) => {
-        if (err) console.error('Greška pri brisanju slike 1:', err.message);
-      });
+      await deleteFromFrontend(imagePath1);
     }
 
     if (imagePath2) {
-      fs.unlink(path.join(__dirname, '..', 'uploads', imagePath2), (err) => {
-        if (err) console.error('Greška pri brisanju slike 2:', err.message);
-      });
+      await deleteFromFrontend(imagePath2);
     }
 
     await film.destroy();

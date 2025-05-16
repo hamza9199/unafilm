@@ -33,4 +33,28 @@ async function uploadToFrontend(localPath, remoteFileName) {
   }
 }
 
-module.exports = { uploadToFrontend };
+
+async function deleteFromFrontend(filename) {
+  const client = new ftp.Client();
+  try {
+    await client.access({
+      host: "dedi5675.your-server.de",
+      user: "unafilm",
+      password: "wb85L56YNj1IlDK9",
+      port: 21,
+      secure: true
+    });
+
+    await client.cd("/public_html/klijent/uploads");
+    await client.remove(filename);
+    console.log("Obrisana stara slika:", filename);
+  } catch (err) {
+    console.error("Greška pri brisanju slike sa FTP-a:", err.message);
+  } finally {
+    client.close();
+  }
+}
+
+module.exports = { uploadToFrontend, deleteFromFrontend };
+
+

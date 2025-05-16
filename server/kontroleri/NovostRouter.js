@@ -7,6 +7,7 @@ const storage = require('../kontroleri/multer.js'); // Import the multer storage
 const upload = multer({ storage });
 const fs = require('fs');
 const path = require('path');
+const { deleteFromFrontend, uploadToFrontend } = require('./ftp.js');
 
 const router = express.Router();
 
@@ -286,8 +287,10 @@ router.post('/', upload.single('image'), async (req, res) => {
             };
 
         if (req.file) {
-            const imagePath = `https://unafilm.onrender.com/uploads/${req.file.filename}`;
-            newNovostData.image = imagePath;
+            const newImagePath = path.join(__dirname, '..', 'uploads', req.file.filename);
+            await uploadToFrontend(newImagePath, req.file.filename);
+            newNovostData.image = `https://unafilm.ba/uploads/${req.file.filename}`;
+            fs.unlinkSync(newImagePath); 
         }
 
         const novost = await Novost.create(newNovostData);
@@ -375,45 +378,43 @@ router.get('/:uuid', async (req, res) => {
 
 
 
-// Update an existing novost by ID and update image if provided
+/// Update an existing novost by ID and update image if provided
 router.put('/:id', upload.single('image'), async (req, res) => {
-    try {
-        const novost = await Novost.findByPk(req.params.id);
-
-        if (!novost) {
-            return res.status(404).json({ message: 'Novost not found' });
-        }
-
-        // Ako se šalje nova slika
-        if (req.file) {
-            // Parsiraj ime stare slike iz URL-a
-            const oldImageFilename = novost.image?.split('/').pop();
-            const oldImagePath = path.join(__dirname, '..', 'uploads', oldImageFilename);
-
-            // Obriši staru sliku ako postoji
-            if (fs.existsSync(oldImagePath)) {
-                fs.unlinkSync(oldImagePath);
-            }
-
-            // Postavi novu sliku
-            novost.image = `https://unafilm.onrender.com/uploads/${req.file.filename}`;
-        }
-
-        // Ažuriraj ostale podatke
-        novost.title = req.body.title || novost.title;
-        novost.kreator = req.body.kreator || novost.kreator;
-        novost.tekst = req.body.tekst || novost.tekst;
-        novost.tipNovosti = req.body.tipNovosti || novost.tipNovosti;
-        novost.filmId = req.body.filmId || null;
-
-        await novost.save();
-
-        res.status(200).json({ message: 'Novost updated successfully', novost });
-
-    } catch (error) {
-        res.status(400).json({ message: 'Error updating novost', error });
+  try {
+    const novost = await Novost.findByPk(req.params.id);
+    if (!novost) {
+      return res.status(404).json({ message: 'Novost not found' });
     }
+
+    if (req.file) {
+      const newImagePath = path.join(__dirname, '..', 'uploads', req.file.filename);
+
+      // Upload nova slika na FTP
+      await uploadToFrontend(newImagePath, req.file.filename);
+      novost.image = `https://unafilm.ba/uploads/${req.file.filename}`;
+
+      // Obrisi staru sliku sa FTP-a
+      const oldFilename = novost.image?.split('/').pop();
+      if (oldFilename && oldFilename !== req.file.filename) {
+        await deleteFromFrontend(oldFilename);
+      }
+    }
+
+    // Ažuriraj ostale podatke
+    novost.title = req.body.title || novost.title;
+    novost.kreator = req.body.kreator || novost.kreator;
+    novost.tekst = req.body.tekst || novost.tekst;
+    novost.tipNovosti = req.body.tipNovosti || novost.tipNovosti;
+    novost.filmId = req.body.filmId || null;
+
+    await novost.save();
+
+    res.status(200).json({ message: 'Novost updated successfully', novost });
+  } catch (error) {
+    res.status(400).json({ message: 'Error updating novost', error });
+  }
 });
+
 
 
 
@@ -429,11 +430,8 @@ router.delete('/:id', async (req, res) => {
         // Obriši sliku ako postoji
         if (novost.image) {
             const imageFilename = novost.image.split('/').pop();
-            const imagePath = path.join(__dirname, '..', 'uploads', imageFilename);
 
-            if (fs.existsSync(imagePath)) {
-                fs.unlinkSync(imagePath);
-            }
+            await deleteFromFrontend(imageFilename);
         }
 
         await novost.destroy();
