@@ -7,6 +7,7 @@ const storage = require('../kontroleri/multer.js'); // Import the multer storage
 const upload = multer({ storage });
 const fs = require('fs');
 const path = require('path');
+const { uploadToFrontend } = require('./ftp.js');
 
 
 /**
@@ -290,12 +291,20 @@ router.post('/', upload.fields([
     };
 
     if (req.files.image1) {
-      const imagePath1 = `https://unafilm.onrender.com/uploads/${req.files.image1[0].filename}`;
+      // Upload the first image to the frontend server
+      const image1 = req.files.image1[0];
+      await uploadToFrontend(path.join(__dirname, '..', 'uploads', image1.filename), image1.filename);
+
+      const imagePath1 = `https://unafilm.ba/uploads/${req.files.image1[0].filename}`;
       newFilmData.imageUrl = imagePath1; // Set the imageUrl field
     }
 
     if (req.files.image2) {
-      const imagePath2 = `https://unafilm.onrender.com/uploads/${req.files.image2[0].filename}`;
+      // Upload the second image to the frontend server
+      const image2 = req.files.image2[0];
+      await uploadToFrontend(path.join(__dirname, '..', 'uploads', image2.filename), image2.filename);
+      
+      const imagePath2 = `https://unafilm.ba/uploads/${req.files.image2[0].filename}`;
       newFilmData.imageUrl2 = imagePath2; // Set the imageUrl2 field
     }
 
@@ -400,7 +409,10 @@ router.put('/:id', upload.fields([
 
     if (req.files.image1) {
       const newImage1 = req.files.image1[0];
-      updatedData.imageUrl = `https://unafilm.onrender.com/uploads/${newImage1.filename}`;
+
+      await uploadToFrontend(path.join(__dirname, '..', 'uploads', newImage1.filename), newImage1.filename);
+      
+      updatedData.imageUrl = `https://unafilm.ba/uploads/${newImage1.filename}`;
 
       // Obrisi staru sliku ako postoji
       if (oldImagePath1) {
@@ -412,7 +424,10 @@ router.put('/:id', upload.fields([
 
     if (req.files.image2) {
       const newImage2 = req.files.image2[0];
-      updatedData.imageUrl2 = `https://unafilm.onrender.com/uploads/${newImage2.filename}`;
+
+      await uploadToFrontend(path.join(__dirname, '..', 'uploads', newImage2.filename), newImage2.filename);
+
+      updatedData.imageUrl2 = `https://unafilm.ba/uploads/${newImage2.filename}`;
 
       if (oldImagePath2) {
         fs.unlink(path.join(__dirname, '..', 'uploads', oldImagePath2), (err) => {

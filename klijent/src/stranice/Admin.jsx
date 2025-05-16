@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Header from '../komponente/Header';
@@ -596,7 +597,7 @@ const handleImage3Change = (e)=>{
                     <nav className={styles.nav}>
                         <ul className={styles.ul}>
                             <li className={styles.li2}>
-                                <img src='https://unafilm.vercel.app/unaFilm141-2.png'></img>
+                                <img src='https://unafilm.ba/unaFilm141-2.png'></img>
                             </li>
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>
@@ -606,9 +607,9 @@ const handleImage3Change = (e)=>{
                             <li className={styles.li} onClick={() => handleSelectedOption('poruke')}>Sve Poruke</li>
                             <li className={styles.li} onClick={() => handleSelectedOption('createFilm')}>Kreiraj Film</li>
                             <li className={styles.li} onClick={() => handleSelectedOption('createNovost')}>Kreiraj Novost</li>
-                            <li className={styles.li} onClick={() => handleSkiniBazu()}>Skini Bazu</li>                       
-                            <li className={styles.li} onClick={() => handleSkiniFolder()}>Skini Folder Svih Slika</li>        
-                            <li className={styles.li} onClick={() => handleSelectedOption('uploadBaza')}>Uploduj Bazu</li>                       
+                           {/* <li className={styles.li} onClick={() => handleSkiniBazu()}>Skini Bazu</li>                       
+                          {/*  <li className={styles.li} onClick={() => handleSkiniFolder()}>Skini Folder Svih Slika</li>        
+                           {/* <li className={styles.li} onClick={() => handleSelectedOption('uploadBaza')}>Uploduj Bazu</li>                       
                           {/* <li className={styles.li} onClick={() => handleSelectedOption('uploadFolder')}>Uploduj Folder Svih Slika</li>*/}       
                             <li className={styles.li2}></li>
                             <li className={styles.li2}></li>

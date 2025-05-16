@@ -250,12 +250,11 @@ item.type === 'article' ? (
 {totalPages > 1 && (
 <div className={styles.pagination}>
 <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-« Previous
+« Prethodna
 </button>
-<span> Page {currentPage} of {totalPages} </span>
+<span className={styles.strana}> Strana {currentPage} od {totalPages} </span>
 <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-Next »
-</button>
+Sljedeća » </button>
 </div>
 )}
 </div>
