@@ -293,7 +293,14 @@ router.post('/', upload.fields([
     if (req.files.image1) {
       // Upload the first image to the frontend server
       const image1 = req.files.image1[0];
-      await uploadToFrontend(path.join(__dirname, '..', 'uploads', image1.filename), image1.filename);
+      const localPath = path.join(__dirname, '..', 'uploads', image1.filename);
+      if (fs.existsSync(localPath)) {
+        await uploadToFrontend(localPath, image1.filename);
+      }
+      else {
+        console.error('Local file does not exist:', localPath);
+      }
+
 
       const imagePath1 = `https://unafilm.ba/uploads/${req.files.image1[0].filename}`;
       newFilmData.imageUrl = imagePath1; // Set the imageUrl field
@@ -303,7 +310,7 @@ router.post('/', upload.fields([
       // Upload the second image to the frontend server
       const image2 = req.files.image2[0];
       await uploadToFrontend(path.join(__dirname, '..', 'uploads', image2.filename), image2.filename);
-      
+
       const imagePath2 = `https://unafilm.ba/uploads/${req.files.image2[0].filename}`;
       newFilmData.imageUrl2 = imagePath2; // Set the imageUrl2 field
     }

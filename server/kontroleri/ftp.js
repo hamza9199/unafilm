@@ -15,7 +15,7 @@ async function uploadToFrontend(localPath, remoteFileName) {
       user: "unafilm",
       password: "wb85L56YNj1IlDK9",
       port: 21,
-      secure: false
+      secure: true
     });
 
     console.log("Povezan na FTP");
