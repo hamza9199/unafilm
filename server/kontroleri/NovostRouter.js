@@ -394,8 +394,8 @@ router.put('/:id', upload.single('image'), async (req, res) => {
       novost.image = `https://unafilm.ba/uploads/${req.file.filename}`;
 
       // Obrisi staru sliku sa FTP-a
-      const oldFilename = novost.image?.split('/').pop();
-      if (oldFilename) {
+      const oldFilename = novost.image.split('/').pop();
+      if (oldFilename && oldFilename !== req.file.filename) {
         await deleteFromFrontend(oldFilename);
       }
     }
