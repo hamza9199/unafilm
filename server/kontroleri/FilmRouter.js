@@ -7,7 +7,7 @@ const storage = require('../kontroleri/multer.js'); // Import the multer storage
 const upload = multer({ storage });
 const fs = require('fs');
 const path = require('path');
-const { uploadToFrontend } = require('./ftp.js');
+const { uploadToFrontend, deleteFromFrontend } = require('./ftp.js');
 
 
 /**

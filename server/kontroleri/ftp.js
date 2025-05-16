@@ -20,7 +20,6 @@ async function uploadToFrontend(localPath, remoteFileName) {
 
     console.log("Povezan na FTP");
 
-    // Probaj bez /public_html ako je to već root
     await client.ensureDir("/public_html/klijent/uploads");
     console.log("Direktorijum 'uploads' osiguran");
 
