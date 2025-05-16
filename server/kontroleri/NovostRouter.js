@@ -378,7 +378,7 @@ router.get('/:uuid', async (req, res) => {
 
 
 
-/// Update an existing novost by ID and update image if provided
+// Update an existing novost by ID and update image if provided
 router.put('/:id', upload.single('image'), async (req, res) => {
   try {
     const novost = await Novost.findByPk(req.params.id);
@@ -386,15 +386,21 @@ router.put('/:id', upload.single('image'), async (req, res) => {
       return res.status(404).json({ message: 'Novost not found' });
     }
 
+    let oldFilename;
+
     if (req.file) {
       const newImagePath = path.join(__dirname, '..', 'uploads', req.file.filename);
 
+      // ===> Spasi staru sliku prije izmjene
+      oldFilename = novost.image?.split('/').pop();
+
       // Upload nova slika na FTP
       await uploadToFrontend(newImagePath, req.file.filename);
+
+      // Postavi novu sliku
       novost.image = `https://unafilm.ba/uploads/${req.file.filename}`;
 
-      // Obrisi staru sliku sa FTP-a
-      const oldFilename = novost.image.split('/').pop();
+      // ===> Briši staru ako nije ista kao nova
       if (oldFilename && oldFilename !== req.file.filename) {
         await deleteFromFrontend(oldFilename);
       }
@@ -414,7 +420,6 @@ router.put('/:id', upload.single('image'), async (req, res) => {
     res.status(400).json({ message: 'Error updating novost', error });
   }
 });
-
 
 
 
