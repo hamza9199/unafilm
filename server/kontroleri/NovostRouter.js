@@ -395,7 +395,7 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 
       // Obrisi staru sliku sa FTP-a
       const oldFilename = novost.image?.split('/').pop();
-      if (oldFilename && oldFilename !== req.file.filename) {
+      if (oldFilename) {
         await deleteFromFrontend(oldFilename);
       }
     }
