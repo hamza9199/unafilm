@@ -35,6 +35,8 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  height: 330px;
+  max-height: 330px;
 }
 
 .movieTitle {
