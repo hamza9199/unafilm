@@ -1030,6 +1030,22 @@ const handleImage3Change = (e)=>{
   },
 },
 
+{
+  name: "insertStyledParagraph",
+  keyCommand: "insertStyledParagraph",
+  buttonProps: { "aria-label": "Insert styled paragraph" },
+  icon: <span>📝</span>,
+  execute: (state, api) => {
+    const text = prompt("Unesite tekst koji će biti ispod slike:");
+    if (!text) return;
+
+    const newText = `<p style="display:flex; margin: 0 auto; font-size:14px; align-items:center; justify-content:center">${text}</p>`;
+
+    api.replaceSelection(newText);
+  },
+},
+
+
   ]}
 />
                                 </div>         
@@ -1310,6 +1326,22 @@ const handleImage3Change = (e)=>{
     }
   },
 },
+
+{
+  name: "insertStyledParagraph",
+  keyCommand: "insertStyledParagraph",
+  buttonProps: { "aria-label": "Insert styled paragraph" },
+  icon: <span>📝</span>,
+  execute: (state, api) => {
+    const text = prompt("Unesite tekst koji će biti ispod slike:");
+    if (!text) return;
+
+    const newText = `<p style="display:flex; margin: 0 auto; font-size:14px; align-items:center; justify-content:center">${text}</p>`;
+
+    api.replaceSelection(newText);
+  },
+},
+
   ]}
 />
   </div>
@@ -1473,6 +1505,22 @@ height={600}
     }
   },
 },
+
+{
+  name: "insertStyledParagraph",
+  keyCommand: "insertStyledParagraph",
+  buttonProps: { "aria-label": "Insert styled paragraph" },
+  icon: <span>📝</span>,
+  execute: (state, api) => {
+    const text = prompt("Unesite tekst koji će biti ispod slike:");
+    if (!text) return;
+
+    const newText = `<p style="display:flex; margin: 0 auto; font-size:14px; align-items:center; justify-content:center">${text}</p>`;
+
+    api.replaceSelection(newText);
+  },
+},
+
   ]}
 />
   </div>
@@ -1673,6 +1721,22 @@ height={600}
     }
   },
 },
+
+{
+  name: "insertStyledParagraph",
+  keyCommand: "insertStyledParagraph",
+  buttonProps: { "aria-label": "Insert styled paragraph" },
+  icon: <span>📝</span>,
+  execute: (state, api) => {
+    const text = prompt("Unesite tekst koji će biti ispod slike:");
+    if (!text) return;
+
+    const newText = `<p style="display:flex; margin: 0 auto; font-size:14px; align-items:center; justify-content:center">${text}</p>`;
+
+    api.replaceSelection(newText);
+  },
+},
+
   ]}
 />
 

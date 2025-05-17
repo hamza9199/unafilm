@@ -24,7 +24,7 @@ const Trenutno = () => {
                     } // API endpoint for movies
                 })
       .then(response => {
-        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 6)); 
+        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 6));
         setLoading(false);
       })
       .catch(() => {
@@ -38,8 +38,21 @@ const Trenutno = () => {
     if (windowWidth < 768) {
       return 2; // Prikazuje samo 2 slajda na mobilnim uređajima
     }
+    if(films.length < 3) {
+      return films.length; // Ako ima manje od 3 filma, prikazuje sve
+    }
     return 3; // Prikazuje 3 slajda na većim uređajima
   };
+
+  const getInfitine = () => {
+
+    if(films.length < 3) {
+      return false;
+    }
+
+
+    return true;
+  }
 
   // Responsivno praćenje promjena širine prozora
   useEffect(() => {
@@ -59,7 +72,7 @@ const Trenutno = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
-    infinite: true,
+    infinite: getInfitine(),
     arrows: false,
     beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Prati početni indeks slajdera
   };
@@ -81,7 +94,8 @@ const Trenutno = () => {
       <div className={styles.container}>
         <Slider {...settings}>
           {films.map((film, index) => {
-            const relativeIndex = ((index - currentSlide + films.length) % films.length) % 3; // Računa relativni indeks unutar 3 vidljiva slajda
+            const visibleSlides = getSlidesToShow();
+            const relativeIndex = ((index - currentSlide + films.length) % films.length) % visibleSlides; // Računa relativni indeks unutar 3 vidljiva slajda
 
             return (
               <div 

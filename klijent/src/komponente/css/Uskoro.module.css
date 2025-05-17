@@ -10,7 +10,11 @@
 }
 
 .kon {
-  margin-top: -13px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: visible;
+  
 }
 
 .headingContainer {
@@ -35,6 +39,9 @@
 
 .movieList {
   list-style-type: none;
+  height: 370px;
+  max-height: 370px;
+
 }
 
 .movieList li {
@@ -109,6 +116,8 @@
   .movieList{
     margin-bottom: 5px;
     margin-top: 1px;
+     height: auto;
+  max-height: auto;
   }
 
   .number {
