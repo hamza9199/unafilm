@@ -119,6 +119,7 @@ const Search = () => {
     useEffect(() => {
         setArticles([]); // Reset articles on new search
         setNovosti([]); // Reset novosti on new search
+        setCombinedResults([]); // Reset combined results on new searchs
         const fetchArticles = async () => {
             if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
             setLoading(true);
@@ -147,6 +148,9 @@ const Search = () => {
             if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
             setLoading(true);
             setError(null);
+            setNovosti([]); // Reset novosti on new search
+            setArticles([]);
+            setCombinedResults([]); // Reset combined results on new search
             try {
                 const response = await fetch(`https://unafilm.onrender.com/server/novosti/search/${searchTerm}`, {
                     headers: {
@@ -154,8 +158,9 @@ const Search = () => {
                     }
                 });
                 const data = await response.json();
-
+                
                 if (response.ok) {
+
                     setNovosti(data);
                 } else {
                     setError('');
