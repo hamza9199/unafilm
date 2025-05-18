@@ -967,8 +967,8 @@ const handleImage3Change = (e)=>{
 
         const newText = `<style>
     iframe.responsive-yt {
-    width: 650px;
-    height: 350px;
+    width: 850px;
+    height: 450px;
     }
 
   @media (max-width: 768px) {
@@ -1264,8 +1264,8 @@ const handleImage3Change = (e)=>{
 
         const newText = `<style>
     iframe.responsive-yt {
-    width: 650px;
-    height: 350px;
+    width: 850px;
+    height: 450px;
     }
 
   @media (max-width: 768px) {
@@ -1443,8 +1443,8 @@ height={600}
 
         const newText = `<style>
     iframe.responsive-yt {
-    width: 650px;
-    height: 350px;
+    width: 850px;
+    height: 450px;
     }
 
   @media (max-width: 768px) {
@@ -1659,8 +1659,8 @@ height={600}
 
         const newText = `<style>
     iframe.responsive-yt {
-    width: 650px;
-    height: 350px;
+    width: 850px;
+    height: 450px;
     }
 
   @media (max-width: 768px) {

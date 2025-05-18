@@ -9,6 +9,7 @@ import LijeviBaner from '../komponente/LijeviBaner';
 import Helmet from 'react-helmet'; // Import Helmet for managing document head
 import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
 import LoadingScreen from '../komponente/LoadingScreen';
+import Select from 'react-select';
 
 const ArticleItem = ({ film, novost }) => {
     return (
@@ -93,7 +94,8 @@ const Novosti = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const novostiPerPage = 15;
+    const [sortOrder, setSortOrder] = useState('najnovije'); // Default sort order
+    const novostiPerPage = 13;
 
     useEffect(() => {
         const fetchNovosti = async () => {
@@ -103,7 +105,9 @@ const Novosti = () => {
                         'x-api-key': 'admin'
                     }
                 });
-                setNovosti(response.data);
+                // Sortiraj po datumu kreiranja (najnoviji prvi)
+                const sorted = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja));
+                setNovosti(sorted);
                 setLoading(false);
             } catch {
                 setError('Failed to fetch articles');
@@ -136,11 +140,50 @@ const Novosti = () => {
             <Helmet>
                 <title>Novosti - Una Film</title>
                 <meta name="description" content="Novosti - Una Film Distribucija" />
-
                 <meta name="keywords" content="Novosti, Una Film, distribucija filmova" />
                 <meta name="author" content="Una Film" />
             </Helmet>
             <Breadcrumb items={[{ name: 'Una Film Distribucija', link: '/' }, { name: 'Novosti', link: '/novosti' }]} />
+            <div className={styles.opcije}>
+                <label htmlFor="sortSelect" className={styles.sortLabel}>Sortiraj po:</label>
+                <div className={styles.selectWrapper}>
+                    <Select
+                        id="sortSelect"
+                        value={{ value: sortOrder, label: sortOrder === 'najnovije' ? 'Najnovije' : 'Najstarije' }}
+                        onChange={option => {
+                            const value = option.value;
+                            setSortOrder(value);
+                            const sorted = [...novosti].sort((a, b) =>
+                                value === 'najnovije'
+                                    ? new Date(b.datumKreiranja) - new Date(a.datumKreiranja)
+                                    : new Date(a.datumKreiranja) - new Date(b.datumKreiranja)
+                            );
+                            setNovosti(sorted);
+                            setCurrentPage(1);
+                        }}
+                        options={[
+                            { value: 'najnovije', label: 'Najnovije' },
+                            { value: 'najstarije', label: 'Najstarije' }
+                        ]}
+                        isSearchable={false}
+                        styles={{
+                            control: (base) => ({
+                                ...base,
+                                minHeight: 32,
+                                fontSize: 14
+                            }),
+                            dropdownIndicator: (base) => ({
+                                ...base,
+                                padding: 4
+                            }),
+                            valueContainer: (base) => ({
+                                ...base,
+                                padding: '0 6px'
+                            })
+                        }}
+                    />
+                </div>
+            </div>
             <div className={styles.container}>
                 <LijeviBaner />
                 <div className={styles.articleItemsWrapper}>
@@ -148,9 +191,9 @@ const Novosti = () => {
                         <ArticleItem key={index} film={novost?.film} novost={novost} />
                     ))}
                 </div>
-              
             </div>
-            <nav className={styles.pagination}>
+            <div className={styles.paginationWrapper}>
+                <nav className={styles.pagination}>
                     {Array.from({ length: totalPages }, (_, i) => (
                         <span
                             key={i}
@@ -166,6 +209,7 @@ const Novosti = () => {
                         </span>
                     )}
                 </nav>
+            </div>
             <Footer />
         </>
     );

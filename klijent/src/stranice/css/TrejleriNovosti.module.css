@@ -7,6 +7,14 @@
     margin-left: 230px;
 }
 
+.opcije {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-top: 20px;
+    margin-right: 192px; /* Adjusted margin for options section */
+}
+
 .lijeviBaner {
     flex: 1; /* Baner zauzima manji prostor */
 }
@@ -16,7 +24,7 @@
     display: flex;
     flex-direction: column; /* Svi članci u jednoj koloni */
     gap: 10px; /* Razmak između članaka */
-    justify-content: center;
+    justify-content: start;
 }
 
 .articleItem {
@@ -214,6 +222,18 @@
     font-weight: bold;
     font-size: 16px;
 }
+
+.selectWrapper {
+    width: 200px;
+    display: inline-block;
+}
+
+
+.sortLabel{
+    font-weight: bold;
+    margin-right: 20px;
+}
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
@@ -222,6 +242,20 @@
         gap: 20px;
         max-width: 100%;
     }
+
+    
+.opcije {
+   
+    display: none;    
+
+}
+.sortLabel{
+    font-weight: bold;
+    display: none;
+}
+.selectWrapper {
+    display: none;
+}
     
         .lijeviBaner {
             flex: none;

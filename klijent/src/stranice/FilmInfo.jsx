@@ -109,7 +109,7 @@ const FilmInfo = ({ svijet }) => { // Fix destructuring of svijet
                                     >
                                         {novost.title}
                                     </a>
-                                    <p><em>Preuzeto sa: {novost.kreator}</em></p>
+                                    <p><em>Kreator novosti: {novost.kreator}</em></p>
                                 </h1>
                                 <div className={styles.entryContent}>
                                     <div>

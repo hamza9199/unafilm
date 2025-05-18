@@ -139,8 +139,8 @@
 }
 
 .videoWrapper iframe {
-    width: 650px;
-    height: 350px; /* Adjusted height for larger screens */
+    width: 850px;
+    height: 450px;
     border-radius: 10px;
 }
 
