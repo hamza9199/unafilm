@@ -979,7 +979,7 @@ const handleImage3Change = (e)=>{
   }
 </style> 
 
-<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px; margin-bottom:20px" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 
         api.replaceSelection(newText);
@@ -1276,7 +1276,7 @@ const handleImage3Change = (e)=>{
   }
 </style> 
 
-<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px; margin-bottom:20px" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 
         api.replaceSelection(newText);
@@ -1455,7 +1455,7 @@ height={600}
   }
 </style> 
 
-<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px; margin-bottom:20px" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 
         api.replaceSelection(newText);
@@ -1671,7 +1671,7 @@ height={600}
   }
 </style> 
 
-<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px;" 
+<iframe class="responsive-yt" width="560" height="315" src="https://www.youtube.com/embed/${videoId}" title="Trailer" frameborder="0" style="display: block; margin: 0 auto; border-radius: 10px; margin-bottom:20px" 
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
 
         api.replaceSelection(newText);
