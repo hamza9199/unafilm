@@ -87,7 +87,7 @@ const FilmTrejler = () => {
                                                                     </span>
                                 </div>
                                 <div className={styles.entryComment}>
-                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film ? novost.film.comment : "100"} komentara
+                                    <i className="fa fa-comments" aria-hidden="true"></i> {novost.film ? novost.film.comment : Math.floor(Math.random() * 200 + 1)} komentara
                                 </div>
                             </div>
                             <div className={styles.entryLeft}>

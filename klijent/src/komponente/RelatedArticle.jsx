@@ -62,7 +62,7 @@ const RelatedArticle = () => {
                             <div className={styles.entryInfo}>
                                 <span className={styles.entryDate}>{new Date(article.datumKreiranja).toLocaleDateString()}</span>
                                 <span>/</span>
-                                <span className={styles.entryComment}>{article.film ? article.film.comment : "100"} komentara</span>
+                                <span className={styles.entryComment}>{article.film ? article.film.comment : Math.floor(Math.random() * 200 + 1)} komentara</span>
                             </div>
                         </article>
                     ))}

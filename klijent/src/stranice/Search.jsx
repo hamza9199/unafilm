@@ -87,7 +87,7 @@ const NovostItem = ({ title, datumKreiranja, tipNovosti, tekst, uuid }) => {
                                     {tipNovosti}
                                 </span>
                                 <span>/</span>
-                                <span className={styles.entryComment}>10 komentara</span>
+                                <span className={styles.entryComment}>{Math.floor(Math.random() * 200 + 1)} komentara</span>
                             </div>
                             <div className={`${styles.entrySummary} entry-summary p-summary`} itemProp="description">
                                 {tekst && <p>{parsedTekst}</p>}
