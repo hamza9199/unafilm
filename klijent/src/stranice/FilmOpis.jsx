@@ -92,9 +92,9 @@ const FilmOpis = () => {
                         </div>
                         <div className={styles.entryDescription}>
                             <h3 className={styles.title3}>Opis</h3>
-                            <div style={{ textAlign: 'justify', marginRight: '20px', marginLeft: '20px' }}>
-                                            {movie.opis && <ReactMarkdown>{movie.opis}</ReactMarkdown>}
-                                            </div>
+                            <div className={styles.entryDescriptionText}>
+                                {movie.opis && <ReactMarkdown>{movie.opis}</ReactMarkdown>}
+                            </div>
                         </div>
                     </div>
                 </section>

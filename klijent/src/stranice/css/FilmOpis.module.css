@@ -94,11 +94,22 @@
     flex-direction: column;
 
 }
+.entryDescriptionText{
+    text-align: justify;
+    margin-right: 550px;
+    margin-left: 10px;
+}
 @media (max-width: 768px) {
     .container {
         padding: 5px;
         margin-top: 50px;
         margin-bottom: 50px;
+    }
+
+    .entryDescriptionText {
+    margin-right: 20px;
+    margin-left: 20px;
+
     }
 
     .pageHeader {
