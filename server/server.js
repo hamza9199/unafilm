@@ -130,7 +130,7 @@ app.use("/server" , (req, res) => {
 );
 
 
-cron.schedule('*/13 * * * *', async () => {
+cron.schedule('*/5 * * * *', async () => {
     try {
         const res = await fetch('https://unafilm.onrender.com/server'); // ili tvoja domena
         const text = await res.text();

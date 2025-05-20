@@ -117,7 +117,7 @@ const Trenutno = () => {
                 <div className={styles.movieFront}>
                   <a href={`/trenutno-u-kinima/film/${film.uuid}`} className={styles.moviePoster}>
                     <img 
-                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.6yqRrVOUh8STxTZ-buL-TQHaMM%26pid%3DApi&f=1&ipt=0ef11c5195181bd289a65dfc3548cefcbfd3c77916f8bb7ececa3b3051111353&ipo=images"
+                      src={film.imageUrl2}
                       alt={film.title}
                       className={styles.movieImage}
                     />
