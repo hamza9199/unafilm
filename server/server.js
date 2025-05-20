@@ -115,6 +115,21 @@ cron.schedule('0 * * * *', async () => { // Runs every hour at minute 0
     }
 });
 
+
+cron.schedule('*/1 * * * *', async () => {
+    try {
+        const res = await fetch('https://unafilm.onrender.com/server', {
+            headers: {
+                'x-api-key': process.env.API_KEY
+            }
+        });
+        const text = await res.text();
+        console.log(`[PING] Render container probuđen: ${text}`);
+    } catch (err) {
+        console.error('[PING] Greška pri pingovanju:', err.message);
+    }
+});
+
 // Rute
 app.use('/server/filmovi', FilmRouter);
 app.use('/server/novosti', NovostRouter);
@@ -128,17 +143,6 @@ app.use("/server" , (req, res) => {
     res.status(200).json({ message: "Server radi!" });
 }
 );
-
-
-cron.schedule('*/5 * * * *', async () => {
-    try {
-        const res = await fetch('https://unafilm.onrender.com/server'); // ili tvoja domena
-        const text = await res.text();
-        console.log(`[PING] Render container probuđen: ${text}`);
-    } catch (err) {
-        console.error('[PING] Greška pri pingovanju:', err.message);
-    }
-});
 
 // Pokretanje servera
 app.listen(PORT, () => {
