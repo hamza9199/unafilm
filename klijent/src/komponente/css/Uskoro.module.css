@@ -89,6 +89,10 @@
     display: block;
   }
 
+  .kon{
+    margin-top: -40px;
+  }
+
   .hiddenDesktop {
     display: none;
   }

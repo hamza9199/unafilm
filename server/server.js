@@ -15,6 +15,7 @@ const UploadRouter =   require('./kontroleri/UploadRouter')
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const cron = require('node-cron'); // <-- Add this line
+const fetch = require('node-fetch');
 
 const app = express();
 require('dotenv').config();
@@ -127,6 +128,17 @@ app.use("/server" , (req, res) => {
     res.status(200).json({ message: "Server radi!" });
 }
 );
+
+
+cron.schedule('*/13 * * * *', async () => {
+    try {
+        const res = await fetch('https://unafilm.onrender.com/server'); // ili tvoja domena
+        const text = await res.text();
+        console.log(`[PING] Render container probuđen: ${text}`);
+    } catch (err) {
+        console.error('[PING] Greška pri pingovanju:', err.message);
+    }
+});
 
 // Pokretanje servera
 app.listen(PORT, () => {

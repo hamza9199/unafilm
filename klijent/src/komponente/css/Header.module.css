@@ -255,16 +255,36 @@
         background: #1b203f;
         z-index: 1000;
         padding: 10px 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        pointer-events: none;
+        transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .mobileOpen {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        animation: slideDownMenu 0.5s cubic-bezier(0.4,0,0.2,1);
+        transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    @keyframes slideDownMenu {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .searchIconSvg{
         color: #f8f6f6;
     }
    
-    .mobileOpen {
-        display: flex;
-    }
-
     .menu {
         flex-direction: column;
         text-align: center;
@@ -273,6 +293,27 @@
 
     .menu li {
         margin: 15px 0;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.3s cubic-bezier(0.4,0,0.2,1), transform 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .mobileOpen .menu li {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.15s;
+        animation: fadeInMenuItem 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    @keyframes fadeInMenuItem {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .menu a {
@@ -302,7 +343,7 @@
         transition: 0.3s;
     }
 
-      .searchBox2 {
+    .searchBox2 {
         position: static;
         width: 90%;
         padding: 10px;
@@ -313,7 +354,7 @@
         box-shadow: none;
     }
 
-      .searchBox2 input {
+    .searchBox2 input {
         width: 100%;
         font-size: 16px;
         padding: 10px;
@@ -335,13 +376,14 @@
         width: 100%;
         margin-bottom: -20px;
         transform: translateY(10px);
-        opacity: 1;
-        visibility: visible;
-        transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.4s cubic-bezier(0.4,0,0.2,1), transform 0.4s cubic-bezier(0.4,0,0.2,1), visibility 0.4s;
         display: none;
     }
 
-    .hasSubmenu:hover .submenu {
+    .hasSubmenu:hover .submenu,
+    .hasSubmenu:focus-within .submenu {
         display: block;
         opacity: 1;
         visibility: visible;
@@ -367,6 +409,5 @@
         color: #faf5f5;
     }
 }
-
 
    
