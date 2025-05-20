@@ -15,7 +15,8 @@ const UploadRouter =   require('./kontroleri/UploadRouter')
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
 const cron = require('node-cron'); // <-- Add this line
-const fetch = require('node-fetch');
+const fetch = require('node-fetch').default;
+
 
 const app = express();
 require('dotenv').config();
