@@ -174,6 +174,28 @@ const AdminDashboard = () => {
             });
             setSelectedOption('films')
             console.log('Film created successfully:', response.data);
+
+             const notification = document.createElement("div");
+        notification.innerText = "Film kreiran!";
+        notification.style.position = "fixed";
+        notification.style.top = "120px";
+        notification.style.right = "20px";
+        notification.style.background = "#4BB543";
+        notification.style.color = "#fff";
+        notification.style.padding = "16px 24px";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        notification.style.fontSize = "1rem";
+        notification.style.zIndex = "9999";
+        notification.style.transition = "opacity 0.5s";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = "0";
+            setTimeout(() => {
+            document.body.removeChild(notification);
+            }, 500);
+        }, 2000);
         } catch (error) {
             console.error('Error creating film:', error);
         }
@@ -227,6 +249,27 @@ const AdminDashboard = () => {
             });
             setSelectedOption('films')
             console.log('Film updated successfully:', response.data);
+            const notification = document.createElement("div");
+        notification.innerText = "Film updejtan!";
+        notification.style.position = "fixed";
+        notification.style.top = "120px";
+        notification.style.right = "20px";
+        notification.style.background = "#007bff";
+        notification.style.color = "#fff";
+        notification.style.padding = "16px 24px";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        notification.style.fontSize = "1rem";
+        notification.style.zIndex = "9999";
+        notification.style.transition = "opacity 0.5s";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = "0";
+            setTimeout(() => {
+            document.body.removeChild(notification);
+            }, 500);
+        }, 2000);
         } catch (error) {
             console.error('Error updating film:', error);
         }
@@ -265,6 +308,28 @@ const AdminDashboard = () => {
         setNewNovost({ filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image: '' });
         setSelectedOption('novosti');
         console.log('Novost created successfully:', response.data);
+
+        const notification = document.createElement("div");
+        notification.innerText = "Novost kreirana!";
+        notification.style.position = "fixed";
+        notification.style.top = "120px";
+        notification.style.right = "20px";
+        notification.style.background = "#4BB543";
+        notification.style.color = "#fff";
+        notification.style.padding = "16px 24px";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        notification.style.fontSize = "1rem";
+        notification.style.zIndex = "9999";
+        notification.style.transition = "opacity 0.5s";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = "0";
+            setTimeout(() => {
+            document.body.removeChild(notification);
+            }, 500);
+        }, 2000);
     } catch (error) {
         console.error('Error creating novost:', error);
     }
@@ -304,6 +369,28 @@ const AdminDashboard = () => {
         setNewNovost({ filmId: '', title: '', kreator: '', tekst: '', tipNovosti: 'novost', image: '' });
         setSelectedOption('novosti');
         console.log('Novost updated successfully:', response.data);
+
+        const notification = document.createElement("div");
+        notification.innerText = "Novost updejtana!";
+        notification.style.position = "fixed";
+        notification.style.top = "120px";
+        notification.style.right = "20px";
+        notification.style.background = "#007bff";
+        notification.style.color = "#fff";
+        notification.style.padding = "16px 24px";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        notification.style.fontSize = "1rem";
+        notification.style.zIndex = "9999";
+        notification.style.transition = "opacity 0.5s";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = "0";
+            setTimeout(() => {
+            document.body.removeChild(notification);
+            }, 500);
+        }, 2000);
     } catch (error) {
         console.error('Error updating novost:', error);
     }
@@ -363,6 +450,28 @@ const AdminDashboard = () => {
                     } // API endpoint for movies
                 });
                 await fetchFilms();
+
+                 const notification = document.createElement("div");
+        notification.innerText = "Film obrisan!";
+        notification.style.position = "fixed";
+        notification.style.top = "120px";
+        notification.style.right = "20px";
+        notification.style.background = "#e53935"; // red color
+        notification.style.color = "#fff";
+        notification.style.padding = "16px 24px";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        notification.style.fontSize = "1rem";
+        notification.style.zIndex = "9999";
+        notification.style.transition = "opacity 0.5s";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = "0";
+            setTimeout(() => {
+            document.body.removeChild(notification);
+            }, 500);
+        }, 2000);
             } catch (error) {
                 console.error('Error deleting film:', error);
             }
@@ -381,6 +490,28 @@ const AdminDashboard = () => {
                     } // API endpoint for movies
                 });
                 await fetchNovosti();
+
+                 const notification = document.createElement("div");
+        notification.innerText = "Novost obrisana!";
+        notification.style.position = "fixed";
+        notification.style.top = "120px";
+        notification.style.right = "20px";
+        notification.style.background = "#e53935"; // red color
+        notification.style.color = "#fff";
+        notification.style.padding = "16px 24px";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        notification.style.fontSize = "1rem";
+        notification.style.zIndex = "9999";
+        notification.style.transition = "opacity 0.5s";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = "0";
+            setTimeout(() => {
+            document.body.removeChild(notification);
+            }, 500);
+        }, 2000);
             } catch (error) {
                 console.error('Error deleting novost:', error);
             }
@@ -399,6 +530,28 @@ const AdminDashboard = () => {
                     } // API endpoint for movies
                 });
                 await fetchPoruke();
+
+                 const notification = document.createElement("div");
+        notification.innerText = "Poruka obrisana!";
+        notification.style.position = "fixed";
+        notification.style.top = "120px";
+        notification.style.right = "20px";
+        notification.style.background = "#e53935"; // red color
+        notification.style.color = "#fff";
+        notification.style.padding = "16px 24px";
+        notification.style.borderRadius = "8px";
+        notification.style.boxShadow = "0 2px 8px rgba(0,0,0,0.15)";
+        notification.style.fontSize = "1rem";
+        notification.style.zIndex = "9999";
+        notification.style.transition = "opacity 0.5s";
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.style.opacity = "0";
+            setTimeout(() => {
+            document.body.removeChild(notification);
+            }, 500);
+        }, 2000);
             } catch (error) {
                 console.error('Error deleting poruka:', error);
             }
@@ -973,8 +1126,8 @@ const handleImage3Change = (e)=>{
 
   @media (max-width: 768px) {
     iframe.responsive-yt {
-      height: 200px !important;
-       width: 100% !important; 
+       height: 180px !important;
+       width: 90% !important; 
     }
   }
 </style> 
@@ -1270,8 +1423,8 @@ const handleImage3Change = (e)=>{
 
   @media (max-width: 768px) {
     iframe.responsive-yt {
-      height: 200px !important;
-       width: 100% !important; 
+      height: 180px !important;
+       width: 90% !important; 
     }
   }
 </style> 
@@ -1449,8 +1602,8 @@ height={600}
 
   @media (max-width: 768px) {
     iframe.responsive-yt {
-      height: 200px !important;
-       width: 100% !important; 
+       height: 180px !important;
+       width: 90% !important; 
     }
   }
 </style> 
@@ -1665,8 +1818,8 @@ height={600}
 
   @media (max-width: 768px) {
     iframe.responsive-yt {
-      height: 200px !important;
-       width: 100% !important; 
+       height: 180px !important;
+       width: 90% !important; 
     }
   }
 </style> 
