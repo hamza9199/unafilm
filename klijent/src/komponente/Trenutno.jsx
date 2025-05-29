@@ -5,7 +5,8 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'; 
 import axios from 'axios';
 import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
-
+import { format } from 'date-fns';
+import { bs } from 'date-fns/locale';
 
 const Trenutno = () => {
   const [films, setFilms] = useState([]); 
@@ -125,7 +126,7 @@ const Trenutno = () => {
                 </div>
                 <div className={styles.dole}>
                   <a className={styles.title2} href={`/trenutno-u-kinima/film/${film.uuid}`}>{film.title}</a>
-                  <p className={styles.releaseDate}>{new Date(film.releaseDate).toLocaleDateString()}</p>
+                  <p className={styles.releaseDate}>{format(new Date(film.releaseDate), "d. MMMM yyyy", { locale: bs })}</p>
                 </div>
               </div>
             );
@@ -162,7 +163,7 @@ const Trenutno = () => {
             </h3>
       
             <div className={styles.metaInfo}>
-              <span>{new Date(selectedFilm.releaseDate).toLocaleDateString()}</span>
+              <span>{format(new Date(selectedFilm.releaseDate), "d. MMMM yyyy", { locale: bs })}</span>
               <span>{selectedFilm.duration} min</span>
             </div>
       

@@ -203,7 +203,7 @@
 }
 
 .releaseDate {
-  font-size: 14px;
+  font-size: 18px;
   color: #7d7b7b;
   margin-bottom: 10px;
 }
@@ -384,5 +384,9 @@
 
   .slick-prev:before, .slick-next:before {
     font-size: 16px;
+  }
+
+  .releaseDate {
+    font-size: 14px;
   }
 }

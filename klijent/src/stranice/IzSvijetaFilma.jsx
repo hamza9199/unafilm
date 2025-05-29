@@ -58,7 +58,7 @@ const ArticleItem = ({ film, novost }) => {
                                 )}
                             </span>
                             <span>/</span>
-                            <span className={styles.entryComment}>{novost.film ? film.comment : Math.floor(Math.random() * 200 + 1)} komentara</span>
+                            <span className={styles.entryComment}>{novost.film ? film.comment : Math.floor(Math.random() * 1000 + 1)} komentara</span>
                         </div>
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                        <p>

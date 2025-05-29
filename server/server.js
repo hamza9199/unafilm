@@ -24,7 +24,6 @@ dotenv.config();
 const PORT = 3000;
 
 /*
-// Testiranje konekcije s bazom
 (async () => {
     try {
         await sequelize.authenticate();
