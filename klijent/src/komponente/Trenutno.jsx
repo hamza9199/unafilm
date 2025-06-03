@@ -168,9 +168,9 @@ const Trenutno = () => {
             </div>
       
             <p className={styles.description}>{
-    selectedFilm.description.replace(/[#*>]/g, '').length > 150 
-      ? `${selectedFilm.description.replace(/[#*>]/g, '').substring(0, 150)}...` 
-      : selectedFilm.description.replace(/[#*>]/g, '')
+    selectedFilm.opis.replace(/[#*>]/g, '').length > 150 
+      ? `${selectedFilm.opis.replace(/[#*>]/g, '').substring(0, 150)}...` 
+      : selectedFilm.opis.replace(/[#*>]/g, '')
   }</p>
               <div className={styles.buttons}>
                 <a onClick={() => setSelectedTrailer(selectedFilm.trailerUrl)} className={styles.watchButton}>

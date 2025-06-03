@@ -9,6 +9,9 @@
     width: 97vw;
 }
 
+
+
+
 .pageHeader {
     margin-bottom: 30px;
     text-align: center;
@@ -22,20 +25,21 @@
     display: block;
     margin: 0 auto;
 }
-
 .pageContent {
     display: flex;
     flex-direction: row;
     gap: 20px;
-    align-items: center; /* Center the content vertically */
+    align-items: flex-start; /* Promenite iz center u flex-start */
     margin-top: 20px;
     justify-content: center;
     padding-left: 500px;
+    padding-right: 480px;
 }
 
+
 .entryImage {
-    flex: 0 0 auto;
-    width: 200px; /* Smaller image size */
+    flex: 0 0 auto; /* Fixed width for the image container */
+    width: 220px; /* Smaller image size */
     height: auto;
 }
 
@@ -94,9 +98,10 @@
     flex-direction: column;
 
 }
+
 .entryDescriptionText{
     text-align: justify;
-    margin-right: 520px;
+    margin-right: 0px;
     margin-left: 10px;
 }
 @media (max-width: 768px) {
@@ -125,13 +130,14 @@
         flex-direction: column;
         gap: 10px;
         padding-left: 0px;
+        padding-right: 0px;
 
     }
 
     .entryImage img {
         max-width: 90%;
         margin: 0 auto;
-        margin-left: 18px;
+        margin-left: 90px;
     }
 
     .entryInfo {

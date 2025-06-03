@@ -74,7 +74,7 @@ const AdminLogin = () => {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 required
-                                className={styles.input}
+                                className={styles.input2}
                                 style={{ paddingRight: '25px' }}
                             />
                             <button

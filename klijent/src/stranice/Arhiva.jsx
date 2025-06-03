@@ -76,9 +76,9 @@ const Arhiva = () => {
                                                             <span className={styles.duration}>{movie.duration} min</span>
                                                             </div>
                                     <p className={styles.movieDescription}>{
-    movie.description.replace(/[#*>]/g, '').length > 180 
-      ? `${movie.description.replace(/[#*>]/g, '').substring(0, 180)}...` 
-      : movie.description.replace(/[#*>]/g, '')
+    movie.opis.replace(/[#*>]/g, '').length > 180 
+      ? `${movie.opis.replace(/[#*>]/g, '').substring(0, 180)}...` 
+      : movie.opis.replace(/[#*>]/g, '')
   }</p>
                                     <div className={styles.buttonContainer}>
                                         <a href={`/arhiva/film/${movie.uuid}`} className={styles.infoButton} rel="noopener noreferrer">

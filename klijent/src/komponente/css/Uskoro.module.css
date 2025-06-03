@@ -50,7 +50,7 @@
   margin: 9px 0;
   font-size: 18px;
   padding-bottom: 30px;
-  border-bottom: 1px solid #ddd;
+  border-bottom: none;
   margin-bottom: -2px;
   margin-top: -2px;
 }
@@ -116,6 +116,8 @@
     font-size: 16px;
     padding-bottom: 20px;
     margin: 0 auto; /* Center the list items */
+        border-bottom: none; /* Dodaj ovu liniju da skloni liniju ispod svakog filma */
+
   }
   .movieList{
     margin-bottom: 5px;
@@ -129,6 +131,8 @@
     height: 25px;
     font-size: 14px;
     margin-right: 10px;
+        flex-shrink: 0; /* Dodaj ovu liniju */
+
   }
 
   .link {

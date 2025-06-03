@@ -17,12 +17,18 @@ const Istaknuto = () => {
   useEffect(() => {
     const fetchFilmovi = async () => {
       try {
-        const response = await axios.get('https://unafilm.onrender.com/server/filmovi' , {
+        const response = await axios.get('https://unafilm.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
-                }); // API endpoint for films
-        setFilmovi(response.data.sort(() => Math.random() - 0.5).slice(0,6)); // Limiting to 2 films
+                });
+        const response2 = await axios.get('https://unafilm.onrender.com/server/filmovi/trenutno' , {
+                    headers: {
+                        'x-api-key': 'admin'
+                    } // API endpoint for movies
+                });
+        const combinedFilmovi = [...response.data, ...response2.data].sort(() => Math.random() - 0.5).slice(0, 6); // Shuffle the films
+        setFilmovi(combinedFilmovi); 
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -98,9 +104,9 @@ const Istaknuto = () => {
                   <p className={styles.desc}>
 
  {
-    film.description.replace(/[#*>]/g, '').length > 150 
-      ? `${film.description.replace(/[#*>]/g, '').substring(0, 150)}...` 
-      : film.description.replace(/[#*>]/g, '')
+    film.opis.replace(/[#*>]/g, '').length > 150 
+      ? `${film.opis.replace(/[#*>]/g, '').substring(0, 150)}...` 
+      : film.opis.replace(/[#*>]/g, '')
   }
 
                   </p>

@@ -47,6 +47,14 @@
     border-radius: 8px;
 }
 
+.input2 {
+    width:  300px;
+    padding: 16px 20px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+}
+
 .error {
     color: red;
     font-size: 16px;
@@ -116,8 +124,26 @@
         padding: 10px;
     }
 
+    .input2 {
+        width: 95%;
+        font-size: 16px;
+        padding: 10px;
+    }
+
+
     .button {
         font-size: 18px;
         padding: 10px 20px;
+    }
+
+    .inputGroup{
+        width:250px;
+        text-align: center;
+    }
+
+    .togglePasswordBtn {
+        right: 1px;
+        top: 60px;
+        font-size: 18px;
     }
 }

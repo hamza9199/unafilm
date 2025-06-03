@@ -567,14 +567,24 @@ const AdminDashboard = () => {
     };
 
     const convertToEmbedUrl = (url) => {
-        const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^/\n\s]+\/\S+|(?:v|e(?:mbed)?)\/([^/\n\s]+)|(?:.*[?&]v=([^&\n\s]+))|(?:.*[?&]embed=([^&\n\s]+))|(?:.*[?&]watch\?v=([^&\n\s]+)))(?:[^\s]*)?)/;
-        const match = url.match(regex);
-        if (match) {
-          const videoId = match[1] || match[2] || match[3] || match[4];
-          return `https://www.youtube.com/embed/${videoId}`;
-        }
-        return url; // If it's not a valid YouTube URL, return the original URL.
-      };
+  const regexList = [
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([^&\n\s]+)/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([^&\n\s]+)/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/v\/([^&\n\s]+)/,
+    /(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([^&\n\s]+)/,
+    /(?:https?:\/\/)?(?:www\.)?youtu\.be\/([^&\n\s]+)/
+  ];
+
+  for (const regex of regexList) {
+    const match = url.match(regex);
+    if (match && match[1]) {
+      return `https://www.youtube.com/embed/${match[1]}`;
+    }
+  }
+
+  return url; // Ako nije validan YouTube URL
+};
+
       
       const handleSelectedOption = (opt) => {
         setNewFilm({
