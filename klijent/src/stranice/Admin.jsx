@@ -54,7 +54,7 @@ const AdminDashboard = () => {
             const fetchArticles = async () => {
                 if (!searchTerm.trim()) {
                     try {
-                        const response = await axios.get('https://unafilm.onrender.com/server/filmovi' , {
+                        const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -66,7 +66,7 @@ const AdminDashboard = () => {
                 }
                 else{
                     try {
-                        const response = await fetch(`https://unafilm.onrender.com/server/filmovi/search/${searchTerm}` , {
+                        const response = await fetch(`https://unafilm-34ky.onrender.com/server/filmovi/search/${searchTerm}` , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -91,7 +91,7 @@ const AdminDashboard = () => {
         const fetchArticles2 = async () => {
             if (!searchTerm2.trim()) {
                 try {
-                    const response = await axios.get('https://unafilm.onrender.com/server/novosti' , {
+                    const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -103,7 +103,7 @@ const AdminDashboard = () => {
             }
             else{
                 try {
-                    const response = await fetch(`https://unafilm.onrender.com/server/novosti/search/${searchTerm2}` , {
+                    const response = await fetch(`https://unafilm-34ky.onrender.com/server/novosti/search/${searchTerm2}` , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -157,7 +157,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData (film i slike) na backend
-            const response = await axios.post('https://unafilm.onrender.com/server/filmovi', formData, {
+            const response = await axios.post('https://unafilm-34ky.onrender.com/server/filmovi', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data', // Moramo postaviti ovaj header za upload fajlova
                     'x-api-key': 'admin'
@@ -232,7 +232,7 @@ const AdminDashboard = () => {
     
         try {
             // Pošaljemo formData sa filmom na backend
-            const response = await axios.put(`https://unafilm.onrender.com/server/filmovi/${selectedFilm.id}`, formData, {
+            const response = await axios.put(`https://unafilm-34ky.onrender.com/server/filmovi/${selectedFilm.id}`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data' ,// Postavljanje headera za fajlove
                     'x-api-key': 'admin'
@@ -296,7 +296,7 @@ const AdminDashboard = () => {
     }
 
     try {
-        const response = await axios.post('https://unafilm.onrender.com/server/novosti', formData, {
+        const response = await axios.post('https://unafilm-34ky.onrender.com/server/novosti', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'x-api-key': 'admin'
@@ -356,7 +356,7 @@ const AdminDashboard = () => {
     }
 
     try {
-        const response = await axios.put(`https://unafilm.onrender.com/server/novosti/${selectedNovost.id}`, formData, {
+        const response = await axios.put(`https://unafilm-34ky.onrender.com/server/novosti/${selectedNovost.id}`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
                 'x-api-key': 'admin'
@@ -402,7 +402,7 @@ const AdminDashboard = () => {
 
     const fetchFilms = async () => {
         try {
-            const response = await axios.get('https://unafilm.onrender.com/server/filmovi', {
+            const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi', {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -415,7 +415,7 @@ const AdminDashboard = () => {
 
     const fetchNovosti = async () => {
         try {
-            const response = await axios.get('https://unafilm.onrender.com/server/novosti', {
+            const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti', {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -428,7 +428,7 @@ const AdminDashboard = () => {
 
     const fetchPoruke = async () => {
         try {
-            const response = await axios.get('https://unafilm.onrender.com/server/poruke', {
+            const response = await axios.get('https://unafilm-34ky.onrender.com/server/poruke', {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -444,7 +444,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovaj film?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm.onrender.com/server/filmovi/${id}`, {
+                await axios.delete(`https://unafilm-34ky.onrender.com/server/filmovi/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -484,7 +484,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu novost?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm.onrender.com/server/novosti/${id}`, {
+                await axios.delete(`https://unafilm-34ky.onrender.com/server/novosti/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -524,7 +524,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite obrisati ovu poruku?');
         if (confirmed) {
             try {
-                await axios.delete(`https://unafilm.onrender.com/server/poruke/${id}`, {
+                await axios.delete(`https://unafilm-34ky.onrender.com/server/poruke/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -608,7 +608,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite skinuti bazu?');
         if (confirmed) {
             try {
-                const response = await axios.get('https://unafilm.onrender.com/server/download/database', {
+                const response = await axios.get('https://unafilm-34ky.onrender.com/server/download/database', {
                     responseType: 'blob',
                     headers: {
                         'x-api-key': 'admin'
@@ -633,7 +633,7 @@ const AdminDashboard = () => {
         const confirmed = window.confirm('Da li ste sigurni da želite skinuti folder?');
         if (confirmed) {
             try {
-                const response = await axios.get('https://unafilm.onrender.com/server/download/uploads', {
+                const response = await axios.get('https://unafilm-34ky.onrender.com/server/download/uploads', {
                     responseType: 'blob',
                     headers: {
                         'x-api-key': 'admin'
@@ -669,7 +669,7 @@ const AdminDashboard = () => {
         formData.append('database', bazaFile);
     
         try {
-            const res = await fetch('https://unafilm.onrender.com/server/upload/database', {
+            const res = await fetch('https://unafilm-34ky.onrender.com/server/upload/database', {
                 method: 'POST',
                 body: formData,
                  headers: {
@@ -694,7 +694,7 @@ const AdminDashboard = () => {
         });
     
         try {
-            const res = await fetch('https://unafilm.onrender.com/server/upload/uploads', {
+            const res = await fetch('https://unafilm-34ky.onrender.com/server/upload/uploads', {
                 method: 'POST',
                 body: formData,
                 headers: {

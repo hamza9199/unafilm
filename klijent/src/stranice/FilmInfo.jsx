@@ -21,7 +21,7 @@ const FilmInfo = ({ svijet }) => { // Fix destructuring of svijet
         // API poziv za pretragu novosti prema id-u   
         const fetchNovostData = async () => {
             try {
-                const response = await fetch(`https://unafilm.onrender.com/server/novosti/${id}`, {
+                const response = await fetch(`https://unafilm-34ky.onrender.com/server/novosti/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
                     }
@@ -54,9 +54,9 @@ const FilmInfo = ({ svijet }) => { // Fix destructuring of svijet
             <Header />
             <Helmet>
                 <title>{novost.title} - Una Film</title>
-                <link rel="canonical" href={`https://unafilm.vercel.app/novosti/iz-svijeta-filma/film/${id}`} />
+                <link rel="canonical" href={`https://unafilm.ba/novosti/iz-svijeta-filma/film/${id}`} />
                 <meta name="author" content="Una Film" />
-                <meta property="og:url" content={`https://unafilm.vercel.app/novosti/traileri/film/${id}`} />
+                <meta property="og:url" content={`https://unafilm.ba/novosti/traileri/film/${id}`} />
                 <meta property="og:type" content="article" />
                 <meta property="og:site_name" content="Una Film" />
                 <meta name="twitter:card" content="summary_large_image" />

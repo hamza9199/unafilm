@@ -103,7 +103,7 @@ const IzSvijetaFilma = () => {
         // Fetch novosti data from API
         const fetchNovosti = async () => {
             try {
-                const response = await axios.get('https://unafilm.onrender.com/server/novosti/svijetfilma', {
+                const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti/svijetfilma', {
                     headers: {
                         'x-api-key': 'admin'
                     }

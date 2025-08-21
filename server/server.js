@@ -118,7 +118,7 @@ cron.schedule('0 * * * *', async () => { // Runs every hour at minute 0
 
 cron.schedule('*/1 * * * *', async () => {
     try {
-        const res = await fetch('https://unafilm.onrender.com/server', {
+        const res = await fetch('https://unafilm-34ky.onrender.com/server', {
             headers: {
                 'x-api-key': process.env.API_KEY
             }

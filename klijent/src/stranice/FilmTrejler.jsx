@@ -20,7 +20,7 @@ const FilmTrejler = () => {
     useEffect(() => {
         const fetchNovostData = async () => {
             try {
-                const response = await fetch(`https://unafilm.onrender.com/server/novosti/${id}`, {
+                const response = await fetch(`https://unafilm-34ky.onrender.com/server/novosti/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
                     }

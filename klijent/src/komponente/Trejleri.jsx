@@ -12,12 +12,12 @@ const Trejleri = () => {
   useEffect(() => {
     const fetchTrailers = async () => {
       try {
-        const response = await axios.get('https://unafilm.onrender.com/server/filmovi/uskoro' , {
+        const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
                 });
-        const response2 = await axios.get('https://unafilm.onrender.com/server/filmovi/trenutno' , {
+        const response2 = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/trenutno' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -45,36 +45,24 @@ const Trejleri = () => {
     <div className={styles.container}>
       <h2 className={styles.heading}>Trailer & Video</h2>
       <div className={styles.trailerGrid}>
-        {trailers.map((trailer) => (
-          <div
-            key={trailer.id}
-            className={styles.trailerItem}
-            onClick={() => setSelectedTrailer(trailer.trailerUrl)} // Postavlja trailer kad klikneš
-          >
-            {selectedTrailer === trailer.trailerUrl ? (
-              <div className={styles.videoContainer}>
-              <iframe
-                width="830"
-                height="300"
-                src={trailer.trailerUrl.replace("watch?v=", "embed/")} // Zamjena za embed URL
-                title={trailer.title}
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                autoplay
-              ></iframe>
-              </div>
-            ) : (
+        {trailers.map((trailer) => {
+          const isActive = selectedTrailer === trailer.trailerUrl;
+          return (
+            <div
+              key={trailer.id}
+              className={styles.trailerItem}
+              onClick={() => setSelectedTrailer(trailer.trailerUrl)} // Postavlja trailer kad klikneš
+            >
               <div className={styles.thumbnailContainer}>
-                <img src={trailer.imageUrl} alt={trailer.title} className={styles.thumbnail} />
+                <img src={trailer.imageUrl} alt={trailer.title} className={`${styles.thumbnail} ${isActive ? styles.pulsing : ''}`} />
                 <div className={styles.overlay}>
                   <p className={styles.playIcon}>▶</p>
                 </div>
               </div>
-            )}
-            <h3 className={styles.title}>{trailer.title}</h3>
-          </div>
-        ))}
+              <h3 className={styles.title}>{trailer.title}</h3>
+            </div>
+          );
+        })}
       </div>
 
 

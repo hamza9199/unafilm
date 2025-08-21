@@ -43,7 +43,7 @@ const LijeviBaner = () => {
     useEffect(() => {
         const fetchFilms = async () => {
             try {
-                const response = await axios.get('https://unafilm.onrender.com/server/filmovi' , {
+                const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
@@ -59,7 +59,7 @@ const LijeviBaner = () => {
 
         const fetchNews = async () => {
             try {
-                const response = await axios.get('https://unafilm.onrender.com/server/novosti' , {
+                const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies

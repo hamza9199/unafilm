@@ -17,12 +17,12 @@ const Istaknuto = () => {
   useEffect(() => {
     const fetchFilmovi = async () => {
       try {
-        const response = await axios.get('https://unafilm.onrender.com/server/filmovi/uskoro' , {
+        const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
                 });
-        const response2 = await axios.get('https://unafilm.onrender.com/server/filmovi/trenutno' , {
+        const response2 = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/trenutno' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies

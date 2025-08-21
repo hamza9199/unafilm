@@ -13,7 +13,7 @@ const Uskoro = () => {
   useEffect(() => {
     const fetchFilms = async () => {
       try {
-        const response = await axios.get('https://unafilm.onrender.com/server/filmovi/uskoro' , {
+        const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
                     } // API endpoint for movies

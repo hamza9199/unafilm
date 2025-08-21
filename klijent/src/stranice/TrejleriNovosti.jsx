@@ -116,7 +116,7 @@ const TrejleriNovosti = () => {
         // Fetch novosti data from API
         const fetchNovosti = async () => {
             try {
-                const response = await axios.get('https://unafilm.onrender.com/server/novosti/trailer', {
+                const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti/trailer', {
                     headers: {
                         'x-api-key': 'admin'
                     }

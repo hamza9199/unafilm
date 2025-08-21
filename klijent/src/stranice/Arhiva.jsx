@@ -19,7 +19,7 @@ const Arhiva = () => {
         // Funkcija za dobijanje filmova sa API-ja
         const fetchMovies = async () => {
             try {
-                const response = await axios.get('https://unafilm.onrender.com/server/filmovi/arhiva',{ headers: {
+                const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/arhiva',{ headers: {
                     'x-api-key': 'admin'
                 }});
                 setMovies(response.data); // Postavljanje dobijenih filmova u stanje
@@ -51,6 +51,31 @@ const Arhiva = () => {
             <Helmet>
                 <title>Arhiva - Una Film</title>
                 <meta name="description" content="Arhiva filmova Una Film" />
+                <link rel="canonical" href="https://www.unafilm.ba/arhiva" />
+                <meta name="keywords" content="Una Film, arhiva filmova, filmovi, distribucija, kino" />
+                <meta name="author" content="Una Film" />
+                <meta property="og:title" content="Arhiva - Una Film" />
+                <meta property="og:description" content="Arhiva filmova Una Film" />
+                <meta property="og:url" content="https://www.unafilm.ba/arhiva" />
+                <meta property="og:type" content="website" />
+                <meta property="og:image" content="https://www.unafilm.ba/unaFilm141-2.png" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content="Arhiva - Una Film" />
+                <meta name="twitter:description" content="Arhiva filmova Una Film" />
+                <meta name="twitter:image" content="https://www.unafilm.ba/unaFilm141-2.png" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <meta httpEquiv="Content-Security-Policy" content="default-src 'self' https://www.youtube.com; script-src 'self' 'unsafe-inline' https://www.youtube.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.youtube.com; frame-src 'self' https://www.youtube.com;" />
+                <meta name="theme-color" content="#ffffff" />
+                <link rel="icon" href="/favicon.ico" />
+                <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+                <link rel="manifest" href="/manifest.json" />
+                <meta name="application-name" content="Una Film Distribucija" />
+                <meta name="mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
+                <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+                <meta name="msapplication-TileColor" content="#ffffff" />
+                <meta name="msapplication-TileImage" content="/mstile-150x150.png" />
+                <meta name="msapplication-config" content="/browserconfig.xml" />
                 
             </Helmet>
             <Breadcrumb

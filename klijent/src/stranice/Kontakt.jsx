@@ -27,7 +27,7 @@ const Kontakt = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('https://unafilm.onrender.com/server/poruke', formData, {
+            const response = await axios.post('https://unafilm-34ky.onrender.com/server/poruke', formData, {
                     headers: {
                         'x-api-key': 'admin'
                     }
