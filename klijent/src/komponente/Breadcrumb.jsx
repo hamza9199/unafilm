@@ -4,6 +4,7 @@ import styles from './css/Breadcrumb.module.css';
 
 const Breadcrumb = ({ items }) => {
     return (
+        <>
         <div className={styles.breadcrumbContainer}>
             <div className={styles.innerContainer}>
                 <h1 className={styles.pageTitle}>{items[items.length - 1]?.name || 'Početna'}</h1>
@@ -12,7 +13,6 @@ const Breadcrumb = ({ items }) => {
                         const isLast = index === items.length - 1;
                         return (
                             <span key={item.link} className={styles.breadcrumbItem}>
-                                {/* Display '>' only for non-first items */}
                                 {index > 0 && ' > '}
                                 {isLast ? (
                                     <span className={styles.currentPage}>{item.name}</span>
@@ -25,6 +25,7 @@ const Breadcrumb = ({ items }) => {
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

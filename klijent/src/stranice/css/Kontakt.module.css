@@ -1,24 +1,29 @@
 .container {
-    max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    width: 100%;
+        min-width: 100vw;
+    box-sizing: border-box;
 }
 
 .header {
     display: flex;
     justify-content: center;
     gap: 20px;
+    margin-left: 300px;   
+    margin-right: 300px;
 }
 
 .mapContainer {
     margin-top: 50px;
     margin-bottom: 50px;
-    width: 100%;
+    width: calc(100% - 600px);
+     margin-left: 300px;   
+    margin-right: 300px;
 }
 
 .card {
     background-color: #f3f4f6;
-    padding: 1.5rem;
+    padding:1.5rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 1.5rem;
@@ -41,8 +46,10 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-top: 2rem;
-    width: 100%;
+    width: calc(100% - 600px);
     box-sizing: border-box;
+       margin-left: 300px;   
+    margin-right: 300px;
 }
 
 .formLabel {
@@ -97,6 +104,8 @@ iframe {
         align-items: center;
         gap: 20px;
         width: 100%;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .formInput, .formTextarea{
@@ -106,6 +115,8 @@ iframe {
 
     .container {
         padding: 1rem;
+        min-width: 100%;
+        overflow-x: hidden;
     }
     
     .header {
@@ -121,18 +132,20 @@ iframe {
         width: 100%;
         padding: 1rem;
         box-sizing: border-box;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .mapContainer {
         margin-top: 20px;
         margin-bottom: 20px;
-        padding-left: 3px;
-        padding-right:0px;
+        padding-left: 0;
+        padding-right: 0;
         margin-right: 0;
         margin-left: 0;
     }
     .mapContainer iframe {
-        width: 99%;
+        width: 100%;
         height: auto; /* ili fiksna visina npr. 300px */
         display: block;
     }

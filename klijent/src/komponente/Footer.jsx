@@ -18,7 +18,9 @@ const Footer = () => {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
                 });
-                setMovies(response.data.sort(() => Math.random() - 0.5).slice(0, 2)); // Limiting to 2 movies
+                // Sort by date descending and take the first 2
+                const sorted = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja)).slice(0, 2);
+                setMovies(sorted);
                 setLoading(false);
             } catch (err) {
                 setError(err.message);

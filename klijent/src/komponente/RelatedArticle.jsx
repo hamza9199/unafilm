@@ -8,15 +8,16 @@ const RelatedArticle = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch related articles from API
         const fetchArticles = async () => {
             try {
                 const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
-                }); // API endpoint for related articles
-                setArticles(response.data.slice(0, 3)); // Limiting to 3 articles
+                    } 
+                });
+             const novosti = response.data.sort(() => Math.random() - 0.5).slice(0, 3);
+
+                setArticles(novosti); 
                 setLoading(false);
             } catch (err) {
                 setError(err.message);

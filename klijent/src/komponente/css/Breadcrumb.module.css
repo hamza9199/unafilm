@@ -1,11 +1,10 @@
-/* Breadcrumb stilovi */
 
 .breadcrumbContainer {
     background-color: #010101;
     padding: 20px 0;
     border-bottom: 2px solid #ddd;
-    width: 99.1vw;
-    max-width: 100%;
+    width: 100%;
+    min-width: 100%;
     height: 200px;
 }
 

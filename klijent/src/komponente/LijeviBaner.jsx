@@ -64,7 +64,7 @@ const LijeviBaner = () => {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
                 });
-                const randomNews = response.data.sort(() => Math.random() - 0.5).slice(0, 2);
+                const randomNews = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja)).slice(0, 2);
                 setNewsItems(randomNews);
                 setLoadingNews(false);
             } catch (err) {

@@ -17,7 +17,9 @@ const Novosti = () => {
                         'x-api-key': 'admin'
                     } // API endpoint for movies
                 }); // Replace with your API endpoint
-        setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 3)); // Assuming the API returns an array of films, limit to 6
+        // Sort by date descending and take the first 3
+        const sorted = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja)).slice(0, 3);
+        setFilms(sorted);
         setLoading(false); // Set loading to false after fetching data
       } catch {
         setError('Failed to fetch films'); // Handle errors
