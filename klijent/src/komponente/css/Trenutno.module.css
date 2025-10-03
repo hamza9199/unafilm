@@ -92,7 +92,7 @@
   align-items: center; /* Centriranje vertikalno */
   justify-content: start; /* Poravnanje na lijevu stranu */
   position: absolute;
-  top: 900px;
+  top: 1100px;
   left: 50%;
   transform: translateX(-50%);
   background-color: rgba(0, 0, 0, 0.8);
