@@ -5,6 +5,9 @@ import styles from "./css/Carusel.module.css";
 export const Carousel = ({ data }) => {
   const [slide, setSlide] = useState(0);
   const [selectedTrailer, setSelectedTrailer] = useState(null);
+  // Touch swipe state
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
 
   const nextSlide = () => {
     setSlide(slide === data.length - 1 ? 0 : slide + 1);
@@ -27,9 +30,34 @@ export const Carousel = ({ data }) => {
     return () => clearInterval(interval);
   }, [data.length]);
 
+  // Touch handlers
+  const minSwipeDistance = 50;
+  const handleTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+  const handleTouchEnd = () => {
+    if (touchStart === null || touchEnd === null) return;
+    const distance = touchStart - touchEnd;
+    if (Math.abs(distance) > minSwipeDistance) {
+      if (distance > 0) nextSlide(); // swipe left
+      else prevSlide(); // swipe right
+    }
+    setTouchStart(null);
+    setTouchEnd(null);
+  };
+
   return (
     <>
-      <div className={styles.carousel}>
+      <div
+        className={styles.carousel}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <BsArrowLeftCircleFill
           onClick={prevSlide}
           className={styles.arrowleft}

@@ -234,6 +234,7 @@
     margin-right: 0px;
     gap: 20px;
     max-width: 100%;
+    overflow-x: hidden; /* prevent horizontal scroll */
 }
 
 .opcije {
@@ -272,6 +273,8 @@
     .post {
         padding: 10px;
         box-sizing: border-box; /* Dodano kako bi padding bio uključeni u širinu */
+        margin-right: 0; /* prevent overflow */
+        width: 100%;
     }
 
     .row {
@@ -284,7 +287,8 @@
         
     }
 
-    
+    .entryImage { max-width: 100%; height: auto; display: block; }
+
 
     .pagination {
         flex-direction: row;
