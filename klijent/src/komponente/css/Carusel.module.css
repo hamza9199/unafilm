@@ -234,7 +234,6 @@
   .indicators { bottom: -22px; }
   .indicator { width: 6px; height: 6px; margin: 4px; }
 
-  /* Match Trejleri mobile trailer layout */
   .selectedTrailer {
     top: 50px;
     left: 5px;

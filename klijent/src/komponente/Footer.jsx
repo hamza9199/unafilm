@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Footer.module.css';
-import logo from './../assets/unaFilm141-2.png'; // Adjust the path as necessary
-import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
+import logo from './../assets/unaFilm141-2.png'; 
+import LoadingScreen from './LoadingScreen'; 
 
 const Footer = () => {
     const [movies, setMovies] = useState([]);
@@ -10,15 +10,13 @@ const Footer = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Fetch movies from API
         const fetchMovies = async () => {
             try {
                 const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti', {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
-                // Sort by date descending and take the first 2
                 const sorted = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja)).slice(0, 2);
                 setMovies(sorted);
                 setLoading(false);
@@ -32,7 +30,7 @@ const Footer = () => {
     }, []);
 
     if (loading) {
-        return <LoadingScreen />; // Show loading screen while fetching data
+        return <LoadingScreen />;
     }
 
     if (error) {
@@ -43,7 +41,6 @@ const Footer = () => {
         <footer id="amy-colophon" className={styles.amySiteFooter}>
             <div className={styles.container}>
                 <div className={styles.amyFooterWidgets}>
-                    {/* Column 1: Logo Section */}
                     <div className={styles.colMd3}>
                         <div className={styles.amyWidget}>
                             <div className={`${styles.amyWidget} ${styles.about}`}>
@@ -61,7 +58,6 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Column 2: Navigation Section */}
                     <div className={styles.colMd3}>
                         <div className={styles.amyWidget}>
                             <div className={styles.amyWidgetTitle}>
@@ -90,13 +86,11 @@ const Footer = () => {
                         </div>
                     </div>
 
-                    {/* Column 3: Latest News Section */}
                     <div className={styles.colMd6}>
                         <div className={styles.amyWidget}>
                             <div className={`${styles.amyWidget} ${styles.listPost}`}>
                                 <h4 className={styles.amyTitle}>Zadnje novosti</h4>
 
-                                {/* Loop through movies and render them */}
                                 {movies.map((movie, index) => (
                                     <div key={index} className={styles.entryItem}>
                                         <div className={styles.entryThumb}>

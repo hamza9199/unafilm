@@ -110,18 +110,18 @@ const Search = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const [showMovies, setShowMovies] = useState(true); // State for showing movies
-    const [showNovosti, setShowNovosti] = useState(true); // State for showing novosti
+    const [showMovies, setShowMovies] = useState(true); 
+    const [showNovosti, setShowNovosti] = useState(true);
     const [combinedResults, setCombinedResults] = useState([]);
 
     const articlesPerPage = 15;
 
     useEffect(() => {
-        setArticles([]); // Reset articles on new search
-        setNovosti([]); // Reset novosti on new search
-        setCombinedResults([]); // Reset combined results on new searchs
+        setArticles([]);
+        setNovosti([]); 
+        setCombinedResults([]);
         const fetchArticles = async () => {
-            if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
+            if (!searchTerm.trim()) return; 
             setLoading(true);
             setError(null);
             try {
@@ -145,12 +145,12 @@ const Search = () => {
         };
 
         const fetchNovosti = async () => {
-            if (!searchTerm.trim()) return; // Prevent API call if the search term is empty
+            if (!searchTerm.trim()) return; 
             setLoading(true);
             setError(null);
-            setNovosti([]); // Reset novosti on new search
+            setNovosti([]);
             setArticles([]);
-            setCombinedResults([]); // Reset combined results on new search
+            setCombinedResults([]); 
             try {
                 const response = await fetch(`https://unafilm-34ky.onrender.com/server/novosti/search/${searchTerm}`, {
                     headers: {
@@ -177,7 +177,6 @@ const Search = () => {
     }, [searchTerm]);
 
     useEffect(() => {
-        // Combine and sort by date (newest first)
         const combined = [
             ...(showMovies ? articles.map(item => ({ ...item, type: 'article' })) : []),
             ...(showNovosti ? novosti.map(item => ({ ...item, type: 'novost' })) : [])
@@ -190,7 +189,7 @@ const Search = () => {
         });
 
         setCombinedResults(combined);
-        setCurrentPage(1); // Reset to first page
+        setCurrentPage(1); 
     }, [articles, novosti, showMovies, showNovosti]);
 
     const totalPages = Math.ceil(combinedResults.length / articlesPerPage);

@@ -257,13 +257,12 @@ const router = express.Router();
  *         description: Server error
  */
 
-// Get all novosti
 router.get('/', async (req, res) => {
     try {
         const novosti = await Novost.findAll({
             include: [{
                 model: Film,
-                as: 'film'  // Use the correct alias here
+                as: 'film'  
             }]
         });
         res.status(200).json(novosti);
@@ -273,7 +272,6 @@ router.get('/', async (req, res) => {
 });
 
 
-// Create a new novost with image upload
 router.post('/', upload.single('image'), async (req, res) => {
     try {
         const { title, kreator, tekst, tipNovosti, filmId } = req.body;
@@ -283,7 +281,7 @@ router.post('/', upload.single('image'), async (req, res) => {
             kreator,
             tekst,
             tipNovosti,
-            filmId: filmId ? filmId : null,  // Ako nije poslat filmId, postavi null
+            filmId: filmId ? filmId : null,  
             };
 
         if (req.file) {
@@ -308,14 +306,13 @@ router.post('/', upload.single('image'), async (req, res) => {
 
 
 
-// Get all novosti with tipNovosti "svijetfilma"
 router.get('/svijetfilma', async (req, res) => {
     try {
         const novosti = await Novost.findAll({
             where: { tipNovosti: 'svijetfilma' },
             include: [{
                 model: Film,
-                as: 'film'  // Povezivanje sa filmom
+                as: 'film' 
             }]
         });
         res.status(200).json(novosti);
@@ -324,14 +321,13 @@ router.get('/svijetfilma', async (req, res) => {
     }
 });
 
-// Get all novosti with tipNovosti "novost"
 router.get('/novost', async (req, res) => {
     try {
         const novosti = await Novost.findAll({
             where: { tipNovosti: 'novost' },
             include: [{
                 model: Film,
-                as: 'film'  // Povezivanje sa filmom
+                as: 'film'  
             }]
         });
         res.status(200).json(novosti);
@@ -340,14 +336,13 @@ router.get('/novost', async (req, res) => {
     }
 });
 
-// Get all novosti with tipNovosti "trailer"
 router.get('/trailer', async (req, res) => {
     try {
         const novosti = await Novost.findAll({
             where: { tipNovosti: 'trailer' },
             include: [{
                 model: Film,
-                as: 'film'  // Povezivanje sa filmom
+                as: 'film' 
             }]
         });
         res.status(200).json(novosti);
@@ -356,14 +351,13 @@ router.get('/trailer', async (req, res) => {
     }
 });
 
-// Get a single novost by ID with the associated film
 router.get('/:uuid', async (req, res) => {
     try {
          const novost = await Novost.findOne({
             where: { uuid: req.params.uuid },
             include: [{
                 model: Film,
-                as: 'film'  // Povezivanje sa filmom
+                as: 'film'  
             }]
         });
 
@@ -378,7 +372,6 @@ router.get('/:uuid', async (req, res) => {
 
 
 
-// Update an existing novost by ID and update image if provided
 router.put('/:id', upload.single('image'), async (req, res) => {
   try {
     const novost = await Novost.findByPk(req.params.id);
@@ -391,22 +384,17 @@ router.put('/:id', upload.single('image'), async (req, res) => {
     if (req.file) {
       const newImagePath = path.join(__dirname, '..', 'uploads', req.file.filename);
 
-      // ===> Spasi staru sliku prije izmjene
       oldFilename = novost.image?.split('/').pop();
 
-      // Upload nova slika na FTP
       await uploadToFrontend(newImagePath, req.file.filename);
 
-      // Postavi novu sliku
       novost.image = `https://unafilm.ba/uploads/${req.file.filename}`;
 
-      // ===> Briši staru ako nije ista kao nova
       if (oldFilename && oldFilename !== req.file.filename) {
         await deleteFromFrontend(oldFilename);
       }
     }
 
-    // Ažuriraj ostale podatke
     novost.title = req.body.title || novost.title;
     novost.kreator = req.body.kreator || novost.kreator;
     novost.tekst = req.body.tekst || novost.tekst;
@@ -423,7 +411,6 @@ router.put('/:id', upload.single('image'), async (req, res) => {
 
 
 
-// Delete a novost by ID
 router.delete('/:id', async (req, res) => {
     try {
         const novost = await Novost.findByPk(req.params.id);
@@ -432,7 +419,6 @@ router.delete('/:id', async (req, res) => {
             return res.status(404).json({ message: 'Novost not found' });
         }
 
-        // Obriši sliku ako postoji
         if (novost.image) {
             const imageFilename = novost.image.split('/').pop();
 
@@ -450,20 +436,16 @@ router.delete('/:id', async (req, res) => {
 
 
 
-// Search novosti by title 
 router.get('/search/:query', async (req, res) => {
     try {
         const query = req.params.query;
 
-        // Proveravamo da li je query prazan
         if (!query || query.trim() === '') {
             return res.status(400).json({ error: 'Query parameter is required' });
         }
 
-        // Sanitizacija unosa, obavezno bježite od specijalnih karaktera
         const sanitizedQuery = query.replace(/[^a-zA-Z0-9 ]/g, '');
 
-        // Pretraga novosti po naslovu ili opisu, uključujući povezani Film model
         const novosti = await Novost.findAll({
             where: {
                 [Op.or]: [
@@ -476,12 +458,10 @@ router.get('/search/:query', async (req, res) => {
             }]
         });
 
-        // Ako nema novosti
         if (novosti.length === 0) {
             return res.status(404).json({ message: 'No novosti found matching your search criteria.' });
         }
 
-        // Vraćamo pronađene novosti
         res.json(novosti);
     } catch (err) {
         console.error('Error during search:', err.message);

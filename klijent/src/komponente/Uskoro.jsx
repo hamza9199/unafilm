@@ -1,68 +1,64 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import styles from './css/Uskoro.module.css'; // Import the CSS module
-import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
+import styles from './css/Uskoro.module.css'; 
+import LoadingScreen from './LoadingScreen'; 
 
 const Uskoro = () => {
-  const [films, setFilms] = useState([]); // State to store the films
-  const [loading, setLoading] = useState(true); // Loading state to show while fetching data
-  const [error, setError] = useState(null); // Error state to handle API errors
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth); // Track screen width
+  const [films, setFilms] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth); 
 
-  // Fetch films data from the API
   useEffect(() => {
     const fetchFilms = async () => {
       try {
         const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
-                }); // Replace with your actual API endpoint
-        setFilms(response.data.sort(() => Math.random() - 0.5)); // Fetch all films
-        setLoading(false); // Set loading to false after fetching data
+                    } 
+                }); 
+        setFilms(response.data.sort(() => Math.random() - 0.5));
+        setLoading(false);
       } catch {
-        setError('Failed to fetch films'); // Handle errors
+        setError('Failed to fetch films');
         setLoading(false);
       }
     };
 
-    fetchFilms(); // Call the function to fetch data
+    fetchFilms(); 
 
-    // Listen for screen resize events
     const handleResize = () => {
       setScreenWidth(window.innerWidth);
     };
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup the event listener when the component unmounts
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []); 
 
   if (loading) {
-    return <LoadingScreen />; // Show loading screen while fetching data
+    return <LoadingScreen />;
   }
 
   if (error) {
-    return <p>{error}</p>; // Show error message if the fetch fails
+    return <p>{error}</p>; 
   }
 
-  const isMobile = screenWidth <= 768; // Define mobile breakpoint (adjust as needed)
-  const numberOfFilms = isMobile ? 4 : 6; // Display 4 films on mobile, 6 on larger screens
+  const isMobile = screenWidth <= 768; 
+  const numberOfFilms = isMobile ? 4 : 6; 
 
   return (
     <div className={styles.kon}>
       <h1 className={styles.title}>Uskoro u kinima</h1>
 
       <div className={styles.container}>
-        {/* Movie list */}
         <ul className={styles.movieList}>
-          {films.slice(0, numberOfFilms).map((film, index) => ( // Display the appropriate number of films
+          {films.slice(0, numberOfFilms).map((film, index) => ( 
             <li key={index}>
               <span className={styles.number}>{index + 1}</span>
-              <a href={`/uskoro-u-kinima/film/${film.uuid}`} className={styles.link}>{film.title}</a> {/* Assuming `film.link` is provided by the API */}
+              <a href={`/uskoro-u-kinima/film/${film.uuid}`} className={styles.link}>{film.title}</a> 
             </li>
           ))}
         </ul>

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Trejleri.module.css';
-import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
+import LoadingScreen from './LoadingScreen'; 
 
 const Trejleri = () => {
-  const [trailers, setTrailers] = useState([]); // State za trejlere
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
-  const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+  const [trailers, setTrailers] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
+  const [selectedTrailer, setSelectedTrailer] = useState(null); 
 
   useEffect(() => {
     const fetchTrailers = async () => {
@@ -15,12 +15,12 @@ const Trejleri = () => {
         const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    }
                 });
         const response2 = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/trenutno' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
 
         const combinedTrailers = [...response.data, ...response2.data].sort(() => Math.random() - 0.5).slice(0, 6);
@@ -35,7 +35,7 @@ const Trejleri = () => {
     fetchTrailers();
   }, []);
 
-  if (loading) return <LoadingScreen />; // Prikaz loading ekrana dok se podaci učitavaju
+  if (loading) return <LoadingScreen />; 
   if (error) return <p>{error}</p>;
   const getAutoplayUrl = (url) => {
   if (!url.includes('?')) return `${url}?autoplay=1`;
@@ -51,7 +51,7 @@ const Trejleri = () => {
             <div
               key={trailer.id}
               className={styles.trailerItem}
-              onClick={() => setSelectedTrailer(trailer.trailerUrl)} // Postavlja trailer kad klikneš
+              onClick={() => setSelectedTrailer(trailer.trailerUrl)} 
             >
               <div className={styles.thumbnailContainer}>
                 <img src={trailer.imageUrl} alt={trailer.title} className={`${styles.thumbnail} ${isActive ? styles.pulsing : ''}`} />
@@ -66,7 +66,6 @@ const Trejleri = () => {
       </div>
 
 
-       {/* Prikaz odabranog trailera */}
        {selectedTrailer && (
         <div className={styles.selectedTrailer}>
           <div className={styles.iframeContainer}>

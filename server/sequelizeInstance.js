@@ -16,8 +16,8 @@ const sequelize = new Sequelize({
 const sequelize = new Sequelize('unafilm_db1', 'unafilm_1', 'na3Bnpkwcp1BLF6Z', {
     host: 'id4d.your-database.de',
     dialect: 'mysql',
-    logging: false, // opcionalno: da ne ispisuje SQL upite u konzolu
-    port: 3306 // standardni MySQL port ako ti nije drugačije navedeno
+    logging: false, 
+    port: 3306 
 });
 
 

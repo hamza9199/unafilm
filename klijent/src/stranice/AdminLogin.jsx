@@ -34,9 +34,9 @@ const AdminLogin = () => {
 
 
             if (response.data.message === 'Login successful') {
-                localStorage.setItem('adminToken', "992299"); // Save token to local storage
+                localStorage.setItem('adminToken', "992299"); 
                 navigate('/admin');
-                window.location.reload(); // Reload the page to reflect the new state
+                window.location.reload(); 
             }
         } catch (err) {
             setError(err.response?.data?.error || 'Login failed. Please try again.');

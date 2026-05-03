@@ -46,7 +46,6 @@ const AdminDashboard = () => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        // Navigate to the search results page with the query
         
     };
 
@@ -57,7 +56,7 @@ const AdminDashboard = () => {
                         const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
                         setFilms(response.data);
                     } catch (error) {
@@ -69,7 +68,7 @@ const AdminDashboard = () => {
                         const response = await fetch(`https://unafilm-34ky.onrender.com/server/filmovi/search/${searchTerm}` , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    }
                 });
                         const data = await response.json();
         
@@ -94,7 +93,7 @@ const AdminDashboard = () => {
                     const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    }
                 });
                     setNovosti(response.data);
                 } catch (error) {
@@ -106,7 +105,7 @@ const AdminDashboard = () => {
                     const response = await fetch(`https://unafilm-34ky.onrender.com/server/novosti/search/${searchTerm2}` , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
                     const data = await response.json();
 
@@ -131,7 +130,6 @@ const AdminDashboard = () => {
     const handleCreateFilm = async () => {
         const formData = new FormData();
     
-        // Dodaj filmove podatke
         formData.append('title', newFilm.title);
         formData.append('description', newFilm.description);
         formData.append('trailerUrl', newFilm.trailerUrl);
@@ -147,24 +145,21 @@ const AdminDashboard = () => {
 
     
     
-        // Dodaj slike (ako postoje)
         if (newFilm.imageUrl instanceof File) {
-            formData.append('image1', newFilm.imageUrl); // Prva slika
+            formData.append('image1', newFilm.imageUrl); 
         }
         if (newFilm.imageUrl2 instanceof File) {
-            formData.append('image2', newFilm.imageUrl2); // Druga slika
+            formData.append('image2', newFilm.imageUrl2); 
         }
     
         try {
-            // Pošaljemo formData (film i slike) na backend
             const response = await axios.post('https://unafilm-34ky.onrender.com/server/filmovi', formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data', // Moramo postaviti ovaj header za upload fajlova
+                    'Content-Type': 'multipart/form-data',
                     'x-api-key': 'admin'
                 }
             });
     
-            // Ako je uspešno, ažuriraj filmsku listu
             fetchFilms();
             setSelectedFilm(null);
             setNewFilm({
@@ -206,7 +201,6 @@ const AdminDashboard = () => {
     const handleUpdateFilm = async () => {
         const formData = new FormData();
     
-        // Dodaj filmove podatke
         formData.append('title', newFilm.title);
         formData.append('description', newFilm.description);
         formData.append('trailerUrl', newFilm.trailerUrl);
@@ -220,26 +214,23 @@ const AdminDashboard = () => {
         formData.append('od', newFilm.od);
         formData.append('do', newFilm.do);
 
-        // Dodaj slike (ako postoje i ako su fajlovi)
         if (newFilm.imageUrl instanceof File) {
-            formData.append('image1', newFilm.imageUrl); // Dodaj prvu sliku
+            formData.append('image1', newFilm.imageUrl); 
         }
         
     
         if (newFilm.imageUrl2 instanceof File) {
-            formData.append('image2', newFilm.imageUrl2); // Dodaj drugu sliku
+            formData.append('image2', newFilm.imageUrl2); 
         }
     
         try {
-            // Pošaljemo formData sa filmom na backend
             const response = await axios.put(`https://unafilm-34ky.onrender.com/server/filmovi/${selectedFilm.id}`, formData, {
                 headers: {
-                    'Content-Type': 'multipart/form-data' ,// Postavljanje headera za fajlove
+                    'Content-Type': 'multipart/form-data' ,
                     'x-api-key': 'admin'
                 }
             });
     
-            // Ako je uspešno, ažuriraj filmsku listu
             fetchFilms();
             setSelectedFilm(null);
             setNewFilm({
@@ -279,18 +270,15 @@ const AdminDashboard = () => {
     const handleCreateNovost = async () => {
     const formData = new FormData();
 
-    // Dodaj podatke
     formData.append('title', newNovost.title);
     formData.append('kreator', newNovost.kreator);
     formData.append('tekst', newNovost.tekst);
     formData.append('tipNovosti', newNovost.tipNovosti);
 
-    // Ako postoji filmId i nije prazan
     if (newNovost.filmId) {
         formData.append('filmId', newNovost.filmId);
     }
 
-    // Dodaj sliku ako je File objekat
     if (newNovost.image instanceof File) {
         formData.append('image', newNovost.image);
     }
@@ -339,18 +327,15 @@ const AdminDashboard = () => {
     const handleUpdateNovost = async () => {
     const formData = new FormData();
 
-    // Dodaj podatke
     formData.append('title', newNovost.title);
     formData.append('kreator', newNovost.kreator);
     formData.append('tekst', newNovost.tekst);
     formData.append('tipNovosti', newNovost.tipNovosti);
 
-    // Ako postoji filmId i nije prazan
     if (newNovost.filmId) {
         formData.append('filmId', newNovost.filmId);
     }
 
-    // Dodaj sliku ako je File objekat
     if (newNovost.image instanceof File) {
         formData.append('image', newNovost.image);
     }
@@ -405,7 +390,7 @@ const AdminDashboard = () => {
             const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi', {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
             setFilms(response.data);
         } catch (error) {
@@ -418,7 +403,7 @@ const AdminDashboard = () => {
             const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti', {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
             setNovosti(response.data);
         } catch (error) {
@@ -431,7 +416,7 @@ const AdminDashboard = () => {
             const response = await axios.get('https://unafilm-34ky.onrender.com/server/poruke', {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
             setPoruke(response.data);
         } catch (error) {
@@ -447,7 +432,7 @@ const AdminDashboard = () => {
                 await axios.delete(`https://unafilm-34ky.onrender.com/server/filmovi/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
                 await fetchFilms();
 
@@ -487,7 +472,7 @@ const AdminDashboard = () => {
                 await axios.delete(`https://unafilm-34ky.onrender.com/server/novosti/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
                 await fetchNovosti();
 
@@ -496,7 +481,7 @@ const AdminDashboard = () => {
         notification.style.position = "fixed";
         notification.style.top = "120px";
         notification.style.right = "20px";
-        notification.style.background = "#e53935"; // red color
+        notification.style.background = "#e53935"; 
         notification.style.color = "#fff";
         notification.style.padding = "16px 24px";
         notification.style.borderRadius = "8px";
@@ -527,7 +512,7 @@ const AdminDashboard = () => {
                 await axios.delete(`https://unafilm-34ky.onrender.com/server/poruke/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
                 await fetchPoruke();
 
@@ -536,7 +521,7 @@ const AdminDashboard = () => {
         notification.style.position = "fixed";
         notification.style.top = "120px";
         notification.style.right = "20px";
-        notification.style.background = "#e53935"; // red color
+        notification.style.background = "#e53935"; 
         notification.style.color = "#fff";
         notification.style.padding = "16px 24px";
         notification.style.borderRadius = "8px";
@@ -562,8 +547,8 @@ const AdminDashboard = () => {
     
 
     const handleLogout = () => {
-        localStorage.removeItem('adminToken'); // Remove user data from local storage
-        window.location.href = '/'; // Redirect to the login page
+        localStorage.removeItem('adminToken'); 
+        window.location.href = '/'; 
     };
 
     const convertToEmbedUrl = (url) => {
@@ -582,7 +567,7 @@ const AdminDashboard = () => {
     }
   }
 
-  return url; // Ako nije validan YouTube URL
+  return url;
 };
 
       
@@ -618,7 +603,7 @@ const AdminDashboard = () => {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', 'database.sqlite'); // Specify the file name
+                link.setAttribute('download', 'database.sqlite');
                 document.body.appendChild(link);
                 link.click();
             } catch (error) {
@@ -642,7 +627,7 @@ const AdminDashboard = () => {
                 const url = window.URL.createObjectURL(new Blob([response.data]));
                 const link = document.createElement('a');
                 link.href = url;
-                link.setAttribute('download', 'uploads.zip'); // Specify the file name
+                link.setAttribute('download', 'uploads.zip'); 
                 document.body.appendChild(link);
                 link.click();
             } catch (error) {
@@ -659,7 +644,7 @@ const AdminDashboard = () => {
     };
     
     const handleFolderChange = (e) => {
-        setFolderFiles([...e.target.files]); // Array jer može biti više fajlova
+        setFolderFiles([...e.target.files]); 
     };
 
     const handleUploadBaza = async () => {
@@ -1416,7 +1401,6 @@ const handleImage3Change = (e)=>{
         let videoUrl = prompt("Unesite YouTube link (npr: https://www.youtube.com/watch?v=VIDEO_ID):");
         if (!videoUrl) return;
 
-        // Izvuci video ID iz bilo kog formata YouTube linka
         const videoIdMatch = videoUrl.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
         const videoId = videoIdMatch ? videoIdMatch[1] : null;
 
@@ -1535,7 +1519,6 @@ const handleImage3Change = (e)=>{
 />
         </div>
 
-        {/* Title */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Naslov Novosti</label>
             <input
@@ -1546,7 +1529,6 @@ const handleImage3Change = (e)=>{
             />
         </div>
 
-        {/* Kreator */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Kreator Preuzete ili Kreirane Novosti</label>
             <input
@@ -1557,7 +1539,6 @@ const handleImage3Change = (e)=>{
             />
         </div>
 
-        {/* Text 1 */}
         <div className={styles.formGroup}>
   <label className={styles.formLabel}>Tekst Novosti</label>
   <div data-color-mode="light">
@@ -1568,7 +1549,6 @@ height={600}
   commands={[
     ...commands.getCommands(),
 
-    // Komanda za sliku
     {
       name: "insertImage",
       keyCommand: "insertImage",
@@ -1585,7 +1565,6 @@ height={600}
       },
     },
 
-    // Komanda za YouTube video
   {
       name: "insertIframe",
       keyCommand: "insertIframe",
@@ -1595,7 +1574,6 @@ height={600}
         let videoUrl = prompt("Unesite YouTube link (npr: https://www.youtube.com/watch?v=VIDEO_ID):");
         if (!videoUrl) return;
 
-        // Izvuci video ID iz bilo kog formata YouTube linka
         const videoIdMatch = videoUrl.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
         const videoId = videoIdMatch ? videoIdMatch[1] : null;
 
@@ -1689,7 +1667,6 @@ height={600}
   </div>
 </div>
 
-      {/* Image URL */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Glavna Slika Novosti ako je potrebna</label>
             <input
@@ -1703,7 +1680,6 @@ height={600}
             <img src={imagePreview || newNovost.image} alt="Preview" className={styles.imagePreview} />
         </div>
 
-        {/* Type of News */}
         <div className={styles.formGroup}>
             <label className={styles.formLabel}>Tip Novosti</label>
             <select
@@ -1784,7 +1760,6 @@ height={600}
   commands={[
     ...commands.getCommands(),
 
-    // Komanda za sliku
     {
       name: "insertImage",
       keyCommand: "insertImage",
@@ -1801,7 +1776,6 @@ height={600}
       },
     },
 
-    // Komanda za YouTube video
    {
       name: "insertIframe",
       keyCommand: "insertIframe",
@@ -1811,7 +1785,6 @@ height={600}
         let videoUrl = prompt("Unesite YouTube link (npr: https://www.youtube.com/watch?v=VIDEO_ID):");
         if (!videoUrl) return;
 
-        // Izvuci video ID iz bilo kog formata YouTube linka
         const videoIdMatch = videoUrl.match(/(?:youtube\.com\/.*v=|youtu\.be\/)([^&]+)/);
         const videoId = videoIdMatch ? videoIdMatch[1] : null;
 

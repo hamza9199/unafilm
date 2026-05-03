@@ -2,32 +2,31 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Istaknuto.module.css';
 import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';  // Ensure slick carousel styles are loaded
-import 'slick-carousel/slick/slick-theme.css'; // Ensure theme styles are loaded
-import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
+import 'slick-carousel/slick/slick.css';  
+import 'slick-carousel/slick/slick-theme.css';
+import LoadingScreen from './LoadingScreen'; 
 
 const Istaknuto = () => {
   const [filmovi, setFilmovi] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+  const [selectedTrailer, setSelectedTrailer] = useState(null); 
   
 
-  // Fetch movies from API
   useEffect(() => {
     const fetchFilmovi = async () => {
       try {
         const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/uskoro' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
         const response2 = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/trenutno' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
-        const combinedFilmovi = [...response.data, ...response2.data].sort(() => Math.random() - 0.5).slice(0, 6); // Shuffle the films
+        const combinedFilmovi = [...response.data, ...response2.data].sort(() => Math.random() - 0.5).slice(0, 6); 
         setFilmovi(combinedFilmovi); 
         setLoading(false);
       } catch (err) {

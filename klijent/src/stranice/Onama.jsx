@@ -3,13 +3,13 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/Onama.module.css';
 import Breadcrumb from '../komponente/Breadcrumb';
-import slika1 from './../assets/img_52-1.jpg'; // Adjust the path as necessary
-import slika2 from './../assets/img_53-1.jpg'; // Adjust the path as necessary
-import slika3 from './../assets/img_54-1.jpg'; // Adjust the path as necessary
-import slika4 from './../assets/img_56-1.jpg'; // Adjust the path as necessary
-import slika5 from './../assets/img_57-1.jpg'; // Adjust the path as necessary
-import slika6 from './../assets/img_58-1.jpg'; // Adjust the path as necessary
-import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import slika1 from './../assets/img_52-1.jpg'; 
+import slika2 from './../assets/img_53-1.jpg';
+import slika3 from './../assets/img_54-1.jpg'; 
+import slika4 from './../assets/img_56-1.jpg'; 
+import slika5 from './../assets/img_57-1.jpg'; 
+import slika6 from './../assets/img_58-1.jpg'; 
+import Helmet from 'react-helmet'; 
 import LoadingScreen from '../komponente/LoadingScreen';
 
 
@@ -29,9 +29,9 @@ const Onama = () => {
     React.useEffect(() => {
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 1000); // Simulate a loading time of 2 seconds
+        }, 1000);
 
-        return () => clearTimeout(timer); // Cleanup the timer on component unmount
+        return () => clearTimeout(timer);
     }, []);
 
     return (

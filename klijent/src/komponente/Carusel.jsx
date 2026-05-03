@@ -5,7 +5,6 @@ import styles from "./css/Carusel.module.css";
 export const Carousel = ({ data }) => {
   const [slide, setSlide] = useState(0);
   const [selectedTrailer, setSelectedTrailer] = useState(null);
-  // Touch swipe state
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
 
@@ -30,7 +29,6 @@ export const Carousel = ({ data }) => {
     return () => clearInterval(interval);
   }, [data.length]);
 
-  // Touch handlers
   const minSwipeDistance = 50;
   const handleTouchStart = (e) => {
     setTouchEnd(null);
@@ -43,8 +41,8 @@ export const Carousel = ({ data }) => {
     if (touchStart === null || touchEnd === null) return;
     const distance = touchStart - touchEnd;
     if (Math.abs(distance) > minSwipeDistance) {
-      if (distance > 0) nextSlide(); // swipe left
-      else prevSlide(); // swipe right
+      if (distance > 0) nextSlide(); 
+      else prevSlide(); 
     }
     setTouchStart(null);
     setTouchEnd(null);

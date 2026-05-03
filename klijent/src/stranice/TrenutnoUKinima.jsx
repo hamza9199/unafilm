@@ -4,44 +4,43 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import styles from './css/TrenutnoUKinima.module.css';
-import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import Helmet from 'react-helmet';
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
 import LoadingScreen from '../komponente/LoadingScreen';
 
 const TrenutnoUKinima = () => {
     const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true); // Indikator učitavanja
-    const [error, setError] = useState(null); // Za prikazivanje greške ako nešto pođe po zlu
-      const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+      const [selectedTrailer, setSelectedTrailer] = useState(null);
     
 
     useEffect(() => {
-        // Funkcija za dobijanje filmova sa API-ja
         const fetchMovies = async () => {
             try {
                 const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/trenutno', {
                     headers: {
                         'x-api-key': 'admin'
                     }
-                }); // Ovde promeniti API endpoint
-                setMovies(response.data); // Postavljanje dobijenih filmova u stanje
-                setLoading(false); // Završeno učitavanje
+                });
+                setMovies(response.data);
+                setLoading(false);
             } catch (err) {
-                setError(err.message); // Postavljanje greške ako dođe do problema
+                setError(err.message); 
                 setLoading(false);
             }
         };
 
-        fetchMovies(); // Pozivanje funkcije za učitavanje filmova
-    }, []); // Prazan niz znači da se ovo poziva samo jednom, kada se komponenta učitava
+        fetchMovies();
+    }, []); 
 
     if (loading) {
-        return <LoadingScreen />; // Prikazivanje loading ekrana dok se podaci učitavaju
+        return <LoadingScreen />; 
     }
 
     if (error) {
-        return <p>Error: {error}</p>; // Prikazivanje greške ako je nešto pošlo po zlu
+        return <p>Error: {error}</p>; 
     }
   const getAutoplayUrl = (url) => {
   if (!url.includes('?')) return `${url}?autoplay=1`;
@@ -130,7 +129,6 @@ const TrenutnoUKinima = () => {
 
                 
             </div>
-             {/* Prikaz odabranog trailera */}
                          {selectedTrailer && (
                           <div className={styles.selectedTrailer}>
                             <div className={styles.iframeContainer}>

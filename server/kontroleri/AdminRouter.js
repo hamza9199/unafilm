@@ -130,7 +130,6 @@ const router = express.Router();
  *           example: "2023-01-01T12:00:00Z"
  */
 
-// Get all admins
 router.get('/', async (req, res) => {
     try {
         const admins = await Admin.findAll();
@@ -140,7 +139,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get admin by ID
 router.get('/:id', async (req, res) => {
     try {
         const admin = await Admin.findByPk(req.params.id);
@@ -153,14 +151,13 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-// Create a new admin
 router.post('/', async (req, res) => {
     try {
         const { username, password } = req.body;
 
         const newAdmin = await Admin.create({
             username,
-            password, // Password is stored as plain text (not recommended for production)
+            password, 
         });
 
         res.status(201).json(newAdmin);
@@ -169,7 +166,6 @@ router.post('/', async (req, res) => {
     }
 });
 
-// Update an admin by ID
 router.put('/:id', async (req, res) => {
     try {
         const admin = await Admin.findByPk(req.params.id);
@@ -181,7 +177,7 @@ router.put('/:id', async (req, res) => {
 
         const updatedData = {
             username,
-            password: password || admin.password, // Update password only if provided
+            password: password || admin.password, 
         };
 
         await admin.update(updatedData);
@@ -191,7 +187,6 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-// Delete an admin by ID
 router.delete('/:id', async (req, res) => {
     try {
         const admin = await Admin.findByPk(req.params.id);
@@ -205,7 +200,6 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-// Admin login
 router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;

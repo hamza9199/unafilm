@@ -5,7 +5,7 @@ const Poruka = sequelize.define('Poruka', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,  // Osigurava automatski inkrement ID
+        autoIncrement: true,  
       },
     ime: {
         type: DataTypes.STRING,

@@ -1,14 +1,14 @@
 /* eslint-disable no-useless-escape */
 import React, { useState, useEffect } from 'react';
-import axios from 'axios'; // Importing axios for API requests
+import axios from 'axios'; 
 import styles from './css/IzSvijetaFilma.module.css';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
-import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import Helmet from 'react-helmet';
 import LoadingScreen from '../komponente/LoadingScreen';
-import Select from 'react-select'; // Importing react-select for dropdown
+import Select from 'react-select'; 
 
 
 const ArticleItem = ({ film, novost }) => {
@@ -21,7 +21,7 @@ const ArticleItem = ({ film, novost }) => {
                         <img
                             width="300"
                             height="133"
-                            src={novost.film ? film.imageUrl : novost.image} // Ensure this is correct, otherwise use film.imageUrl properly
+                            src={novost.film ? film.imageUrl : novost.image} 
                             className={styles.entryImage}
                             alt={'Film image'}
                             decoding="async"
@@ -46,7 +46,6 @@ const ArticleItem = ({ film, novost }) => {
                             </a>
                             <span>/</span>
                             <span className={styles.entryCategory}>
-                                {/* Check if tipNovosti exists */}
                                 {novost.tipNovosti ? (
                                     <span>
                                         <a rel="category tag">
@@ -54,7 +53,7 @@ const ArticleItem = ({ film, novost }) => {
                                         </a>
                                     </span>
                                 ) : (
-                                    <span>No category</span>  // Fallback if no category
+                                    <span>No category</span>  
                                 )}
                             </span>
                             <span>/</span>
@@ -63,19 +62,18 @@ const ArticleItem = ({ film, novost }) => {
                         <div className={`${styles.entrySummary} entry-summary p-summary`} itemprop="description">
                        <p>
   {
-    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
     /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(novost.tekst) || /[<#\*\-_\[\]]/i.test(novost.tekst) 
       ? novost.tekst
-          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
-          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') 
+          .replace(/<[^>]*>/g, '')
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') 
+          .substring(0, 300) 
+          + (novost.tekst.length > 300 ? '...' : '')
       : novost.tekst
-          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+          .replace(/<[^>]*>/g, '')
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '')
+          .substring(0, 300) 
+          + (novost.tekst.length > 300 ? '...' : '') 
   }
 </p>
 
@@ -94,9 +92,9 @@ const ArticleItem = ({ film, novost }) => {
 const IzSvijetaFilma = () => {
     const [novosti, setNovosti] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [loading, setLoading] = useState(true); // Loading state
-    const [error, setError] = useState(null); // Error state
-    const [sortOrder, setSortOrder] = useState('najnovije'); // Default sort order
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null);
+    const [sortOrder, setSortOrder] = useState('najnovije'); 
     const novostiPerPage = 13;
 
     useEffect(() => {
@@ -188,7 +186,7 @@ const IzSvijetaFilma = () => {
                 <LijeviBaner />
                 <div className={styles.articleItemsWrapper}>
                     {loading ? (
-                        <LoadingScreen /> // Loading screen component
+                        <LoadingScreen /> 
                     ) : error ? (
                         <p>{error}</p>
                     ) : (

@@ -257,7 +257,6 @@ const { uploadToFrontend, deleteFromFrontend } = require('./ftp.js');
  */
 
 
-// Get all films
 router.get('/', async (req, res) => {
   try {
     const films = await Film.findAll();
@@ -267,7 +266,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Create a new film with image upload
 router.post('/', upload.fields([
   { name: "image1", maxCount: 1 },
   { name: "image2", maxCount: 1 }
@@ -291,7 +289,6 @@ router.post('/', upload.fields([
     };
 
     if (req.files.image1) {
-      // Upload the first image to the frontend server
       const image1 = req.files.image1[0];
       const localPath = path.join(__dirname, '..', 'uploads', image1.filename);
       if (fs.existsSync(localPath)) {
@@ -304,23 +301,22 @@ router.post('/', upload.fields([
 
 
       const imagePath1 = `https://unafilm.ba/uploads/${req.files.image1[0].filename}`;
-      newFilmData.imageUrl = imagePath1; // Set the imageUrl field
+      newFilmData.imageUrl = imagePath1; 
     }
 
     if (req.files.image2) {
-      // Upload the second image to the frontend server
       const image2 = req.files.image2[0];
       const localPath2 = path.join(__dirname, '..', 'uploads', image2.filename);
       if (fs.existsSync(localPath2)) {
         await uploadToFrontend(localPath2, image2.filename);
-        fs.unlinkSync(localPath2); // Delete the local file after upload
+        fs.unlinkSync(localPath2); 
       }
       else {
         console.error('Local file does not exist:', localPath2);
       }
 
       const imagePath2 = `https://unafilm.ba/uploads/${req.files.image2[0].filename}`;
-      newFilmData.imageUrl2 = imagePath2; // Set the imageUrl2 field
+      newFilmData.imageUrl2 = imagePath2;
     }
 
     const newFilm = await Film.create(newFilmData);
@@ -334,7 +330,6 @@ router.post('/', upload.fields([
   }
 });
 
-// Get all films with tipMjesta "uskoro"
 router.get('/uskoro', async (req, res) => {
   try {
     const films = await Film.findAll({
@@ -348,7 +343,6 @@ router.get('/uskoro', async (req, res) => {
   }
 });
 
-// Get all films with tipMjesta "trenutno"
 router.get('/trenutno', async (req, res) => {
   try {
     const films = await Film.findAll({
@@ -362,33 +356,27 @@ router.get('/trenutno', async (req, res) => {
   }
 });
 
-// Get all films with tipMjesta "arhiva"
 router.get('/arhiva', async (req, res) => {
   try {
-    // Dohvati filmove sa tipom 'arhiva'
     const films = await Film.findAll({
       where: {
         tipMjesta: 'arhiva',
       },
     });
 
-    // Ako nema filmova sa tipom 'arhiva', vrati 404
     if (!films.length) {
       return res.status(404).json({ error: 'No films found with "arhiva" type' });
     }
 
-    // Mapiraj Sequelize instance u obične objekte
-    const filmsData = films.map(film => film.get());  // ovo izvlači podatke iz Sequelize instanci
+    const filmsData = films.map(film => film.get());  
 
-    // Vraćanje filmova kao JSON
     res.json(filmsData);
   } catch (err) {
-    console.error(err);  // Log greške na serveru
+    console.error(err);  
     res.status(500).json({ error: err.message });
   }
 });
 
-// Get a single film by ID
 router.get('/:uuid', async (req, res) => {
   try {
     const film = await Film.findOne({ where: { uuid: req.params.uuid } });
@@ -403,7 +391,6 @@ router.get('/:uuid', async (req, res) => {
 
 
 
-// Update an existing film by ID with image upload
 router.put('/:id', upload.fields([
   { name: "image1", maxCount: 1 },
   { name: "image2", maxCount: 1 }
@@ -414,7 +401,6 @@ router.put('/:id', upload.fields([
       return res.status(404).json({ error: 'Film not found' });
     }
 
-    // Putanje do fajlova koje treba obrisati
     const oldImagePath1 = film.imageUrl?.split('/uploads/')[1];
     const oldImagePath2 = film.imageUrl2?.split('/uploads/')[1];
 
@@ -430,7 +416,7 @@ router.put('/:id', upload.fields([
       updatedData.imageUrl = `https://unafilm.ba/uploads/${newImage1.filename}`;
 
       if (oldImagePath1) {
-        await deleteFromFrontend(oldImagePath1); // << brisanje sa FTP servera
+        await deleteFromFrontend(oldImagePath1);
        
       }
     }
@@ -445,7 +431,7 @@ router.put('/:id', upload.fields([
       updatedData.imageUrl2 = `https://unafilm.ba/uploads/${newImage2.filename}`;
 
       if (oldImagePath2) {
-        await deleteFromFrontend(oldImagePath2); // << brisanje sa FTP servera
+        await deleteFromFrontend(oldImagePath2); 
         
       }
     }
@@ -458,7 +444,6 @@ router.put('/:id', upload.fields([
 });
 
 
-// Delete a film by ID
 router.delete('/:id', async (req, res) => {
   try {
     const film = await Film.findByPk(req.params.id);
@@ -469,7 +454,6 @@ router.delete('/:id', async (req, res) => {
     const imagePath1 = film.imageUrl?.split('/uploads/')[1];
     const imagePath2 = film.imageUrl2?.split('/uploads/')[1];
 
-    // Obrisi slike ako postoje
     if (imagePath1) {
       await deleteFromFrontend(imagePath1);
     }
@@ -488,20 +472,16 @@ router.delete('/:id', async (req, res) => {
 
 
 
-// Search films by title or description
 router.get('/search/:query', async (req, res) => {
   try {
     const query = req.params.query;
 
-    // Proveravamo da li je query prazan
     if (!query || query.trim() === '') {
       return res.status(400).json({ error: 'Query parameter is required' });
     }
 
-    // Sanitizacija unosa, obavezno bježite od specijalnih karaktera
     const sanitizedQuery = query.replace(/[^a-zA-Z0-9 ]/g, '');
 
-    // Pretraga filmova po naslovu ili opisu
     const films = await Film.findAll({
       where: {
         [Op.or]: [
@@ -511,12 +491,10 @@ router.get('/search/:query', async (req, res) => {
       },
     });
 
-    // Ako nema filmova
     if (films.length === 0) {
       return res.status(404).json({ message: 'No films found matching your search criteria.' });
     }
 
-    // Vraćamo pronađene filmove
     res.json(films);
   } catch (err) {
     console.error('Error during search:', err.message);

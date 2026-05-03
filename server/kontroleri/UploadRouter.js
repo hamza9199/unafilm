@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const express = require('express');
 const multer = require('multer');
-const storage = require('../kontroleri/multer.js'); // Import the multer storage configuration
+const storage = require('../kontroleri/multer.js');
 const router = express.Router();
 
 
@@ -25,7 +25,6 @@ const upload2 = multer({ storage2 });
 const upload = multer({ storage });
 
 
-// Upload nove baze
 router.post('/database', upload.single('database'), (req, res) => {
     const uploadedFilePath = req.file.path;
     const targetPath = path.join(__dirname, '../database.sqlite');
@@ -42,7 +41,6 @@ router.post('/database', upload.single('database'), (req, res) => {
     });
 });
 
-// Upload  za uploads folder
 router.post('/uploads', upload2.array('uploads'), (req, res) => {
 
     try {
@@ -51,7 +49,6 @@ router.post('/uploads', upload2.array('uploads'), (req, res) => {
             fs.rmSync(uploadsPath, { recursive: true, force: true });
         }
 
-        // Process uploaded files
         if (req.files && req.files.length > 0) {
             req.files.forEach(file => {
                 console.log(`Uploaded file: ${file.originalname}`);

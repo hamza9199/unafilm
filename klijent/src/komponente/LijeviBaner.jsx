@@ -46,7 +46,7 @@ const LijeviBaner = () => {
                 const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
                 const randomFilms = response.data.sort(() => Math.random() - 0.5).slice(0, 4);
                 setFilms(randomFilms);
@@ -62,7 +62,7 @@ const LijeviBaner = () => {
                 const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 });
                 const randomNews = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja)).slice(0, 2);
                 setNewsItems(randomNews);

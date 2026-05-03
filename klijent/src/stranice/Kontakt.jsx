@@ -4,7 +4,7 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import styles from './css/Kontakt.module.css';
 import Breadcrumb from '../komponente/Breadcrumb';
-import Helmet from 'react-helmet'; // Import Helmet for managing document head
+import Helmet from 'react-helmet';
 import LoadingScreen from '../komponente/LoadingScreen';
 
 
@@ -15,7 +15,7 @@ const Kontakt = () => {
         poruka: '',
     });
 
-    const [loading, setLoading] = useState(true); // State to manage loading screen
+    const [loading, setLoading] = useState(true); 
 
     const [statusMessage, setStatusMessage] = useState('');
 
@@ -34,7 +34,7 @@ const Kontakt = () => {
                 });
             if (response.status === 201) {
                 setStatusMessage('Poruka je uspješno poslana!');
-                setFormData({ ime: '', email: '', poruka: '' }); // Reset form
+                setFormData({ ime: '', email: '', poruka: '' }); 
             }
         } catch (error) {
             setStatusMessage('Došlo je do greške prilikom slanja poruke.');
@@ -42,9 +42,8 @@ const Kontakt = () => {
         }
     };
 
-    // Simulate loading for 2 seconds (2000 milliseconds)
     setTimeout(() => {
-        setLoading(false); // Set loading to false after 2 seconds
+        setLoading(false); 
     }, 1000);
 
 

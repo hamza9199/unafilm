@@ -7,7 +7,7 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 import { Helmet } from 'react-helmet';
-import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
+import ReactMarkdown from 'react-markdown'; 
 import rehypeRaw from 'rehype-raw';
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
@@ -40,7 +40,7 @@ const FilmTrejler = () => {
     }, [id]);
 
     if (!novost) {
-        return <LoadingScreen />; // Prikazujemo LoadingScreen dok se podaci učitavaju
+        return <LoadingScreen />; 
     }
 
     return (

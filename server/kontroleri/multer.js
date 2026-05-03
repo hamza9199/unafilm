@@ -1,12 +1,11 @@
 const multer = require("multer");
 const path = require("path");
 
-// Set Storage Engine for Multer
 const storage = multer.diskStorage({
-    destination: "./uploads/", // Folder where images are stored
+    destination: "./uploads/", 
     filename: (req, file, cb) => {
-        cb(null, Date.now() + path.extname(file.originalname)); // Unique filename
+        cb(null, Date.now() + path.extname(file.originalname));
     }
 });
 
-module.exports = storage; // Export the storage configuration
+module.exports = storage; 

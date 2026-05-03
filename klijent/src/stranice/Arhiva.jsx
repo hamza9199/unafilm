@@ -11,35 +11,34 @@ import { bs } from 'date-fns/locale';
 
 const Arhiva = () => {
     const [movies, setMovies] = useState([]);
-    const [loading, setLoading] = useState(true); // Indikator učitavanja
-    const [error, setError] = useState(null); // Za prikazivanje greške ako nešto pođe po zlu
-    const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
+    const [loading, setLoading] = useState(true); 
+    const [error, setError] = useState(null); 
+    const [selectedTrailer, setSelectedTrailer] = useState(null); 
 
     useEffect(() => {
-        // Funkcija za dobijanje filmova sa API-ja
         const fetchMovies = async () => {
             try {
                 const response = await axios.get('https://unafilm-34ky.onrender.com/server/filmovi/arhiva',{ headers: {
                     'x-api-key': 'admin'
                 }});
-                setMovies(response.data); // Postavljanje dobijenih filmova u stanje
-                setLoading(false); // Završeno učitavanje
+                setMovies(response.data);
+                setLoading(false); 
                 console.log(response.data)
             } catch (err) {
-                setError(err.message); // Postavljanje greške ako dođe do problema
+                setError(err.message);
                 setLoading(false);
             }
         };
 
-        fetchMovies(); // Pozivanje funkcije za učitavanje filmova
-    }, []); // Prazan niz znači da se ovo poziva samo jednom, kada se komponenta učita
+        fetchMovies(); 
+    }, []); 
 
     if (loading) {
-        return <LoadingScreen />; // Prikazivanje loading ekrana dok se filmovi učitavaju
+        return <LoadingScreen />; 
     }
 
     if (error) {
-        return <p>Error: {error}</p>; // Prikazivanje greške ako je nešto pošlo po zlu
+        return <p>Error: {error}</p>;
     }
   const getAutoplayUrl = (url) => {
   if (!url.includes('?')) return `${url}?autoplay=1`;
@@ -152,7 +151,6 @@ const Arhiva = () => {
             </div>
 
 
-             {/* Prikaz odabranog trailera */}
                                      {selectedTrailer && (
                                       <div className={styles.selectedTrailer}>
                                         <div className={styles.iframeContainer}>

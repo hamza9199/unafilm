@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
-const sequelize = require('./sequelizeInstance'); // Already configured for SQLite
+const sequelize = require('./sequelizeInstance'); 
 const Film = require('./modeli/Film');
 const Novost = require('./modeli/Novost');
 const Admin = require('./modeli/Admin');
@@ -14,7 +14,7 @@ const DownloadRouter = require('./kontroleri/DownloadRouter');
 const UploadRouter =   require('./kontroleri/UploadRouter')
 const swaggerUi = require('swagger-ui-express');
 const swaggerJsDoc = require('swagger-jsdoc');
-const cron = require('node-cron'); // <-- Add this line
+const cron = require('node-cron'); 
 const fetch = require('node-fetch').default;
 
 
@@ -42,7 +42,7 @@ const PORT = 3000;
     try {
         await sequelize.authenticate();
         console.log('Konekcija s MySQL bazom je uspješna.');
-        await sequelize.sync({ alter: true }); // Sinhronizacija modela s bazom
+        await sequelize.sync({ alter: true });
         console.log('Baza sinhronizovana.');
     } catch (error) {
         console.error('Greška pri konekciji s bazom:', error);
@@ -50,7 +50,6 @@ const PORT = 3000;
     }
 })();
 
-// CORS opcije
 const corsOptions = {
     origin: ['http://localhost:5173', 'https://unafilm.ba', 'https://www.unafilm.ba'],
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
@@ -58,7 +57,6 @@ const corsOptions = {
     optionsSuccessStatus: 204,
 };
 
-// Middleware
 app.use(cors(corsOptions));
 app.use(express.json());
 
@@ -66,30 +64,25 @@ app.use(express.json());
 app.use("/uploads", express.static("uploads"));
 
 
-// Middleware za provjeru API ključa
 app.use((req, res, next) => {
     const apiKey = req.headers['x-api-key'];
-    const VALID_API_KEY = process.env.API_KEY; // Dodaj ovo u .env
+    const VALID_API_KEY = process.env.API_KEY; 
 
     if (apiKey && apiKey === VALID_API_KEY) {
-        next(); // Autorizovan
+        next(); 
     } else {
         res.status(401).json({ error: 'Unauthorized: Invalid or missing API key' });
     }
 });
 
 
-// Swagger setup
 const swaggerSetup = require('./kontroleri/swagger.js');
 swaggerSetup(app);
 
 
-// Serve Images as Static Files
 
-// Periodic job to update film status based on dates
-cron.schedule('0 * * * *', async () => { // Runs every hour at minute 0
+cron.schedule('0 * * * *', async () => { 
     try {
-        // Move "trenutno" to "arhiva" if "do" has passed
         await Film.update(
             { tipMjesta: 'arhiva' },
             {
@@ -99,7 +92,6 @@ cron.schedule('0 * * * *', async () => { // Runs every hour at minute 0
                 }
             }
         );
-        // Move "uskoro" to "trenutno" if "od" has started
         await Film.update(
             { tipMjesta: 'trenutno' },
             {
@@ -109,7 +101,6 @@ cron.schedule('0 * * * *', async () => { // Runs every hour at minute 0
                 }
             }
         );
-        // Optionally log or handle results
     } catch (err) {
         console.error('Error updating film statuses:', err);
     }

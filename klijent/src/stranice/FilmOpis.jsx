@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import styles from './css/FilmOpis.module.css'; // Import CSS module
+import styles from './css/FilmOpis.module.css'; 
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import { Helmet } from 'react-helmet';
-import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
+import ReactMarkdown from 'react-markdown'; 
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
 import LoadingScreen from '../komponente/LoadingScreen';
 
 const FilmOpis = () => {
-    const { id } = useParams(); // Koristimo useParams da dobijemo id iz URL-a
+    const { id } = useParams();
     const [movie, setMovie] = useState(null);
 
     useEffect(() => {
-        // API poziv za pretragu filma prema id-u
         const fetchMovieData = async () => {
             try {
                 const response = await fetch(`https://unafilm-34ky.onrender.com/server/filmovi/${id}`, {
@@ -26,18 +25,18 @@ const FilmOpis = () => {
                     throw new Error('Film not found');
                 }
                 const data = await response.json();
-                setMovie(data); // Postavljamo podatke filma u stanje
+                setMovie(data); 
             } catch (error) {
                 console.error(error);
-                setMovie(null); // Ako dođe do greške, postavljamo film na null
+                setMovie(null); 
             }
         };
 
         fetchMovieData();
-    }, [id]); // Ponovno učitavanje kada se id promeni
+    }, [id]);
 
     if (!movie) {
-        return <LoadingScreen />; // Prikazujemo LoadingScreen dok se podaci učitavaju
+        return <LoadingScreen />; 
     }
 
     return (
@@ -55,7 +54,7 @@ const FilmOpis = () => {
                     backgroundPosition: 'center',
                     backgroundRepeat: 'no-repeat',
                     backgroundColor: '#181818',
-                    filter: 'blur(16px) brightness(0.6)', // zamućenje + zatamnjenje
+                    filter: 'blur(16px) brightness(0.6)', 
                     position: 'absolute',
                     top: 0,
                     left: 0,
@@ -63,7 +62,7 @@ const FilmOpis = () => {
                     bottom: 0,
                     zIndex: 0,
                     overflow: 'hidden',
-                    transform: 'scale(1.1)', // <<< ovo je ključno
+                    transform: 'scale(1.1)',
                 }}
             />
             <div style={{ position: 'relative', zIndex: 1 }}>

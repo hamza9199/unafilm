@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import styles from './css/Header.module.css';
 import { useNavigate } from 'react-router-dom';
-import logo from './../assets/unaFilm141-2.png'; // Adjust the path as necessary
-import { FaSearch } from 'react-icons/fa'; // Na vrhu fajla
+import logo from './../assets/unaFilm141-2.png'; 
+import { FaSearch } from 'react-icons/fa'; 
 
 const Header = () => {
     const [isSearchOpen, setIsSearchOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState('');
-    const history = useNavigate();  // Using history to navigate programmatically
+    const history = useNavigate(); 
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   
 
@@ -37,7 +37,6 @@ useEffect(() => {
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
-        // Navigate to the search results page with the query
         history(`/search/?query=${searchTerm}`);
     };
 

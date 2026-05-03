@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'; 
 import axios from 'axios';
-import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
+import LoadingScreen from './LoadingScreen'; 
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
 
@@ -14,15 +14,15 @@ const Trenutno = () => {
   const [error, setError] = useState(null); 
   const [selectedFilm, setSelectedFilm] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
-  const [currentSlide, setCurrentSlide] = useState(0); // Prati početni indeks slajdera
-  const [selectedTrailer, setSelectedTrailer] = useState(null); // Drži trenutno odabrani trailer
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth); // Za praćenje veličine prozora
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedTrailer, setSelectedTrailer] = useState(null); 
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   
   useEffect(() => {
     axios.get('https://unafilm-34ky.onrender.com/server/filmovi/trenutno' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
+                    } 
                 })
       .then(response => {
         setFilms(response.data.sort(() => Math.random() - 0.5).slice(0, 6));
@@ -34,15 +34,14 @@ const Trenutno = () => {
       });
   }, []);
   
-  // Postavljanje broja slajdova na osnovu širine prozora
   const getSlidesToShow = () => {
     if (windowWidth < 768) {
-      return 2; // Prikazuje samo 2 slajda na mobilnim uređajima
+      return 2; 
     }
     if(films.length < 3) {
-      return films.length; // Ako ima manje od 3 filma, prikazuje sve
+      return films.length; 
     }
-    return 3; // Prikazuje 3 slajda na većim uređajima
+    return 3; 
   };
 
   const getInfitine = () => {
@@ -55,7 +54,6 @@ const Trenutno = () => {
     return true;
   }
 
-  // Responsivno praćenje promjena širine prozora
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -69,17 +67,17 @@ const Trenutno = () => {
   }, []);
 
   const settings = {
-    slidesToShow: getSlidesToShow(), // Dinamički broj slajdova na osnovu širine
+    slidesToShow: getSlidesToShow(), 
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 5000,
     infinite: getInfitine(),
     arrows: false,
-    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), // Prati početni indeks slajdera
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex), 
   };
 
   if (loading) {
-    return <LoadingScreen />; // Prikazuje loading ekran dok se podaci učitavaju
+    return <LoadingScreen />; 
   }
 
   if (error) {
@@ -96,14 +94,14 @@ const Trenutno = () => {
         <Slider {...settings}>
           {films.map((film, index) => {
             const visibleSlides = getSlidesToShow();
-            const relativeIndex = ((index - currentSlide + films.length) % films.length) % visibleSlides; // Računa relativni indeks unutar 3 vidljiva slajda
+            const relativeIndex = ((index - currentSlide + films.length) % films.length) % visibleSlides; 
 
             return (
               <div 
                 className={styles.movieItem} 
                 key={index} 
                 onMouseEnter={() => {
-                  setHoveredIndex(relativeIndex + 1.5); // Postavlja hoveredIndex na 1, 2 ili 3
+                  setHoveredIndex(relativeIndex + 1.5);
                   setSelectedFilm(film);
                 }} 
                 onMouseLeave={() => {
@@ -212,7 +210,6 @@ const Trenutno = () => {
 
 
 
-         {/* Prikaz odabranog trailera */}
                      {selectedTrailer && (
                       <div className={styles.selectedTrailer}>
                         <div className={styles.iframeContainer}>

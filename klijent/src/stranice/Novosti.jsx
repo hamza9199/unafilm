@@ -6,8 +6,8 @@ import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
 import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
-import Helmet from 'react-helmet'; // Import Helmet for managing document head
-import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
+import Helmet from 'react-helmet'; 
+import ReactMarkdown from 'react-markdown'; 
 import LoadingScreen from '../komponente/LoadingScreen';
 import Select from 'react-select';
 
@@ -21,7 +21,7 @@ const ArticleItem = ({ film, novost }) => {
                         <img
                             width="300"
                             height="133"
-                            src={novost.film ? film.imageUrl : novost.image} // Ensure this is correct, otherwise use film.imageUrl properly
+                            src={novost.film ? film.imageUrl : novost.image} 
                             className={styles.entryImage}
                             alt='Film image'
                             decoding="async"
@@ -43,35 +43,33 @@ const ArticleItem = ({ film, novost }) => {
                   <p>
   {
     novost.tekst && (
-    // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
     /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(novost.tekst) || /[<#\*\-_\[\]]/i.test(novost.tekst) 
       ? novost.tekst
-          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
-          .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+          .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') 
+          .replace(/<[^>]*>/g, '') 
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') 
+          .substring(0, 300) 
+          + (novost.tekst.length > 300 ? '...' : '')
       : novost.tekst
-          .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
-          .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-          .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-          + (novost.tekst.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+          .replace(/<[^>]*>/g, '') 
+          .replace(/[\*\#\<_\-_\[\]\>]/g, '') 
+          .substring(0, 300)
+          + (novost.tekst.length > 300 ? '...' : '') 
     )
     ||
-     film?.opis && ( // Provjera da li film.opis nije null ili prazan
-      // Provjera da li postoje neprihvaćeni tagovi (<iframe>, <style>, <div>, <img>) ili Markdown tagovi
+     film?.opis && ( 
       /<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/i.test(film.opis) || /[<#\*\-_\[\]]/i.test(film.opis)
         ? film.opis
-            .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') // Uklanjanje iframe, style, div, img tagova
-            .replace(/<[^>]*>/g, '') // Uklanjanje svih drugih HTML tagova
-            .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-            .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-            + (film.opis.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+            .replace(/<(iframe|style|div|img)[\s\S]*?>[\s\S]*?<\/\1>/g, '') 
+            .replace(/<[^>]*>/g, '') 
+            .replace(/[\*\#\<_\-_\[\]\>]/g, '') 
+            .substring(0, 300)
+            + (film.opis.length > 300 ? '...' : '') 
         : film.opis
-            .replace(/<[^>]*>/g, '') // Ako nema neprihvaćenih tagova, uklanjamo sve HTML tagove
-            .replace(/[\*\#\<_\-_\[\]\>]/g, '') // Uklanjanje Markdown specijalnih znakova
-            .substring(0, 300) // Ograničavanje teksta na 300 karaktera
-            + (film.opis.length > 300 ? '...' : '') // Dodavanje tri tačke ako je tekst duži od 300 karaktera
+            .replace(/<[^>]*>/g, '') 
+            .replace(/[\*\#\<_\-_\[\]\>]/g, '')
+            .substring(0, 300) 
+            + (film.opis.length > 300 ? '...' : '') 
     )
     
   }
@@ -94,7 +92,7 @@ const Novosti = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
-    const [sortOrder, setSortOrder] = useState('najnovije'); // Default sort order
+    const [sortOrder, setSortOrder] = useState('najnovije'); 
     const novostiPerPage = 13;
 
     useEffect(() => {
@@ -105,7 +103,6 @@ const Novosti = () => {
                         'x-api-key': 'admin'
                     }
                 });
-                // Sortiraj po datumu kreiranja (najnoviji prvi)
                 const sorted = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja));
                 setNovosti(sorted);
                 setLoading(false);

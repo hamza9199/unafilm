@@ -5,7 +5,7 @@ const Admin = sequelize.define('Admin', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,  // Osigurava automatski inkrement ID
+        autoIncrement: true, 
       },
     username: {
         type: DataTypes.STRING,

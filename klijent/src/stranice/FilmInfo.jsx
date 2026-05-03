@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';  
-import { useParams } from 'react-router-dom'; // Uvozimo useParams za dobijanje id-a iz URL-a
+import { useParams } from 'react-router-dom'; 
 import styles from './css/FilmInfo.module.css';
 import Header from '../komponente/Header';
 import Footer from '../komponente/Footer';
@@ -7,38 +7,37 @@ import Breadcrumb from '../komponente/Breadcrumb';
 import LijeviBaner from '../komponente/LijeviBaner';
 import RelatedArticle from '../komponente/RelatedArticle';
 import { Helmet } from 'react-helmet';
-import ReactMarkdown from 'react-markdown'; // Uvozimo ReactMarkdown za renderovanje Markdown sadržaja
+import ReactMarkdown from 'react-markdown'; 
 import rehypeRaw from 'rehype-raw';
 import { format } from 'date-fns';
 import { bs } from 'date-fns/locale';
 import LoadingScreen from '../komponente/LoadingScreen';
 
-const FilmInfo = ({ svijet }) => { // Fix destructuring of svijet
-    const { id } = useParams(); // Preuzimanje id-a iz URL-a
+const FilmInfo = ({ svijet }) => { 
+    const { id } = useParams();
     const [novost, setNovost] = useState(null);
 
     useEffect(() => {
-        // API poziv za pretragu novosti prema id-u   
         const fetchNovostData = async () => {
             try {
                 const response = await fetch(`https://unafilm-34ky.onrender.com/server/novosti/${id}`, {
                     headers: {
                         'x-api-key': 'admin'
                     }
-                }); // Endpoint za pretragu po id
+                }); 
                 if (!response.ok) {
                     throw new Error('Novost not found');
                 }
                 const data = await response.json();
-                setNovost(data); // Postavljanje novosti u stanje
+                setNovost(data); 
             } catch (error) {
                 console.error(error);
-                setNovost(null); // Ako dođe do greške, postavljamo novost na null
+                setNovost(null); 
             }
         };
 
-        fetchNovostData(); // Pozivanje funkcije za pretragu novosti
-    }, [id]); // Poziva se svaki put kada se id promeni
+        fetchNovostData();
+    }, [id]); 
 
     if (!novost) {
         return (
@@ -47,7 +46,7 @@ const FilmInfo = ({ svijet }) => { // Fix destructuring of svijet
         );
     }
 
-    const { film } = novost; // Preuzimanje filma iz odgovora
+    const { film } = novost; 
 
     return (
         <>

@@ -1,16 +1,16 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../sequelizeInstance');
-const { v4: uuidv4 } = require('uuid'); // Dodaj ako koristiš vanjski UUID generator (nije obavezno s Sequelize)
+const { v4: uuidv4 } = require('uuid'); 
 
 const Film = sequelize.define('Film', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true,  // Osigurava automatski inkrement ID
+        autoIncrement: true, 
       },
        uuid: {
         type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4, // Generira UUID automatski
+        defaultValue: DataTypes.UUIDV4, 
         allowNull: true,
     },
     title: {//
@@ -59,7 +59,7 @@ const Film = sequelize.define('Film', {
         type: DataTypes.ENUM('uskoro', 'trenutno', 'arhiva'),
         allowNull: true,  
     },
-    opis: {//
+    opis: {
         type: DataTypes.TEXT,
         allowNull: true,
     },

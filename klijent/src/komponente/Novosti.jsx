@@ -1,41 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './css/Novosti.module.css';
-import LoadingScreen from './LoadingScreen'; // Adjust the path as necessary
+import LoadingScreen from './LoadingScreen'; 
 
 const Novosti = () => {
-  const [films, setFilms] = useState([]); // State to store films
-  const [loading, setLoading] = useState(true); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [films, setFilms] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null);
 
-  // Fetch films data from the API
   useEffect(() => {
     const fetchFilms = async () => {
       try {
         const response = await axios.get('https://unafilm-34ky.onrender.com/server/novosti/' , {
                     headers: {
                         'x-api-key': 'admin'
-                    } // API endpoint for movies
-                }); // Replace with your API endpoint
-        // Sort by date descending and take the first 3
+                    } 
+                }); 
         const sorted = response.data.sort((a, b) => new Date(b.datumKreiranja) - new Date(a.datumKreiranja)).slice(0, 3);
         setFilms(sorted);
-        setLoading(false); // Set loading to false after fetching data
+        setLoading(false); 
       } catch {
-        setError('Failed to fetch films'); // Handle errors
+        setError('Failed to fetch films'); 
         setLoading(false);
       }
     };
 
-    fetchFilms(); // Call function to fetch data
-  }, []); // Empty dependency array to fetch only on mount
+    fetchFilms(); 
+  }, []); 
 
   if (loading) {
-    return <LoadingScreen />; // Show loading screen while fetching data
+    return <LoadingScreen />;
   }
 
   if (error) {
-    return <p>{error}</p>; // Show error if something goes wrong
+    return <p>{error}</p>;
   }
 
   return (
